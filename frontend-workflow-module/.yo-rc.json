@@ -1,0 +1,40 @@
+{
+  "generator-jhipster": {
+    "promptValues": {
+      "packageName": "co.tpg.workflow",
+      "nativeLanguage": "en"
+    },
+    "jhipsterVersion": "6.1.2",
+    "applicationType": "monolith",
+    "baseName": "workflow",
+    "packageName": "co.tpg.workflow",
+    "packageFolder": "co/tpg/workflow",
+    "serverPort": "8080",
+    "authenticationType": "jwt",
+    "cacheProvider": "ehcache",
+    "enableHibernateCache": true,
+    "websocket": false,
+    "databaseType": "sql",
+    "devDatabaseType": "h2Disk",
+    "prodDatabaseType": "mysql",
+    "searchEngine": false,
+    "messageBroker": false,
+    "serviceDiscoveryType": false,
+    "buildTool": "maven",
+    "enableSwaggerCodegen": false,
+    "jwtSecretKey": "NzFiMjU2ZDk2MDMwNDg2MGQwNDRlMDE4N2RhNTVmMDhmZTlhNjc0ZTBhZTM2MjlkYmVlMjIzMWQ0ZWYzMDIwMDA3OGVmMDU4YTMwMjQ0ZGYwNzk3NDU5NGIwNTE5ODg1NTBiZGNjN2NhZWYyYTRiNzIxZTBjMDQ5Mjg5MzJhYWE=",
+    "useSass": true,
+    "clientPackageManager": "npm",
+    "clientFramework": "react",
+    "clientTheme": "none",
+    "clientThemeVariant": "",
+    "testFrameworks": [],
+    "jhiPrefix": "jhi",
+    "entitySuffix": "",
+    "dtoSuffix": "DTO",
+    "otherModules": [],
+    "enableTranslation": true,
+    "nativeLanguage": "en",
+    "languages": ["en"]
+  }
+}

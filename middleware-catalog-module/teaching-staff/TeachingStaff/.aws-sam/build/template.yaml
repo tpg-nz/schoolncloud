@@ -1,0 +1,8 @@
+Resources:
+  Function:
+    Properties:
+      CodeUri: Function
+      Handler: co.tpg.service.TeachingStaffFunction
+      Runtime: java8
+      Timeout: 900
+    Type: AWS::Serverless::Function

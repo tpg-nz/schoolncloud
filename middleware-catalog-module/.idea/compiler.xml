@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="CompilerConfiguration">
+    <annotationProcessing>
+      <profile default="true" name="Default" enabled="true" />
+      <profile name="Maven default annotation processors profile" enabled="true">
+        <sourceOutputDir name="target/generated-sources/annotations" />
+        <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
+        <outputRelativeToContentRoot value="true" />
+        <module name="teaching-staff" />
+        <module name="catalog-model" />
+      </profile>
+    </annotationProcessing>
+    <bytecodeTargetLevel>
+      <module name="catalog-model" target="1.8" />
+      <module name="CreateTeachingStaff" target="1.8" />
+      <module name="middleware-catalog-module" target="1.8" />
+      <module name="RetrieveTeachingStaff" target="1.8" />
+      <module name="teaching-staff" target="1.8" />
+      <module name="TeachingClassCreate" target="1.8" />
+    </bytecodeTargetLevel>
+  </component>
+</project>

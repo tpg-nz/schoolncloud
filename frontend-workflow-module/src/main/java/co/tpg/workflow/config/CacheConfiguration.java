@@ -43,6 +43,7 @@ public class CacheConfiguration {
             createCache(cm, co.tpg.workflow.domain.User.class.getName());
             createCache(cm, co.tpg.workflow.domain.Authority.class.getName());
             createCache(cm, co.tpg.workflow.domain.User.class.getName() + ".authorities");
+            createCache(cm, co.tpg.workflow.domain.Workflow.class.getName());
             // jhipster-needle-ehcache-add-entry
         };
     }

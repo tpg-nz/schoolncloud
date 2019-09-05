@@ -1,0 +1,25 @@
+{
+  "workflowApp": {
+    "workflow": {
+      "home": {
+        "title": "Workflows",
+        "createLabel": "Create a new Workflow",
+        "createOrEditLabel": "Create or edit a Workflow",
+        "notFound": "No Workflow found"
+      },
+      "created": "A new Workflow is created with identifier {{ param }}",
+      "updated": "A Workflow is updated with identifier {{ param }}",
+      "deleted": "A Workflow is deleted with identifier {{ param }}",
+      "delete": {
+        "question": "Are you sure you want to delete Workflow {{ id }}?"
+      },
+      "detail": {
+        "title": "Workflow"
+      },
+      "name": "Name",
+      "description": "Description",
+      "version": "Version",
+      "enabled": "Enabled"
+    }
+  }
+}

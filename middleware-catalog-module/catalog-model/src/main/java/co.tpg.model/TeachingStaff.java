@@ -23,4 +23,12 @@ public class TeachingStaff extends AbstractModel<String> {
         this.id = id;
         this.name = name;
     }
- }
+
+    @Override
+    public String toString() {
+        return "TeachingStaff{" +
+                "id='" + id + '\'' +
+                ", name='" + name + '\'' +
+                '}';
+    }
+}

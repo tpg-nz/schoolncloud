@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="UTF-8" ?>
-<testsuite tests="1" failures="0" name="co.tpg.service.CreateTeachingStaffFunctionTest" time="0.002" errors="0" skipped="0">
+<testsuite tests="1" failures="0" name="co.tpg.function.CreateTeachingStaffFunctionTest" time="0.002" errors="0" skipped="0">
   <properties>
     <property name="java.runtime.name" value="Java(TM) SE Runtime Environment"/>
     <property name="sun.boot.library.path" value="C:\Program Files\Java\jdk1.8.0_221\jre\bin"/>
     <property name="java.vm.version" value="25.221-b11"/>
     <property name="java.vm.vendor" value="Oracle Corporation"/>
-    <property name="maven.multiModuleProjectDirectory" value="C:\projects\SchoolnCloud\middleware-catalog-module\teaching-staff\TeachingStaff"/>
+    <property name="maven.multiModuleProjectDirectory" value="C:\projects\SchoolnCloud\schoolncloud\middleware-catalog-module\teaching-staff\TeachingStaff"/>
     <property name="java.vendor.url" value="http://java.oracle.com/"/>
     <property name="path.separator" value=";"/>
     <property name="guice.disable.misplaced.annotation.check" value="true"/>
@@ -16,7 +16,7 @@
     <property name="sun.java.launcher" value="SUN_STANDARD"/>
     <property name="sun.os.patch.level" value=""/>
     <property name="java.vm.specification.name" value="Java Virtual Machine Specification"/>
-    <property name="user.dir" value="C:\projects\SchoolnCloud\middleware-catalog-module\teaching-staff\TeachingStaff"/>
+    <property name="user.dir" value="C:\projects\SchoolnCloud\schoolncloud\middleware-catalog-module\teaching-staff\TeachingStaff"/>
     <property name="java.runtime.version" value="1.8.0_221-b11"/>
     <property name="java.awt.graphicsenv" value="sun.awt.Win32GraphicsEnvironment"/>
     <property name="java.endorsed.dirs" value="C:\Program Files\Java\jdk1.8.0_221\jre\lib\endorsed"/>
@@ -30,7 +30,7 @@
     <property name="maven.ext.class.path" value="C:\Program Files\JetBrains\IntelliJ IDEA Community Edition 2019.2\plugins\maven\lib\maven-event-listener.jar"/>
     <property name="classworlds.conf" value="C:\Program Files\JetBrains\IntelliJ IDEA Community Edition 2019.2\plugins\maven\lib\maven3\bin\m2.conf"/>
     <property name="sun.jnu.encoding" value="Cp1252"/>
-    <property name="java.library.path" value="C:\Program Files\Java\jdk1.8.0_221\bin;C:\windows\Sun\Java\bin;C:\windows\system32;C:\windows;C:\Program Files\JetBrains\IntelliJ IDEA Community Edition 2019.2\jbr\\bin;C:\Program Files\JetBrains\IntelliJ IDEA Community Edition 2019.2\jbr\\bin\server;C:\Program Files\JetBrains\IntelliJ IDEA Community Edition 2019.2\jbr\\bin;C:\Program Files\JetBrains\IntelliJ IDEA Community Edition 2019.2\jbr\\bin\server;C:\tools\cmder\bin;C:\tools\cmder\vendor\bin;C:\tools\cmder\vendor\conemu-maximus5\ConEmu\Scripts;C:\tools\cmder\vendor\conemu-maximus5;C:\tools\cmder\vendor\conemu-maximus5\ConEmu;C:\ProgramData\DockerDesktop\version-bin;C:\Program Files\Docker\Docker\Resources\bin;C:\Program Files (x86)\Microsoft SDKs\Azure\CLI2\wbin;C:\windows\system32;C:\windows;C:\windows\System32\Wbem;C:\windows\System32\WindowsPowerShell\v1.0\;C:\windows\System32\OpenSSH\;C:\Program Files\Intel\WiFi\bin\;C:\Program Files\Common Files\Intel\WirelessCommon\;C:\Program Files (x86)\Intel\Intel(R) Management Engine Components\DAL;C:\Program Files\Intel\Intel(R) Management Engine Components\DAL;C:\Program Files\Java\jdk1.8.0_221\bin;C:\Program Files\nodejs\;C:\tools\apache-maven-3.6.1\bin;C:\tools\gradle-5.5.1\bin;C:\Program Files (x86)\Yarn\bin\;C:\ProgramData\chocolatey\bin;C:\Program Files\Amazon\AWSCLI\bin\;C:\Program Files\Amazon\AWSSAMCLI\bin\;C:\Users\Rod\AppData\Local\Microsoft\WindowsApps;C:\Program Files\JetBrains\IntelliJ IDEA Community Edition 2019.2\bin;C:\Program Files\Java\jdk1.8.0_221\bin;C:\Users\Rod\AppData\Roaming\npm;C:\Users\Rod\AppData\Local\Yarn\bin;C:\Users\Rod\AppData\Local\Programs\Microsoft VS Code\bin;C:\tools\cmder\vendor\git-for-windows\cmd;C:\tools\cmder\vendor\git-for-windows\mingw64\bin;C:\tools\cmder\vendor\git-for-windows\usr\bin;C:\tools\cmder;."/>
+    <property name="java.library.path" value="C:\Program Files\Java\jdk1.8.0_221\bin;C:\windows\Sun\Java\bin;C:\windows\system32;C:\windows;C:\Program Files\JetBrains\IntelliJ IDEA Community Edition 2019.2\jbr\\bin;C:\Program Files\JetBrains\IntelliJ IDEA Community Edition 2019.2\jbr\\bin\server;C:\ProgramData\DockerDesktop\version-bin;C:\Program Files\Docker\Docker\Resources\bin;C:\Program Files (x86)\Microsoft SDKs\Azure\CLI2\wbin;C:\windows\system32;C:\windows;C:\windows\System32\Wbem;C:\windows\System32\WindowsPowerShell\v1.0\;C:\windows\System32\OpenSSH\;C:\Program Files\Intel\WiFi\bin\;C:\Program Files\Common Files\Intel\WirelessCommon\;C:\Program Files (x86)\Intel\Intel(R) Management Engine Components\DAL;C:\Program Files\Intel\Intel(R) Management Engine Components\DAL;C:\Program Files\Java\jdk1.8.0_221\bin;C:\Program Files\nodejs\;C:\tools\apache-maven-3.6.1\bin;C:\tools\gradle-5.5.1\bin;C:\Program Files (x86)\Yarn\bin\;C:\ProgramData\chocolatey\bin;C:\Program Files\Amazon\AWSCLI\bin\;C:\Program Files\Amazon\AWSSAMCLI\bin\;C:\Users\Rod\AppData\Local\Microsoft\WindowsApps;C:\Program Files\JetBrains\IntelliJ IDEA Community Edition 2019.2\bin;;C:\Program Files\Java\jdk1.8.0_221\bin;C:\Users\Rod\AppData\Roaming\npm;C:\Users\Rod\AppData\Local\Yarn\bin;C:\Users\Rod\AppData\Local\Programs\Microsoft VS Code\bin;."/>
     <property name="maven.conf" value="C:\Program Files\JetBrains\IntelliJ IDEA Community Edition 2019.2\plugins\maven\lib\maven3/conf"/>
     <property name="java.specification.name" value="Java Platform API Specification"/>
     <property name="java.class.version" value="52.0"/>
@@ -64,5 +64,5 @@
     <property name="sun.desktop" value="windows"/>
     <property name="sun.cpu.isalist" value="amd64"/>
   </properties>
-  <testcase classname="co.tpg.service.CreateTeachingStaffFunctionTest" name="successfulResponse" time="0.002"/>
+  <testcase classname="co.tpg.function.CreateTeachingStaffFunctionTest" name="successfulResponse" time="0.002"/>
 </testsuite>

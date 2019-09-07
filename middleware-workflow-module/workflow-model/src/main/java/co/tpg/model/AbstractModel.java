@@ -1,7 +1,5 @@
 package co.tpg.model;
 
-import org.apache.commons.lang.builder.ToStringBuilder;
-
 import java.io.Serializable;
 import java.util.Objects;
 
@@ -26,10 +24,5 @@ public abstract class AbstractModel<T> implements Domain<T>, Serializable {
     @Override
     public int hashCode() {
         return Objects.hash(getId());
-    }
-
-    @Override
-    public String toString() {
-        return ToStringBuilder.reflectionToString(this);
     }
 }

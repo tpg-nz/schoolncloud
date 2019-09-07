@@ -3,6 +3,7 @@ package co.tpg.model;
 import lombok.Builder;
 import lombok.Getter;
 import lombok.Setter;
+import lombok.ToString;
 
 /**
  * Model class to represent a Teaching Staff.
@@ -12,6 +13,7 @@ import lombok.Setter;
 @Builder
 @Getter
 @Setter
+@ToString
 public class TeachingStaff extends AbstractModel<String> {
     private String id;
     private String name;

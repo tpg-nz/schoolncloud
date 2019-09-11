@@ -2,7 +2,7 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
-      <module fileurl="file://$PROJECT_DIR$/HelloWorldFunction/HelloWorld.iml" filepath="$PROJECT_DIR$/HelloWorldFunction/HelloWorld.iml" />
+      <module fileurl="file://$PROJECT_DIR$/Qualification/Qualification.iml" filepath="$PROJECT_DIR$/Qualification/Qualification.iml" />
       <module fileurl="file://$PROJECT_DIR$/qualification.iml" filepath="$PROJECT_DIR$/qualification.iml" />
     </modules>
   </component>

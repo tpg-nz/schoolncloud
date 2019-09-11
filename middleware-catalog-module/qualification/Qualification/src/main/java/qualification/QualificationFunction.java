@@ -1,4 +1,4 @@
-package helloworld;
+package qualification;
 
 import java.io.BufferedReader;
 import java.io.InputStreamReader;
@@ -14,7 +14,7 @@ import com.amazonaws.services.lambda.runtime.RequestHandler;
 /**
  * Handler for requests to Lambda function.
  */
-public class App implements RequestHandler<Object, Object> {
+public class QualificationFunction implements RequestHandler<Object, Object> {
 
     public Object handleRequest(final Object input, final Context context) {
         Map<String, String> headers = new HashMap<>();

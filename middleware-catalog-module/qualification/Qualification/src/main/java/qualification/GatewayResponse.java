@@ -1,4 +1,4 @@
-package helloworld;
+package qualification;
 
 import java.util.Collections;
 import java.util.HashMap;

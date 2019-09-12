@@ -20,6 +20,7 @@ public class Qualification extends AbstractModel<Stirng> {
     private String id;
     private String name;
     private String hyperlink;
+    private Subject subject;
 
     public Qualification(String id, String name, String hyperlink) {
         this.id = id;

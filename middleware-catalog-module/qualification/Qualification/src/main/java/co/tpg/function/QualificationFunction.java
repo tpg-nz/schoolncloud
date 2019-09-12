@@ -1,38 +1,60 @@
-package qualification;
+package co.tpg.function;
 
-import java.io.BufferedReader;
-import java.io.InputStreamReader;
-import java.io.IOException;
-import java.net.URL;
+import co.tpg.model.Qualification;
+import co.tpg.request.HttpMethod;
+import co.tpg.request.QualificationRequest;
+import co.tpg.response.QualificationResponse;
+import javax.servlet.http.HttpServletResponse;
 import java.util.HashMap;
 import java.util.Map;
-import java.util.stream.Collectors;
-
 import com.amazonaws.services.lambda.runtime.Context;
 import com.amazonaws.services.lambda.runtime.RequestHandler;
 
 /**
- * Handler for requests to Lambda function.
+ * Handler for requests to Qualification Lambda function.
+ * @author James
+ * @since 2019-09-11
  */
-public class QualificationFunction implements RequestHandler<Object, Object> {
+public class QualificationFunction implements RequestHandler<Qualification, Qualification> {
 
-    public Object handleRequest(final Object input, final Context context) {
-        Map<String, String> headers = new HashMap<>();
+    public Qualification handleRequest(final Object input, final Context context) {
+        final QualificationResponse response = new QualificationResponse();
+        final Map<String, String> headers = new HashMap<>();
+        String id;
+
         headers.put("Content-Type", "application/json");
-        headers.put("X-Custom-Header", "application/json");
-        try {
-            final String pageContents = this.getPageContents("https://checkip.amazonaws.com");
-            String output = String.format("{ \"message\": \"hello world\", \"location\": \"%s\" }", pageContents);
-            return new GatewayResponse(output, headers, 200);
-        } catch (IOException e) {
-            return new GatewayResponse("{}", headers, 500);
-        }
-    }
+        response.setHeaders(headers);
 
-    private String getPageContents(String address) throws IOException{
-        URL url = new URL(address);
-        try(BufferedReader br = new BufferedReader(new InputStreamReader(url.openStream()))) {
-            return br.lines().collect(Collectors.joining(System.lineSeparator()));
+        context.getLogger().log("HTTP method: "+ input.getHttpMethod());
+
+        switch (input.getHttpMethod()) {
+            case HttpMethod.POST:
+                context.getLogger().log(String.format("POST body=%s\n",input.getBody()));
+                // todo: SEND QUALIFICATION TO THE DATABASE
+                response.setBody(Qualification.builder().id("12345").name("Post Test").hyperlink("Test Link").build());
+                response.setStatusCode(HttpServletResponse.SC_CREATED);
+                break;
+            case HttpMethod.GET:
+                id = input.getQueryStringParameters().get("id");
+                context.getLogger().log(String.format("GET ID=%s\n",id));
+                response.setBody(Qualification.builder().id(id).name("Post Test").hyperlink("Test Link").build());
+                response.setStatusCode(HttpServletResponse.SC_OK);
+                break;
+            case HttpMethod.PUT:
+            case HttpMethod.PATCH:
+                id = input.getPathParameters().get("id");
+                context.getLogger().log(String.format("PUT/PATCH id=%s body=%s\n",id,input.getBody()));
+                response.setBody(input.getBody());
+                response.setStatusCode(HttpServletResponse.SC_OK);
+                break;
+            case HttpMethod.DELETE:
+                id = input.getPathParameters().get("id");
+                context.getLogger().log(String.format("DELETE id=%s \n",id,input.getBody()));
+                response.setStatusCode(HttpServletResponse.SC_OK);
+                break;
+            default:
+
         }
+        return response;
     }
 }

@@ -36,6 +36,10 @@ public class Workflow implements Serializable {
     @Column(name = "enabled")
     private Boolean enabled;
 
+    @OneToOne
+    @JoinColumn(unique = true)
+    private Workflow versionOf;
+
     // jhipster-needle-entity-add-field - JHipster will add fields here, do not remove
     public Long getId() {
         return id;
@@ -95,6 +99,19 @@ public class Workflow implements Serializable {
 
     public void setEnabled(Boolean enabled) {
         this.enabled = enabled;
+    }
+
+    public Workflow getVersionOf() {
+        return versionOf;
+    }
+
+    public Workflow versionOf(Workflow workflow) {
+        this.versionOf = workflow;
+        return this;
+    }
+
+    public void setVersionOf(Workflow workflow) {
+        this.versionOf = workflow;
     }
     // jhipster-needle-entity-add-getters-setters - JHipster will add getters and setters here, do not remove
 

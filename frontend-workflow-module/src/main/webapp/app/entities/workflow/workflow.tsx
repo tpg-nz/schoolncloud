@@ -57,7 +57,7 @@ export class Workflow extends React.Component<IWorkflowProps, IWorkflowState> {
           <Link to={`${match.url}/new`} className="btn btn-primary float-right jh-create-entity" id="jh-create-entity">
             <FontAwesomeIcon icon="plus" />
             &nbsp;
-            <Translate contentKey="workflowApp.workflow.home.createLabel">Create new Workflow</Translate>
+            <Translate contentKey="workflowApp.workflow.home.createLabel">Create a new Workflow</Translate>
           </Link>
         </h2>
         <div className="table-responsive">
@@ -80,6 +80,9 @@ export class Workflow extends React.Component<IWorkflowProps, IWorkflowState> {
                   <th className="hand" onClick={this.sort('enabled')}>
                     <Translate contentKey="workflowApp.workflow.enabled">Enabled</Translate> <FontAwesomeIcon icon="sort" />
                   </th>
+                  <th>
+                    <Translate contentKey="workflowApp.workflow.versionOf">Version Of</Translate> <FontAwesomeIcon icon="sort" />
+                  </th>
                   <th />
                 </tr>
               </thead>
@@ -95,6 +98,7 @@ export class Workflow extends React.Component<IWorkflowProps, IWorkflowState> {
                     <td>{workflow.description}</td>
                     <td>{workflow.version}</td>
                     <td>{workflow.enabled ? 'true' : 'false'}</td>
+                    <td>{workflow.versionOf ? <Link to={`workflow/${workflow.versionOf.id}`}>{workflow.versionOf.name}</Link> : ''}</td>
                     <td className="text-right">
                       <div className="btn-group flex-btn-group-container">
                         <Button tag={Link} to={`${match.url}/${workflow.id}`} color="info" size="sm">

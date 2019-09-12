@@ -5,7 +5,7 @@
         "title": "Workflows",
         "createLabel": "Create a new Workflow",
         "createOrEditLabel": "Create or edit a Workflow",
-        "notFound": "No Workflow found"
+        "notFound": "No Workflows found"
       },
       "created": "A new Workflow is created with identifier {{ param }}",
       "updated": "A Workflow is updated with identifier {{ param }}",
@@ -19,7 +19,8 @@
       "name": "Name",
       "description": "Description",
       "version": "Version",
-      "enabled": "Enabled"
+      "enabled": "Enabled",
+      "versionOf": "Version Of"
     }
   }
 }

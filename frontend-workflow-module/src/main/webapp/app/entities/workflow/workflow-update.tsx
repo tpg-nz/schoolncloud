@@ -8,6 +8,7 @@ import { Translate, translate, ICrudGetAction, ICrudGetAllAction, ICrudPutAction
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { IRootState } from 'app/shared/reducers';
 
+import { getEntities as getWorkflows } from 'app/entities/workflow/workflow.reducer';
 import { getEntity, updateEntity, createEntity, reset } from './workflow.reducer';
 import { IWorkflow } from 'app/shared/model/workflow.model';
 // tslint:disable-next-line:no-unused-variable
@@ -18,12 +19,14 @@ export interface IWorkflowUpdateProps extends StateProps, DispatchProps, RouteCo
 
 export interface IWorkflowUpdateState {
   isNew: boolean;
+  versionOfId: string;
 }
 
 export class WorkflowUpdate extends React.Component<IWorkflowUpdateProps, IWorkflowUpdateState> {
   constructor(props) {
     super(props);
     this.state = {
+      versionOfId: '0',
       isNew: !this.props.match.params || !this.props.match.params.id
     };
   }
@@ -40,6 +43,8 @@ export class WorkflowUpdate extends React.Component<IWorkflowUpdateProps, IWorkf
     } else {
       this.props.getEntity(this.props.match.params.id);
     }
+
+    this.props.getWorkflows();
   }
 
   saveEntity = (event, errors, values) => {
@@ -63,7 +68,7 @@ export class WorkflowUpdate extends React.Component<IWorkflowUpdateProps, IWorkf
   };
 
   render() {
-    const { workflowEntity, loading, updating } = this.props;
+    const { workflowEntity, workflows, loading, updating } = this.props;
     const { isNew } = this.state;
 
     return (
@@ -128,6 +133,21 @@ export class WorkflowUpdate extends React.Component<IWorkflowUpdateProps, IWorkf
                     <Translate contentKey="workflowApp.workflow.enabled">Enabled</Translate>
                   </Label>
                 </AvGroup>
+                <AvGroup>
+                  <Label for="workflow-versionOf">
+                    <Translate contentKey="workflowApp.workflow.versionOf">Version Of</Translate>
+                  </Label>
+                  <AvInput id="workflow-versionOf" type="select" className="form-control" name="versionOf.id">
+                    <option value="" key="0" />
+                    {workflows
+                      ? workflows.map(otherEntity => (
+                          <option value={otherEntity.id} key={otherEntity.id}>
+                            {otherEntity.name}
+                          </option>
+                        ))
+                      : null}
+                  </AvInput>
+                </AvGroup>
                 <Button tag={Link} id="cancel-save" to="/entity/workflow" replace color="info">
                   <FontAwesomeIcon icon="arrow-left" />
                   &nbsp;
@@ -151,6 +171,7 @@ export class WorkflowUpdate extends React.Component<IWorkflowUpdateProps, IWorkf
 }
 
 const mapStateToProps = (storeState: IRootState) => ({
+  workflows: storeState.workflow.entities,
   workflowEntity: storeState.workflow.entity,
   loading: storeState.workflow.loading,
   updating: storeState.workflow.updating,
@@ -158,6 +179,7 @@ const mapStateToProps = (storeState: IRootState) => ({
 });
 
 const mapDispatchToProps = {
+  getWorkflows,
   getEntity,
   updateEntity,
   createEntity,

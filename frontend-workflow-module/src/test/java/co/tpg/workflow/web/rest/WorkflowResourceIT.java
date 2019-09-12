@@ -29,7 +29,7 @@ import static org.springframework.test.web.servlet.request.MockMvcRequestBuilder
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.*;
 
 /**
- * Integration tests for the {@Link WorkflowResource} REST controller.
+ * Integration tests for the {@link WorkflowResource} REST controller.
  */
 @SpringBootTest(classes = WorkflowApp.class)
 public class WorkflowResourceIT {

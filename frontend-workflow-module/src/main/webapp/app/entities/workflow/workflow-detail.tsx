@@ -52,6 +52,10 @@ export class WorkflowDetail extends React.Component<IWorkflowDetailProps> {
               </span>
             </dt>
             <dd>{workflowEntity.enabled ? 'true' : 'false'}</dd>
+            <dt>
+              <Translate contentKey="workflowApp.workflow.versionOf">Version Of</Translate>
+            </dt>
+            <dd>{workflowEntity.versionOf ? workflowEntity.versionOf.name : ''}</dd>
           </dl>
           <Button tag={Link} to="/entity/workflow" replace color="info">
             <FontAwesomeIcon icon="arrow-left" />{' '}

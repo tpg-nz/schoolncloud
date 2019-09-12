@@ -31,7 +31,9 @@
             <column name="enabled" type="boolean">
                 <constraints nullable="true" />
             </column>
-
+            <column name="version_of_id" type="bigint">
+                <constraints unique="true" nullable="true" uniqueConstraintName="ux_workflow_version_of_id" />
+            </column>
             <!-- jhipster-needle-liquibase-add-column - JHipster will add columns here, do not remove-->
         </createTable>
 
@@ -52,7 +54,7 @@
     -->
     <changeSet id="20190905075139-1-data" author="jhipster" context="faker">
         <loadData
-                  file="config/liquibase/data/workflow.csv"
+                  file="config/liquibase/fake-data/workflow.csv"
                   separator=";"
                   tableName="workflow">
             <column name="id" type="numeric"/>

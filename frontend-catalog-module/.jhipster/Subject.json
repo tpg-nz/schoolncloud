@@ -1,0 +1,34 @@
+{
+    "name": "Subject",
+    "fields": [
+        {
+            "fieldName": "guid",
+            "fieldType": "String",
+            "fieldValidateRules": [
+                "required"
+            ]
+        },
+        {
+            "fieldName": "name",
+            "fieldType": "String"
+        },
+        {
+            "fieldName": "overview",
+            "fieldType": "String"
+        },
+        {
+            "fieldName": "level",
+            "fieldType": "Integer"
+        }
+    ],
+    "relationships": [],
+    "changelogDate": "20190914234753",
+    "entityTableName": "subject",
+    "dto": "no",
+    "pagination": "no",
+    "service": "no",
+    "jpaMetamodelFiltering": false,
+    "fluentMethods": true,
+    "clientRootFolder": "",
+    "applications": "*"
+}

@@ -1,0 +1,23 @@
+{
+  "catalogApp": {
+    "educationalInstituition": {
+      "home": {
+        "title": "Educational Instituitions",
+        "createLabel": "Create a new Educational Instituition",
+        "createOrEditLabel": "Create or edit a Educational Instituition",
+        "notFound": "No Educational Instituitions found"
+      },
+      "created": "A new Educational Instituition is created with identifier {{ param }}",
+      "updated": "A Educational Instituition is updated with identifier {{ param }}",
+      "deleted": "A Educational Instituition is deleted with identifier {{ param }}",
+      "delete": {
+        "question": "Are you sure you want to delete Educational Instituition {{ id }}?"
+      },
+      "detail": {
+        "title": "Educational Instituition"
+      },
+      "guid": "Guid",
+      "name": "Name"
+    }
+  }
+}

@@ -1,0 +1,40 @@
+{
+    "name": "TeachingStaff",
+    "fields": [
+        {
+            "fieldName": "guid",
+            "fieldType": "String",
+            "fieldValidateRules": [
+                "required"
+            ]
+        },
+        {
+            "fieldName": "name",
+            "fieldType": "String"
+        },
+        {
+            "fieldName": "graduationType",
+            "fieldType": "GraduationType",
+            "fieldValues": "POST_GRADUATE,MASTER_DEGREE,DOCTOR_DEGREE,PHD"
+        }
+    ],
+    "relationships": [
+        {
+            "relationshipType": "many-to-many",
+            "otherEntityName": "paper",
+            "otherEntityRelationshipName": "teachingStaff",
+            "relationshipName": "paper",
+            "otherEntityField": "id",
+            "ownerSide": true
+        }
+    ],
+    "changelogDate": "20190914234756",
+    "entityTableName": "teaching_staff",
+    "dto": "no",
+    "pagination": "no",
+    "service": "no",
+    "jpaMetamodelFiltering": false,
+    "fluentMethods": true,
+    "clientRootFolder": "",
+    "applications": "*"
+}

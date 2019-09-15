@@ -1,0 +1,50 @@
+{
+    "name": "Paper",
+    "fields": [
+        {
+            "fieldName": "code",
+            "fieldType": "String",
+            "fieldValidateRules": [
+                "required"
+            ]
+        },
+        {
+            "fieldName": "year",
+            "fieldType": "Integer"
+        },
+        {
+            "fieldName": "points",
+            "fieldType": "Integer"
+        },
+        {
+            "fieldName": "teachingPeriod",
+            "fieldType": "String"
+        }
+    ],
+    "relationships": [
+        {
+            "relationshipType": "many-to-one",
+            "otherEntityName": "subject",
+            "otherEntityRelationshipName": "paper",
+            "relationshipName": "subject",
+            "otherEntityField": "guid"
+        },
+        {
+            "relationshipType": "many-to-many",
+            "otherEntityName": "teachingStaff",
+            "otherEntityRelationshipName": "paper",
+            "relationshipName": "teachingStaff",
+            "otherEntityField": "id",
+            "ownerSide": false
+        }
+    ],
+    "changelogDate": "20190914234758",
+    "entityTableName": "paper",
+    "dto": "no",
+    "pagination": "no",
+    "service": "no",
+    "jpaMetamodelFiltering": false,
+    "fluentMethods": true,
+    "clientRootFolder": "",
+    "applications": "*"
+}

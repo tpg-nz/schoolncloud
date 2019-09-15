@@ -1,0 +1,25 @@
+{
+  "catalogApp": {
+    "qualification": {
+      "home": {
+        "title": "Qualifications",
+        "createLabel": "Create a new Qualification",
+        "createOrEditLabel": "Create or edit a Qualification",
+        "notFound": "No Qualifications found"
+      },
+      "created": "A new Qualification is created with identifier {{ param }}",
+      "updated": "A Qualification is updated with identifier {{ param }}",
+      "deleted": "A Qualification is deleted with identifier {{ param }}",
+      "delete": {
+        "question": "Are you sure you want to delete Qualification {{ id }}?"
+      },
+      "detail": {
+        "title": "Qualification"
+      },
+      "guid": "Guid",
+      "name": "Name",
+      "hyperLink": "Hyper Link",
+      "subject": "Subject"
+    }
+  }
+}

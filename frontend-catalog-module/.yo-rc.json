@@ -4,7 +4,7 @@
       "packageName": "co.tpg.catalog",
       "nativeLanguage": "en"
     },
-    "jhipsterVersion": "6.1.2",
+    "jhipsterVersion": "6.2.0",
     "applicationType": "monolith",
     "baseName": "catalog",
     "packageName": "co.tpg.catalog",
@@ -35,6 +35,7 @@
     "otherModules": [],
     "enableTranslation": true,
     "nativeLanguage": "en",
-    "languages": ["en"]
+    "languages": ["en"],
+    "blueprints": []
   }
 }

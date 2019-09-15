@@ -1,0 +1,27 @@
+{
+  "catalogApp": {
+    "teachingClass": {
+      "home": {
+        "title": "Teaching Classes",
+        "createLabel": "Create a new Teaching Class",
+        "createOrEditLabel": "Create or edit a Teaching Class",
+        "notFound": "No Teaching Classes found"
+      },
+      "created": "A new Teaching Class is created with identifier {{ param }}",
+      "updated": "A Teaching Class is updated with identifier {{ param }}",
+      "deleted": "A Teaching Class is deleted with identifier {{ param }}",
+      "delete": {
+        "question": "Are you sure you want to delete Teaching Class {{ id }}?"
+      },
+      "detail": {
+        "title": "Teaching Class"
+      },
+      "guid": "Guid",
+      "code": "Code",
+      "year": "Year",
+      "semester": "Semester",
+      "campus": "Campus",
+      "paper": "Paper"
+    }
+  }
+}

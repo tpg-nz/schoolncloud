@@ -1,0 +1,23 @@
+{
+  "catalogApp": {
+    "userRole": {
+      "home": {
+        "title": "User Roles",
+        "createLabel": "Create a new User Role",
+        "createOrEditLabel": "Create or edit a User Role",
+        "notFound": "No User Roles found"
+      },
+      "created": "A new User Role is created with identifier {{ param }}",
+      "updated": "A User Role is updated with identifier {{ param }}",
+      "deleted": "A User Role is deleted with identifier {{ param }}",
+      "delete": {
+        "question": "Are you sure you want to delete User Role {{ id }}?"
+      },
+      "detail": {
+        "title": "User Role"
+      },
+      "name": "Name",
+      "role": "Role"
+    }
+  }
+}

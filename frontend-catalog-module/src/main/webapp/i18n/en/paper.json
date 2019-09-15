@@ -1,0 +1,27 @@
+{
+  "catalogApp": {
+    "paper": {
+      "home": {
+        "title": "Papers",
+        "createLabel": "Create a new Paper",
+        "createOrEditLabel": "Create or edit a Paper",
+        "notFound": "No Papers found"
+      },
+      "created": "A new Paper is created with identifier {{ param }}",
+      "updated": "A Paper is updated with identifier {{ param }}",
+      "deleted": "A Paper is deleted with identifier {{ param }}",
+      "delete": {
+        "question": "Are you sure you want to delete Paper {{ id }}?"
+      },
+      "detail": {
+        "title": "Paper"
+      },
+      "code": "Code",
+      "year": "Year",
+      "points": "Points",
+      "teachingPeriod": "Teaching Period",
+      "subject": "Subject",
+      "teachingStaff": "Teaching Staff"
+    }
+  }
+}

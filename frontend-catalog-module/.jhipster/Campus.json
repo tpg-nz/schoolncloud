@@ -1,0 +1,35 @@
+{
+    "name": "Campus",
+    "fields": [
+        {
+            "fieldName": "guid",
+            "fieldType": "String",
+            "fieldValidateRules": [
+                "required"
+            ]
+        },
+        {
+            "fieldName": "name",
+            "fieldType": "String"
+        }
+    ],
+    "relationships": [
+        {
+            "relationshipType": "many-to-one",
+            "otherEntityName": "educationalInstituition",
+            "otherEntityRelationshipName": "campus",
+            "relationshipValidateRules": "required",
+            "relationshipName": "educationalInstitution",
+            "otherEntityField": "name"
+        }
+    ],
+    "changelogDate": "20190914234802",
+    "entityTableName": "campus",
+    "dto": "no",
+    "pagination": "no",
+    "service": "no",
+    "jpaMetamodelFiltering": false,
+    "fluentMethods": true,
+    "clientRootFolder": "",
+    "applications": "*"
+}

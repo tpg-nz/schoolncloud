@@ -1,0 +1,49 @@
+{
+    "name": "TeachingClass",
+    "fields": [
+        {
+            "fieldName": "guid",
+            "fieldType": "String",
+            "fieldValidateRules": [
+                "required"
+            ]
+        },
+        {
+            "fieldName": "code",
+            "fieldType": "String"
+        },
+        {
+            "fieldName": "year",
+            "fieldType": "Integer"
+        },
+        {
+            "fieldName": "semester",
+            "fieldType": "Integer"
+        }
+    ],
+    "relationships": [
+        {
+            "relationshipType": "many-to-one",
+            "otherEntityName": "campus",
+            "otherEntityRelationshipName": "teachingClass",
+            "relationshipName": "campus",
+            "otherEntityField": "guid"
+        },
+        {
+            "relationshipType": "many-to-one",
+            "otherEntityName": "paper",
+            "otherEntityRelationshipName": "teachingClass",
+            "relationshipName": "paper",
+            "otherEntityField": "code"
+        }
+    ],
+    "changelogDate": "20190914234757",
+    "entityTableName": "teaching_class",
+    "dto": "no",
+    "pagination": "no",
+    "service": "no",
+    "jpaMetamodelFiltering": false,
+    "fluentMethods": true,
+    "clientRootFolder": "",
+    "applications": "*"
+}

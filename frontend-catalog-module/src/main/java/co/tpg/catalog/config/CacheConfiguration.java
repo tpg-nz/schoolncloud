@@ -43,6 +43,22 @@ public class CacheConfiguration {
             createCache(cm, co.tpg.catalog.domain.User.class.getName());
             createCache(cm, co.tpg.catalog.domain.Authority.class.getName());
             createCache(cm, co.tpg.catalog.domain.User.class.getName() + ".authorities");
+            createCache(cm, co.tpg.catalog.domain.Role.class.getName());
+            createCache(cm, co.tpg.catalog.domain.Role.class.getName() + ".userRoles");
+            createCache(cm, co.tpg.catalog.domain.UserRole.class.getName());
+            createCache(cm, co.tpg.catalog.domain.UserRole.class.getName() + ".roles");
+            createCache(cm, co.tpg.catalog.domain.Subject.class.getName());
+            createCache(cm, co.tpg.catalog.domain.Requirement.class.getName());
+            createCache(cm, co.tpg.catalog.domain.Qualification.class.getName());
+            createCache(cm, co.tpg.catalog.domain.TeachingStaff.class.getName());
+            createCache(cm, co.tpg.catalog.domain.TeachingStaff.class.getName() + ".papers");
+            createCache(cm, co.tpg.catalog.domain.TeachingClass.class.getName());
+            createCache(cm, co.tpg.catalog.domain.Paper.class.getName());
+            createCache(cm, co.tpg.catalog.domain.Paper.class.getName() + ".teachingStaffs");
+            createCache(cm, co.tpg.catalog.domain.Contact.class.getName());
+            createCache(cm, co.tpg.catalog.domain.Address.class.getName());
+            createCache(cm, co.tpg.catalog.domain.EducationalInstituition.class.getName());
+            createCache(cm, co.tpg.catalog.domain.Campus.class.getName());
             // jhipster-needle-ehcache-add-entry
         };
     }

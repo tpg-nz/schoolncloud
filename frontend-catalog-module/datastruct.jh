@@ -1,0 +1,83 @@
+enum GraduationType {
+    POST_GRADUATE, MASTER_DEGREE, DOCTOR_DEGREE, PHD
+}
+enum MediaTypee {
+    EMAIL, WEB_SITE, MOBILE_PHONE, PHONE
+}
+enum ContactType {
+    SUBJECT, INSTITUTIONAL, CAMPUS, TEACHING_STAFF, PAPER
+}
+enum AddressType {
+    HOME, WORK, CORRESPONDENCE
+}
+entity Role {
+    guid String,
+    name String,
+    description String
+}
+entity UserRole {
+    name String required
+}
+entity Subject {
+    guid String required,
+    name String,
+    overview String,
+    level Integer
+}
+entity Requirement {
+    guid String required,
+    level Integer // check diagram 
+}
+entity Qualification {
+    guid String required,
+    name String,
+    hyperLink String
+}
+entity TeachingStaff {
+    guid String required,
+    name String,
+	graduationType GraduationType
+}
+entity TeachingClass {
+    guid String required,
+    code String,
+    year Integer,
+    semester Integer
+}
+entity Paper {
+    code String required,
+    year Integer,
+    points Integer,
+    teachingPeriod String
+}
+entity Contact {
+    guid String required,
+    entityGuid String,
+    contact String,
+    contactType ContactType,
+    mediaType MediaTypee
+}
+entity Address {
+    guid String required,
+    entityGuid String,
+    address String,
+    zipCode String,
+    city String,
+    country String,
+    addressType AddressType,
+    contactType ContactType
+}
+entity EducationalInstituition {
+    guid String required,
+    name String
+}
+entity Campus {
+    guid String required,
+    name String
+}
+relationship ManyToOne {
+    Requirement{subject(guid)} to Subject , Paper{subject(guid)} to Subject , Qualification{subject(guid)} to Subject , TeachingClass{campus(guid)} to Campus , TeachingClass{paper(code)} to Paper , Campus{educationalInstitution(name) required} to EducationalInstituition
+}
+relationship ManyToMany {
+    UserRole to Role , TeachingStaff to Paper
+}

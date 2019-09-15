@@ -1,0 +1,24 @@
+{
+  "catalogApp": {
+    "requirement": {
+      "home": {
+        "title": "Requirements",
+        "createLabel": "Create a new Requirement",
+        "createOrEditLabel": "Create or edit a Requirement",
+        "notFound": "No Requirements found"
+      },
+      "created": "A new Requirement is created with identifier {{ param }}",
+      "updated": "A Requirement is updated with identifier {{ param }}",
+      "deleted": "A Requirement is deleted with identifier {{ param }}",
+      "delete": {
+        "question": "Are you sure you want to delete Requirement {{ id }}?"
+      },
+      "detail": {
+        "title": "Requirement"
+      },
+      "guid": "Guid",
+      "level": "Level",
+      "subject": "Subject"
+    }
+  }
+}

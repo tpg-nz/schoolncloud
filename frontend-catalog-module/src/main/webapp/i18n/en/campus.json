@@ -1,0 +1,24 @@
+{
+  "catalogApp": {
+    "campus": {
+      "home": {
+        "title": "Campuses",
+        "createLabel": "Create a new Campus",
+        "createOrEditLabel": "Create or edit a Campus",
+        "notFound": "No Campuses found"
+      },
+      "created": "A new Campus is created with identifier {{ param }}",
+      "updated": "A Campus is updated with identifier {{ param }}",
+      "deleted": "A Campus is deleted with identifier {{ param }}",
+      "delete": {
+        "question": "Are you sure you want to delete Campus {{ id }}?"
+      },
+      "detail": {
+        "title": "Campus"
+      },
+      "guid": "Guid",
+      "name": "Name",
+      "educationalInstitution": "Educational Institution"
+    }
+  }
+}

@@ -1,0 +1,52 @@
+{
+    "name": "Address",
+    "fields": [
+        {
+            "fieldName": "guid",
+            "fieldType": "String",
+            "fieldValidateRules": [
+                "required"
+            ]
+        },
+        {
+            "fieldName": "entityGuid",
+            "fieldType": "String"
+        },
+        {
+            "fieldName": "address",
+            "fieldType": "String"
+        },
+        {
+            "fieldName": "zipCode",
+            "fieldType": "String"
+        },
+        {
+            "fieldName": "city",
+            "fieldType": "String"
+        },
+        {
+            "fieldName": "country",
+            "fieldType": "String"
+        },
+        {
+            "fieldName": "addressType",
+            "fieldType": "AddressType",
+            "fieldValues": "HOME,WORK,CORRESPONDENCE"
+        },
+        {
+            "fieldName": "contactType",
+            "fieldType": "ContactType",
+            "fieldValues": "SUBJECT,INSTITUTIONAL,CAMPUS,TEACHING_STAFF,PAPER"
+        }
+    ],
+    "relationships": [],
+    "changelogDate": "20190914234800",
+    "entityTableName": "address",
+    "dto": "no",
+    "pagination": "no",
+    "service": "no",
+    "jpaMetamodelFiltering": false,
+    "fluentMethods": true,
+    "clientRootFolder": "",
+    "applications": "*"
+}

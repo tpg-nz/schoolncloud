@@ -1,3 +1,4 @@
+/*Data model for catalog*/
 enum GraduationType {
     POST_GRADUATE, MASTER_DEGREE, DOCTOR_DEGREE, PHD
 }
@@ -76,7 +77,7 @@ entity Campus {
     name String
 }
 relationship ManyToOne {
-    Requirement{subject(guid)} to Subject , Paper{subject(guid)} to Subject , Qualification{subject(guid)} to Subject , TeachingClass{campus(guid)} to Campus , TeachingClass{paper(code)} to Paper , Campus{educationalInstitution(name) required} to EducationalInstituition
+    Requirement{subject(guid)} to Subject , Paper{subject(guid)} to Subject , Qualification{subject(guid) required} to Subject , TeachingClass{campus(guid)} to Campus , TeachingClass{paper(code)} to Paper , Campus{educationalInstitution(name) required} to EducationalInstituition
 }
 relationship ManyToMany {
     UserRole to Role , TeachingStaff to Paper

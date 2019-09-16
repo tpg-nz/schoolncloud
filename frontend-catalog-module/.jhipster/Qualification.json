@@ -26,7 +26,7 @@
             "otherEntityField": "guid"
         }
     ],
-    "changelogDate": "20190914234755",
+    "changelogDate": "20190916072200",
     "entityTableName": "qualification",
     "dto": "no",
     "pagination": "no",

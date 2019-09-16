@@ -19,7 +19,7 @@
             "ownerSide": true
         }
     ],
-    "changelogDate": "20190914234752",
+    "changelogDate": "20190916072157",
     "entityTableName": "user_role",
     "dto": "no",
     "pagination": "no",

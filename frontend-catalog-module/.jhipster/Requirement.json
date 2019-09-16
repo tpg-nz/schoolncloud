@@ -22,7 +22,7 @@
             "otherEntityField": "guid"
         }
     ],
-    "changelogDate": "20190914234754",
+    "changelogDate": "20190916072159",
     "entityTableName": "requirement",
     "dto": "no",
     "pagination": "no",

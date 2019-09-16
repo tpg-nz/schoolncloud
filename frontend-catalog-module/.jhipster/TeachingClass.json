@@ -37,7 +37,7 @@
             "otherEntityField": "code"
         }
     ],
-    "changelogDate": "20190914234757",
+    "changelogDate": "20190916072202",
     "entityTableName": "teaching_class",
     "dto": "no",
     "pagination": "no",

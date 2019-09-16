@@ -5,7 +5,7 @@
         "title": "Teaching Staffs",
         "createLabel": "Create a new Teaching Staff",
         "createOrEditLabel": "Create or edit a Teaching Staff",
-        "notFound": "No Teaching Staffs found"
+        "notFound": "No Teaching Staff found"
       },
       "created": "A new Teaching Staff is created with identifier {{ param }}",
       "updated": "A Teaching Staff is updated with identifier {{ param }}",

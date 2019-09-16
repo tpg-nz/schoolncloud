@@ -5,7 +5,7 @@
         "title": "Requirements",
         "createLabel": "Create a new Requirement",
         "createOrEditLabel": "Create or edit a Requirement",
-        "notFound": "No Requirements found"
+        "notFound": "No Requirement found"
       },
       "created": "A new Requirement is created with identifier {{ param }}",
       "updated": "A Requirement is updated with identifier {{ param }}",

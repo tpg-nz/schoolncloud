@@ -5,7 +5,7 @@
         "title": "Contacts",
         "createLabel": "Create a new Contact",
         "createOrEditLabel": "Create or edit a Contact",
-        "notFound": "No Contacts found"
+        "notFound": "No Contact found"
       },
       "created": "A new Contact is created with identifier {{ param }}",
       "updated": "A Contact is updated with identifier {{ param }}",

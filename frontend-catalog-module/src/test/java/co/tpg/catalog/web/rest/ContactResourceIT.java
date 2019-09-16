@@ -30,7 +30,7 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 import co.tpg.catalog.domain.enumeration.ContactType;
 import co.tpg.catalog.domain.enumeration.MediaTypee;
 /**
- * Integration tests for the {@link ContactResource} REST controller.
+ * Integration tests for the {@Link ContactResource} REST controller.
  */
 @SpringBootTest(classes = CatalogApp.class)
 public class ContactResourceIT {

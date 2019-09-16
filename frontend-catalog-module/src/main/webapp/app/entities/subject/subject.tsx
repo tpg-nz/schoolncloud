@@ -28,7 +28,7 @@ export class Subject extends React.Component<ISubjectProps> {
           <Link to={`${match.url}/new`} className="btn btn-primary float-right jh-create-entity" id="jh-create-entity">
             <FontAwesomeIcon icon="plus" />
             &nbsp;
-            <Translate contentKey="catalogApp.subject.home.createLabel">Create a new Subject</Translate>
+            <Translate contentKey="catalogApp.subject.home.createLabel">Create new Subject</Translate>
           </Link>
         </h2>
         <div className="table-responsive">

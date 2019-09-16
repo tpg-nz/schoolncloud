@@ -82,7 +82,6 @@ public class QualificationResource {
     /**
      * {@code GET  /qualifications} : get all the qualifications.
      *
-
      * @return the {@link ResponseEntity} with status {@code 200 (OK)} and the list of qualifications in body.
      */
     @GetMapping("/qualifications")

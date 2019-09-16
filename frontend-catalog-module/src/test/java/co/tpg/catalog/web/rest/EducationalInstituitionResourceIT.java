@@ -28,7 +28,7 @@ import static org.springframework.test.web.servlet.request.MockMvcRequestBuilder
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.*;
 
 /**
- * Integration tests for the {@link EducationalInstituitionResource} REST controller.
+ * Integration tests for the {@Link EducationalInstituitionResource} REST controller.
  */
 @SpringBootTest(classes = CatalogApp.class)
 public class EducationalInstituitionResourceIT {

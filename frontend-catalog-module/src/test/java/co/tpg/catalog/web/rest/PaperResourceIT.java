@@ -28,7 +28,7 @@ import static org.springframework.test.web.servlet.request.MockMvcRequestBuilder
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.*;
 
 /**
- * Integration tests for the {@link PaperResource} REST controller.
+ * Integration tests for the {@Link PaperResource} REST controller.
  */
 @SpringBootTest(classes = CatalogApp.class)
 public class PaperResourceIT {
@@ -38,11 +38,9 @@ public class PaperResourceIT {
 
     private static final Integer DEFAULT_YEAR = 1;
     private static final Integer UPDATED_YEAR = 2;
-    private static final Integer SMALLER_YEAR = 1 - 1;
 
     private static final Integer DEFAULT_POINTS = 1;
     private static final Integer UPDATED_POINTS = 2;
-    private static final Integer SMALLER_POINTS = 1 - 1;
 
     private static final String DEFAULT_TEACHING_PERIOD = "AAAAAAAAAA";
     private static final String UPDATED_TEACHING_PERIOD = "BBBBBBBBBB";

@@ -81,7 +81,6 @@ public class RoleResource {
     /**
      * {@code GET  /roles} : get all the roles.
      *
-
      * @return the {@link ResponseEntity} with status {@code 200 (OK)} and the list of roles in body.
      */
     @GetMapping("/roles")

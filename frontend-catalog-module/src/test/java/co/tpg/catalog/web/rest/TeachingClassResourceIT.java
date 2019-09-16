@@ -28,7 +28,7 @@ import static org.springframework.test.web.servlet.request.MockMvcRequestBuilder
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.*;
 
 /**
- * Integration tests for the {@link TeachingClassResource} REST controller.
+ * Integration tests for the {@Link TeachingClassResource} REST controller.
  */
 @SpringBootTest(classes = CatalogApp.class)
 public class TeachingClassResourceIT {
@@ -41,11 +41,9 @@ public class TeachingClassResourceIT {
 
     private static final Integer DEFAULT_YEAR = 1;
     private static final Integer UPDATED_YEAR = 2;
-    private static final Integer SMALLER_YEAR = 1 - 1;
 
     private static final Integer DEFAULT_SEMESTER = 1;
     private static final Integer UPDATED_SEMESTER = 2;
-    private static final Integer SMALLER_SEMESTER = 1 - 1;
 
     @Autowired
     private TeachingClassRepository teachingClassRepository;

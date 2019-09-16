@@ -5,7 +5,7 @@
         "title": "Roles",
         "createLabel": "Create a new Role",
         "createOrEditLabel": "Create or edit a Role",
-        "notFound": "No Roles found"
+        "notFound": "No Role found"
       },
       "created": "A new Role is created with identifier {{ param }}",
       "updated": "A Role is updated with identifier {{ param }}",

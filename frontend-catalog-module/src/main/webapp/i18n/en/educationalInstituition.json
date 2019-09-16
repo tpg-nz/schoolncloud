@@ -5,7 +5,7 @@
         "title": "Educational Instituitions",
         "createLabel": "Create a new Educational Instituition",
         "createOrEditLabel": "Create or edit a Educational Instituition",
-        "notFound": "No Educational Instituitions found"
+        "notFound": "No Educational Instituition found"
       },
       "created": "A new Educational Instituition is created with identifier {{ param }}",
       "updated": "A Educational Instituition is updated with identifier {{ param }}",

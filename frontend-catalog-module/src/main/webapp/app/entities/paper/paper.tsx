@@ -28,7 +28,7 @@ export class Paper extends React.Component<IPaperProps> {
           <Link to={`${match.url}/new`} className="btn btn-primary float-right jh-create-entity" id="jh-create-entity">
             <FontAwesomeIcon icon="plus" />
             &nbsp;
-            <Translate contentKey="catalogApp.paper.home.createLabel">Create a new Paper</Translate>
+            <Translate contentKey="catalogApp.paper.home.createLabel">Create new Paper</Translate>
           </Link>
         </h2>
         <div className="table-responsive">

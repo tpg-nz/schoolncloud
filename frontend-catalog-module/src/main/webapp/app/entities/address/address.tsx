@@ -28,7 +28,7 @@ export class Address extends React.Component<IAddressProps> {
           <Link to={`${match.url}/new`} className="btn btn-primary float-right jh-create-entity" id="jh-create-entity">
             <FontAwesomeIcon icon="plus" />
             &nbsp;
-            <Translate contentKey="catalogApp.address.home.createLabel">Create a new Address</Translate>
+            <Translate contentKey="catalogApp.address.home.createLabel">Create new Address</Translate>
           </Link>
         </h2>
         <div className="table-responsive">

@@ -28,7 +28,7 @@ export class Campus extends React.Component<ICampusProps> {
           <Link to={`${match.url}/new`} className="btn btn-primary float-right jh-create-entity" id="jh-create-entity">
             <FontAwesomeIcon icon="plus" />
             &nbsp;
-            <Translate contentKey="catalogApp.campus.home.createLabel">Create a new Campus</Translate>
+            <Translate contentKey="catalogApp.campus.home.createLabel">Create new Campus</Translate>
           </Link>
         </h2>
         <div className="table-responsive">

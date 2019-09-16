@@ -34,7 +34,7 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 
 import co.tpg.catalog.domain.enumeration.GraduationType;
 /**
- * Integration tests for the {@link TeachingStaffResource} REST controller.
+ * Integration tests for the {@Link TeachingStaffResource} REST controller.
  */
 @SpringBootTest(classes = CatalogApp.class)
 public class TeachingStaffResourceIT {

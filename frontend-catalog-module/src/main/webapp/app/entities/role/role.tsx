@@ -28,7 +28,7 @@ export class Role extends React.Component<IRoleProps> {
           <Link to={`${match.url}/new`} className="btn btn-primary float-right jh-create-entity" id="jh-create-entity">
             <FontAwesomeIcon icon="plus" />
             &nbsp;
-            <Translate contentKey="catalogApp.role.home.createLabel">Create a new Role</Translate>
+            <Translate contentKey="catalogApp.role.home.createLabel">Create new Role</Translate>
           </Link>
         </h2>
         <div className="table-responsive">

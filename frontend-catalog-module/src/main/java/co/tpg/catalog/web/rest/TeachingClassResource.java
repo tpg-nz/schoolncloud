@@ -82,7 +82,6 @@ public class TeachingClassResource {
     /**
      * {@code GET  /teaching-classes} : get all the teachingClasses.
      *
-
      * @return the {@link ResponseEntity} with status {@code 200 (OK)} and the list of teachingClasses in body.
      */
     @GetMapping("/teaching-classes")

@@ -28,7 +28,7 @@ export class Qualification extends React.Component<IQualificationProps> {
           <Link to={`${match.url}/new`} className="btn btn-primary float-right jh-create-entity" id="jh-create-entity">
             <FontAwesomeIcon icon="plus" />
             &nbsp;
-            <Translate contentKey="catalogApp.qualification.home.createLabel">Create a new Qualification</Translate>
+            <Translate contentKey="catalogApp.qualification.home.createLabel">Create new Qualification</Translate>
           </Link>
         </h2>
         <div className="table-responsive">

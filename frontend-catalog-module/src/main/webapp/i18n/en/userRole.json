@@ -5,7 +5,7 @@
         "title": "User Roles",
         "createLabel": "Create a new User Role",
         "createOrEditLabel": "Create or edit a User Role",
-        "notFound": "No User Roles found"
+        "notFound": "No User Role found"
       },
       "created": "A new User Role is created with identifier {{ param }}",
       "updated": "A User Role is updated with identifier {{ param }}",

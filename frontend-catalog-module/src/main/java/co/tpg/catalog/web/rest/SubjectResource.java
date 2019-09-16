@@ -82,7 +82,6 @@ public class SubjectResource {
     /**
      * {@code GET  /subjects} : get all the subjects.
      *
-
      * @return the {@link ResponseEntity} with status {@code 200 (OK)} and the list of subjects in body.
      */
     @GetMapping("/subjects")

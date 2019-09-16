@@ -33,7 +33,7 @@ import static org.springframework.test.web.servlet.request.MockMvcRequestBuilder
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.*;
 
 /**
- * Integration tests for the {@link UserRoleResource} REST controller.
+ * Integration tests for the {@Link UserRoleResource} REST controller.
  */
 @SpringBootTest(classes = CatalogApp.class)
 public class UserRoleResourceIT {

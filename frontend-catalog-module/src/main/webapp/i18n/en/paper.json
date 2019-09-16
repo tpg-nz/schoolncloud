@@ -5,7 +5,7 @@
         "title": "Papers",
         "createLabel": "Create a new Paper",
         "createOrEditLabel": "Create or edit a Paper",
-        "notFound": "No Papers found"
+        "notFound": "No Paper found"
       },
       "created": "A new Paper is created with identifier {{ param }}",
       "updated": "A Paper is updated with identifier {{ param }}",

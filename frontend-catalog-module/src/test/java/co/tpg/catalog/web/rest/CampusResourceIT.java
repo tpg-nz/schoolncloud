@@ -29,7 +29,7 @@ import static org.springframework.test.web.servlet.request.MockMvcRequestBuilder
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.*;
 
 /**
- * Integration tests for the {@link CampusResource} REST controller.
+ * Integration tests for the {@Link CampusResource} REST controller.
  */
 @SpringBootTest(classes = CatalogApp.class)
 public class CampusResourceIT {

@@ -5,7 +5,7 @@
         "title": "Subjects",
         "createLabel": "Create a new Subject",
         "createOrEditLabel": "Create or edit a Subject",
-        "notFound": "No Subjects found"
+        "notFound": "No Subject found"
       },
       "created": "A new Subject is created with identifier {{ param }}",
       "updated": "A Subject is updated with identifier {{ param }}",

@@ -28,7 +28,7 @@ import static org.springframework.test.web.servlet.request.MockMvcRequestBuilder
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.*;
 
 /**
- * Integration tests for the {@link RoleResource} REST controller.
+ * Integration tests for the {@Link RoleResource} REST controller.
  */
 @SpringBootTest(classes = CatalogApp.class)
 public class RoleResourceIT {

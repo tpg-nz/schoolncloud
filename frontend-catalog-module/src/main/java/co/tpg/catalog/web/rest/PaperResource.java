@@ -82,7 +82,6 @@ public class PaperResource {
     /**
      * {@code GET  /papers} : get all the papers.
      *
-
      * @return the {@link ResponseEntity} with status {@code 200 (OK)} and the list of papers in body.
      */
     @GetMapping("/papers")

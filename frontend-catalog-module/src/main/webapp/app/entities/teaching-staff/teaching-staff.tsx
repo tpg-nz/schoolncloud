@@ -28,7 +28,7 @@ export class TeachingStaff extends React.Component<ITeachingStaffProps> {
           <Link to={`${match.url}/new`} className="btn btn-primary float-right jh-create-entity" id="jh-create-entity">
             <FontAwesomeIcon icon="plus" />
             &nbsp;
-            <Translate contentKey="catalogApp.teachingStaff.home.createLabel">Create a new Teaching Staff</Translate>
+            <Translate contentKey="catalogApp.teachingStaff.home.createLabel">Create new Teaching Staff</Translate>
           </Link>
         </h2>
         <div className="table-responsive">

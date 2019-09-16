@@ -82,7 +82,6 @@ public class ContactResource {
     /**
      * {@code GET  /contacts} : get all the contacts.
      *
-
      * @return the {@link ResponseEntity} with status {@code 200 (OK)} and the list of contacts in body.
      */
     @GetMapping("/contacts")

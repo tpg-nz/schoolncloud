@@ -28,7 +28,7 @@ export class Requirement extends React.Component<IRequirementProps> {
           <Link to={`${match.url}/new`} className="btn btn-primary float-right jh-create-entity" id="jh-create-entity">
             <FontAwesomeIcon icon="plus" />
             &nbsp;
-            <Translate contentKey="catalogApp.requirement.home.createLabel">Create a new Requirement</Translate>
+            <Translate contentKey="catalogApp.requirement.home.createLabel">Create new Requirement</Translate>
           </Link>
         </h2>
         <div className="table-responsive">

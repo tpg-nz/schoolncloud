@@ -82,7 +82,6 @@ public class CampusResource {
     /**
      * {@code GET  /campuses} : get all the campuses.
      *
-
      * @return the {@link ResponseEntity} with status {@code 200 (OK)} and the list of campuses in body.
      */
     @GetMapping("/campuses")

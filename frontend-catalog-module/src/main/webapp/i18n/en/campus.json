@@ -5,7 +5,7 @@
         "title": "Campuses",
         "createLabel": "Create a new Campus",
         "createOrEditLabel": "Create or edit a Campus",
-        "notFound": "No Campuses found"
+        "notFound": "No Campus found"
       },
       "created": "A new Campus is created with identifier {{ param }}",
       "updated": "A Campus is updated with identifier {{ param }}",

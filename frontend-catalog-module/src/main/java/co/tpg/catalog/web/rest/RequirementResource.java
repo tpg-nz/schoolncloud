@@ -82,7 +82,6 @@ public class RequirementResource {
     /**
      * {@code GET  /requirements} : get all the requirements.
      *
-
      * @return the {@link ResponseEntity} with status {@code 200 (OK)} and the list of requirements in body.
      */
     @GetMapping("/requirements")

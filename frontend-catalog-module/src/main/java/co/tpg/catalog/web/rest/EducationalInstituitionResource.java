@@ -82,7 +82,6 @@ public class EducationalInstituitionResource {
     /**
      * {@code GET  /educational-instituitions} : get all the educationalInstituitions.
      *
-
      * @return the {@link ResponseEntity} with status {@code 200 (OK)} and the list of educationalInstituitions in body.
      */
     @GetMapping("/educational-instituitions")

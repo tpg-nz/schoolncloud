@@ -28,7 +28,7 @@ import static org.springframework.test.web.servlet.request.MockMvcRequestBuilder
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.*;
 
 /**
- * Integration tests for the {@link SubjectResource} REST controller.
+ * Integration tests for the {@Link SubjectResource} REST controller.
  */
 @SpringBootTest(classes = CatalogApp.class)
 public class SubjectResourceIT {
@@ -44,7 +44,6 @@ public class SubjectResourceIT {
 
     private static final Integer DEFAULT_LEVEL = 1;
     private static final Integer UPDATED_LEVEL = 2;
-    private static final Integer SMALLER_LEVEL = 1 - 1;
 
     @Autowired
     private SubjectRepository subjectRepository;

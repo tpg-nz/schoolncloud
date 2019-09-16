@@ -5,7 +5,7 @@
         "title": "Qualifications",
         "createLabel": "Create a new Qualification",
         "createOrEditLabel": "Create or edit a Qualification",
-        "notFound": "No Qualifications found"
+        "notFound": "No Qualification found"
       },
       "created": "A new Qualification is created with identifier {{ param }}",
       "updated": "A Qualification is updated with identifier {{ param }}",

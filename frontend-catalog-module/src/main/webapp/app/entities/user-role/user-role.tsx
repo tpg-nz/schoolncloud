@@ -28,7 +28,7 @@ export class UserRole extends React.Component<IUserRoleProps> {
           <Link to={`${match.url}/new`} className="btn btn-primary float-right jh-create-entity" id="jh-create-entity">
             <FontAwesomeIcon icon="plus" />
             &nbsp;
-            <Translate contentKey="catalogApp.userRole.home.createLabel">Create a new User Role</Translate>
+            <Translate contentKey="catalogApp.userRole.home.createLabel">Create new User Role</Translate>
           </Link>
         </h2>
         <div className="table-responsive">

@@ -30,7 +30,7 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 import co.tpg.catalog.domain.enumeration.AddressType;
 import co.tpg.catalog.domain.enumeration.ContactType;
 /**
- * Integration tests for the {@link AddressResource} REST controller.
+ * Integration tests for the {@Link AddressResource} REST controller.
  */
 @SpringBootTest(classes = CatalogApp.class)
 public class AddressResourceIT {

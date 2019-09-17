@@ -15,23 +15,19 @@ import lombok.ToString;
 @Getter
 @Setter
 @ToString
-
-public class Qualification extends AbstractModel<Stirng> {
+public class Qualification extends AbstractModel<String> {
     private String id;
     private String name;
     private String hyperlink;
     private Subject subject;
 
-    public Qualification(String id, String name, String hyperlink) {
+    public Qualification() {
+    }
+
+    public Qualification(String id, String name, String hyperlink, Subject subject) {
         this.id = id;
         this.name = name;
         this.hyperlink = hyperlink;
-    }
-
-    public String toString() {
-        return "Qualification{" +
-                "id='" + this.id + "'" + ", name='" +
-                this.name + "'" + ", hyperlink='" + this.hyperlink +
-                "'" + "}";
+        this.subject = subject;
     }
 }

@@ -7,8 +7,9 @@
         <sourceOutputDir name="target/generated-sources/annotations" />
         <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
         <outputRelativeToContentRoot value="true" />
-        <module name="EducationalInstitution" />
         <module name="teaching-staff" />
+        <module name="qualification" />
+        <module name="EducationalInstitution" />
         <module name="catalog-model" />
       </profile>
     </annotationProcessing>
@@ -17,6 +18,7 @@
       <module name="CreateTeachingStaff" target="1.8" />
       <module name="EducationalInstitution" target="1.8" />
       <module name="middleware-catalog-module" target="1.8" />
+      <module name="qualification" target="1.8" />
       <module name="RetrieveTeachingStaff" target="1.8" />
       <module name="teaching-staff" target="1.8" />
       <module name="TeachingClassCreate" target="1.8" />

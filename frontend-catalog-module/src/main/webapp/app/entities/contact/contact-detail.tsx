@@ -29,17 +29,11 @@ export class ContactDetail extends React.Component<IContactDetailProps> {
           </h2>
           <dl className="jh-entity-details">
             <dt>
-              <span id="guid">
-                <Translate contentKey="catalogApp.contact.guid">Guid</Translate>
+              <span id="entityId">
+                <Translate contentKey="catalogApp.contact.entityId">Entity Id</Translate>
               </span>
             </dt>
-            <dd>{contactEntity.guid}</dd>
-            <dt>
-              <span id="entityGuid">
-                <Translate contentKey="catalogApp.contact.entityGuid">Entity Guid</Translate>
-              </span>
-            </dt>
-            <dd>{contactEntity.entityGuid}</dd>
+            <dd>{contactEntity.entityId}</dd>
             <dt>
               <span id="contact">
                 <Translate contentKey="catalogApp.contact.contact">Contact</Translate>

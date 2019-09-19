@@ -1,14 +1,21 @@
 package co.tpg.catalog.web.rest;
 
 import co.tpg.catalog.domain.TeachingClass;
-import co.tpg.catalog.repository.TeachingClassRepository;
+import co.tpg.catalog.service.TeachingClassService;
 import co.tpg.catalog.web.rest.errors.BadRequestAlertException;
 
 import io.github.jhipster.web.util.HeaderUtil;
+import io.github.jhipster.web.util.PaginationUtil;
 import io.github.jhipster.web.util.ResponseUtil;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Value;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
+import org.springframework.http.HttpHeaders;
+import org.springframework.http.HttpStatus;
+import org.springframework.util.MultiValueMap;
+import org.springframework.web.util.UriComponentsBuilder;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
@@ -33,10 +40,10 @@ public class TeachingClassResource {
     @Value("${jhipster.clientApp.name}")
     private String applicationName;
 
-    private final TeachingClassRepository teachingClassRepository;
+    private final TeachingClassService teachingClassService;
 
-    public TeachingClassResource(TeachingClassRepository teachingClassRepository) {
-        this.teachingClassRepository = teachingClassRepository;
+    public TeachingClassResource(TeachingClassService teachingClassService) {
+        this.teachingClassService = teachingClassService;
     }
 
     /**
@@ -52,7 +59,7 @@ public class TeachingClassResource {
         if (teachingClass.getId() != null) {
             throw new BadRequestAlertException("A new teachingClass cannot already have an ID", ENTITY_NAME, "idexists");
         }
-        TeachingClass result = teachingClassRepository.save(teachingClass);
+        TeachingClass result = teachingClassService.save(teachingClass);
         return ResponseEntity.created(new URI("/api/teaching-classes/" + result.getId()))
             .headers(HeaderUtil.createEntityCreationAlert(applicationName, true, ENTITY_NAME, result.getId().toString()))
             .body(result);
@@ -73,7 +80,7 @@ public class TeachingClassResource {
         if (teachingClass.getId() == null) {
             throw new BadRequestAlertException("Invalid id", ENTITY_NAME, "idnull");
         }
-        TeachingClass result = teachingClassRepository.save(teachingClass);
+        TeachingClass result = teachingClassService.save(teachingClass);
         return ResponseEntity.ok()
             .headers(HeaderUtil.createEntityUpdateAlert(applicationName, true, ENTITY_NAME, teachingClass.getId().toString()))
             .body(result);
@@ -82,12 +89,17 @@ public class TeachingClassResource {
     /**
      * {@code GET  /teaching-classes} : get all the teachingClasses.
      *
+     * @param pageable the pagination information.
+     * @param queryParams a {@link MultiValueMap} query parameters.
+     * @param uriBuilder a {@link UriComponentsBuilder} URI builder.
      * @return the {@link ResponseEntity} with status {@code 200 (OK)} and the list of teachingClasses in body.
      */
     @GetMapping("/teaching-classes")
-    public List<TeachingClass> getAllTeachingClasses() {
-        log.debug("REST request to get all TeachingClasses");
-        return teachingClassRepository.findAll();
+    public ResponseEntity<List<TeachingClass>> getAllTeachingClasses(Pageable pageable, @RequestParam MultiValueMap<String, String> queryParams, UriComponentsBuilder uriBuilder) {
+        log.debug("REST request to get a page of TeachingClasses");
+        Page<TeachingClass> page = teachingClassService.findAll(pageable);
+        HttpHeaders headers = PaginationUtil.generatePaginationHttpHeaders(uriBuilder.queryParams(queryParams), page);
+        return ResponseEntity.ok().headers(headers).body(page.getContent());
     }
 
     /**
@@ -99,7 +111,7 @@ public class TeachingClassResource {
     @GetMapping("/teaching-classes/{id}")
     public ResponseEntity<TeachingClass> getTeachingClass(@PathVariable Long id) {
         log.debug("REST request to get TeachingClass : {}", id);
-        Optional<TeachingClass> teachingClass = teachingClassRepository.findById(id);
+        Optional<TeachingClass> teachingClass = teachingClassService.findOne(id);
         return ResponseUtil.wrapOrNotFound(teachingClass);
     }
 
@@ -112,7 +124,7 @@ public class TeachingClassResource {
     @DeleteMapping("/teaching-classes/{id}")
     public ResponseEntity<Void> deleteTeachingClass(@PathVariable Long id) {
         log.debug("REST request to delete TeachingClass : {}", id);
-        teachingClassRepository.deleteById(id);
+        teachingClassService.delete(id);
         return ResponseEntity.noContent().headers(HeaderUtil.createEntityDeletionAlert(applicationName, true, ENTITY_NAME, id.toString())).build();
     }
 }

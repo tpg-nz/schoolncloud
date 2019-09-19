@@ -1,6 +1,5 @@
 export interface ISubject {
   id?: number;
-  guid?: string;
   name?: string;
   overview?: string;
   level?: number;

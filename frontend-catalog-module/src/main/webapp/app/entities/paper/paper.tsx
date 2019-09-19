@@ -3,7 +3,7 @@ import { connect } from 'react-redux';
 import { Link, RouteComponentProps } from 'react-router-dom';
 import { Button, Col, Row, Table } from 'reactstrap';
 // tslint:disable-next-line:no-unused-variable
-import { Translate, ICrudGetAllAction } from 'react-jhipster';
+import { Translate, ICrudGetAllAction, getSortState, IPaginationBaseState, JhiPagination, JhiItemCount } from 'react-jhipster';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 
 import { IRootState } from 'app/shared/reducers';
@@ -11,16 +11,45 @@ import { getEntities } from './paper.reducer';
 import { IPaper } from 'app/shared/model/paper.model';
 // tslint:disable-next-line:no-unused-variable
 import { APP_DATE_FORMAT, APP_LOCAL_DATE_FORMAT } from 'app/config/constants';
+import { ITEMS_PER_PAGE } from 'app/shared/util/pagination.constants';
 
 export interface IPaperProps extends StateProps, DispatchProps, RouteComponentProps<{ url: string }> {}
 
-export class Paper extends React.Component<IPaperProps> {
+export type IPaperState = IPaginationBaseState;
+
+export class Paper extends React.Component<IPaperProps, IPaperState> {
+  state: IPaperState = {
+    ...getSortState(this.props.location, ITEMS_PER_PAGE)
+  };
+
   componentDidMount() {
-    this.props.getEntities();
+    this.getEntities();
   }
 
+  sort = prop => () => {
+    this.setState(
+      {
+        order: this.state.order === 'asc' ? 'desc' : 'asc',
+        sort: prop
+      },
+      () => this.sortEntities()
+    );
+  };
+
+  sortEntities() {
+    this.getEntities();
+    this.props.history.push(`${this.props.location.pathname}?page=${this.state.activePage}&sort=${this.state.sort},${this.state.order}`);
+  }
+
+  handlePagination = activePage => this.setState({ activePage }, () => this.sortEntities());
+
+  getEntities = () => {
+    const { activePage, itemsPerPage, sort, order } = this.state;
+    this.props.getEntities(activePage - 1, itemsPerPage, `${sort},${order}`);
+  };
+
   render() {
-    const { paperList, match } = this.props;
+    const { paperList, match, totalItems } = this.props;
     return (
       <div>
         <h2 id="paper-heading">
@@ -36,23 +65,23 @@ export class Paper extends React.Component<IPaperProps> {
             <Table responsive>
               <thead>
                 <tr>
-                  <th>
-                    <Translate contentKey="global.field.id">ID</Translate>
+                  <th className="hand" onClick={this.sort('id')}>
+                    <Translate contentKey="global.field.id">ID</Translate> <FontAwesomeIcon icon="sort" />
+                  </th>
+                  <th className="hand" onClick={this.sort('code')}>
+                    <Translate contentKey="catalogApp.paper.code">Code</Translate> <FontAwesomeIcon icon="sort" />
+                  </th>
+                  <th className="hand" onClick={this.sort('year')}>
+                    <Translate contentKey="catalogApp.paper.year">Year</Translate> <FontAwesomeIcon icon="sort" />
+                  </th>
+                  <th className="hand" onClick={this.sort('points')}>
+                    <Translate contentKey="catalogApp.paper.points">Points</Translate> <FontAwesomeIcon icon="sort" />
+                  </th>
+                  <th className="hand" onClick={this.sort('teachingPeriod')}>
+                    <Translate contentKey="catalogApp.paper.teachingPeriod">Teaching Period</Translate> <FontAwesomeIcon icon="sort" />
                   </th>
                   <th>
-                    <Translate contentKey="catalogApp.paper.code">Code</Translate>
-                  </th>
-                  <th>
-                    <Translate contentKey="catalogApp.paper.year">Year</Translate>
-                  </th>
-                  <th>
-                    <Translate contentKey="catalogApp.paper.points">Points</Translate>
-                  </th>
-                  <th>
-                    <Translate contentKey="catalogApp.paper.teachingPeriod">Teaching Period</Translate>
-                  </th>
-                  <th>
-                    <Translate contentKey="catalogApp.paper.subject">Subject</Translate>
+                    <Translate contentKey="catalogApp.paper.subject">Subject</Translate> <FontAwesomeIcon icon="sort" />
                   </th>
                   <th />
                 </tr>
@@ -69,7 +98,7 @@ export class Paper extends React.Component<IPaperProps> {
                     <td>{paper.year}</td>
                     <td>{paper.points}</td>
                     <td>{paper.teachingPeriod}</td>
-                    <td>{paper.subject ? <Link to={`subject/${paper.subject.id}`}>{paper.subject.guid}</Link> : ''}</td>
+                    <td>{paper.subject ? <Link to={`subject/${paper.subject.id}`}>{paper.subject.name}</Link> : ''}</td>
                     <td className="text-right">
                       <div className="btn-group flex-btn-group-container">
                         <Button tag={Link} to={`${match.url}/${paper.id}`} color="info" size="sm">
@@ -102,13 +131,28 @@ export class Paper extends React.Component<IPaperProps> {
             </div>
           )}
         </div>
+        <div className={paperList && paperList.length > 0 ? '' : 'd-none'}>
+          <Row className="justify-content-center">
+            <JhiItemCount page={this.state.activePage} total={totalItems} itemsPerPage={this.state.itemsPerPage} i18nEnabled />
+          </Row>
+          <Row className="justify-content-center">
+            <JhiPagination
+              activePage={this.state.activePage}
+              onSelect={this.handlePagination}
+              maxButtons={5}
+              itemsPerPage={this.state.itemsPerPage}
+              totalItems={this.props.totalItems}
+            />
+          </Row>
+        </div>
       </div>
     );
   }
 }
 
 const mapStateToProps = ({ paper }: IRootState) => ({
-  paperList: paper.entities
+  paperList: paper.entities,
+  totalItems: paper.totalItems
 });
 
 const mapDispatchToProps = {

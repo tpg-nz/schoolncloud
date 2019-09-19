@@ -3,7 +3,7 @@ import { connect } from 'react-redux';
 import { Link, RouteComponentProps } from 'react-router-dom';
 import { Button, Col, Row, Table } from 'reactstrap';
 // tslint:disable-next-line:no-unused-variable
-import { Translate, ICrudGetAllAction } from 'react-jhipster';
+import { Translate, ICrudGetAllAction, getSortState, IPaginationBaseState, JhiPagination, JhiItemCount } from 'react-jhipster';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 
 import { IRootState } from 'app/shared/reducers';
@@ -11,16 +11,45 @@ import { getEntities } from './contact.reducer';
 import { IContact } from 'app/shared/model/contact.model';
 // tslint:disable-next-line:no-unused-variable
 import { APP_DATE_FORMAT, APP_LOCAL_DATE_FORMAT } from 'app/config/constants';
+import { ITEMS_PER_PAGE } from 'app/shared/util/pagination.constants';
 
 export interface IContactProps extends StateProps, DispatchProps, RouteComponentProps<{ url: string }> {}
 
-export class Contact extends React.Component<IContactProps> {
+export type IContactState = IPaginationBaseState;
+
+export class Contact extends React.Component<IContactProps, IContactState> {
+  state: IContactState = {
+    ...getSortState(this.props.location, ITEMS_PER_PAGE)
+  };
+
   componentDidMount() {
-    this.props.getEntities();
+    this.getEntities();
   }
 
+  sort = prop => () => {
+    this.setState(
+      {
+        order: this.state.order === 'asc' ? 'desc' : 'asc',
+        sort: prop
+      },
+      () => this.sortEntities()
+    );
+  };
+
+  sortEntities() {
+    this.getEntities();
+    this.props.history.push(`${this.props.location.pathname}?page=${this.state.activePage}&sort=${this.state.sort},${this.state.order}`);
+  }
+
+  handlePagination = activePage => this.setState({ activePage }, () => this.sortEntities());
+
+  getEntities = () => {
+    const { activePage, itemsPerPage, sort, order } = this.state;
+    this.props.getEntities(activePage - 1, itemsPerPage, `${sort},${order}`);
+  };
+
   render() {
-    const { contactList, match } = this.props;
+    const { contactList, match, totalItems } = this.props;
     return (
       <div>
         <h2 id="contact-heading">
@@ -36,23 +65,20 @@ export class Contact extends React.Component<IContactProps> {
             <Table responsive>
               <thead>
                 <tr>
-                  <th>
-                    <Translate contentKey="global.field.id">ID</Translate>
+                  <th className="hand" onClick={this.sort('id')}>
+                    <Translate contentKey="global.field.id">ID</Translate> <FontAwesomeIcon icon="sort" />
                   </th>
-                  <th>
-                    <Translate contentKey="catalogApp.contact.guid">Guid</Translate>
+                  <th className="hand" onClick={this.sort('entityId')}>
+                    <Translate contentKey="catalogApp.contact.entityId">Entity Id</Translate> <FontAwesomeIcon icon="sort" />
                   </th>
-                  <th>
-                    <Translate contentKey="catalogApp.contact.entityGuid">Entity Guid</Translate>
+                  <th className="hand" onClick={this.sort('contact')}>
+                    <Translate contentKey="catalogApp.contact.contact">Contact</Translate> <FontAwesomeIcon icon="sort" />
                   </th>
-                  <th>
-                    <Translate contentKey="catalogApp.contact.contact">Contact</Translate>
+                  <th className="hand" onClick={this.sort('contactType')}>
+                    <Translate contentKey="catalogApp.contact.contactType">Contact Type</Translate> <FontAwesomeIcon icon="sort" />
                   </th>
-                  <th>
-                    <Translate contentKey="catalogApp.contact.contactType">Contact Type</Translate>
-                  </th>
-                  <th>
-                    <Translate contentKey="catalogApp.contact.mediaType">Media Type</Translate>
+                  <th className="hand" onClick={this.sort('mediaType')}>
+                    <Translate contentKey="catalogApp.contact.mediaType">Media Type</Translate> <FontAwesomeIcon icon="sort" />
                   </th>
                   <th />
                 </tr>
@@ -65,14 +91,13 @@ export class Contact extends React.Component<IContactProps> {
                         {contact.id}
                       </Button>
                     </td>
-                    <td>{contact.guid}</td>
-                    <td>{contact.entityGuid}</td>
+                    <td>{contact.entityId}</td>
                     <td>{contact.contact}</td>
                     <td>
                       <Translate contentKey={`catalogApp.ContactType.${contact.contactType}`} />
                     </td>
                     <td>
-                      <Translate contentKey={`catalogApp.MediaTypee.${contact.mediaType}`} />
+                      <Translate contentKey={`catalogApp.MediaType.${contact.mediaType}`} />
                     </td>
                     <td className="text-right">
                       <div className="btn-group flex-btn-group-container">
@@ -106,13 +131,28 @@ export class Contact extends React.Component<IContactProps> {
             </div>
           )}
         </div>
+        <div className={contactList && contactList.length > 0 ? '' : 'd-none'}>
+          <Row className="justify-content-center">
+            <JhiItemCount page={this.state.activePage} total={totalItems} itemsPerPage={this.state.itemsPerPage} i18nEnabled />
+          </Row>
+          <Row className="justify-content-center">
+            <JhiPagination
+              activePage={this.state.activePage}
+              onSelect={this.handlePagination}
+              maxButtons={5}
+              itemsPerPage={this.state.itemsPerPage}
+              totalItems={this.props.totalItems}
+            />
+          </Row>
+        </div>
       </div>
     );
   }
 }
 
 const mapStateToProps = ({ contact }: IRootState) => ({
-  contactList: contact.entities
+  contactList: contact.entities,
+  totalItems: contact.totalItems
 });
 
 const mapDispatchToProps = {

@@ -90,47 +90,71 @@ export class AddressUpdate extends React.Component<IAddressUpdateProps, IAddress
                   </AvGroup>
                 ) : null}
                 <AvGroup>
-                  <Label id="guidLabel" for="address-guid">
-                    <Translate contentKey="catalogApp.address.guid">Guid</Translate>
+                  <Label id="entityIdLabel" for="address-entityId">
+                    <Translate contentKey="catalogApp.address.entityId">Entity Id</Translate>
                   </Label>
                   <AvField
-                    id="address-guid"
+                    id="address-entityId"
+                    type="string"
+                    className="form-control"
+                    name="entityId"
+                    validate={{
+                      required: { value: true, errorMessage: translate('entity.validation.required') },
+                      number: { value: true, errorMessage: translate('entity.validation.number') }
+                    }}
+                  />
+                </AvGroup>
+                <AvGroup>
+                  <Label id="addressLabel" for="address-address">
+                    <Translate contentKey="catalogApp.address.address">Address</Translate>
+                  </Label>
+                  <AvField
+                    id="address-address"
                     type="text"
-                    name="guid"
+                    name="address"
                     validate={{
                       required: { value: true, errorMessage: translate('entity.validation.required') }
                     }}
                   />
                 </AvGroup>
                 <AvGroup>
-                  <Label id="entityGuidLabel" for="address-entityGuid">
-                    <Translate contentKey="catalogApp.address.entityGuid">Entity Guid</Translate>
-                  </Label>
-                  <AvField id="address-entityGuid" type="text" name="entityGuid" />
-                </AvGroup>
-                <AvGroup>
-                  <Label id="addressLabel" for="address-address">
-                    <Translate contentKey="catalogApp.address.address">Address</Translate>
-                  </Label>
-                  <AvField id="address-address" type="text" name="address" />
-                </AvGroup>
-                <AvGroup>
                   <Label id="zipCodeLabel" for="address-zipCode">
                     <Translate contentKey="catalogApp.address.zipCode">Zip Code</Translate>
                   </Label>
-                  <AvField id="address-zipCode" type="text" name="zipCode" />
+                  <AvField
+                    id="address-zipCode"
+                    type="text"
+                    name="zipCode"
+                    validate={{
+                      required: { value: true, errorMessage: translate('entity.validation.required') }
+                    }}
+                  />
                 </AvGroup>
                 <AvGroup>
                   <Label id="cityLabel" for="address-city">
                     <Translate contentKey="catalogApp.address.city">City</Translate>
                   </Label>
-                  <AvField id="address-city" type="text" name="city" />
+                  <AvField
+                    id="address-city"
+                    type="text"
+                    name="city"
+                    validate={{
+                      required: { value: true, errorMessage: translate('entity.validation.required') }
+                    }}
+                  />
                 </AvGroup>
                 <AvGroup>
                   <Label id="countryLabel" for="address-country">
                     <Translate contentKey="catalogApp.address.country">Country</Translate>
                   </Label>
-                  <AvField id="address-country" type="text" name="country" />
+                  <AvField
+                    id="address-country"
+                    type="text"
+                    name="country"
+                    validate={{
+                      required: { value: true, errorMessage: translate('entity.validation.required') }
+                    }}
+                  />
                 </AvGroup>
                 <AvGroup>
                   <Label id="addressTypeLabel" for="address-addressType">

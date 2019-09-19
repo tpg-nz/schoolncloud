@@ -2,7 +2,9 @@ package co.tpg.catalog.web.rest;
 
 import co.tpg.catalog.CatalogApp;
 import co.tpg.catalog.domain.Paper;
+import co.tpg.catalog.domain.Subject;
 import co.tpg.catalog.repository.PaperRepository;
+import co.tpg.catalog.service.PaperService;
 import co.tpg.catalog.web.rest.errors.ExceptionTranslator;
 
 import org.junit.jupiter.api.BeforeEach;
@@ -36,17 +38,20 @@ public class PaperResourceIT {
     private static final String DEFAULT_CODE = "AAAAAAAAAA";
     private static final String UPDATED_CODE = "BBBBBBBBBB";
 
-    private static final Integer DEFAULT_YEAR = 1;
-    private static final Integer UPDATED_YEAR = 2;
+    private static final Integer DEFAULT_YEAR = 0;
+    private static final Integer UPDATED_YEAR = 1;
 
-    private static final Integer DEFAULT_POINTS = 1;
-    private static final Integer UPDATED_POINTS = 2;
+    private static final Integer DEFAULT_POINTS = 0;
+    private static final Integer UPDATED_POINTS = 1;
 
     private static final String DEFAULT_TEACHING_PERIOD = "AAAAAAAAAA";
     private static final String UPDATED_TEACHING_PERIOD = "BBBBBBBBBB";
 
     @Autowired
     private PaperRepository paperRepository;
+
+    @Autowired
+    private PaperService paperService;
 
     @Autowired
     private MappingJackson2HttpMessageConverter jacksonMessageConverter;
@@ -70,7 +75,7 @@ public class PaperResourceIT {
     @BeforeEach
     public void setup() {
         MockitoAnnotations.initMocks(this);
-        final PaperResource paperResource = new PaperResource(paperRepository);
+        final PaperResource paperResource = new PaperResource(paperService);
         this.restPaperMockMvc = MockMvcBuilders.standaloneSetup(paperResource)
             .setCustomArgumentResolvers(pageableArgumentResolver)
             .setControllerAdvice(exceptionTranslator)
@@ -91,6 +96,16 @@ public class PaperResourceIT {
             .year(DEFAULT_YEAR)
             .points(DEFAULT_POINTS)
             .teachingPeriod(DEFAULT_TEACHING_PERIOD);
+        // Add required entity
+        Subject subject;
+        if (TestUtil.findAll(em, Subject.class).isEmpty()) {
+            subject = SubjectResourceIT.createEntity(em);
+            em.persist(subject);
+            em.flush();
+        } else {
+            subject = TestUtil.findAll(em, Subject.class).get(0);
+        }
+        paper.setSubject(subject);
         return paper;
     }
     /**
@@ -105,6 +120,16 @@ public class PaperResourceIT {
             .year(UPDATED_YEAR)
             .points(UPDATED_POINTS)
             .teachingPeriod(UPDATED_TEACHING_PERIOD);
+        // Add required entity
+        Subject subject;
+        if (TestUtil.findAll(em, Subject.class).isEmpty()) {
+            subject = SubjectResourceIT.createUpdatedEntity(em);
+            em.persist(subject);
+            em.flush();
+        } else {
+            subject = TestUtil.findAll(em, Subject.class).get(0);
+        }
+        paper.setSubject(subject);
         return paper;
     }
 
@@ -174,6 +199,42 @@ public class PaperResourceIT {
 
     @Test
     @Transactional
+    public void checkYearIsRequired() throws Exception {
+        int databaseSizeBeforeTest = paperRepository.findAll().size();
+        // set the field null
+        paper.setYear(null);
+
+        // Create the Paper, which fails.
+
+        restPaperMockMvc.perform(post("/api/papers")
+            .contentType(TestUtil.APPLICATION_JSON_UTF8)
+            .content(TestUtil.convertObjectToJsonBytes(paper)))
+            .andExpect(status().isBadRequest());
+
+        List<Paper> paperList = paperRepository.findAll();
+        assertThat(paperList).hasSize(databaseSizeBeforeTest);
+    }
+
+    @Test
+    @Transactional
+    public void checkPointsIsRequired() throws Exception {
+        int databaseSizeBeforeTest = paperRepository.findAll().size();
+        // set the field null
+        paper.setPoints(null);
+
+        // Create the Paper, which fails.
+
+        restPaperMockMvc.perform(post("/api/papers")
+            .contentType(TestUtil.APPLICATION_JSON_UTF8)
+            .content(TestUtil.convertObjectToJsonBytes(paper)))
+            .andExpect(status().isBadRequest());
+
+        List<Paper> paperList = paperRepository.findAll();
+        assertThat(paperList).hasSize(databaseSizeBeforeTest);
+    }
+
+    @Test
+    @Transactional
     public void getAllPapers() throws Exception {
         // Initialize the database
         paperRepository.saveAndFlush(paper);
@@ -218,7 +279,7 @@ public class PaperResourceIT {
     @Transactional
     public void updatePaper() throws Exception {
         // Initialize the database
-        paperRepository.saveAndFlush(paper);
+        paperService.save(paper);
 
         int databaseSizeBeforeUpdate = paperRepository.findAll().size();
 
@@ -269,7 +330,7 @@ public class PaperResourceIT {
     @Transactional
     public void deletePaper() throws Exception {
         // Initialize the database
-        paperRepository.saveAndFlush(paper);
+        paperService.save(paper);
 
         int databaseSizeBeforeDelete = paperRepository.findAll().size();
 

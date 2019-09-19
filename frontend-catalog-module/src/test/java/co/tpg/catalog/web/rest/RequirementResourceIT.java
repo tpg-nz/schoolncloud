@@ -2,7 +2,10 @@ package co.tpg.catalog.web.rest;
 
 import co.tpg.catalog.CatalogApp;
 import co.tpg.catalog.domain.Requirement;
+import co.tpg.catalog.domain.Subject;
+import co.tpg.catalog.domain.Paper;
 import co.tpg.catalog.repository.RequirementRepository;
+import co.tpg.catalog.service.RequirementService;
 import co.tpg.catalog.web.rest.errors.ExceptionTranslator;
 
 import org.junit.jupiter.api.BeforeEach;
@@ -33,14 +36,14 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 @SpringBootTest(classes = CatalogApp.class)
 public class RequirementResourceIT {
 
-    private static final String DEFAULT_GUID = "AAAAAAAAAA";
-    private static final String UPDATED_GUID = "BBBBBBBBBB";
-
     private static final Integer DEFAULT_LEVEL = 1;
     private static final Integer UPDATED_LEVEL = 2;
 
     @Autowired
     private RequirementRepository requirementRepository;
+
+    @Autowired
+    private RequirementService requirementService;
 
     @Autowired
     private MappingJackson2HttpMessageConverter jacksonMessageConverter;
@@ -64,7 +67,7 @@ public class RequirementResourceIT {
     @BeforeEach
     public void setup() {
         MockitoAnnotations.initMocks(this);
-        final RequirementResource requirementResource = new RequirementResource(requirementRepository);
+        final RequirementResource requirementResource = new RequirementResource(requirementService);
         this.restRequirementMockMvc = MockMvcBuilders.standaloneSetup(requirementResource)
             .setCustomArgumentResolvers(pageableArgumentResolver)
             .setControllerAdvice(exceptionTranslator)
@@ -81,8 +84,27 @@ public class RequirementResourceIT {
      */
     public static Requirement createEntity(EntityManager em) {
         Requirement requirement = new Requirement()
-            .guid(DEFAULT_GUID)
             .level(DEFAULT_LEVEL);
+        // Add required entity
+        Subject subject;
+        if (TestUtil.findAll(em, Subject.class).isEmpty()) {
+            subject = SubjectResourceIT.createEntity(em);
+            em.persist(subject);
+            em.flush();
+        } else {
+            subject = TestUtil.findAll(em, Subject.class).get(0);
+        }
+        requirement.setSubject(subject);
+        // Add required entity
+        Paper paper;
+        if (TestUtil.findAll(em, Paper.class).isEmpty()) {
+            paper = PaperResourceIT.createEntity(em);
+            em.persist(paper);
+            em.flush();
+        } else {
+            paper = TestUtil.findAll(em, Paper.class).get(0);
+        }
+        requirement.setPaper(paper);
         return requirement;
     }
     /**
@@ -93,8 +115,27 @@ public class RequirementResourceIT {
      */
     public static Requirement createUpdatedEntity(EntityManager em) {
         Requirement requirement = new Requirement()
-            .guid(UPDATED_GUID)
             .level(UPDATED_LEVEL);
+        // Add required entity
+        Subject subject;
+        if (TestUtil.findAll(em, Subject.class).isEmpty()) {
+            subject = SubjectResourceIT.createUpdatedEntity(em);
+            em.persist(subject);
+            em.flush();
+        } else {
+            subject = TestUtil.findAll(em, Subject.class).get(0);
+        }
+        requirement.setSubject(subject);
+        // Add required entity
+        Paper paper;
+        if (TestUtil.findAll(em, Paper.class).isEmpty()) {
+            paper = PaperResourceIT.createUpdatedEntity(em);
+            em.persist(paper);
+            em.flush();
+        } else {
+            paper = TestUtil.findAll(em, Paper.class).get(0);
+        }
+        requirement.setPaper(paper);
         return requirement;
     }
 
@@ -118,7 +159,6 @@ public class RequirementResourceIT {
         List<Requirement> requirementList = requirementRepository.findAll();
         assertThat(requirementList).hasSize(databaseSizeBeforeCreate + 1);
         Requirement testRequirement = requirementList.get(requirementList.size() - 1);
-        assertThat(testRequirement.getGuid()).isEqualTo(DEFAULT_GUID);
         assertThat(testRequirement.getLevel()).isEqualTo(DEFAULT_LEVEL);
     }
 
@@ -144,24 +184,6 @@ public class RequirementResourceIT {
 
     @Test
     @Transactional
-    public void checkGuidIsRequired() throws Exception {
-        int databaseSizeBeforeTest = requirementRepository.findAll().size();
-        // set the field null
-        requirement.setGuid(null);
-
-        // Create the Requirement, which fails.
-
-        restRequirementMockMvc.perform(post("/api/requirements")
-            .contentType(TestUtil.APPLICATION_JSON_UTF8)
-            .content(TestUtil.convertObjectToJsonBytes(requirement)))
-            .andExpect(status().isBadRequest());
-
-        List<Requirement> requirementList = requirementRepository.findAll();
-        assertThat(requirementList).hasSize(databaseSizeBeforeTest);
-    }
-
-    @Test
-    @Transactional
     public void getAllRequirements() throws Exception {
         // Initialize the database
         requirementRepository.saveAndFlush(requirement);
@@ -171,7 +193,6 @@ public class RequirementResourceIT {
             .andExpect(status().isOk())
             .andExpect(content().contentType(MediaType.APPLICATION_JSON_UTF8_VALUE))
             .andExpect(jsonPath("$.[*].id").value(hasItem(requirement.getId().intValue())))
-            .andExpect(jsonPath("$.[*].guid").value(hasItem(DEFAULT_GUID.toString())))
             .andExpect(jsonPath("$.[*].level").value(hasItem(DEFAULT_LEVEL)));
     }
     
@@ -186,7 +207,6 @@ public class RequirementResourceIT {
             .andExpect(status().isOk())
             .andExpect(content().contentType(MediaType.APPLICATION_JSON_UTF8_VALUE))
             .andExpect(jsonPath("$.id").value(requirement.getId().intValue()))
-            .andExpect(jsonPath("$.guid").value(DEFAULT_GUID.toString()))
             .andExpect(jsonPath("$.level").value(DEFAULT_LEVEL));
     }
 
@@ -202,7 +222,7 @@ public class RequirementResourceIT {
     @Transactional
     public void updateRequirement() throws Exception {
         // Initialize the database
-        requirementRepository.saveAndFlush(requirement);
+        requirementService.save(requirement);
 
         int databaseSizeBeforeUpdate = requirementRepository.findAll().size();
 
@@ -211,7 +231,6 @@ public class RequirementResourceIT {
         // Disconnect from session so that the updates on updatedRequirement are not directly saved in db
         em.detach(updatedRequirement);
         updatedRequirement
-            .guid(UPDATED_GUID)
             .level(UPDATED_LEVEL);
 
         restRequirementMockMvc.perform(put("/api/requirements")
@@ -223,7 +242,6 @@ public class RequirementResourceIT {
         List<Requirement> requirementList = requirementRepository.findAll();
         assertThat(requirementList).hasSize(databaseSizeBeforeUpdate);
         Requirement testRequirement = requirementList.get(requirementList.size() - 1);
-        assertThat(testRequirement.getGuid()).isEqualTo(UPDATED_GUID);
         assertThat(testRequirement.getLevel()).isEqualTo(UPDATED_LEVEL);
     }
 
@@ -249,7 +267,7 @@ public class RequirementResourceIT {
     @Transactional
     public void deleteRequirement() throws Exception {
         // Initialize the database
-        requirementRepository.saveAndFlush(requirement);
+        requirementService.save(requirement);
 
         int databaseSizeBeforeDelete = requirementRepository.findAll().size();
 

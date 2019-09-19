@@ -29,12 +29,6 @@ export class TeachingStaffDetail extends React.Component<ITeachingStaffDetailPro
           </h2>
           <dl className="jh-entity-details">
             <dt>
-              <span id="guid">
-                <Translate contentKey="catalogApp.teachingStaff.guid">Guid</Translate>
-              </span>
-            </dt>
-            <dd>{teachingStaffEntity.guid}</dd>
-            <dt>
               <span id="name">
                 <Translate contentKey="catalogApp.teachingStaff.name">Name</Translate>
               </span>
@@ -49,16 +43,7 @@ export class TeachingStaffDetail extends React.Component<ITeachingStaffDetailPro
             <dt>
               <Translate contentKey="catalogApp.teachingStaff.paper">Paper</Translate>
             </dt>
-            <dd>
-              {teachingStaffEntity.papers
-                ? teachingStaffEntity.papers.map((val, i) => (
-                    <span key={val.id}>
-                      <a>{val.id}</a>
-                      {i === teachingStaffEntity.papers.length - 1 ? '' : ', '}
-                    </span>
-                  ))
-                : null}
-            </dd>
+            <dd>{teachingStaffEntity.paper ? teachingStaffEntity.paper.code : ''}</dd>
           </dl>
           <Button tag={Link} to="/entity/teaching-staff" replace color="info">
             <FontAwesomeIcon icon="arrow-left" />{' '}

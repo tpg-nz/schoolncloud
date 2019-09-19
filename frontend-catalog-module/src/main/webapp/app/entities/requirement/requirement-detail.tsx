@@ -29,12 +29,6 @@ export class RequirementDetail extends React.Component<IRequirementDetailProps> 
           </h2>
           <dl className="jh-entity-details">
             <dt>
-              <span id="guid">
-                <Translate contentKey="catalogApp.requirement.guid">Guid</Translate>
-              </span>
-            </dt>
-            <dd>{requirementEntity.guid}</dd>
-            <dt>
               <span id="level">
                 <Translate contentKey="catalogApp.requirement.level">Level</Translate>
               </span>
@@ -43,7 +37,11 @@ export class RequirementDetail extends React.Component<IRequirementDetailProps> 
             <dt>
               <Translate contentKey="catalogApp.requirement.subject">Subject</Translate>
             </dt>
-            <dd>{requirementEntity.subject ? requirementEntity.subject.guid : ''}</dd>
+            <dd>{requirementEntity.subject ? requirementEntity.subject.name : ''}</dd>
+            <dt>
+              <Translate contentKey="catalogApp.requirement.paper">Paper</Translate>
+            </dt>
+            <dd>{requirementEntity.paper ? requirementEntity.paper.code : ''}</dd>
           </dl>
           <Button tag={Link} to="/entity/requirement" replace color="info">
             <FontAwesomeIcon icon="arrow-left" />{' '}

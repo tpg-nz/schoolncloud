@@ -1,14 +1,21 @@
 package co.tpg.catalog.web.rest;
 
 import co.tpg.catalog.domain.TeachingStaff;
-import co.tpg.catalog.repository.TeachingStaffRepository;
+import co.tpg.catalog.service.TeachingStaffService;
 import co.tpg.catalog.web.rest.errors.BadRequestAlertException;
 
 import io.github.jhipster.web.util.HeaderUtil;
+import io.github.jhipster.web.util.PaginationUtil;
 import io.github.jhipster.web.util.ResponseUtil;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Value;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
+import org.springframework.http.HttpHeaders;
+import org.springframework.http.HttpStatus;
+import org.springframework.util.MultiValueMap;
+import org.springframework.web.util.UriComponentsBuilder;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
@@ -33,10 +40,10 @@ public class TeachingStaffResource {
     @Value("${jhipster.clientApp.name}")
     private String applicationName;
 
-    private final TeachingStaffRepository teachingStaffRepository;
+    private final TeachingStaffService teachingStaffService;
 
-    public TeachingStaffResource(TeachingStaffRepository teachingStaffRepository) {
-        this.teachingStaffRepository = teachingStaffRepository;
+    public TeachingStaffResource(TeachingStaffService teachingStaffService) {
+        this.teachingStaffService = teachingStaffService;
     }
 
     /**
@@ -52,7 +59,7 @@ public class TeachingStaffResource {
         if (teachingStaff.getId() != null) {
             throw new BadRequestAlertException("A new teachingStaff cannot already have an ID", ENTITY_NAME, "idexists");
         }
-        TeachingStaff result = teachingStaffRepository.save(teachingStaff);
+        TeachingStaff result = teachingStaffService.save(teachingStaff);
         return ResponseEntity.created(new URI("/api/teaching-staffs/" + result.getId()))
             .headers(HeaderUtil.createEntityCreationAlert(applicationName, true, ENTITY_NAME, result.getId().toString()))
             .body(result);
@@ -73,7 +80,7 @@ public class TeachingStaffResource {
         if (teachingStaff.getId() == null) {
             throw new BadRequestAlertException("Invalid id", ENTITY_NAME, "idnull");
         }
-        TeachingStaff result = teachingStaffRepository.save(teachingStaff);
+        TeachingStaff result = teachingStaffService.save(teachingStaff);
         return ResponseEntity.ok()
             .headers(HeaderUtil.createEntityUpdateAlert(applicationName, true, ENTITY_NAME, teachingStaff.getId().toString()))
             .body(result);
@@ -82,13 +89,17 @@ public class TeachingStaffResource {
     /**
      * {@code GET  /teaching-staffs} : get all the teachingStaffs.
      *
-     * @param eagerload flag to eager load entities from relationships (This is applicable for many-to-many).
+     * @param pageable the pagination information.
+     * @param queryParams a {@link MultiValueMap} query parameters.
+     * @param uriBuilder a {@link UriComponentsBuilder} URI builder.
      * @return the {@link ResponseEntity} with status {@code 200 (OK)} and the list of teachingStaffs in body.
      */
     @GetMapping("/teaching-staffs")
-    public List<TeachingStaff> getAllTeachingStaffs(@RequestParam(required = false, defaultValue = "false") boolean eagerload) {
-        log.debug("REST request to get all TeachingStaffs");
-        return teachingStaffRepository.findAllWithEagerRelationships();
+    public ResponseEntity<List<TeachingStaff>> getAllTeachingStaffs(Pageable pageable, @RequestParam MultiValueMap<String, String> queryParams, UriComponentsBuilder uriBuilder) {
+        log.debug("REST request to get a page of TeachingStaffs");
+        Page<TeachingStaff> page = teachingStaffService.findAll(pageable);
+        HttpHeaders headers = PaginationUtil.generatePaginationHttpHeaders(uriBuilder.queryParams(queryParams), page);
+        return ResponseEntity.ok().headers(headers).body(page.getContent());
     }
 
     /**
@@ -100,7 +111,7 @@ public class TeachingStaffResource {
     @GetMapping("/teaching-staffs/{id}")
     public ResponseEntity<TeachingStaff> getTeachingStaff(@PathVariable Long id) {
         log.debug("REST request to get TeachingStaff : {}", id);
-        Optional<TeachingStaff> teachingStaff = teachingStaffRepository.findOneWithEagerRelationships(id);
+        Optional<TeachingStaff> teachingStaff = teachingStaffService.findOne(id);
         return ResponseUtil.wrapOrNotFound(teachingStaff);
     }
 
@@ -113,7 +124,7 @@ public class TeachingStaffResource {
     @DeleteMapping("/teaching-staffs/{id}")
     public ResponseEntity<Void> deleteTeachingStaff(@PathVariable Long id) {
         log.debug("REST request to delete TeachingStaff : {}", id);
-        teachingStaffRepository.deleteById(id);
+        teachingStaffService.delete(id);
         return ResponseEntity.noContent().headers(HeaderUtil.createEntityDeletionAlert(applicationName, true, ENTITY_NAME, id.toString())).build();
     }
 }

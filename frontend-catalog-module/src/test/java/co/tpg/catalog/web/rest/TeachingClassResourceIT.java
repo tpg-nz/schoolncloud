@@ -2,7 +2,10 @@ package co.tpg.catalog.web.rest;
 
 import co.tpg.catalog.CatalogApp;
 import co.tpg.catalog.domain.TeachingClass;
+import co.tpg.catalog.domain.Campus;
+import co.tpg.catalog.domain.Paper;
 import co.tpg.catalog.repository.TeachingClassRepository;
+import co.tpg.catalog.service.TeachingClassService;
 import co.tpg.catalog.web.rest.errors.ExceptionTranslator;
 
 import org.junit.jupiter.api.BeforeEach;
@@ -33,20 +36,20 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 @SpringBootTest(classes = CatalogApp.class)
 public class TeachingClassResourceIT {
 
-    private static final String DEFAULT_GUID = "AAAAAAAAAA";
-    private static final String UPDATED_GUID = "BBBBBBBBBB";
-
     private static final String DEFAULT_CODE = "AAAAAAAAAA";
     private static final String UPDATED_CODE = "BBBBBBBBBB";
 
-    private static final Integer DEFAULT_YEAR = 1;
-    private static final Integer UPDATED_YEAR = 2;
+    private static final Integer DEFAULT_YEAR = 0;
+    private static final Integer UPDATED_YEAR = 1;
 
-    private static final Integer DEFAULT_SEMESTER = 1;
-    private static final Integer UPDATED_SEMESTER = 2;
+    private static final Integer DEFAULT_SEMESTER = 0;
+    private static final Integer UPDATED_SEMESTER = 1;
 
     @Autowired
     private TeachingClassRepository teachingClassRepository;
+
+    @Autowired
+    private TeachingClassService teachingClassService;
 
     @Autowired
     private MappingJackson2HttpMessageConverter jacksonMessageConverter;
@@ -70,7 +73,7 @@ public class TeachingClassResourceIT {
     @BeforeEach
     public void setup() {
         MockitoAnnotations.initMocks(this);
-        final TeachingClassResource teachingClassResource = new TeachingClassResource(teachingClassRepository);
+        final TeachingClassResource teachingClassResource = new TeachingClassResource(teachingClassService);
         this.restTeachingClassMockMvc = MockMvcBuilders.standaloneSetup(teachingClassResource)
             .setCustomArgumentResolvers(pageableArgumentResolver)
             .setControllerAdvice(exceptionTranslator)
@@ -87,10 +90,29 @@ public class TeachingClassResourceIT {
      */
     public static TeachingClass createEntity(EntityManager em) {
         TeachingClass teachingClass = new TeachingClass()
-            .guid(DEFAULT_GUID)
             .code(DEFAULT_CODE)
             .year(DEFAULT_YEAR)
             .semester(DEFAULT_SEMESTER);
+        // Add required entity
+        Campus campus;
+        if (TestUtil.findAll(em, Campus.class).isEmpty()) {
+            campus = CampusResourceIT.createEntity(em);
+            em.persist(campus);
+            em.flush();
+        } else {
+            campus = TestUtil.findAll(em, Campus.class).get(0);
+        }
+        teachingClass.setCampus(campus);
+        // Add required entity
+        Paper paper;
+        if (TestUtil.findAll(em, Paper.class).isEmpty()) {
+            paper = PaperResourceIT.createEntity(em);
+            em.persist(paper);
+            em.flush();
+        } else {
+            paper = TestUtil.findAll(em, Paper.class).get(0);
+        }
+        teachingClass.setPaper(paper);
         return teachingClass;
     }
     /**
@@ -101,10 +123,29 @@ public class TeachingClassResourceIT {
      */
     public static TeachingClass createUpdatedEntity(EntityManager em) {
         TeachingClass teachingClass = new TeachingClass()
-            .guid(UPDATED_GUID)
             .code(UPDATED_CODE)
             .year(UPDATED_YEAR)
             .semester(UPDATED_SEMESTER);
+        // Add required entity
+        Campus campus;
+        if (TestUtil.findAll(em, Campus.class).isEmpty()) {
+            campus = CampusResourceIT.createUpdatedEntity(em);
+            em.persist(campus);
+            em.flush();
+        } else {
+            campus = TestUtil.findAll(em, Campus.class).get(0);
+        }
+        teachingClass.setCampus(campus);
+        // Add required entity
+        Paper paper;
+        if (TestUtil.findAll(em, Paper.class).isEmpty()) {
+            paper = PaperResourceIT.createUpdatedEntity(em);
+            em.persist(paper);
+            em.flush();
+        } else {
+            paper = TestUtil.findAll(em, Paper.class).get(0);
+        }
+        teachingClass.setPaper(paper);
         return teachingClass;
     }
 
@@ -128,7 +169,6 @@ public class TeachingClassResourceIT {
         List<TeachingClass> teachingClassList = teachingClassRepository.findAll();
         assertThat(teachingClassList).hasSize(databaseSizeBeforeCreate + 1);
         TeachingClass testTeachingClass = teachingClassList.get(teachingClassList.size() - 1);
-        assertThat(testTeachingClass.getGuid()).isEqualTo(DEFAULT_GUID);
         assertThat(testTeachingClass.getCode()).isEqualTo(DEFAULT_CODE);
         assertThat(testTeachingClass.getYear()).isEqualTo(DEFAULT_YEAR);
         assertThat(testTeachingClass.getSemester()).isEqualTo(DEFAULT_SEMESTER);
@@ -156,10 +196,46 @@ public class TeachingClassResourceIT {
 
     @Test
     @Transactional
-    public void checkGuidIsRequired() throws Exception {
+    public void checkCodeIsRequired() throws Exception {
         int databaseSizeBeforeTest = teachingClassRepository.findAll().size();
         // set the field null
-        teachingClass.setGuid(null);
+        teachingClass.setCode(null);
+
+        // Create the TeachingClass, which fails.
+
+        restTeachingClassMockMvc.perform(post("/api/teaching-classes")
+            .contentType(TestUtil.APPLICATION_JSON_UTF8)
+            .content(TestUtil.convertObjectToJsonBytes(teachingClass)))
+            .andExpect(status().isBadRequest());
+
+        List<TeachingClass> teachingClassList = teachingClassRepository.findAll();
+        assertThat(teachingClassList).hasSize(databaseSizeBeforeTest);
+    }
+
+    @Test
+    @Transactional
+    public void checkYearIsRequired() throws Exception {
+        int databaseSizeBeforeTest = teachingClassRepository.findAll().size();
+        // set the field null
+        teachingClass.setYear(null);
+
+        // Create the TeachingClass, which fails.
+
+        restTeachingClassMockMvc.perform(post("/api/teaching-classes")
+            .contentType(TestUtil.APPLICATION_JSON_UTF8)
+            .content(TestUtil.convertObjectToJsonBytes(teachingClass)))
+            .andExpect(status().isBadRequest());
+
+        List<TeachingClass> teachingClassList = teachingClassRepository.findAll();
+        assertThat(teachingClassList).hasSize(databaseSizeBeforeTest);
+    }
+
+    @Test
+    @Transactional
+    public void checkSemesterIsRequired() throws Exception {
+        int databaseSizeBeforeTest = teachingClassRepository.findAll().size();
+        // set the field null
+        teachingClass.setSemester(null);
 
         // Create the TeachingClass, which fails.
 
@@ -183,7 +259,6 @@ public class TeachingClassResourceIT {
             .andExpect(status().isOk())
             .andExpect(content().contentType(MediaType.APPLICATION_JSON_UTF8_VALUE))
             .andExpect(jsonPath("$.[*].id").value(hasItem(teachingClass.getId().intValue())))
-            .andExpect(jsonPath("$.[*].guid").value(hasItem(DEFAULT_GUID.toString())))
             .andExpect(jsonPath("$.[*].code").value(hasItem(DEFAULT_CODE.toString())))
             .andExpect(jsonPath("$.[*].year").value(hasItem(DEFAULT_YEAR)))
             .andExpect(jsonPath("$.[*].semester").value(hasItem(DEFAULT_SEMESTER)));
@@ -200,7 +275,6 @@ public class TeachingClassResourceIT {
             .andExpect(status().isOk())
             .andExpect(content().contentType(MediaType.APPLICATION_JSON_UTF8_VALUE))
             .andExpect(jsonPath("$.id").value(teachingClass.getId().intValue()))
-            .andExpect(jsonPath("$.guid").value(DEFAULT_GUID.toString()))
             .andExpect(jsonPath("$.code").value(DEFAULT_CODE.toString()))
             .andExpect(jsonPath("$.year").value(DEFAULT_YEAR))
             .andExpect(jsonPath("$.semester").value(DEFAULT_SEMESTER));
@@ -218,7 +292,7 @@ public class TeachingClassResourceIT {
     @Transactional
     public void updateTeachingClass() throws Exception {
         // Initialize the database
-        teachingClassRepository.saveAndFlush(teachingClass);
+        teachingClassService.save(teachingClass);
 
         int databaseSizeBeforeUpdate = teachingClassRepository.findAll().size();
 
@@ -227,7 +301,6 @@ public class TeachingClassResourceIT {
         // Disconnect from session so that the updates on updatedTeachingClass are not directly saved in db
         em.detach(updatedTeachingClass);
         updatedTeachingClass
-            .guid(UPDATED_GUID)
             .code(UPDATED_CODE)
             .year(UPDATED_YEAR)
             .semester(UPDATED_SEMESTER);
@@ -241,7 +314,6 @@ public class TeachingClassResourceIT {
         List<TeachingClass> teachingClassList = teachingClassRepository.findAll();
         assertThat(teachingClassList).hasSize(databaseSizeBeforeUpdate);
         TeachingClass testTeachingClass = teachingClassList.get(teachingClassList.size() - 1);
-        assertThat(testTeachingClass.getGuid()).isEqualTo(UPDATED_GUID);
         assertThat(testTeachingClass.getCode()).isEqualTo(UPDATED_CODE);
         assertThat(testTeachingClass.getYear()).isEqualTo(UPDATED_YEAR);
         assertThat(testTeachingClass.getSemester()).isEqualTo(UPDATED_SEMESTER);
@@ -269,7 +341,7 @@ public class TeachingClassResourceIT {
     @Transactional
     public void deleteTeachingClass() throws Exception {
         // Initialize the database
-        teachingClassRepository.saveAndFlush(teachingClass);
+        teachingClassService.save(teachingClass);
 
         int databaseSizeBeforeDelete = teachingClassRepository.findAll().size();
 

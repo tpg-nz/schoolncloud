@@ -2,13 +2,6 @@
     "name": "Requirement",
     "fields": [
         {
-            "fieldName": "guid",
-            "fieldType": "String",
-            "fieldValidateRules": [
-                "required"
-            ]
-        },
-        {
             "fieldName": "level",
             "fieldType": "Integer"
         }
@@ -18,15 +11,24 @@
             "relationshipType": "many-to-one",
             "otherEntityName": "subject",
             "otherEntityRelationshipName": "requirement",
+            "relationshipValidateRules": "required",
             "relationshipName": "subject",
-            "otherEntityField": "guid"
+            "otherEntityField": "name"
+        },
+        {
+            "relationshipType": "many-to-one",
+            "otherEntityName": "paper",
+            "otherEntityRelationshipName": "requirement",
+            "relationshipValidateRules": "required",
+            "relationshipName": "paper",
+            "otherEntityField": "code"
         }
     ],
-    "changelogDate": "20190916072159",
+    "changelogDate": "20190919102707",
     "entityTableName": "requirement",
     "dto": "no",
-    "pagination": "no",
-    "service": "no",
+    "pagination": "pagination",
+    "service": "serviceImpl",
     "jpaMetamodelFiltering": false,
     "fluentMethods": true,
     "clientRootFolder": "",

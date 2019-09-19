@@ -3,7 +3,7 @@ import { connect } from 'react-redux';
 import { Link, RouteComponentProps } from 'react-router-dom';
 import { Button, Col, Row, Table } from 'reactstrap';
 // tslint:disable-next-line:no-unused-variable
-import { Translate, ICrudGetAllAction } from 'react-jhipster';
+import { Translate, ICrudGetAllAction, getSortState, IPaginationBaseState, JhiPagination, JhiItemCount } from 'react-jhipster';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 
 import { IRootState } from 'app/shared/reducers';
@@ -11,16 +11,45 @@ import { getEntities } from './teaching-class.reducer';
 import { ITeachingClass } from 'app/shared/model/teaching-class.model';
 // tslint:disable-next-line:no-unused-variable
 import { APP_DATE_FORMAT, APP_LOCAL_DATE_FORMAT } from 'app/config/constants';
+import { ITEMS_PER_PAGE } from 'app/shared/util/pagination.constants';
 
 export interface ITeachingClassProps extends StateProps, DispatchProps, RouteComponentProps<{ url: string }> {}
 
-export class TeachingClass extends React.Component<ITeachingClassProps> {
+export type ITeachingClassState = IPaginationBaseState;
+
+export class TeachingClass extends React.Component<ITeachingClassProps, ITeachingClassState> {
+  state: ITeachingClassState = {
+    ...getSortState(this.props.location, ITEMS_PER_PAGE)
+  };
+
   componentDidMount() {
-    this.props.getEntities();
+    this.getEntities();
   }
 
+  sort = prop => () => {
+    this.setState(
+      {
+        order: this.state.order === 'asc' ? 'desc' : 'asc',
+        sort: prop
+      },
+      () => this.sortEntities()
+    );
+  };
+
+  sortEntities() {
+    this.getEntities();
+    this.props.history.push(`${this.props.location.pathname}?page=${this.state.activePage}&sort=${this.state.sort},${this.state.order}`);
+  }
+
+  handlePagination = activePage => this.setState({ activePage }, () => this.sortEntities());
+
+  getEntities = () => {
+    const { activePage, itemsPerPage, sort, order } = this.state;
+    this.props.getEntities(activePage - 1, itemsPerPage, `${sort},${order}`);
+  };
+
   render() {
-    const { teachingClassList, match } = this.props;
+    const { teachingClassList, match, totalItems } = this.props;
     return (
       <div>
         <h2 id="teaching-class-heading">
@@ -36,26 +65,23 @@ export class TeachingClass extends React.Component<ITeachingClassProps> {
             <Table responsive>
               <thead>
                 <tr>
-                  <th>
-                    <Translate contentKey="global.field.id">ID</Translate>
+                  <th className="hand" onClick={this.sort('id')}>
+                    <Translate contentKey="global.field.id">ID</Translate> <FontAwesomeIcon icon="sort" />
+                  </th>
+                  <th className="hand" onClick={this.sort('code')}>
+                    <Translate contentKey="catalogApp.teachingClass.code">Code</Translate> <FontAwesomeIcon icon="sort" />
+                  </th>
+                  <th className="hand" onClick={this.sort('year')}>
+                    <Translate contentKey="catalogApp.teachingClass.year">Year</Translate> <FontAwesomeIcon icon="sort" />
+                  </th>
+                  <th className="hand" onClick={this.sort('semester')}>
+                    <Translate contentKey="catalogApp.teachingClass.semester">Semester</Translate> <FontAwesomeIcon icon="sort" />
                   </th>
                   <th>
-                    <Translate contentKey="catalogApp.teachingClass.guid">Guid</Translate>
+                    <Translate contentKey="catalogApp.teachingClass.campus">Campus</Translate> <FontAwesomeIcon icon="sort" />
                   </th>
                   <th>
-                    <Translate contentKey="catalogApp.teachingClass.code">Code</Translate>
-                  </th>
-                  <th>
-                    <Translate contentKey="catalogApp.teachingClass.year">Year</Translate>
-                  </th>
-                  <th>
-                    <Translate contentKey="catalogApp.teachingClass.semester">Semester</Translate>
-                  </th>
-                  <th>
-                    <Translate contentKey="catalogApp.teachingClass.campus">Campus</Translate>
-                  </th>
-                  <th>
-                    <Translate contentKey="catalogApp.teachingClass.paper">Paper</Translate>
+                    <Translate contentKey="catalogApp.teachingClass.paper">Paper</Translate> <FontAwesomeIcon icon="sort" />
                   </th>
                   <th />
                 </tr>
@@ -68,11 +94,10 @@ export class TeachingClass extends React.Component<ITeachingClassProps> {
                         {teachingClass.id}
                       </Button>
                     </td>
-                    <td>{teachingClass.guid}</td>
                     <td>{teachingClass.code}</td>
                     <td>{teachingClass.year}</td>
                     <td>{teachingClass.semester}</td>
-                    <td>{teachingClass.campus ? <Link to={`campus/${teachingClass.campus.id}`}>{teachingClass.campus.guid}</Link> : ''}</td>
+                    <td>{teachingClass.campus ? <Link to={`campus/${teachingClass.campus.id}`}>{teachingClass.campus.name}</Link> : ''}</td>
                     <td>{teachingClass.paper ? <Link to={`paper/${teachingClass.paper.id}`}>{teachingClass.paper.code}</Link> : ''}</td>
                     <td className="text-right">
                       <div className="btn-group flex-btn-group-container">
@@ -106,13 +131,28 @@ export class TeachingClass extends React.Component<ITeachingClassProps> {
             </div>
           )}
         </div>
+        <div className={teachingClassList && teachingClassList.length > 0 ? '' : 'd-none'}>
+          <Row className="justify-content-center">
+            <JhiItemCount page={this.state.activePage} total={totalItems} itemsPerPage={this.state.itemsPerPage} i18nEnabled />
+          </Row>
+          <Row className="justify-content-center">
+            <JhiPagination
+              activePage={this.state.activePage}
+              onSelect={this.handlePagination}
+              maxButtons={5}
+              itemsPerPage={this.state.itemsPerPage}
+              totalItems={this.props.totalItems}
+            />
+          </Row>
+        </div>
       </div>
     );
   }
 }
 
 const mapStateToProps = ({ teachingClass }: IRootState) => ({
-  teachingClassList: teachingClass.entities
+  teachingClassList: teachingClass.entities,
+  totalItems: teachingClass.totalItems
 });
 
 const mapDispatchToProps = {

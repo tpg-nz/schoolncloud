@@ -9,10 +9,9 @@ export const enum GraduationType {
 
 export interface ITeachingStaff {
   id?: number;
-  guid?: string;
   name?: string;
   graduationType?: GraduationType;
-  papers?: IPaper[];
+  paper?: IPaper;
 }
 
 export const defaultValue: Readonly<ITeachingStaff> = {};

@@ -16,8 +16,7 @@
       "detail": {
         "title": "Contact"
       },
-      "guid": "Guid",
-      "entityGuid": "Entity Guid",
+      "entityId": "Entity Id",
       "contact": "Contact",
       "contactType": "Contact Type",
       "mediaType": "Media Type"

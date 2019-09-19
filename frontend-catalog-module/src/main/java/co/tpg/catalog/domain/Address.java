@@ -26,22 +26,23 @@ public class Address implements Serializable {
     private Long id;
 
     @NotNull
-    @Column(name = "guid", nullable = false)
-    private String guid;
+    @Column(name = "entity_id", nullable = false)
+    private Long entityId;
 
-    @Column(name = "entity_guid")
-    private String entityGuid;
-
-    @Column(name = "address")
+    @NotNull
+    @Column(name = "address", nullable = false)
     private String address;
 
-    @Column(name = "zip_code")
+    @NotNull
+    @Column(name = "zip_code", nullable = false)
     private String zipCode;
 
-    @Column(name = "city")
+    @NotNull
+    @Column(name = "city", nullable = false)
     private String city;
 
-    @Column(name = "country")
+    @NotNull
+    @Column(name = "country", nullable = false)
     private String country;
 
     @Enumerated(EnumType.STRING)
@@ -61,30 +62,17 @@ public class Address implements Serializable {
         this.id = id;
     }
 
-    public String getGuid() {
-        return guid;
+    public Long getEntityId() {
+        return entityId;
     }
 
-    public Address guid(String guid) {
-        this.guid = guid;
+    public Address entityId(Long entityId) {
+        this.entityId = entityId;
         return this;
     }
 
-    public void setGuid(String guid) {
-        this.guid = guid;
-    }
-
-    public String getEntityGuid() {
-        return entityGuid;
-    }
-
-    public Address entityGuid(String entityGuid) {
-        this.entityGuid = entityGuid;
-        return this;
-    }
-
-    public void setEntityGuid(String entityGuid) {
-        this.entityGuid = entityGuid;
+    public void setEntityId(Long entityId) {
+        this.entityId = entityId;
     }
 
     public String getAddress() {
@@ -186,8 +174,7 @@ public class Address implements Serializable {
     public String toString() {
         return "Address{" +
             "id=" + getId() +
-            ", guid='" + getGuid() + "'" +
-            ", entityGuid='" + getEntityGuid() + "'" +
+            ", entityId=" + getEntityId() +
             ", address='" + getAddress() + "'" +
             ", zipCode='" + getZipCode() + "'" +
             ", city='" + getCity() + "'" +

@@ -22,15 +22,13 @@ public class Subject implements Serializable {
     private Long id;
 
     @NotNull
-    @Column(name = "guid", nullable = false)
-    private String guid;
-
-    @Column(name = "name")
+    @Column(name = "name", nullable = false)
     private String name;
 
     @Column(name = "overview")
     private String overview;
 
+    @Min(value = 1)
     @Column(name = "level")
     private Integer level;
 
@@ -41,19 +39,6 @@ public class Subject implements Serializable {
 
     public void setId(Long id) {
         this.id = id;
-    }
-
-    public String getGuid() {
-        return guid;
-    }
-
-    public Subject guid(String guid) {
-        this.guid = guid;
-        return this;
-    }
-
-    public void setGuid(String guid) {
-        this.guid = guid;
     }
 
     public String getName() {
@@ -116,7 +101,6 @@ public class Subject implements Serializable {
     public String toString() {
         return "Subject{" +
             "id=" + getId() +
-            ", guid='" + getGuid() + "'" +
             ", name='" + getName() + "'" +
             ", overview='" + getOverview() + "'" +
             ", level=" + getLevel() +

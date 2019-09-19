@@ -57,8 +57,8 @@ public class CacheConfiguration {
             createCache(cm, co.tpg.catalog.domain.Paper.class.getName() + ".teachingStaffs");
             createCache(cm, co.tpg.catalog.domain.Contact.class.getName());
             createCache(cm, co.tpg.catalog.domain.Address.class.getName());
-            createCache(cm, co.tpg.catalog.domain.EducationalInstituition.class.getName());
             createCache(cm, co.tpg.catalog.domain.Campus.class.getName());
+            createCache(cm, co.tpg.catalog.domain.EducationalInstitution.class.getName());
             // jhipster-needle-ehcache-add-entry
         };
     }

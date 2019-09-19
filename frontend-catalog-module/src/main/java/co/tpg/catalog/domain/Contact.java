@@ -9,7 +9,7 @@ import java.io.Serializable;
 
 import co.tpg.catalog.domain.enumeration.ContactType;
 
-import co.tpg.catalog.domain.enumeration.MediaTypee;
+import co.tpg.catalog.domain.enumeration.MediaType;
 
 /**
  * A Contact.
@@ -26,13 +26,11 @@ public class Contact implements Serializable {
     private Long id;
 
     @NotNull
-    @Column(name = "guid", nullable = false)
-    private String guid;
+    @Column(name = "entity_id", nullable = false)
+    private Long entityId;
 
-    @Column(name = "entity_guid")
-    private String entityGuid;
-
-    @Column(name = "contact")
+    @NotNull
+    @Column(name = "contact", nullable = false)
     private String contact;
 
     @Enumerated(EnumType.STRING)
@@ -41,7 +39,7 @@ public class Contact implements Serializable {
 
     @Enumerated(EnumType.STRING)
     @Column(name = "media_type")
-    private MediaTypee mediaType;
+    private MediaType mediaType;
 
     // jhipster-needle-entity-add-field - JHipster will add fields here, do not remove
     public Long getId() {
@@ -52,30 +50,17 @@ public class Contact implements Serializable {
         this.id = id;
     }
 
-    public String getGuid() {
-        return guid;
+    public Long getEntityId() {
+        return entityId;
     }
 
-    public Contact guid(String guid) {
-        this.guid = guid;
+    public Contact entityId(Long entityId) {
+        this.entityId = entityId;
         return this;
     }
 
-    public void setGuid(String guid) {
-        this.guid = guid;
-    }
-
-    public String getEntityGuid() {
-        return entityGuid;
-    }
-
-    public Contact entityGuid(String entityGuid) {
-        this.entityGuid = entityGuid;
-        return this;
-    }
-
-    public void setEntityGuid(String entityGuid) {
-        this.entityGuid = entityGuid;
+    public void setEntityId(Long entityId) {
+        this.entityId = entityId;
     }
 
     public String getContact() {
@@ -104,16 +89,16 @@ public class Contact implements Serializable {
         this.contactType = contactType;
     }
 
-    public MediaTypee getMediaType() {
+    public MediaType getMediaType() {
         return mediaType;
     }
 
-    public Contact mediaType(MediaTypee mediaType) {
+    public Contact mediaType(MediaType mediaType) {
         this.mediaType = mediaType;
         return this;
     }
 
-    public void setMediaType(MediaTypee mediaType) {
+    public void setMediaType(MediaType mediaType) {
         this.mediaType = mediaType;
     }
     // jhipster-needle-entity-add-getters-setters - JHipster will add getters and setters here, do not remove
@@ -138,8 +123,7 @@ public class Contact implements Serializable {
     public String toString() {
         return "Contact{" +
             "id=" + getId() +
-            ", guid='" + getGuid() + "'" +
-            ", entityGuid='" + getEntityGuid() + "'" +
+            ", entityId=" + getEntityId() +
             ", contact='" + getContact() + "'" +
             ", contactType='" + getContactType() + "'" +
             ", mediaType='" + getMediaType() + "'" +

@@ -23,16 +23,14 @@ public class Qualification implements Serializable {
     private Long id;
 
     @NotNull
-    @Column(name = "guid", nullable = false)
-    private String guid;
-
-    @Column(name = "name")
+    @Column(name = "name", nullable = false)
     private String name;
 
     @Column(name = "hyper_link")
     private String hyperLink;
 
-    @ManyToOne
+    @ManyToOne(optional = false)
+    @NotNull
     @JsonIgnoreProperties("qualifications")
     private Subject subject;
 
@@ -43,19 +41,6 @@ public class Qualification implements Serializable {
 
     public void setId(Long id) {
         this.id = id;
-    }
-
-    public String getGuid() {
-        return guid;
-    }
-
-    public Qualification guid(String guid) {
-        this.guid = guid;
-        return this;
-    }
-
-    public void setGuid(String guid) {
-        this.guid = guid;
     }
 
     public String getName() {
@@ -118,7 +103,6 @@ public class Qualification implements Serializable {
     public String toString() {
         return "Qualification{" +
             "id=" + getId() +
-            ", guid='" + getGuid() + "'" +
             ", name='" + getName() + "'" +
             ", hyperLink='" + getHyperLink() + "'" +
             "}";

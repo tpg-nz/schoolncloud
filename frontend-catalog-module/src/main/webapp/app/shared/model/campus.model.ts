@@ -1,10 +1,9 @@
-import { IEducationalInstituition } from 'app/shared/model/educational-instituition.model';
+import { IEducationalInstitution } from 'app/shared/model/educational-institution.model';
 
 export interface ICampus {
   id?: number;
-  guid?: string;
   name?: string;
-  educationalInstitution?: IEducationalInstituition;
+  educationalInstitution?: IEducationalInstitution;
 }
 
 export const defaultValue: Readonly<ICampus> = {};

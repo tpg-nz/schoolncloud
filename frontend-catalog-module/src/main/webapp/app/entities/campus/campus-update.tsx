@@ -8,8 +8,8 @@ import { Translate, translate, ICrudGetAction, ICrudGetAllAction, ICrudPutAction
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { IRootState } from 'app/shared/reducers';
 
-import { IEducationalInstituition } from 'app/shared/model/educational-instituition.model';
-import { getEntities as getEducationalInstituitions } from 'app/entities/educational-instituition/educational-instituition.reducer';
+import { IEducationalInstitution } from 'app/shared/model/educational-institution.model';
+import { getEntities as getEducationalInstitutions } from 'app/entities/educational-institution/educational-institution.reducer';
 import { getEntity, updateEntity, createEntity, reset } from './campus.reducer';
 import { ICampus } from 'app/shared/model/campus.model';
 // tslint:disable-next-line:no-unused-variable
@@ -45,7 +45,7 @@ export class CampusUpdate extends React.Component<ICampusUpdateProps, ICampusUpd
       this.props.getEntity(this.props.match.params.id);
     }
 
-    this.props.getEducationalInstituitions();
+    this.props.getEducationalInstitutions();
   }
 
   saveEntity = (event, errors, values) => {
@@ -69,7 +69,7 @@ export class CampusUpdate extends React.Component<ICampusUpdateProps, ICampusUpd
   };
 
   render() {
-    const { campusEntity, educationalInstituitions, loading, updating } = this.props;
+    const { campusEntity, educationalInstitutions, loading, updating } = this.props;
     const { isNew } = this.state;
 
     return (
@@ -96,23 +96,17 @@ export class CampusUpdate extends React.Component<ICampusUpdateProps, ICampusUpd
                   </AvGroup>
                 ) : null}
                 <AvGroup>
-                  <Label id="guidLabel" for="campus-guid">
-                    <Translate contentKey="catalogApp.campus.guid">Guid</Translate>
+                  <Label id="nameLabel" for="campus-name">
+                    <Translate contentKey="catalogApp.campus.name">Name</Translate>
                   </Label>
                   <AvField
-                    id="campus-guid"
+                    id="campus-name"
                     type="text"
-                    name="guid"
+                    name="name"
                     validate={{
                       required: { value: true, errorMessage: translate('entity.validation.required') }
                     }}
                   />
-                </AvGroup>
-                <AvGroup>
-                  <Label id="nameLabel" for="campus-name">
-                    <Translate contentKey="catalogApp.campus.name">Name</Translate>
-                  </Label>
-                  <AvField id="campus-name" type="text" name="name" />
                 </AvGroup>
                 <AvGroup>
                   <Label for="campus-educationalInstitution">
@@ -123,11 +117,11 @@ export class CampusUpdate extends React.Component<ICampusUpdateProps, ICampusUpd
                     type="select"
                     className="form-control"
                     name="educationalInstitution.id"
-                    value={isNew ? educationalInstituitions[0] && educationalInstituitions[0].id : campusEntity.educationalInstitution.id}
+                    value={isNew ? educationalInstitutions[0] && educationalInstitutions[0].id : campusEntity.educationalInstitution.id}
                     required
                   >
-                    {educationalInstituitions
-                      ? educationalInstituitions.map(otherEntity => (
+                    {educationalInstitutions
+                      ? educationalInstitutions.map(otherEntity => (
                           <option value={otherEntity.id} key={otherEntity.id}>
                             {otherEntity.name}
                           </option>
@@ -161,7 +155,7 @@ export class CampusUpdate extends React.Component<ICampusUpdateProps, ICampusUpd
 }
 
 const mapStateToProps = (storeState: IRootState) => ({
-  educationalInstituitions: storeState.educationalInstituition.entities,
+  educationalInstitutions: storeState.educationalInstitution.entities,
   campusEntity: storeState.campus.entity,
   loading: storeState.campus.loading,
   updating: storeState.campus.updating,
@@ -169,7 +163,7 @@ const mapStateToProps = (storeState: IRootState) => ({
 });
 
 const mapDispatchToProps = {
-  getEducationalInstituitions,
+  getEducationalInstitutions,
   getEntity,
   updateEntity,
   createEntity,

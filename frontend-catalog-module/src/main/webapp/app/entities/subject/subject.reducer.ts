@@ -21,6 +21,7 @@ const initialState = {
   entities: [] as ReadonlyArray<ISubject>,
   entity: defaultValue,
   updating: false,
+  totalItems: 0,
   updateSuccess: false
 };
 
@@ -63,7 +64,8 @@ export default (state: SubjectState = initialState, action): SubjectState => {
       return {
         ...state,
         loading: false,
-        entities: action.payload.data
+        entities: action.payload.data,
+        totalItems: parseInt(action.payload.headers['x-total-count'], 10)
       };
     case SUCCESS(ACTION_TYPES.FETCH_SUBJECT):
       return {
@@ -99,10 +101,13 @@ const apiUrl = 'api/subjects';
 
 // Actions
 
-export const getEntities: ICrudGetAllAction<ISubject> = (page, size, sort) => ({
-  type: ACTION_TYPES.FETCH_SUBJECT_LIST,
-  payload: axios.get<ISubject>(`${apiUrl}?cacheBuster=${new Date().getTime()}`)
-});
+export const getEntities: ICrudGetAllAction<ISubject> = (page, size, sort) => {
+  const requestUrl = `${apiUrl}${sort ? `?page=${page}&size=${size}&sort=${sort}` : ''}`;
+  return {
+    type: ACTION_TYPES.FETCH_SUBJECT_LIST,
+    payload: axios.get<ISubject>(`${requestUrl}${sort ? '&' : '?'}cacheBuster=${new Date().getTime()}`)
+  };
+};
 
 export const getEntity: ICrudGetAction<ISubject> = id => {
   const requestUrl = `${apiUrl}/${id}`;

@@ -16,9 +16,9 @@
       "detail": {
         "title": "Requirement"
       },
-      "guid": "Guid",
       "level": "Level",
-      "subject": "Subject"
+      "subject": "Subject",
+      "paper": "Paper"
     }
   }
 }

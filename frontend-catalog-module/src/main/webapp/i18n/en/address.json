@@ -16,8 +16,7 @@
       "detail": {
         "title": "Address"
       },
-      "guid": "Guid",
-      "entityGuid": "Entity Guid",
+      "entityId": "Entity Id",
       "address": "Address",
       "zipCode": "Zip Code",
       "city": "City",

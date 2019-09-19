@@ -1,5 +1,4 @@
 package co.tpg.catalog.domain;
-import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import org.hibernate.annotations.Cache;
 import org.hibernate.annotations.CacheConcurrencyStrategy;
@@ -8,8 +7,6 @@ import javax.persistence.*;
 import javax.validation.constraints.*;
 
 import java.io.Serializable;
-import java.util.HashSet;
-import java.util.Set;
 
 /**
  * A Paper.
@@ -29,23 +26,23 @@ public class Paper implements Serializable {
     @Column(name = "code", nullable = false)
     private String code;
 
-    @Column(name = "year")
+    @NotNull
+    @Min(value = 0)
+    @Column(name = "year", nullable = false)
     private Integer year;
 
-    @Column(name = "points")
+    @NotNull
+    @Min(value = 0)
+    @Column(name = "points", nullable = false)
     private Integer points;
 
     @Column(name = "teaching_period")
     private String teachingPeriod;
 
-    @ManyToOne
+    @ManyToOne(optional = false)
+    @NotNull
     @JsonIgnoreProperties("papers")
     private Subject subject;
-
-    @ManyToMany(mappedBy = "papers")
-    @Cache(usage = CacheConcurrencyStrategy.NONSTRICT_READ_WRITE)
-    @JsonIgnore
-    private Set<TeachingStaff> teachingStaffs = new HashSet<>();
 
     // jhipster-needle-entity-add-field - JHipster will add fields here, do not remove
     public Long getId() {
@@ -119,31 +116,6 @@ public class Paper implements Serializable {
 
     public void setSubject(Subject subject) {
         this.subject = subject;
-    }
-
-    public Set<TeachingStaff> getTeachingStaffs() {
-        return teachingStaffs;
-    }
-
-    public Paper teachingStaffs(Set<TeachingStaff> teachingStaffs) {
-        this.teachingStaffs = teachingStaffs;
-        return this;
-    }
-
-    public Paper addTeachingStaff(TeachingStaff teachingStaff) {
-        this.teachingStaffs.add(teachingStaff);
-        teachingStaff.getPapers().add(this);
-        return this;
-    }
-
-    public Paper removeTeachingStaff(TeachingStaff teachingStaff) {
-        this.teachingStaffs.remove(teachingStaff);
-        teachingStaff.getPapers().remove(this);
-        return this;
-    }
-
-    public void setTeachingStaffs(Set<TeachingStaff> teachingStaffs) {
-        this.teachingStaffs = teachingStaffs;
     }
     // jhipster-needle-entity-add-getters-setters - JHipster will add getters and setters here, do not remove
 

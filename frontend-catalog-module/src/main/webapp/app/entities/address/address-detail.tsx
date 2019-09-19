@@ -29,17 +29,11 @@ export class AddressDetail extends React.Component<IAddressDetailProps> {
           </h2>
           <dl className="jh-entity-details">
             <dt>
-              <span id="guid">
-                <Translate contentKey="catalogApp.address.guid">Guid</Translate>
+              <span id="entityId">
+                <Translate contentKey="catalogApp.address.entityId">Entity Id</Translate>
               </span>
             </dt>
-            <dd>{addressEntity.guid}</dd>
-            <dt>
-              <span id="entityGuid">
-                <Translate contentKey="catalogApp.address.entityGuid">Entity Guid</Translate>
-              </span>
-            </dt>
-            <dd>{addressEntity.entityGuid}</dd>
+            <dd>{addressEntity.entityId}</dd>
             <dt>
               <span id="address">
                 <Translate contentKey="catalogApp.address.address">Address</Translate>

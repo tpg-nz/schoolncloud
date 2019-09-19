@@ -2,9 +2,10 @@ package co.tpg.catalog.web.rest;
 
 import co.tpg.catalog.CatalogApp;
 import co.tpg.catalog.domain.Contact;
+import co.tpg.catalog.domain.enumeration.ContactType;
 import co.tpg.catalog.repository.ContactRepository;
+import co.tpg.catalog.service.ContactService;
 import co.tpg.catalog.web.rest.errors.ExceptionTranslator;
-
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.mockito.MockitoAnnotations;
@@ -26,20 +27,14 @@ import static org.assertj.core.api.Assertions.assertThat;
 import static org.hamcrest.Matchers.hasItem;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.*;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.*;
-
-import co.tpg.catalog.domain.enumeration.ContactType;
-import co.tpg.catalog.domain.enumeration.MediaTypee;
 /**
  * Integration tests for the {@Link ContactResource} REST controller.
  */
 @SpringBootTest(classes = CatalogApp.class)
 public class ContactResourceIT {
 
-    private static final String DEFAULT_GUID = "AAAAAAAAAA";
-    private static final String UPDATED_GUID = "BBBBBBBBBB";
-
-    private static final String DEFAULT_ENTITY_GUID = "AAAAAAAAAA";
-    private static final String UPDATED_ENTITY_GUID = "BBBBBBBBBB";
+    private static final Long DEFAULT_ENTITY_ID = 1L;
+    private static final Long UPDATED_ENTITY_ID = 2L;
 
     private static final String DEFAULT_CONTACT = "AAAAAAAAAA";
     private static final String UPDATED_CONTACT = "BBBBBBBBBB";
@@ -47,11 +42,14 @@ public class ContactResourceIT {
     private static final ContactType DEFAULT_CONTACT_TYPE = ContactType.SUBJECT;
     private static final ContactType UPDATED_CONTACT_TYPE = ContactType.INSTITUTIONAL;
 
-    private static final MediaTypee DEFAULT_MEDIA_TYPE = MediaTypee.EMAIL;
-    private static final MediaTypee UPDATED_MEDIA_TYPE = MediaTypee.WEB_SITE;
+    private static final co.tpg.catalog.domain.enumeration.MediaType DEFAULT_MEDIA_TYPE = co.tpg.catalog.domain.enumeration.MediaType.EMAIL;
+    private static final co.tpg.catalog.domain.enumeration.MediaType UPDATED_MEDIA_TYPE = co.tpg.catalog.domain.enumeration.MediaType.WEB_SITE;
 
     @Autowired
     private ContactRepository contactRepository;
+
+    @Autowired
+    private ContactService contactService;
 
     @Autowired
     private MappingJackson2HttpMessageConverter jacksonMessageConverter;
@@ -75,7 +73,7 @@ public class ContactResourceIT {
     @BeforeEach
     public void setup() {
         MockitoAnnotations.initMocks(this);
-        final ContactResource contactResource = new ContactResource(contactRepository);
+        final ContactResource contactResource = new ContactResource(contactService);
         this.restContactMockMvc = MockMvcBuilders.standaloneSetup(contactResource)
             .setCustomArgumentResolvers(pageableArgumentResolver)
             .setControllerAdvice(exceptionTranslator)
@@ -92,8 +90,7 @@ public class ContactResourceIT {
      */
     public static Contact createEntity(EntityManager em) {
         Contact contact = new Contact()
-            .guid(DEFAULT_GUID)
-            .entityGuid(DEFAULT_ENTITY_GUID)
+            .entityId(DEFAULT_ENTITY_ID)
             .contact(DEFAULT_CONTACT)
             .contactType(DEFAULT_CONTACT_TYPE)
             .mediaType(DEFAULT_MEDIA_TYPE);
@@ -107,8 +104,7 @@ public class ContactResourceIT {
      */
     public static Contact createUpdatedEntity(EntityManager em) {
         Contact contact = new Contact()
-            .guid(UPDATED_GUID)
-            .entityGuid(UPDATED_ENTITY_GUID)
+            .entityId(UPDATED_ENTITY_ID)
             .contact(UPDATED_CONTACT)
             .contactType(UPDATED_CONTACT_TYPE)
             .mediaType(UPDATED_MEDIA_TYPE);
@@ -135,8 +131,7 @@ public class ContactResourceIT {
         List<Contact> contactList = contactRepository.findAll();
         assertThat(contactList).hasSize(databaseSizeBeforeCreate + 1);
         Contact testContact = contactList.get(contactList.size() - 1);
-        assertThat(testContact.getGuid()).isEqualTo(DEFAULT_GUID);
-        assertThat(testContact.getEntityGuid()).isEqualTo(DEFAULT_ENTITY_GUID);
+        assertThat(testContact.getEntityId()).isEqualTo(DEFAULT_ENTITY_ID);
         assertThat(testContact.getContact()).isEqualTo(DEFAULT_CONTACT);
         assertThat(testContact.getContactType()).isEqualTo(DEFAULT_CONTACT_TYPE);
         assertThat(testContact.getMediaType()).isEqualTo(DEFAULT_MEDIA_TYPE);
@@ -164,10 +159,28 @@ public class ContactResourceIT {
 
     @Test
     @Transactional
-    public void checkGuidIsRequired() throws Exception {
+    public void checkEntityIdIsRequired() throws Exception {
         int databaseSizeBeforeTest = contactRepository.findAll().size();
         // set the field null
-        contact.setGuid(null);
+        contact.setEntityId(null);
+
+        // Create the Contact, which fails.
+
+        restContactMockMvc.perform(post("/api/contacts")
+            .contentType(TestUtil.APPLICATION_JSON_UTF8)
+            .content(TestUtil.convertObjectToJsonBytes(contact)))
+            .andExpect(status().isBadRequest());
+
+        List<Contact> contactList = contactRepository.findAll();
+        assertThat(contactList).hasSize(databaseSizeBeforeTest);
+    }
+
+    @Test
+    @Transactional
+    public void checkContactIsRequired() throws Exception {
+        int databaseSizeBeforeTest = contactRepository.findAll().size();
+        // set the field null
+        contact.setContact(null);
 
         // Create the Contact, which fails.
 
@@ -191,13 +204,12 @@ public class ContactResourceIT {
             .andExpect(status().isOk())
             .andExpect(content().contentType(MediaType.APPLICATION_JSON_UTF8_VALUE))
             .andExpect(jsonPath("$.[*].id").value(hasItem(contact.getId().intValue())))
-            .andExpect(jsonPath("$.[*].guid").value(hasItem(DEFAULT_GUID.toString())))
-            .andExpect(jsonPath("$.[*].entityGuid").value(hasItem(DEFAULT_ENTITY_GUID.toString())))
+            .andExpect(jsonPath("$.[*].entityId").value(hasItem(DEFAULT_ENTITY_ID.intValue())))
             .andExpect(jsonPath("$.[*].contact").value(hasItem(DEFAULT_CONTACT.toString())))
             .andExpect(jsonPath("$.[*].contactType").value(hasItem(DEFAULT_CONTACT_TYPE.toString())))
             .andExpect(jsonPath("$.[*].mediaType").value(hasItem(DEFAULT_MEDIA_TYPE.toString())));
     }
-    
+
     @Test
     @Transactional
     public void getContact() throws Exception {
@@ -209,8 +221,7 @@ public class ContactResourceIT {
             .andExpect(status().isOk())
             .andExpect(content().contentType(MediaType.APPLICATION_JSON_UTF8_VALUE))
             .andExpect(jsonPath("$.id").value(contact.getId().intValue()))
-            .andExpect(jsonPath("$.guid").value(DEFAULT_GUID.toString()))
-            .andExpect(jsonPath("$.entityGuid").value(DEFAULT_ENTITY_GUID.toString()))
+            .andExpect(jsonPath("$.entityId").value(DEFAULT_ENTITY_ID.intValue()))
             .andExpect(jsonPath("$.contact").value(DEFAULT_CONTACT.toString()))
             .andExpect(jsonPath("$.contactType").value(DEFAULT_CONTACT_TYPE.toString()))
             .andExpect(jsonPath("$.mediaType").value(DEFAULT_MEDIA_TYPE.toString()));
@@ -228,7 +239,7 @@ public class ContactResourceIT {
     @Transactional
     public void updateContact() throws Exception {
         // Initialize the database
-        contactRepository.saveAndFlush(contact);
+        contactService.save(contact);
 
         int databaseSizeBeforeUpdate = contactRepository.findAll().size();
 
@@ -237,8 +248,7 @@ public class ContactResourceIT {
         // Disconnect from session so that the updates on updatedContact are not directly saved in db
         em.detach(updatedContact);
         updatedContact
-            .guid(UPDATED_GUID)
-            .entityGuid(UPDATED_ENTITY_GUID)
+            .entityId(UPDATED_ENTITY_ID)
             .contact(UPDATED_CONTACT)
             .contactType(UPDATED_CONTACT_TYPE)
             .mediaType(UPDATED_MEDIA_TYPE);
@@ -252,8 +262,7 @@ public class ContactResourceIT {
         List<Contact> contactList = contactRepository.findAll();
         assertThat(contactList).hasSize(databaseSizeBeforeUpdate);
         Contact testContact = contactList.get(contactList.size() - 1);
-        assertThat(testContact.getGuid()).isEqualTo(UPDATED_GUID);
-        assertThat(testContact.getEntityGuid()).isEqualTo(UPDATED_ENTITY_GUID);
+        assertThat(testContact.getEntityId()).isEqualTo(UPDATED_ENTITY_ID);
         assertThat(testContact.getContact()).isEqualTo(UPDATED_CONTACT);
         assertThat(testContact.getContactType()).isEqualTo(UPDATED_CONTACT_TYPE);
         assertThat(testContact.getMediaType()).isEqualTo(UPDATED_MEDIA_TYPE);
@@ -281,7 +290,7 @@ public class ContactResourceIT {
     @Transactional
     public void deleteContact() throws Exception {
         // Initialize the database
-        contactRepository.saveAndFlush(contact);
+        contactService.save(contact);
 
         int databaseSizeBeforeDelete = contactRepository.findAll().size();
 

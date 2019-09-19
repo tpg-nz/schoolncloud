@@ -1,14 +1,21 @@
 package co.tpg.catalog.web.rest;
 
 import co.tpg.catalog.domain.Contact;
-import co.tpg.catalog.repository.ContactRepository;
+import co.tpg.catalog.service.ContactService;
 import co.tpg.catalog.web.rest.errors.BadRequestAlertException;
 
 import io.github.jhipster.web.util.HeaderUtil;
+import io.github.jhipster.web.util.PaginationUtil;
 import io.github.jhipster.web.util.ResponseUtil;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Value;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
+import org.springframework.http.HttpHeaders;
+import org.springframework.http.HttpStatus;
+import org.springframework.util.MultiValueMap;
+import org.springframework.web.util.UriComponentsBuilder;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
@@ -33,10 +40,10 @@ public class ContactResource {
     @Value("${jhipster.clientApp.name}")
     private String applicationName;
 
-    private final ContactRepository contactRepository;
+    private final ContactService contactService;
 
-    public ContactResource(ContactRepository contactRepository) {
-        this.contactRepository = contactRepository;
+    public ContactResource(ContactService contactService) {
+        this.contactService = contactService;
     }
 
     /**
@@ -52,7 +59,7 @@ public class ContactResource {
         if (contact.getId() != null) {
             throw new BadRequestAlertException("A new contact cannot already have an ID", ENTITY_NAME, "idexists");
         }
-        Contact result = contactRepository.save(contact);
+        Contact result = contactService.save(contact);
         return ResponseEntity.created(new URI("/api/contacts/" + result.getId()))
             .headers(HeaderUtil.createEntityCreationAlert(applicationName, true, ENTITY_NAME, result.getId().toString()))
             .body(result);
@@ -73,7 +80,7 @@ public class ContactResource {
         if (contact.getId() == null) {
             throw new BadRequestAlertException("Invalid id", ENTITY_NAME, "idnull");
         }
-        Contact result = contactRepository.save(contact);
+        Contact result = contactService.save(contact);
         return ResponseEntity.ok()
             .headers(HeaderUtil.createEntityUpdateAlert(applicationName, true, ENTITY_NAME, contact.getId().toString()))
             .body(result);
@@ -82,12 +89,17 @@ public class ContactResource {
     /**
      * {@code GET  /contacts} : get all the contacts.
      *
+     * @param pageable the pagination information.
+     * @param queryParams a {@link MultiValueMap} query parameters.
+     * @param uriBuilder a {@link UriComponentsBuilder} URI builder.
      * @return the {@link ResponseEntity} with status {@code 200 (OK)} and the list of contacts in body.
      */
     @GetMapping("/contacts")
-    public List<Contact> getAllContacts() {
-        log.debug("REST request to get all Contacts");
-        return contactRepository.findAll();
+    public ResponseEntity<List<Contact>> getAllContacts(Pageable pageable, @RequestParam MultiValueMap<String, String> queryParams, UriComponentsBuilder uriBuilder) {
+        log.debug("REST request to get a page of Contacts");
+        Page<Contact> page = contactService.findAll(pageable);
+        HttpHeaders headers = PaginationUtil.generatePaginationHttpHeaders(uriBuilder.queryParams(queryParams), page);
+        return ResponseEntity.ok().headers(headers).body(page.getContent());
     }
 
     /**
@@ -99,7 +111,7 @@ public class ContactResource {
     @GetMapping("/contacts/{id}")
     public ResponseEntity<Contact> getContact(@PathVariable Long id) {
         log.debug("REST request to get Contact : {}", id);
-        Optional<Contact> contact = contactRepository.findById(id);
+        Optional<Contact> contact = contactService.findOne(id);
         return ResponseUtil.wrapOrNotFound(contact);
     }
 
@@ -112,7 +124,7 @@ public class ContactResource {
     @DeleteMapping("/contacts/{id}")
     public ResponseEntity<Void> deleteContact(@PathVariable Long id) {
         log.debug("REST request to delete Contact : {}", id);
-        contactRepository.deleteById(id);
+        contactService.delete(id);
         return ResponseEntity.noContent().headers(HeaderUtil.createEntityDeletionAlert(applicationName, true, ENTITY_NAME, id.toString())).build();
     }
 }

@@ -2,15 +2,11 @@
     "name": "TeachingStaff",
     "fields": [
         {
-            "fieldName": "guid",
+            "fieldName": "name",
             "fieldType": "String",
             "fieldValidateRules": [
                 "required"
             ]
-        },
-        {
-            "fieldName": "name",
-            "fieldType": "String"
         },
         {
             "fieldName": "graduationType",
@@ -20,19 +16,19 @@
     ],
     "relationships": [
         {
-            "relationshipType": "many-to-many",
+            "relationshipType": "many-to-one",
             "otherEntityName": "paper",
             "otherEntityRelationshipName": "teachingStaff",
+            "relationshipValidateRules": "required",
             "relationshipName": "paper",
-            "otherEntityField": "id",
-            "ownerSide": true
+            "otherEntityField": "code"
         }
     ],
-    "changelogDate": "20190916072201",
+    "changelogDate": "20190919102709",
     "entityTableName": "teaching_staff",
     "dto": "no",
-    "pagination": "no",
-    "service": "no",
+    "pagination": "pagination",
+    "service": "serviceImpl",
     "jpaMetamodelFiltering": false,
     "fluentMethods": true,
     "clientRootFolder": "",

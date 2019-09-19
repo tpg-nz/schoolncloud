@@ -3,7 +3,7 @@ import { connect } from 'react-redux';
 import { Link, RouteComponentProps } from 'react-router-dom';
 import { Button, Col, Row, Table } from 'reactstrap';
 // tslint:disable-next-line:no-unused-variable
-import { Translate, ICrudGetAllAction } from 'react-jhipster';
+import { Translate, ICrudGetAllAction, getSortState, IPaginationBaseState, JhiPagination, JhiItemCount } from 'react-jhipster';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 
 import { IRootState } from 'app/shared/reducers';
@@ -11,16 +11,45 @@ import { getEntities } from './requirement.reducer';
 import { IRequirement } from 'app/shared/model/requirement.model';
 // tslint:disable-next-line:no-unused-variable
 import { APP_DATE_FORMAT, APP_LOCAL_DATE_FORMAT } from 'app/config/constants';
+import { ITEMS_PER_PAGE } from 'app/shared/util/pagination.constants';
 
 export interface IRequirementProps extends StateProps, DispatchProps, RouteComponentProps<{ url: string }> {}
 
-export class Requirement extends React.Component<IRequirementProps> {
+export type IRequirementState = IPaginationBaseState;
+
+export class Requirement extends React.Component<IRequirementProps, IRequirementState> {
+  state: IRequirementState = {
+    ...getSortState(this.props.location, ITEMS_PER_PAGE)
+  };
+
   componentDidMount() {
-    this.props.getEntities();
+    this.getEntities();
   }
 
+  sort = prop => () => {
+    this.setState(
+      {
+        order: this.state.order === 'asc' ? 'desc' : 'asc',
+        sort: prop
+      },
+      () => this.sortEntities()
+    );
+  };
+
+  sortEntities() {
+    this.getEntities();
+    this.props.history.push(`${this.props.location.pathname}?page=${this.state.activePage}&sort=${this.state.sort},${this.state.order}`);
+  }
+
+  handlePagination = activePage => this.setState({ activePage }, () => this.sortEntities());
+
+  getEntities = () => {
+    const { activePage, itemsPerPage, sort, order } = this.state;
+    this.props.getEntities(activePage - 1, itemsPerPage, `${sort},${order}`);
+  };
+
   render() {
-    const { requirementList, match } = this.props;
+    const { requirementList, match, totalItems } = this.props;
     return (
       <div>
         <h2 id="requirement-heading">
@@ -36,17 +65,17 @@ export class Requirement extends React.Component<IRequirementProps> {
             <Table responsive>
               <thead>
                 <tr>
-                  <th>
-                    <Translate contentKey="global.field.id">ID</Translate>
+                  <th className="hand" onClick={this.sort('id')}>
+                    <Translate contentKey="global.field.id">ID</Translate> <FontAwesomeIcon icon="sort" />
+                  </th>
+                  <th className="hand" onClick={this.sort('level')}>
+                    <Translate contentKey="catalogApp.requirement.level">Level</Translate> <FontAwesomeIcon icon="sort" />
                   </th>
                   <th>
-                    <Translate contentKey="catalogApp.requirement.guid">Guid</Translate>
+                    <Translate contentKey="catalogApp.requirement.subject">Subject</Translate> <FontAwesomeIcon icon="sort" />
                   </th>
                   <th>
-                    <Translate contentKey="catalogApp.requirement.level">Level</Translate>
-                  </th>
-                  <th>
-                    <Translate contentKey="catalogApp.requirement.subject">Subject</Translate>
+                    <Translate contentKey="catalogApp.requirement.paper">Paper</Translate> <FontAwesomeIcon icon="sort" />
                   </th>
                   <th />
                 </tr>
@@ -59,9 +88,9 @@ export class Requirement extends React.Component<IRequirementProps> {
                         {requirement.id}
                       </Button>
                     </td>
-                    <td>{requirement.guid}</td>
                     <td>{requirement.level}</td>
-                    <td>{requirement.subject ? <Link to={`subject/${requirement.subject.id}`}>{requirement.subject.guid}</Link> : ''}</td>
+                    <td>{requirement.subject ? <Link to={`subject/${requirement.subject.id}`}>{requirement.subject.name}</Link> : ''}</td>
+                    <td>{requirement.paper ? <Link to={`paper/${requirement.paper.id}`}>{requirement.paper.code}</Link> : ''}</td>
                     <td className="text-right">
                       <div className="btn-group flex-btn-group-container">
                         <Button tag={Link} to={`${match.url}/${requirement.id}`} color="info" size="sm">
@@ -94,13 +123,28 @@ export class Requirement extends React.Component<IRequirementProps> {
             </div>
           )}
         </div>
+        <div className={requirementList && requirementList.length > 0 ? '' : 'd-none'}>
+          <Row className="justify-content-center">
+            <JhiItemCount page={this.state.activePage} total={totalItems} itemsPerPage={this.state.itemsPerPage} i18nEnabled />
+          </Row>
+          <Row className="justify-content-center">
+            <JhiPagination
+              activePage={this.state.activePage}
+              onSelect={this.handlePagination}
+              maxButtons={5}
+              itemsPerPage={this.state.itemsPerPage}
+              totalItems={this.props.totalItems}
+            />
+          </Row>
+        </div>
       </div>
     );
   }
 }
 
 const mapStateToProps = ({ requirement }: IRootState) => ({
-  requirementList: requirement.entities
+  requirementList: requirement.entities,
+  totalItems: requirement.totalItems
 });
 
 const mapDispatchToProps = {

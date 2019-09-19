@@ -90,23 +90,17 @@ export class SubjectUpdate extends React.Component<ISubjectUpdateProps, ISubject
                   </AvGroup>
                 ) : null}
                 <AvGroup>
-                  <Label id="guidLabel" for="subject-guid">
-                    <Translate contentKey="catalogApp.subject.guid">Guid</Translate>
+                  <Label id="nameLabel" for="subject-name">
+                    <Translate contentKey="catalogApp.subject.name">Name</Translate>
                   </Label>
                   <AvField
-                    id="subject-guid"
+                    id="subject-name"
                     type="text"
-                    name="guid"
+                    name="name"
                     validate={{
                       required: { value: true, errorMessage: translate('entity.validation.required') }
                     }}
                   />
-                </AvGroup>
-                <AvGroup>
-                  <Label id="nameLabel" for="subject-name">
-                    <Translate contentKey="catalogApp.subject.name">Name</Translate>
-                  </Label>
-                  <AvField id="subject-name" type="text" name="name" />
                 </AvGroup>
                 <AvGroup>
                   <Label id="overviewLabel" for="subject-overview">
@@ -118,7 +112,16 @@ export class SubjectUpdate extends React.Component<ISubjectUpdateProps, ISubject
                   <Label id="levelLabel" for="subject-level">
                     <Translate contentKey="catalogApp.subject.level">Level</Translate>
                   </Label>
-                  <AvField id="subject-level" type="string" className="form-control" name="level" />
+                  <AvField
+                    id="subject-level"
+                    type="string"
+                    className="form-control"
+                    name="level"
+                    validate={{
+                      min: { value: 1, errorMessage: translate('entity.validation.min', { min: 1 }) },
+                      number: { value: true, errorMessage: translate('entity.validation.number') }
+                    }}
+                  />
                 </AvGroup>
                 <Button tag={Link} id="cancel-save" to="/entity/subject" replace color="info">
                   <FontAwesomeIcon icon="arrow-left" />

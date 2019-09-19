@@ -21,6 +21,7 @@ const initialState = {
   entities: [] as ReadonlyArray<IRequirement>,
   entity: defaultValue,
   updating: false,
+  totalItems: 0,
   updateSuccess: false
 };
 
@@ -63,7 +64,8 @@ export default (state: RequirementState = initialState, action): RequirementStat
       return {
         ...state,
         loading: false,
-        entities: action.payload.data
+        entities: action.payload.data,
+        totalItems: parseInt(action.payload.headers['x-total-count'], 10)
       };
     case SUCCESS(ACTION_TYPES.FETCH_REQUIREMENT):
       return {
@@ -99,10 +101,13 @@ const apiUrl = 'api/requirements';
 
 // Actions
 
-export const getEntities: ICrudGetAllAction<IRequirement> = (page, size, sort) => ({
-  type: ACTION_TYPES.FETCH_REQUIREMENT_LIST,
-  payload: axios.get<IRequirement>(`${apiUrl}?cacheBuster=${new Date().getTime()}`)
-});
+export const getEntities: ICrudGetAllAction<IRequirement> = (page, size, sort) => {
+  const requestUrl = `${apiUrl}${sort ? `?page=${page}&size=${size}&sort=${sort}` : ''}`;
+  return {
+    type: ACTION_TYPES.FETCH_REQUIREMENT_LIST,
+    payload: axios.get<IRequirement>(`${requestUrl}${sort ? '&' : '?'}cacheBuster=${new Date().getTime()}`)
+  };
+};
 
 export const getEntity: ICrudGetAction<IRequirement> = id => {
   const requestUrl = `${apiUrl}/${id}`;

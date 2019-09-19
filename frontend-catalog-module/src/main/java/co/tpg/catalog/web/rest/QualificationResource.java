@@ -1,14 +1,21 @@
 package co.tpg.catalog.web.rest;
 
 import co.tpg.catalog.domain.Qualification;
-import co.tpg.catalog.repository.QualificationRepository;
+import co.tpg.catalog.service.QualificationService;
 import co.tpg.catalog.web.rest.errors.BadRequestAlertException;
 
 import io.github.jhipster.web.util.HeaderUtil;
+import io.github.jhipster.web.util.PaginationUtil;
 import io.github.jhipster.web.util.ResponseUtil;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Value;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
+import org.springframework.http.HttpHeaders;
+import org.springframework.http.HttpStatus;
+import org.springframework.util.MultiValueMap;
+import org.springframework.web.util.UriComponentsBuilder;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
@@ -33,10 +40,10 @@ public class QualificationResource {
     @Value("${jhipster.clientApp.name}")
     private String applicationName;
 
-    private final QualificationRepository qualificationRepository;
+    private final QualificationService qualificationService;
 
-    public QualificationResource(QualificationRepository qualificationRepository) {
-        this.qualificationRepository = qualificationRepository;
+    public QualificationResource(QualificationService qualificationService) {
+        this.qualificationService = qualificationService;
     }
 
     /**
@@ -52,7 +59,7 @@ public class QualificationResource {
         if (qualification.getId() != null) {
             throw new BadRequestAlertException("A new qualification cannot already have an ID", ENTITY_NAME, "idexists");
         }
-        Qualification result = qualificationRepository.save(qualification);
+        Qualification result = qualificationService.save(qualification);
         return ResponseEntity.created(new URI("/api/qualifications/" + result.getId()))
             .headers(HeaderUtil.createEntityCreationAlert(applicationName, true, ENTITY_NAME, result.getId().toString()))
             .body(result);
@@ -73,7 +80,7 @@ public class QualificationResource {
         if (qualification.getId() == null) {
             throw new BadRequestAlertException("Invalid id", ENTITY_NAME, "idnull");
         }
-        Qualification result = qualificationRepository.save(qualification);
+        Qualification result = qualificationService.save(qualification);
         return ResponseEntity.ok()
             .headers(HeaderUtil.createEntityUpdateAlert(applicationName, true, ENTITY_NAME, qualification.getId().toString()))
             .body(result);
@@ -82,12 +89,17 @@ public class QualificationResource {
     /**
      * {@code GET  /qualifications} : get all the qualifications.
      *
+     * @param pageable the pagination information.
+     * @param queryParams a {@link MultiValueMap} query parameters.
+     * @param uriBuilder a {@link UriComponentsBuilder} URI builder.
      * @return the {@link ResponseEntity} with status {@code 200 (OK)} and the list of qualifications in body.
      */
     @GetMapping("/qualifications")
-    public List<Qualification> getAllQualifications() {
-        log.debug("REST request to get all Qualifications");
-        return qualificationRepository.findAll();
+    public ResponseEntity<List<Qualification>> getAllQualifications(Pageable pageable, @RequestParam MultiValueMap<String, String> queryParams, UriComponentsBuilder uriBuilder) {
+        log.debug("REST request to get a page of Qualifications");
+        Page<Qualification> page = qualificationService.findAll(pageable);
+        HttpHeaders headers = PaginationUtil.generatePaginationHttpHeaders(uriBuilder.queryParams(queryParams), page);
+        return ResponseEntity.ok().headers(headers).body(page.getContent());
     }
 
     /**
@@ -99,7 +111,7 @@ public class QualificationResource {
     @GetMapping("/qualifications/{id}")
     public ResponseEntity<Qualification> getQualification(@PathVariable Long id) {
         log.debug("REST request to get Qualification : {}", id);
-        Optional<Qualification> qualification = qualificationRepository.findById(id);
+        Optional<Qualification> qualification = qualificationService.findOne(id);
         return ResponseUtil.wrapOrNotFound(qualification);
     }
 
@@ -112,7 +124,7 @@ public class QualificationResource {
     @DeleteMapping("/qualifications/{id}")
     public ResponseEntity<Void> deleteQualification(@PathVariable Long id) {
         log.debug("REST request to delete Qualification : {}", id);
-        qualificationRepository.deleteById(id);
+        qualificationService.delete(id);
         return ResponseEntity.noContent().headers(HeaderUtil.createEntityDeletionAlert(applicationName, true, ENTITY_NAME, id.toString())).build();
     }
 }

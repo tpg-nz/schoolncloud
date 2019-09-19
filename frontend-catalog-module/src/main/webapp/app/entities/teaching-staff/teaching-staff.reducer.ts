@@ -21,6 +21,7 @@ const initialState = {
   entities: [] as ReadonlyArray<ITeachingStaff>,
   entity: defaultValue,
   updating: false,
+  totalItems: 0,
   updateSuccess: false
 };
 
@@ -63,7 +64,8 @@ export default (state: TeachingStaffState = initialState, action): TeachingStaff
       return {
         ...state,
         loading: false,
-        entities: action.payload.data
+        entities: action.payload.data,
+        totalItems: parseInt(action.payload.headers['x-total-count'], 10)
       };
     case SUCCESS(ACTION_TYPES.FETCH_TEACHINGSTAFF):
       return {
@@ -99,10 +101,13 @@ const apiUrl = 'api/teaching-staffs';
 
 // Actions
 
-export const getEntities: ICrudGetAllAction<ITeachingStaff> = (page, size, sort) => ({
-  type: ACTION_TYPES.FETCH_TEACHINGSTAFF_LIST,
-  payload: axios.get<ITeachingStaff>(`${apiUrl}?cacheBuster=${new Date().getTime()}`)
-});
+export const getEntities: ICrudGetAllAction<ITeachingStaff> = (page, size, sort) => {
+  const requestUrl = `${apiUrl}${sort ? `?page=${page}&size=${size}&sort=${sort}` : ''}`;
+  return {
+    type: ACTION_TYPES.FETCH_TEACHINGSTAFF_LIST,
+    payload: axios.get<ITeachingStaff>(`${requestUrl}${sort ? '&' : '?'}cacheBuster=${new Date().getTime()}`)
+  };
+};
 
 export const getEntity: ICrudGetAction<ITeachingStaff> = id => {
   const requestUrl = `${apiUrl}/${id}`;

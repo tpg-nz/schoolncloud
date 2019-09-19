@@ -29,12 +29,6 @@ export class QualificationDetail extends React.Component<IQualificationDetailPro
           </h2>
           <dl className="jh-entity-details">
             <dt>
-              <span id="guid">
-                <Translate contentKey="catalogApp.qualification.guid">Guid</Translate>
-              </span>
-            </dt>
-            <dd>{qualificationEntity.guid}</dd>
-            <dt>
               <span id="name">
                 <Translate contentKey="catalogApp.qualification.name">Name</Translate>
               </span>
@@ -49,7 +43,7 @@ export class QualificationDetail extends React.Component<IQualificationDetailPro
             <dt>
               <Translate contentKey="catalogApp.qualification.subject">Subject</Translate>
             </dt>
-            <dd>{qualificationEntity.subject ? qualificationEntity.subject.guid : ''}</dd>
+            <dd>{qualificationEntity.subject ? qualificationEntity.subject.name : ''}</dd>
           </dl>
           <Button tag={Link} to="/entity/qualification" replace color="info">
             <FontAwesomeIcon icon="arrow-left" />{' '}

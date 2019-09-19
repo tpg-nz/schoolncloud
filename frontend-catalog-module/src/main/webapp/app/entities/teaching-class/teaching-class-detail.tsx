@@ -29,12 +29,6 @@ export class TeachingClassDetail extends React.Component<ITeachingClassDetailPro
           </h2>
           <dl className="jh-entity-details">
             <dt>
-              <span id="guid">
-                <Translate contentKey="catalogApp.teachingClass.guid">Guid</Translate>
-              </span>
-            </dt>
-            <dd>{teachingClassEntity.guid}</dd>
-            <dt>
               <span id="code">
                 <Translate contentKey="catalogApp.teachingClass.code">Code</Translate>
               </span>
@@ -55,7 +49,7 @@ export class TeachingClassDetail extends React.Component<ITeachingClassDetailPro
             <dt>
               <Translate contentKey="catalogApp.teachingClass.campus">Campus</Translate>
             </dt>
-            <dd>{teachingClassEntity.campus ? teachingClassEntity.campus.guid : ''}</dd>
+            <dd>{teachingClassEntity.campus ? teachingClassEntity.campus.name : ''}</dd>
             <dt>
               <Translate contentKey="catalogApp.teachingClass.paper">Paper</Translate>
             </dt>

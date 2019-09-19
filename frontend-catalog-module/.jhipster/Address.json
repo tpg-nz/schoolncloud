@@ -2,31 +2,39 @@
     "name": "Address",
     "fields": [
         {
-            "fieldName": "guid",
+            "fieldName": "entityId",
+            "fieldType": "Long",
+            "fieldValidateRules": [
+                "required"
+            ]
+        },
+        {
+            "fieldName": "address",
             "fieldType": "String",
             "fieldValidateRules": [
                 "required"
             ]
         },
         {
-            "fieldName": "entityGuid",
-            "fieldType": "String"
-        },
-        {
-            "fieldName": "address",
-            "fieldType": "String"
-        },
-        {
             "fieldName": "zipCode",
-            "fieldType": "String"
+            "fieldType": "String",
+            "fieldValidateRules": [
+                "required"
+            ]
         },
         {
             "fieldName": "city",
-            "fieldType": "String"
+            "fieldType": "String",
+            "fieldValidateRules": [
+                "required"
+            ]
         },
         {
             "fieldName": "country",
-            "fieldType": "String"
+            "fieldType": "String",
+            "fieldValidateRules": [
+                "required"
+            ]
         },
         {
             "fieldName": "addressType",
@@ -40,11 +48,11 @@
         }
     ],
     "relationships": [],
-    "changelogDate": "20190916072205",
+    "changelogDate": "20190919102712",
     "entityTableName": "address",
     "dto": "no",
-    "pagination": "no",
-    "service": "no",
+    "pagination": "pagination",
+    "service": "serviceImpl",
     "jpaMetamodelFiltering": false,
     "fluentMethods": true,
     "clientRootFolder": "",

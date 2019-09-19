@@ -17,8 +17,8 @@
         "paper": "Paper",
         "contact": "Contact",
         "address": "Address",
-        "educationalInstituition": "Educational Instituition",
         "campus": "Campus",
+        "educationalInstitution": "Educational Institution",
         "jhipster-needle-menu-add-entry": "JHipster will add additional entities here (do not translate!)"
       },
       "account": {

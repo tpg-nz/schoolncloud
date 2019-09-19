@@ -3,7 +3,6 @@ import { IPaper } from 'app/shared/model/paper.model';
 
 export interface ITeachingClass {
   id?: number;
-  guid?: string;
   code?: string;
   year?: number;
   semester?: number;

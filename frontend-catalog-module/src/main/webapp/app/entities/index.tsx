@@ -14,8 +14,8 @@ import TeachingClass from './teaching-class';
 import Paper from './paper';
 import Contact from './contact';
 import Address from './address';
-import EducationalInstituition from './educational-instituition';
 import Campus from './campus';
+import EducationalInstitution from './educational-institution';
 /* jhipster-needle-add-route-import - JHipster will add routes here */
 
 const Routes = ({ match }) => (
@@ -32,8 +32,8 @@ const Routes = ({ match }) => (
       <ErrorBoundaryRoute path={`${match.url}/paper`} component={Paper} />
       <ErrorBoundaryRoute path={`${match.url}/contact`} component={Contact} />
       <ErrorBoundaryRoute path={`${match.url}/address`} component={Address} />
-      <ErrorBoundaryRoute path={`${match.url}/educational-instituition`} component={EducationalInstituition} />
       <ErrorBoundaryRoute path={`${match.url}/campus`} component={Campus} />
+      <ErrorBoundaryRoute path={`${match.url}/educational-institution`} component={EducationalInstitution} />
       {/* jhipster-needle-add-route-path - JHipster will add routes here */}
     </Switch>
   </div>

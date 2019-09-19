@@ -22,16 +22,18 @@ public class Requirement implements Serializable {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @NotNull
-    @Column(name = "guid", nullable = false)
-    private String guid;
-
     @Column(name = "level")
     private Integer level;
 
-    @ManyToOne
+    @ManyToOne(optional = false)
+    @NotNull
     @JsonIgnoreProperties("requirements")
     private Subject subject;
+
+    @ManyToOne(optional = false)
+    @NotNull
+    @JsonIgnoreProperties("requirements")
+    private Paper paper;
 
     // jhipster-needle-entity-add-field - JHipster will add fields here, do not remove
     public Long getId() {
@@ -40,19 +42,6 @@ public class Requirement implements Serializable {
 
     public void setId(Long id) {
         this.id = id;
-    }
-
-    public String getGuid() {
-        return guid;
-    }
-
-    public Requirement guid(String guid) {
-        this.guid = guid;
-        return this;
-    }
-
-    public void setGuid(String guid) {
-        this.guid = guid;
     }
 
     public Integer getLevel() {
@@ -80,6 +69,19 @@ public class Requirement implements Serializable {
     public void setSubject(Subject subject) {
         this.subject = subject;
     }
+
+    public Paper getPaper() {
+        return paper;
+    }
+
+    public Requirement paper(Paper paper) {
+        this.paper = paper;
+        return this;
+    }
+
+    public void setPaper(Paper paper) {
+        this.paper = paper;
+    }
     // jhipster-needle-entity-add-getters-setters - JHipster will add getters and setters here, do not remove
 
     @Override
@@ -102,7 +104,6 @@ public class Requirement implements Serializable {
     public String toString() {
         return "Requirement{" +
             "id=" + getId() +
-            ", guid='" + getGuid() + "'" +
             ", level=" + getLevel() +
             "}";
     }

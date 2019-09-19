@@ -90,29 +90,32 @@ export class ContactUpdate extends React.Component<IContactUpdateProps, IContact
                   </AvGroup>
                 ) : null}
                 <AvGroup>
-                  <Label id="guidLabel" for="contact-guid">
-                    <Translate contentKey="catalogApp.contact.guid">Guid</Translate>
+                  <Label id="entityIdLabel" for="contact-entityId">
+                    <Translate contentKey="catalogApp.contact.entityId">Entity Id</Translate>
                   </Label>
                   <AvField
-                    id="contact-guid"
-                    type="text"
-                    name="guid"
+                    id="contact-entityId"
+                    type="string"
+                    className="form-control"
+                    name="entityId"
                     validate={{
-                      required: { value: true, errorMessage: translate('entity.validation.required') }
+                      required: { value: true, errorMessage: translate('entity.validation.required') },
+                      number: { value: true, errorMessage: translate('entity.validation.number') }
                     }}
                   />
-                </AvGroup>
-                <AvGroup>
-                  <Label id="entityGuidLabel" for="contact-entityGuid">
-                    <Translate contentKey="catalogApp.contact.entityGuid">Entity Guid</Translate>
-                  </Label>
-                  <AvField id="contact-entityGuid" type="text" name="entityGuid" />
                 </AvGroup>
                 <AvGroup>
                   <Label id="contactLabel" for="contact-contact">
                     <Translate contentKey="catalogApp.contact.contact">Contact</Translate>
                   </Label>
-                  <AvField id="contact-contact" type="text" name="contact" />
+                  <AvField
+                    id="contact-contact"
+                    type="text"
+                    name="contact"
+                    validate={{
+                      required: { value: true, errorMessage: translate('entity.validation.required') }
+                    }}
+                  />
                 </AvGroup>
                 <AvGroup>
                   <Label id="contactTypeLabel" for="contact-contactType">
@@ -143,10 +146,10 @@ export class ContactUpdate extends React.Component<IContactUpdateProps, IContact
                     name="mediaType"
                     value={(!isNew && contactEntity.mediaType) || 'EMAIL'}
                   >
-                    <option value="EMAIL">{translate('catalogApp.MediaTypee.EMAIL')}</option>
-                    <option value="WEB_SITE">{translate('catalogApp.MediaTypee.WEB_SITE')}</option>
-                    <option value="MOBILE_PHONE">{translate('catalogApp.MediaTypee.MOBILE_PHONE')}</option>
-                    <option value="PHONE">{translate('catalogApp.MediaTypee.PHONE')}</option>
+                    <option value="EMAIL">{translate('catalogApp.MediaType.EMAIL')}</option>
+                    <option value="WEB_SITE">{translate('catalogApp.MediaType.WEB_SITE')}</option>
+                    <option value="MOBILE_PHONE">{translate('catalogApp.MediaType.MOBILE_PHONE')}</option>
+                    <option value="PHONE">{translate('catalogApp.MediaType.PHONE')}</option>
                   </AvInput>
                 </AvGroup>
                 <Button tag={Link} id="cancel-save" to="/entity/contact" replace color="info">

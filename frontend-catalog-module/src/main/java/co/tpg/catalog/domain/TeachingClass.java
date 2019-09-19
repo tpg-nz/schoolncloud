@@ -23,23 +23,26 @@ public class TeachingClass implements Serializable {
     private Long id;
 
     @NotNull
-    @Column(name = "guid", nullable = false)
-    private String guid;
-
-    @Column(name = "code")
+    @Column(name = "code", nullable = false)
     private String code;
 
-    @Column(name = "year")
+    @NotNull
+    @Min(value = 0)
+    @Column(name = "year", nullable = false)
     private Integer year;
 
-    @Column(name = "semester")
+    @NotNull
+    @Min(value = 0)
+    @Column(name = "semester", nullable = false)
     private Integer semester;
 
-    @ManyToOne
+    @ManyToOne(optional = false)
+    @NotNull
     @JsonIgnoreProperties("teachingClasses")
     private Campus campus;
 
-    @ManyToOne
+    @ManyToOne(optional = false)
+    @NotNull
     @JsonIgnoreProperties("teachingClasses")
     private Paper paper;
 
@@ -50,19 +53,6 @@ public class TeachingClass implements Serializable {
 
     public void setId(Long id) {
         this.id = id;
-    }
-
-    public String getGuid() {
-        return guid;
-    }
-
-    public TeachingClass guid(String guid) {
-        this.guid = guid;
-        return this;
-    }
-
-    public void setGuid(String guid) {
-        this.guid = guid;
     }
 
     public String getCode() {
@@ -151,7 +141,6 @@ public class TeachingClass implements Serializable {
     public String toString() {
         return "TeachingClass{" +
             "id=" + getId() +
-            ", guid='" + getGuid() + "'" +
             ", code='" + getCode() + "'" +
             ", year=" + getYear() +
             ", semester=" + getSemester() +

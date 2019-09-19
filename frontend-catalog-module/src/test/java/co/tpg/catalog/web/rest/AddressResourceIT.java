@@ -3,6 +3,7 @@ package co.tpg.catalog.web.rest;
 import co.tpg.catalog.CatalogApp;
 import co.tpg.catalog.domain.Address;
 import co.tpg.catalog.repository.AddressRepository;
+import co.tpg.catalog.service.AddressService;
 import co.tpg.catalog.web.rest.errors.ExceptionTranslator;
 
 import org.junit.jupiter.api.BeforeEach;
@@ -35,11 +36,8 @@ import co.tpg.catalog.domain.enumeration.ContactType;
 @SpringBootTest(classes = CatalogApp.class)
 public class AddressResourceIT {
 
-    private static final String DEFAULT_GUID = "AAAAAAAAAA";
-    private static final String UPDATED_GUID = "BBBBBBBBBB";
-
-    private static final String DEFAULT_ENTITY_GUID = "AAAAAAAAAA";
-    private static final String UPDATED_ENTITY_GUID = "BBBBBBBBBB";
+    private static final Long DEFAULT_ENTITY_ID = 1L;
+    private static final Long UPDATED_ENTITY_ID = 2L;
 
     private static final String DEFAULT_ADDRESS = "AAAAAAAAAA";
     private static final String UPDATED_ADDRESS = "BBBBBBBBBB";
@@ -63,6 +61,9 @@ public class AddressResourceIT {
     private AddressRepository addressRepository;
 
     @Autowired
+    private AddressService addressService;
+
+    @Autowired
     private MappingJackson2HttpMessageConverter jacksonMessageConverter;
 
     @Autowired
@@ -84,7 +85,7 @@ public class AddressResourceIT {
     @BeforeEach
     public void setup() {
         MockitoAnnotations.initMocks(this);
-        final AddressResource addressResource = new AddressResource(addressRepository);
+        final AddressResource addressResource = new AddressResource(addressService);
         this.restAddressMockMvc = MockMvcBuilders.standaloneSetup(addressResource)
             .setCustomArgumentResolvers(pageableArgumentResolver)
             .setControllerAdvice(exceptionTranslator)
@@ -101,8 +102,7 @@ public class AddressResourceIT {
      */
     public static Address createEntity(EntityManager em) {
         Address address = new Address()
-            .guid(DEFAULT_GUID)
-            .entityGuid(DEFAULT_ENTITY_GUID)
+            .entityId(DEFAULT_ENTITY_ID)
             .address(DEFAULT_ADDRESS)
             .zipCode(DEFAULT_ZIP_CODE)
             .city(DEFAULT_CITY)
@@ -119,8 +119,7 @@ public class AddressResourceIT {
      */
     public static Address createUpdatedEntity(EntityManager em) {
         Address address = new Address()
-            .guid(UPDATED_GUID)
-            .entityGuid(UPDATED_ENTITY_GUID)
+            .entityId(UPDATED_ENTITY_ID)
             .address(UPDATED_ADDRESS)
             .zipCode(UPDATED_ZIP_CODE)
             .city(UPDATED_CITY)
@@ -150,8 +149,7 @@ public class AddressResourceIT {
         List<Address> addressList = addressRepository.findAll();
         assertThat(addressList).hasSize(databaseSizeBeforeCreate + 1);
         Address testAddress = addressList.get(addressList.size() - 1);
-        assertThat(testAddress.getGuid()).isEqualTo(DEFAULT_GUID);
-        assertThat(testAddress.getEntityGuid()).isEqualTo(DEFAULT_ENTITY_GUID);
+        assertThat(testAddress.getEntityId()).isEqualTo(DEFAULT_ENTITY_ID);
         assertThat(testAddress.getAddress()).isEqualTo(DEFAULT_ADDRESS);
         assertThat(testAddress.getZipCode()).isEqualTo(DEFAULT_ZIP_CODE);
         assertThat(testAddress.getCity()).isEqualTo(DEFAULT_CITY);
@@ -182,10 +180,82 @@ public class AddressResourceIT {
 
     @Test
     @Transactional
-    public void checkGuidIsRequired() throws Exception {
+    public void checkEntityIdIsRequired() throws Exception {
         int databaseSizeBeforeTest = addressRepository.findAll().size();
         // set the field null
-        address.setGuid(null);
+        address.setEntityId(null);
+
+        // Create the Address, which fails.
+
+        restAddressMockMvc.perform(post("/api/addresses")
+            .contentType(TestUtil.APPLICATION_JSON_UTF8)
+            .content(TestUtil.convertObjectToJsonBytes(address)))
+            .andExpect(status().isBadRequest());
+
+        List<Address> addressList = addressRepository.findAll();
+        assertThat(addressList).hasSize(databaseSizeBeforeTest);
+    }
+
+    @Test
+    @Transactional
+    public void checkAddressIsRequired() throws Exception {
+        int databaseSizeBeforeTest = addressRepository.findAll().size();
+        // set the field null
+        address.setAddress(null);
+
+        // Create the Address, which fails.
+
+        restAddressMockMvc.perform(post("/api/addresses")
+            .contentType(TestUtil.APPLICATION_JSON_UTF8)
+            .content(TestUtil.convertObjectToJsonBytes(address)))
+            .andExpect(status().isBadRequest());
+
+        List<Address> addressList = addressRepository.findAll();
+        assertThat(addressList).hasSize(databaseSizeBeforeTest);
+    }
+
+    @Test
+    @Transactional
+    public void checkZipCodeIsRequired() throws Exception {
+        int databaseSizeBeforeTest = addressRepository.findAll().size();
+        // set the field null
+        address.setZipCode(null);
+
+        // Create the Address, which fails.
+
+        restAddressMockMvc.perform(post("/api/addresses")
+            .contentType(TestUtil.APPLICATION_JSON_UTF8)
+            .content(TestUtil.convertObjectToJsonBytes(address)))
+            .andExpect(status().isBadRequest());
+
+        List<Address> addressList = addressRepository.findAll();
+        assertThat(addressList).hasSize(databaseSizeBeforeTest);
+    }
+
+    @Test
+    @Transactional
+    public void checkCityIsRequired() throws Exception {
+        int databaseSizeBeforeTest = addressRepository.findAll().size();
+        // set the field null
+        address.setCity(null);
+
+        // Create the Address, which fails.
+
+        restAddressMockMvc.perform(post("/api/addresses")
+            .contentType(TestUtil.APPLICATION_JSON_UTF8)
+            .content(TestUtil.convertObjectToJsonBytes(address)))
+            .andExpect(status().isBadRequest());
+
+        List<Address> addressList = addressRepository.findAll();
+        assertThat(addressList).hasSize(databaseSizeBeforeTest);
+    }
+
+    @Test
+    @Transactional
+    public void checkCountryIsRequired() throws Exception {
+        int databaseSizeBeforeTest = addressRepository.findAll().size();
+        // set the field null
+        address.setCountry(null);
 
         // Create the Address, which fails.
 
@@ -209,8 +279,7 @@ public class AddressResourceIT {
             .andExpect(status().isOk())
             .andExpect(content().contentType(MediaType.APPLICATION_JSON_UTF8_VALUE))
             .andExpect(jsonPath("$.[*].id").value(hasItem(address.getId().intValue())))
-            .andExpect(jsonPath("$.[*].guid").value(hasItem(DEFAULT_GUID.toString())))
-            .andExpect(jsonPath("$.[*].entityGuid").value(hasItem(DEFAULT_ENTITY_GUID.toString())))
+            .andExpect(jsonPath("$.[*].entityId").value(hasItem(DEFAULT_ENTITY_ID.intValue())))
             .andExpect(jsonPath("$.[*].address").value(hasItem(DEFAULT_ADDRESS.toString())))
             .andExpect(jsonPath("$.[*].zipCode").value(hasItem(DEFAULT_ZIP_CODE.toString())))
             .andExpect(jsonPath("$.[*].city").value(hasItem(DEFAULT_CITY.toString())))
@@ -230,8 +299,7 @@ public class AddressResourceIT {
             .andExpect(status().isOk())
             .andExpect(content().contentType(MediaType.APPLICATION_JSON_UTF8_VALUE))
             .andExpect(jsonPath("$.id").value(address.getId().intValue()))
-            .andExpect(jsonPath("$.guid").value(DEFAULT_GUID.toString()))
-            .andExpect(jsonPath("$.entityGuid").value(DEFAULT_ENTITY_GUID.toString()))
+            .andExpect(jsonPath("$.entityId").value(DEFAULT_ENTITY_ID.intValue()))
             .andExpect(jsonPath("$.address").value(DEFAULT_ADDRESS.toString()))
             .andExpect(jsonPath("$.zipCode").value(DEFAULT_ZIP_CODE.toString()))
             .andExpect(jsonPath("$.city").value(DEFAULT_CITY.toString()))
@@ -252,7 +320,7 @@ public class AddressResourceIT {
     @Transactional
     public void updateAddress() throws Exception {
         // Initialize the database
-        addressRepository.saveAndFlush(address);
+        addressService.save(address);
 
         int databaseSizeBeforeUpdate = addressRepository.findAll().size();
 
@@ -261,8 +329,7 @@ public class AddressResourceIT {
         // Disconnect from session so that the updates on updatedAddress are not directly saved in db
         em.detach(updatedAddress);
         updatedAddress
-            .guid(UPDATED_GUID)
-            .entityGuid(UPDATED_ENTITY_GUID)
+            .entityId(UPDATED_ENTITY_ID)
             .address(UPDATED_ADDRESS)
             .zipCode(UPDATED_ZIP_CODE)
             .city(UPDATED_CITY)
@@ -279,8 +346,7 @@ public class AddressResourceIT {
         List<Address> addressList = addressRepository.findAll();
         assertThat(addressList).hasSize(databaseSizeBeforeUpdate);
         Address testAddress = addressList.get(addressList.size() - 1);
-        assertThat(testAddress.getGuid()).isEqualTo(UPDATED_GUID);
-        assertThat(testAddress.getEntityGuid()).isEqualTo(UPDATED_ENTITY_GUID);
+        assertThat(testAddress.getEntityId()).isEqualTo(UPDATED_ENTITY_ID);
         assertThat(testAddress.getAddress()).isEqualTo(UPDATED_ADDRESS);
         assertThat(testAddress.getZipCode()).isEqualTo(UPDATED_ZIP_CODE);
         assertThat(testAddress.getCity()).isEqualTo(UPDATED_CITY);
@@ -311,7 +377,7 @@ public class AddressResourceIT {
     @Transactional
     public void deleteAddress() throws Exception {
         // Initialize the database
-        addressRepository.saveAndFlush(address);
+        addressService.save(address);
 
         int databaseSizeBeforeDelete = addressRepository.findAll().size();
 

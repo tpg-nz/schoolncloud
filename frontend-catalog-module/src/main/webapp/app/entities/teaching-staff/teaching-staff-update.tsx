@@ -20,14 +20,14 @@ export interface ITeachingStaffUpdateProps extends StateProps, DispatchProps, Ro
 
 export interface ITeachingStaffUpdateState {
   isNew: boolean;
-  idspaper: any[];
+  paperId: string;
 }
 
 export class TeachingStaffUpdate extends React.Component<ITeachingStaffUpdateProps, ITeachingStaffUpdateState> {
   constructor(props) {
     super(props);
     this.state = {
-      idspaper: [],
+      paperId: '0',
       isNew: !this.props.match.params || !this.props.match.params.id
     };
   }
@@ -53,8 +53,7 @@ export class TeachingStaffUpdate extends React.Component<ITeachingStaffUpdatePro
       const { teachingStaffEntity } = this.props;
       const entity = {
         ...teachingStaffEntity,
-        ...values,
-        papers: mapIdList(values.papers)
+        ...values
       };
 
       if (this.state.isNew) {
@@ -97,23 +96,17 @@ export class TeachingStaffUpdate extends React.Component<ITeachingStaffUpdatePro
                   </AvGroup>
                 ) : null}
                 <AvGroup>
-                  <Label id="guidLabel" for="teaching-staff-guid">
-                    <Translate contentKey="catalogApp.teachingStaff.guid">Guid</Translate>
+                  <Label id="nameLabel" for="teaching-staff-name">
+                    <Translate contentKey="catalogApp.teachingStaff.name">Name</Translate>
                   </Label>
                   <AvField
-                    id="teaching-staff-guid"
+                    id="teaching-staff-name"
                     type="text"
-                    name="guid"
+                    name="name"
                     validate={{
                       required: { value: true, errorMessage: translate('entity.validation.required') }
                     }}
                   />
-                </AvGroup>
-                <AvGroup>
-                  <Label id="nameLabel" for="teaching-staff-name">
-                    <Translate contentKey="catalogApp.teachingStaff.name">Name</Translate>
-                  </Label>
-                  <AvField id="teaching-staff-name" type="text" name="name" />
                 </AvGroup>
                 <AvGroup>
                   <Label id="graduationTypeLabel" for="teaching-staff-graduationType">
@@ -139,20 +132,22 @@ export class TeachingStaffUpdate extends React.Component<ITeachingStaffUpdatePro
                   <AvInput
                     id="teaching-staff-paper"
                     type="select"
-                    multiple
                     className="form-control"
-                    name="papers"
-                    value={teachingStaffEntity.papers && teachingStaffEntity.papers.map(e => e.id)}
+                    name="paper.id"
+                    value={isNew ? papers[0] && papers[0].id : teachingStaffEntity.paper.id}
+                    required
                   >
-                    <option value="" key="0" />
                     {papers
                       ? papers.map(otherEntity => (
                           <option value={otherEntity.id} key={otherEntity.id}>
-                            {otherEntity.id}
+                            {otherEntity.code}
                           </option>
                         ))
                       : null}
                   </AvInput>
+                  <AvFeedback>
+                    <Translate contentKey="entity.validation.required">This field is required.</Translate>
+                  </AvFeedback>
                 </AvGroup>
                 <Button tag={Link} id="cancel-save" to="/entity/teaching-staff" replace color="info">
                   <FontAwesomeIcon icon="arrow-left" />

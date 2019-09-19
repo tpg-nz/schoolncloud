@@ -2,8 +2,9 @@ package co.tpg.catalog.web.rest;
 
 import co.tpg.catalog.CatalogApp;
 import co.tpg.catalog.domain.Campus;
-import co.tpg.catalog.domain.EducationalInstituition;
+import co.tpg.catalog.domain.EducationalInstitution;
 import co.tpg.catalog.repository.CampusRepository;
+import co.tpg.catalog.service.CampusService;
 import co.tpg.catalog.web.rest.errors.ExceptionTranslator;
 
 import org.junit.jupiter.api.BeforeEach;
@@ -34,14 +35,14 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 @SpringBootTest(classes = CatalogApp.class)
 public class CampusResourceIT {
 
-    private static final String DEFAULT_GUID = "AAAAAAAAAA";
-    private static final String UPDATED_GUID = "BBBBBBBBBB";
-
     private static final String DEFAULT_NAME = "AAAAAAAAAA";
     private static final String UPDATED_NAME = "BBBBBBBBBB";
 
     @Autowired
     private CampusRepository campusRepository;
+
+    @Autowired
+    private CampusService campusService;
 
     @Autowired
     private MappingJackson2HttpMessageConverter jacksonMessageConverter;
@@ -65,7 +66,7 @@ public class CampusResourceIT {
     @BeforeEach
     public void setup() {
         MockitoAnnotations.initMocks(this);
-        final CampusResource campusResource = new CampusResource(campusRepository);
+        final CampusResource campusResource = new CampusResource(campusService);
         this.restCampusMockMvc = MockMvcBuilders.standaloneSetup(campusResource)
             .setCustomArgumentResolvers(pageableArgumentResolver)
             .setControllerAdvice(exceptionTranslator)
@@ -82,18 +83,17 @@ public class CampusResourceIT {
      */
     public static Campus createEntity(EntityManager em) {
         Campus campus = new Campus()
-            .guid(DEFAULT_GUID)
             .name(DEFAULT_NAME);
         // Add required entity
-        EducationalInstituition educationalInstituition;
-        if (TestUtil.findAll(em, EducationalInstituition.class).isEmpty()) {
-            educationalInstituition = EducationalInstituitionResourceIT.createEntity(em);
-            em.persist(educationalInstituition);
+        EducationalInstitution educationalInstitution;
+        if (TestUtil.findAll(em, EducationalInstitution.class).isEmpty()) {
+            educationalInstitution = EducationalInstitutionResourceIT.createEntity(em);
+            em.persist(educationalInstitution);
             em.flush();
         } else {
-            educationalInstituition = TestUtil.findAll(em, EducationalInstituition.class).get(0);
+            educationalInstitution = TestUtil.findAll(em, EducationalInstitution.class).get(0);
         }
-        campus.setEducationalInstitution(educationalInstituition);
+        campus.setEducationalInstitution(educationalInstitution);
         return campus;
     }
     /**
@@ -104,18 +104,17 @@ public class CampusResourceIT {
      */
     public static Campus createUpdatedEntity(EntityManager em) {
         Campus campus = new Campus()
-            .guid(UPDATED_GUID)
             .name(UPDATED_NAME);
         // Add required entity
-        EducationalInstituition educationalInstituition;
-        if (TestUtil.findAll(em, EducationalInstituition.class).isEmpty()) {
-            educationalInstituition = EducationalInstituitionResourceIT.createUpdatedEntity(em);
-            em.persist(educationalInstituition);
+        EducationalInstitution educationalInstitution;
+        if (TestUtil.findAll(em, EducationalInstitution.class).isEmpty()) {
+            educationalInstitution = EducationalInstitutionResourceIT.createUpdatedEntity(em);
+            em.persist(educationalInstitution);
             em.flush();
         } else {
-            educationalInstituition = TestUtil.findAll(em, EducationalInstituition.class).get(0);
+            educationalInstitution = TestUtil.findAll(em, EducationalInstitution.class).get(0);
         }
-        campus.setEducationalInstitution(educationalInstituition);
+        campus.setEducationalInstitution(educationalInstitution);
         return campus;
     }
 
@@ -139,7 +138,6 @@ public class CampusResourceIT {
         List<Campus> campusList = campusRepository.findAll();
         assertThat(campusList).hasSize(databaseSizeBeforeCreate + 1);
         Campus testCampus = campusList.get(campusList.size() - 1);
-        assertThat(testCampus.getGuid()).isEqualTo(DEFAULT_GUID);
         assertThat(testCampus.getName()).isEqualTo(DEFAULT_NAME);
     }
 
@@ -165,10 +163,10 @@ public class CampusResourceIT {
 
     @Test
     @Transactional
-    public void checkGuidIsRequired() throws Exception {
+    public void checkNameIsRequired() throws Exception {
         int databaseSizeBeforeTest = campusRepository.findAll().size();
         // set the field null
-        campus.setGuid(null);
+        campus.setName(null);
 
         // Create the Campus, which fails.
 
@@ -192,7 +190,6 @@ public class CampusResourceIT {
             .andExpect(status().isOk())
             .andExpect(content().contentType(MediaType.APPLICATION_JSON_UTF8_VALUE))
             .andExpect(jsonPath("$.[*].id").value(hasItem(campus.getId().intValue())))
-            .andExpect(jsonPath("$.[*].guid").value(hasItem(DEFAULT_GUID.toString())))
             .andExpect(jsonPath("$.[*].name").value(hasItem(DEFAULT_NAME.toString())));
     }
     
@@ -207,7 +204,6 @@ public class CampusResourceIT {
             .andExpect(status().isOk())
             .andExpect(content().contentType(MediaType.APPLICATION_JSON_UTF8_VALUE))
             .andExpect(jsonPath("$.id").value(campus.getId().intValue()))
-            .andExpect(jsonPath("$.guid").value(DEFAULT_GUID.toString()))
             .andExpect(jsonPath("$.name").value(DEFAULT_NAME.toString()));
     }
 
@@ -223,7 +219,7 @@ public class CampusResourceIT {
     @Transactional
     public void updateCampus() throws Exception {
         // Initialize the database
-        campusRepository.saveAndFlush(campus);
+        campusService.save(campus);
 
         int databaseSizeBeforeUpdate = campusRepository.findAll().size();
 
@@ -232,7 +228,6 @@ public class CampusResourceIT {
         // Disconnect from session so that the updates on updatedCampus are not directly saved in db
         em.detach(updatedCampus);
         updatedCampus
-            .guid(UPDATED_GUID)
             .name(UPDATED_NAME);
 
         restCampusMockMvc.perform(put("/api/campuses")
@@ -244,7 +239,6 @@ public class CampusResourceIT {
         List<Campus> campusList = campusRepository.findAll();
         assertThat(campusList).hasSize(databaseSizeBeforeUpdate);
         Campus testCampus = campusList.get(campusList.size() - 1);
-        assertThat(testCampus.getGuid()).isEqualTo(UPDATED_GUID);
         assertThat(testCampus.getName()).isEqualTo(UPDATED_NAME);
     }
 
@@ -270,7 +264,7 @@ public class CampusResourceIT {
     @Transactional
     public void deleteCampus() throws Exception {
         // Initialize the database
-        campusRepository.saveAndFlush(campus);
+        campusService.save(campus);
 
         int databaseSizeBeforeDelete = campusRepository.findAll().size();
 

@@ -2,15 +2,11 @@
     "name": "Qualification",
     "fields": [
         {
-            "fieldName": "guid",
+            "fieldName": "name",
             "fieldType": "String",
             "fieldValidateRules": [
                 "required"
             ]
-        },
-        {
-            "fieldName": "name",
-            "fieldType": "String"
         },
         {
             "fieldName": "hyperLink",
@@ -22,15 +18,16 @@
             "relationshipType": "many-to-one",
             "otherEntityName": "subject",
             "otherEntityRelationshipName": "qualification",
+            "relationshipValidateRules": "required",
             "relationshipName": "subject",
-            "otherEntityField": "guid"
+            "otherEntityField": "name"
         }
     ],
-    "changelogDate": "20190916072200",
+    "changelogDate": "20190919102708",
     "entityTableName": "qualification",
     "dto": "no",
-    "pagination": "no",
-    "service": "no",
+    "pagination": "pagination",
+    "service": "serviceImpl",
     "jpaMetamodelFiltering": false,
     "fluentMethods": true,
     "clientRootFolder": "",

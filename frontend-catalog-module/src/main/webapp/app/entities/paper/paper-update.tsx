@@ -10,8 +10,6 @@ import { IRootState } from 'app/shared/reducers';
 
 import { ISubject } from 'app/shared/model/subject.model';
 import { getEntities as getSubjects } from 'app/entities/subject/subject.reducer';
-import { ITeachingStaff } from 'app/shared/model/teaching-staff.model';
-import { getEntities as getTeachingStaffs } from 'app/entities/teaching-staff/teaching-staff.reducer';
 import { getEntity, updateEntity, createEntity, reset } from './paper.reducer';
 import { IPaper } from 'app/shared/model/paper.model';
 // tslint:disable-next-line:no-unused-variable
@@ -23,7 +21,6 @@ export interface IPaperUpdateProps extends StateProps, DispatchProps, RouteCompo
 export interface IPaperUpdateState {
   isNew: boolean;
   subjectId: string;
-  teachingStaffId: string;
 }
 
 export class PaperUpdate extends React.Component<IPaperUpdateProps, IPaperUpdateState> {
@@ -31,7 +28,6 @@ export class PaperUpdate extends React.Component<IPaperUpdateProps, IPaperUpdate
     super(props);
     this.state = {
       subjectId: '0',
-      teachingStaffId: '0',
       isNew: !this.props.match.params || !this.props.match.params.id
     };
   }
@@ -50,7 +46,6 @@ export class PaperUpdate extends React.Component<IPaperUpdateProps, IPaperUpdate
     }
 
     this.props.getSubjects();
-    this.props.getTeachingStaffs();
   }
 
   saveEntity = (event, errors, values) => {
@@ -74,7 +69,7 @@ export class PaperUpdate extends React.Component<IPaperUpdateProps, IPaperUpdate
   };
 
   render() {
-    const { paperEntity, subjects, teachingStaffs, loading, updating } = this.props;
+    const { paperEntity, subjects, loading, updating } = this.props;
     const { isNew } = this.state;
 
     return (
@@ -117,13 +112,33 @@ export class PaperUpdate extends React.Component<IPaperUpdateProps, IPaperUpdate
                   <Label id="yearLabel" for="paper-year">
                     <Translate contentKey="catalogApp.paper.year">Year</Translate>
                   </Label>
-                  <AvField id="paper-year" type="string" className="form-control" name="year" />
+                  <AvField
+                    id="paper-year"
+                    type="string"
+                    className="form-control"
+                    name="year"
+                    validate={{
+                      required: { value: true, errorMessage: translate('entity.validation.required') },
+                      min: { value: 0, errorMessage: translate('entity.validation.min', { min: 0 }) },
+                      number: { value: true, errorMessage: translate('entity.validation.number') }
+                    }}
+                  />
                 </AvGroup>
                 <AvGroup>
                   <Label id="pointsLabel" for="paper-points">
                     <Translate contentKey="catalogApp.paper.points">Points</Translate>
                   </Label>
-                  <AvField id="paper-points" type="string" className="form-control" name="points" />
+                  <AvField
+                    id="paper-points"
+                    type="string"
+                    className="form-control"
+                    name="points"
+                    validate={{
+                      required: { value: true, errorMessage: translate('entity.validation.required') },
+                      min: { value: 0, errorMessage: translate('entity.validation.min', { min: 0 }) },
+                      number: { value: true, errorMessage: translate('entity.validation.number') }
+                    }}
+                  />
                 </AvGroup>
                 <AvGroup>
                   <Label id="teachingPeriodLabel" for="paper-teachingPeriod">
@@ -135,16 +150,25 @@ export class PaperUpdate extends React.Component<IPaperUpdateProps, IPaperUpdate
                   <Label for="paper-subject">
                     <Translate contentKey="catalogApp.paper.subject">Subject</Translate>
                   </Label>
-                  <AvInput id="paper-subject" type="select" className="form-control" name="subject.id">
-                    <option value="" key="0" />
+                  <AvInput
+                    id="paper-subject"
+                    type="select"
+                    className="form-control"
+                    name="subject.id"
+                    value={isNew ? subjects[0] && subjects[0].id : paperEntity.subject.id}
+                    required
+                  >
                     {subjects
                       ? subjects.map(otherEntity => (
                           <option value={otherEntity.id} key={otherEntity.id}>
-                            {otherEntity.guid}
+                            {otherEntity.name}
                           </option>
                         ))
                       : null}
                   </AvInput>
+                  <AvFeedback>
+                    <Translate contentKey="entity.validation.required">This field is required.</Translate>
+                  </AvFeedback>
                 </AvGroup>
                 <Button tag={Link} id="cancel-save" to="/entity/paper" replace color="info">
                   <FontAwesomeIcon icon="arrow-left" />
@@ -170,7 +194,6 @@ export class PaperUpdate extends React.Component<IPaperUpdateProps, IPaperUpdate
 
 const mapStateToProps = (storeState: IRootState) => ({
   subjects: storeState.subject.entities,
-  teachingStaffs: storeState.teachingStaff.entities,
   paperEntity: storeState.paper.entity,
   loading: storeState.paper.loading,
   updating: storeState.paper.updating,
@@ -179,7 +202,6 @@ const mapStateToProps = (storeState: IRootState) => ({
 
 const mapDispatchToProps = {
   getSubjects,
-  getTeachingStaffs,
   getEntity,
   updateEntity,
   createEntity,

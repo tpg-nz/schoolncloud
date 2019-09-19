@@ -3,6 +3,7 @@ package co.tpg.catalog.web.rest;
 import co.tpg.catalog.CatalogApp;
 import co.tpg.catalog.domain.Subject;
 import co.tpg.catalog.repository.SubjectRepository;
+import co.tpg.catalog.service.SubjectService;
 import co.tpg.catalog.web.rest.errors.ExceptionTranslator;
 
 import org.junit.jupiter.api.BeforeEach;
@@ -33,9 +34,6 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 @SpringBootTest(classes = CatalogApp.class)
 public class SubjectResourceIT {
 
-    private static final String DEFAULT_GUID = "AAAAAAAAAA";
-    private static final String UPDATED_GUID = "BBBBBBBBBB";
-
     private static final String DEFAULT_NAME = "AAAAAAAAAA";
     private static final String UPDATED_NAME = "BBBBBBBBBB";
 
@@ -47,6 +45,9 @@ public class SubjectResourceIT {
 
     @Autowired
     private SubjectRepository subjectRepository;
+
+    @Autowired
+    private SubjectService subjectService;
 
     @Autowired
     private MappingJackson2HttpMessageConverter jacksonMessageConverter;
@@ -70,7 +71,7 @@ public class SubjectResourceIT {
     @BeforeEach
     public void setup() {
         MockitoAnnotations.initMocks(this);
-        final SubjectResource subjectResource = new SubjectResource(subjectRepository);
+        final SubjectResource subjectResource = new SubjectResource(subjectService);
         this.restSubjectMockMvc = MockMvcBuilders.standaloneSetup(subjectResource)
             .setCustomArgumentResolvers(pageableArgumentResolver)
             .setControllerAdvice(exceptionTranslator)
@@ -87,7 +88,6 @@ public class SubjectResourceIT {
      */
     public static Subject createEntity(EntityManager em) {
         Subject subject = new Subject()
-            .guid(DEFAULT_GUID)
             .name(DEFAULT_NAME)
             .overview(DEFAULT_OVERVIEW)
             .level(DEFAULT_LEVEL);
@@ -101,7 +101,6 @@ public class SubjectResourceIT {
      */
     public static Subject createUpdatedEntity(EntityManager em) {
         Subject subject = new Subject()
-            .guid(UPDATED_GUID)
             .name(UPDATED_NAME)
             .overview(UPDATED_OVERVIEW)
             .level(UPDATED_LEVEL);
@@ -128,7 +127,6 @@ public class SubjectResourceIT {
         List<Subject> subjectList = subjectRepository.findAll();
         assertThat(subjectList).hasSize(databaseSizeBeforeCreate + 1);
         Subject testSubject = subjectList.get(subjectList.size() - 1);
-        assertThat(testSubject.getGuid()).isEqualTo(DEFAULT_GUID);
         assertThat(testSubject.getName()).isEqualTo(DEFAULT_NAME);
         assertThat(testSubject.getOverview()).isEqualTo(DEFAULT_OVERVIEW);
         assertThat(testSubject.getLevel()).isEqualTo(DEFAULT_LEVEL);
@@ -156,10 +154,10 @@ public class SubjectResourceIT {
 
     @Test
     @Transactional
-    public void checkGuidIsRequired() throws Exception {
+    public void checkNameIsRequired() throws Exception {
         int databaseSizeBeforeTest = subjectRepository.findAll().size();
         // set the field null
-        subject.setGuid(null);
+        subject.setName(null);
 
         // Create the Subject, which fails.
 
@@ -183,7 +181,6 @@ public class SubjectResourceIT {
             .andExpect(status().isOk())
             .andExpect(content().contentType(MediaType.APPLICATION_JSON_UTF8_VALUE))
             .andExpect(jsonPath("$.[*].id").value(hasItem(subject.getId().intValue())))
-            .andExpect(jsonPath("$.[*].guid").value(hasItem(DEFAULT_GUID.toString())))
             .andExpect(jsonPath("$.[*].name").value(hasItem(DEFAULT_NAME.toString())))
             .andExpect(jsonPath("$.[*].overview").value(hasItem(DEFAULT_OVERVIEW.toString())))
             .andExpect(jsonPath("$.[*].level").value(hasItem(DEFAULT_LEVEL)));
@@ -200,7 +197,6 @@ public class SubjectResourceIT {
             .andExpect(status().isOk())
             .andExpect(content().contentType(MediaType.APPLICATION_JSON_UTF8_VALUE))
             .andExpect(jsonPath("$.id").value(subject.getId().intValue()))
-            .andExpect(jsonPath("$.guid").value(DEFAULT_GUID.toString()))
             .andExpect(jsonPath("$.name").value(DEFAULT_NAME.toString()))
             .andExpect(jsonPath("$.overview").value(DEFAULT_OVERVIEW.toString()))
             .andExpect(jsonPath("$.level").value(DEFAULT_LEVEL));
@@ -218,7 +214,7 @@ public class SubjectResourceIT {
     @Transactional
     public void updateSubject() throws Exception {
         // Initialize the database
-        subjectRepository.saveAndFlush(subject);
+        subjectService.save(subject);
 
         int databaseSizeBeforeUpdate = subjectRepository.findAll().size();
 
@@ -227,7 +223,6 @@ public class SubjectResourceIT {
         // Disconnect from session so that the updates on updatedSubject are not directly saved in db
         em.detach(updatedSubject);
         updatedSubject
-            .guid(UPDATED_GUID)
             .name(UPDATED_NAME)
             .overview(UPDATED_OVERVIEW)
             .level(UPDATED_LEVEL);
@@ -241,7 +236,6 @@ public class SubjectResourceIT {
         List<Subject> subjectList = subjectRepository.findAll();
         assertThat(subjectList).hasSize(databaseSizeBeforeUpdate);
         Subject testSubject = subjectList.get(subjectList.size() - 1);
-        assertThat(testSubject.getGuid()).isEqualTo(UPDATED_GUID);
         assertThat(testSubject.getName()).isEqualTo(UPDATED_NAME);
         assertThat(testSubject.getOverview()).isEqualTo(UPDATED_OVERVIEW);
         assertThat(testSubject.getLevel()).isEqualTo(UPDATED_LEVEL);
@@ -269,7 +263,7 @@ public class SubjectResourceIT {
     @Transactional
     public void deleteSubject() throws Exception {
         // Initialize the database
-        subjectRepository.saveAndFlush(subject);
+        subjectService.save(subject);
 
         int databaseSizeBeforeDelete = subjectRepository.findAll().size();
 

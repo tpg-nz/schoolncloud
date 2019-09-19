@@ -1,14 +1,21 @@
 package co.tpg.catalog.web.rest;
 
 import co.tpg.catalog.domain.Address;
-import co.tpg.catalog.repository.AddressRepository;
+import co.tpg.catalog.service.AddressService;
 import co.tpg.catalog.web.rest.errors.BadRequestAlertException;
 
 import io.github.jhipster.web.util.HeaderUtil;
+import io.github.jhipster.web.util.PaginationUtil;
 import io.github.jhipster.web.util.ResponseUtil;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Value;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
+import org.springframework.http.HttpHeaders;
+import org.springframework.http.HttpStatus;
+import org.springframework.util.MultiValueMap;
+import org.springframework.web.util.UriComponentsBuilder;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
@@ -33,10 +40,10 @@ public class AddressResource {
     @Value("${jhipster.clientApp.name}")
     private String applicationName;
 
-    private final AddressRepository addressRepository;
+    private final AddressService addressService;
 
-    public AddressResource(AddressRepository addressRepository) {
-        this.addressRepository = addressRepository;
+    public AddressResource(AddressService addressService) {
+        this.addressService = addressService;
     }
 
     /**
@@ -52,7 +59,7 @@ public class AddressResource {
         if (address.getId() != null) {
             throw new BadRequestAlertException("A new address cannot already have an ID", ENTITY_NAME, "idexists");
         }
-        Address result = addressRepository.save(address);
+        Address result = addressService.save(address);
         return ResponseEntity.created(new URI("/api/addresses/" + result.getId()))
             .headers(HeaderUtil.createEntityCreationAlert(applicationName, true, ENTITY_NAME, result.getId().toString()))
             .body(result);
@@ -73,7 +80,7 @@ public class AddressResource {
         if (address.getId() == null) {
             throw new BadRequestAlertException("Invalid id", ENTITY_NAME, "idnull");
         }
-        Address result = addressRepository.save(address);
+        Address result = addressService.save(address);
         return ResponseEntity.ok()
             .headers(HeaderUtil.createEntityUpdateAlert(applicationName, true, ENTITY_NAME, address.getId().toString()))
             .body(result);
@@ -82,12 +89,17 @@ public class AddressResource {
     /**
      * {@code GET  /addresses} : get all the addresses.
      *
+     * @param pageable the pagination information.
+     * @param queryParams a {@link MultiValueMap} query parameters.
+     * @param uriBuilder a {@link UriComponentsBuilder} URI builder.
      * @return the {@link ResponseEntity} with status {@code 200 (OK)} and the list of addresses in body.
      */
     @GetMapping("/addresses")
-    public List<Address> getAllAddresses() {
-        log.debug("REST request to get all Addresses");
-        return addressRepository.findAll();
+    public ResponseEntity<List<Address>> getAllAddresses(Pageable pageable, @RequestParam MultiValueMap<String, String> queryParams, UriComponentsBuilder uriBuilder) {
+        log.debug("REST request to get a page of Addresses");
+        Page<Address> page = addressService.findAll(pageable);
+        HttpHeaders headers = PaginationUtil.generatePaginationHttpHeaders(uriBuilder.queryParams(queryParams), page);
+        return ResponseEntity.ok().headers(headers).body(page.getContent());
     }
 
     /**
@@ -99,7 +111,7 @@ public class AddressResource {
     @GetMapping("/addresses/{id}")
     public ResponseEntity<Address> getAddress(@PathVariable Long id) {
         log.debug("REST request to get Address : {}", id);
-        Optional<Address> address = addressRepository.findById(id);
+        Optional<Address> address = addressService.findOne(id);
         return ResponseUtil.wrapOrNotFound(address);
     }
 
@@ -112,7 +124,7 @@ public class AddressResource {
     @DeleteMapping("/addresses/{id}")
     public ResponseEntity<Void> deleteAddress(@PathVariable Long id) {
         log.debug("REST request to delete Address : {}", id);
-        addressRepository.deleteById(id);
+        addressService.delete(id);
         return ResponseEntity.noContent().headers(HeaderUtil.createEntityDeletionAlert(applicationName, true, ENTITY_NAME, id.toString())).build();
     }
 }

@@ -10,6 +10,8 @@ import { IRootState } from 'app/shared/reducers';
 
 import { ISubject } from 'app/shared/model/subject.model';
 import { getEntities as getSubjects } from 'app/entities/subject/subject.reducer';
+import { IPaper } from 'app/shared/model/paper.model';
+import { getEntities as getPapers } from 'app/entities/paper/paper.reducer';
 import { getEntity, updateEntity, createEntity, reset } from './requirement.reducer';
 import { IRequirement } from 'app/shared/model/requirement.model';
 // tslint:disable-next-line:no-unused-variable
@@ -21,6 +23,7 @@ export interface IRequirementUpdateProps extends StateProps, DispatchProps, Rout
 export interface IRequirementUpdateState {
   isNew: boolean;
   subjectId: string;
+  paperId: string;
 }
 
 export class RequirementUpdate extends React.Component<IRequirementUpdateProps, IRequirementUpdateState> {
@@ -28,6 +31,7 @@ export class RequirementUpdate extends React.Component<IRequirementUpdateProps, 
     super(props);
     this.state = {
       subjectId: '0',
+      paperId: '0',
       isNew: !this.props.match.params || !this.props.match.params.id
     };
   }
@@ -46,6 +50,7 @@ export class RequirementUpdate extends React.Component<IRequirementUpdateProps, 
     }
 
     this.props.getSubjects();
+    this.props.getPapers();
   }
 
   saveEntity = (event, errors, values) => {
@@ -69,7 +74,7 @@ export class RequirementUpdate extends React.Component<IRequirementUpdateProps, 
   };
 
   render() {
-    const { requirementEntity, subjects, loading, updating } = this.props;
+    const { requirementEntity, subjects, papers, loading, updating } = this.props;
     const { isNew } = this.state;
 
     return (
@@ -96,19 +101,6 @@ export class RequirementUpdate extends React.Component<IRequirementUpdateProps, 
                   </AvGroup>
                 ) : null}
                 <AvGroup>
-                  <Label id="guidLabel" for="requirement-guid">
-                    <Translate contentKey="catalogApp.requirement.guid">Guid</Translate>
-                  </Label>
-                  <AvField
-                    id="requirement-guid"
-                    type="text"
-                    name="guid"
-                    validate={{
-                      required: { value: true, errorMessage: translate('entity.validation.required') }
-                    }}
-                  />
-                </AvGroup>
-                <AvGroup>
                   <Label id="levelLabel" for="requirement-level">
                     <Translate contentKey="catalogApp.requirement.level">Level</Translate>
                   </Label>
@@ -118,16 +110,49 @@ export class RequirementUpdate extends React.Component<IRequirementUpdateProps, 
                   <Label for="requirement-subject">
                     <Translate contentKey="catalogApp.requirement.subject">Subject</Translate>
                   </Label>
-                  <AvInput id="requirement-subject" type="select" className="form-control" name="subject.id">
-                    <option value="" key="0" />
+                  <AvInput
+                    id="requirement-subject"
+                    type="select"
+                    className="form-control"
+                    name="subject.id"
+                    value={isNew ? subjects[0] && subjects[0].id : requirementEntity.subject.id}
+                    required
+                  >
                     {subjects
                       ? subjects.map(otherEntity => (
                           <option value={otherEntity.id} key={otherEntity.id}>
-                            {otherEntity.guid}
+                            {otherEntity.name}
                           </option>
                         ))
                       : null}
                   </AvInput>
+                  <AvFeedback>
+                    <Translate contentKey="entity.validation.required">This field is required.</Translate>
+                  </AvFeedback>
+                </AvGroup>
+                <AvGroup>
+                  <Label for="requirement-paper">
+                    <Translate contentKey="catalogApp.requirement.paper">Paper</Translate>
+                  </Label>
+                  <AvInput
+                    id="requirement-paper"
+                    type="select"
+                    className="form-control"
+                    name="paper.id"
+                    value={isNew ? papers[0] && papers[0].id : requirementEntity.paper.id}
+                    required
+                  >
+                    {papers
+                      ? papers.map(otherEntity => (
+                          <option value={otherEntity.id} key={otherEntity.id}>
+                            {otherEntity.code}
+                          </option>
+                        ))
+                      : null}
+                  </AvInput>
+                  <AvFeedback>
+                    <Translate contentKey="entity.validation.required">This field is required.</Translate>
+                  </AvFeedback>
                 </AvGroup>
                 <Button tag={Link} id="cancel-save" to="/entity/requirement" replace color="info">
                   <FontAwesomeIcon icon="arrow-left" />
@@ -153,6 +178,7 @@ export class RequirementUpdate extends React.Component<IRequirementUpdateProps, 
 
 const mapStateToProps = (storeState: IRootState) => ({
   subjects: storeState.subject.entities,
+  papers: storeState.paper.entities,
   requirementEntity: storeState.requirement.entity,
   loading: storeState.requirement.loading,
   updating: storeState.requirement.updating,
@@ -161,6 +187,7 @@ const mapStateToProps = (storeState: IRootState) => ({
 
 const mapDispatchToProps = {
   getSubjects,
+  getPapers,
   getEntity,
   updateEntity,
   createEntity,

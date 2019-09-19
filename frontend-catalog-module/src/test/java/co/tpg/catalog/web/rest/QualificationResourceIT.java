@@ -2,7 +2,9 @@ package co.tpg.catalog.web.rest;
 
 import co.tpg.catalog.CatalogApp;
 import co.tpg.catalog.domain.Qualification;
+import co.tpg.catalog.domain.Subject;
 import co.tpg.catalog.repository.QualificationRepository;
+import co.tpg.catalog.service.QualificationService;
 import co.tpg.catalog.web.rest.errors.ExceptionTranslator;
 
 import org.junit.jupiter.api.BeforeEach;
@@ -33,9 +35,6 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 @SpringBootTest(classes = CatalogApp.class)
 public class QualificationResourceIT {
 
-    private static final String DEFAULT_GUID = "AAAAAAAAAA";
-    private static final String UPDATED_GUID = "BBBBBBBBBB";
-
     private static final String DEFAULT_NAME = "AAAAAAAAAA";
     private static final String UPDATED_NAME = "BBBBBBBBBB";
 
@@ -44,6 +43,9 @@ public class QualificationResourceIT {
 
     @Autowired
     private QualificationRepository qualificationRepository;
+
+    @Autowired
+    private QualificationService qualificationService;
 
     @Autowired
     private MappingJackson2HttpMessageConverter jacksonMessageConverter;
@@ -67,7 +69,7 @@ public class QualificationResourceIT {
     @BeforeEach
     public void setup() {
         MockitoAnnotations.initMocks(this);
-        final QualificationResource qualificationResource = new QualificationResource(qualificationRepository);
+        final QualificationResource qualificationResource = new QualificationResource(qualificationService);
         this.restQualificationMockMvc = MockMvcBuilders.standaloneSetup(qualificationResource)
             .setCustomArgumentResolvers(pageableArgumentResolver)
             .setControllerAdvice(exceptionTranslator)
@@ -84,9 +86,18 @@ public class QualificationResourceIT {
      */
     public static Qualification createEntity(EntityManager em) {
         Qualification qualification = new Qualification()
-            .guid(DEFAULT_GUID)
             .name(DEFAULT_NAME)
             .hyperLink(DEFAULT_HYPER_LINK);
+        // Add required entity
+        Subject subject;
+        if (TestUtil.findAll(em, Subject.class).isEmpty()) {
+            subject = SubjectResourceIT.createEntity(em);
+            em.persist(subject);
+            em.flush();
+        } else {
+            subject = TestUtil.findAll(em, Subject.class).get(0);
+        }
+        qualification.setSubject(subject);
         return qualification;
     }
     /**
@@ -97,9 +108,18 @@ public class QualificationResourceIT {
      */
     public static Qualification createUpdatedEntity(EntityManager em) {
         Qualification qualification = new Qualification()
-            .guid(UPDATED_GUID)
             .name(UPDATED_NAME)
             .hyperLink(UPDATED_HYPER_LINK);
+        // Add required entity
+        Subject subject;
+        if (TestUtil.findAll(em, Subject.class).isEmpty()) {
+            subject = SubjectResourceIT.createUpdatedEntity(em);
+            em.persist(subject);
+            em.flush();
+        } else {
+            subject = TestUtil.findAll(em, Subject.class).get(0);
+        }
+        qualification.setSubject(subject);
         return qualification;
     }
 
@@ -123,7 +143,6 @@ public class QualificationResourceIT {
         List<Qualification> qualificationList = qualificationRepository.findAll();
         assertThat(qualificationList).hasSize(databaseSizeBeforeCreate + 1);
         Qualification testQualification = qualificationList.get(qualificationList.size() - 1);
-        assertThat(testQualification.getGuid()).isEqualTo(DEFAULT_GUID);
         assertThat(testQualification.getName()).isEqualTo(DEFAULT_NAME);
         assertThat(testQualification.getHyperLink()).isEqualTo(DEFAULT_HYPER_LINK);
     }
@@ -150,10 +169,10 @@ public class QualificationResourceIT {
 
     @Test
     @Transactional
-    public void checkGuidIsRequired() throws Exception {
+    public void checkNameIsRequired() throws Exception {
         int databaseSizeBeforeTest = qualificationRepository.findAll().size();
         // set the field null
-        qualification.setGuid(null);
+        qualification.setName(null);
 
         // Create the Qualification, which fails.
 
@@ -177,7 +196,6 @@ public class QualificationResourceIT {
             .andExpect(status().isOk())
             .andExpect(content().contentType(MediaType.APPLICATION_JSON_UTF8_VALUE))
             .andExpect(jsonPath("$.[*].id").value(hasItem(qualification.getId().intValue())))
-            .andExpect(jsonPath("$.[*].guid").value(hasItem(DEFAULT_GUID.toString())))
             .andExpect(jsonPath("$.[*].name").value(hasItem(DEFAULT_NAME.toString())))
             .andExpect(jsonPath("$.[*].hyperLink").value(hasItem(DEFAULT_HYPER_LINK.toString())));
     }
@@ -193,7 +211,6 @@ public class QualificationResourceIT {
             .andExpect(status().isOk())
             .andExpect(content().contentType(MediaType.APPLICATION_JSON_UTF8_VALUE))
             .andExpect(jsonPath("$.id").value(qualification.getId().intValue()))
-            .andExpect(jsonPath("$.guid").value(DEFAULT_GUID.toString()))
             .andExpect(jsonPath("$.name").value(DEFAULT_NAME.toString()))
             .andExpect(jsonPath("$.hyperLink").value(DEFAULT_HYPER_LINK.toString()));
     }
@@ -210,7 +227,7 @@ public class QualificationResourceIT {
     @Transactional
     public void updateQualification() throws Exception {
         // Initialize the database
-        qualificationRepository.saveAndFlush(qualification);
+        qualificationService.save(qualification);
 
         int databaseSizeBeforeUpdate = qualificationRepository.findAll().size();
 
@@ -219,7 +236,6 @@ public class QualificationResourceIT {
         // Disconnect from session so that the updates on updatedQualification are not directly saved in db
         em.detach(updatedQualification);
         updatedQualification
-            .guid(UPDATED_GUID)
             .name(UPDATED_NAME)
             .hyperLink(UPDATED_HYPER_LINK);
 
@@ -232,7 +248,6 @@ public class QualificationResourceIT {
         List<Qualification> qualificationList = qualificationRepository.findAll();
         assertThat(qualificationList).hasSize(databaseSizeBeforeUpdate);
         Qualification testQualification = qualificationList.get(qualificationList.size() - 1);
-        assertThat(testQualification.getGuid()).isEqualTo(UPDATED_GUID);
         assertThat(testQualification.getName()).isEqualTo(UPDATED_NAME);
         assertThat(testQualification.getHyperLink()).isEqualTo(UPDATED_HYPER_LINK);
     }
@@ -259,7 +274,7 @@ public class QualificationResourceIT {
     @Transactional
     public void deleteQualification() throws Exception {
         // Initialize the database
-        qualificationRepository.saveAndFlush(qualification);
+        qualificationService.save(qualification);
 
         int databaseSizeBeforeDelete = qualificationRepository.findAll().size();
 

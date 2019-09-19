@@ -96,23 +96,17 @@ export class QualificationUpdate extends React.Component<IQualificationUpdatePro
                   </AvGroup>
                 ) : null}
                 <AvGroup>
-                  <Label id="guidLabel" for="qualification-guid">
-                    <Translate contentKey="catalogApp.qualification.guid">Guid</Translate>
+                  <Label id="nameLabel" for="qualification-name">
+                    <Translate contentKey="catalogApp.qualification.name">Name</Translate>
                   </Label>
                   <AvField
-                    id="qualification-guid"
+                    id="qualification-name"
                     type="text"
-                    name="guid"
+                    name="name"
                     validate={{
                       required: { value: true, errorMessage: translate('entity.validation.required') }
                     }}
                   />
-                </AvGroup>
-                <AvGroup>
-                  <Label id="nameLabel" for="qualification-name">
-                    <Translate contentKey="catalogApp.qualification.name">Name</Translate>
-                  </Label>
-                  <AvField id="qualification-name" type="text" name="name" />
                 </AvGroup>
                 <AvGroup>
                   <Label id="hyperLinkLabel" for="qualification-hyperLink">
@@ -124,16 +118,25 @@ export class QualificationUpdate extends React.Component<IQualificationUpdatePro
                   <Label for="qualification-subject">
                     <Translate contentKey="catalogApp.qualification.subject">Subject</Translate>
                   </Label>
-                  <AvInput id="qualification-subject" type="select" className="form-control" name="subject.id">
-                    <option value="" key="0" />
+                  <AvInput
+                    id="qualification-subject"
+                    type="select"
+                    className="form-control"
+                    name="subject.id"
+                    value={isNew ? subjects[0] && subjects[0].id : qualificationEntity.subject.id}
+                    required
+                  >
                     {subjects
                       ? subjects.map(otherEntity => (
                           <option value={otherEntity.id} key={otherEntity.id}>
-                            {otherEntity.guid}
+                            {otherEntity.name}
                           </option>
                         ))
                       : null}
                   </AvInput>
+                  <AvFeedback>
+                    <Translate contentKey="entity.validation.required">This field is required.</Translate>
+                  </AvFeedback>
                 </AvGroup>
                 <Button tag={Link} id="cancel-save" to="/entity/qualification" replace color="info">
                   <FontAwesomeIcon icon="arrow-left" />

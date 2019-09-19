@@ -101,57 +101,86 @@ export class TeachingClassUpdate extends React.Component<ITeachingClassUpdatePro
                   </AvGroup>
                 ) : null}
                 <AvGroup>
-                  <Label id="guidLabel" for="teaching-class-guid">
-                    <Translate contentKey="catalogApp.teachingClass.guid">Guid</Translate>
+                  <Label id="codeLabel" for="teaching-class-code">
+                    <Translate contentKey="catalogApp.teachingClass.code">Code</Translate>
                   </Label>
                   <AvField
-                    id="teaching-class-guid"
+                    id="teaching-class-code"
                     type="text"
-                    name="guid"
+                    name="code"
                     validate={{
                       required: { value: true, errorMessage: translate('entity.validation.required') }
                     }}
                   />
                 </AvGroup>
                 <AvGroup>
-                  <Label id="codeLabel" for="teaching-class-code">
-                    <Translate contentKey="catalogApp.teachingClass.code">Code</Translate>
-                  </Label>
-                  <AvField id="teaching-class-code" type="text" name="code" />
-                </AvGroup>
-                <AvGroup>
                   <Label id="yearLabel" for="teaching-class-year">
                     <Translate contentKey="catalogApp.teachingClass.year">Year</Translate>
                   </Label>
-                  <AvField id="teaching-class-year" type="string" className="form-control" name="year" />
+                  <AvField
+                    id="teaching-class-year"
+                    type="string"
+                    className="form-control"
+                    name="year"
+                    validate={{
+                      required: { value: true, errorMessage: translate('entity.validation.required') },
+                      min: { value: 0, errorMessage: translate('entity.validation.min', { min: 0 }) },
+                      number: { value: true, errorMessage: translate('entity.validation.number') }
+                    }}
+                  />
                 </AvGroup>
                 <AvGroup>
                   <Label id="semesterLabel" for="teaching-class-semester">
                     <Translate contentKey="catalogApp.teachingClass.semester">Semester</Translate>
                   </Label>
-                  <AvField id="teaching-class-semester" type="string" className="form-control" name="semester" />
+                  <AvField
+                    id="teaching-class-semester"
+                    type="string"
+                    className="form-control"
+                    name="semester"
+                    validate={{
+                      required: { value: true, errorMessage: translate('entity.validation.required') },
+                      min: { value: 0, errorMessage: translate('entity.validation.min', { min: 0 }) },
+                      number: { value: true, errorMessage: translate('entity.validation.number') }
+                    }}
+                  />
                 </AvGroup>
                 <AvGroup>
                   <Label for="teaching-class-campus">
                     <Translate contentKey="catalogApp.teachingClass.campus">Campus</Translate>
                   </Label>
-                  <AvInput id="teaching-class-campus" type="select" className="form-control" name="campus.id">
-                    <option value="" key="0" />
+                  <AvInput
+                    id="teaching-class-campus"
+                    type="select"
+                    className="form-control"
+                    name="campus.id"
+                    value={isNew ? campuses[0] && campuses[0].id : teachingClassEntity.campus.id}
+                    required
+                  >
                     {campuses
                       ? campuses.map(otherEntity => (
                           <option value={otherEntity.id} key={otherEntity.id}>
-                            {otherEntity.guid}
+                            {otherEntity.name}
                           </option>
                         ))
                       : null}
                   </AvInput>
+                  <AvFeedback>
+                    <Translate contentKey="entity.validation.required">This field is required.</Translate>
+                  </AvFeedback>
                 </AvGroup>
                 <AvGroup>
                   <Label for="teaching-class-paper">
                     <Translate contentKey="catalogApp.teachingClass.paper">Paper</Translate>
                   </Label>
-                  <AvInput id="teaching-class-paper" type="select" className="form-control" name="paper.id">
-                    <option value="" key="0" />
+                  <AvInput
+                    id="teaching-class-paper"
+                    type="select"
+                    className="form-control"
+                    name="paper.id"
+                    value={isNew ? papers[0] && papers[0].id : teachingClassEntity.paper.id}
+                    required
+                  >
                     {papers
                       ? papers.map(otherEntity => (
                           <option value={otherEntity.id} key={otherEntity.id}>
@@ -160,6 +189,9 @@ export class TeachingClassUpdate extends React.Component<ITeachingClassUpdatePro
                         ))
                       : null}
                   </AvInput>
+                  <AvFeedback>
+                    <Translate contentKey="entity.validation.required">This field is required.</Translate>
+                  </AvFeedback>
                 </AvGroup>
                 <Button tag={Link} id="cancel-save" to="/entity/teaching-class" replace color="info">
                   <FontAwesomeIcon icon="arrow-left" />

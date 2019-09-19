@@ -29,12 +29,6 @@ export class SubjectDetail extends React.Component<ISubjectDetailProps> {
           </h2>
           <dl className="jh-entity-details">
             <dt>
-              <span id="guid">
-                <Translate contentKey="catalogApp.subject.guid">Guid</Translate>
-              </span>
-            </dt>
-            <dd>{subjectEntity.guid}</dd>
-            <dt>
               <span id="name">
                 <Translate contentKey="catalogApp.subject.name">Name</Translate>
               </span>

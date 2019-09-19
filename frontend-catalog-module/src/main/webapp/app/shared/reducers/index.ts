@@ -53,9 +53,45 @@ import address, {
   AddressState
 } from 'app/entities/address/address.reducer';
 // prettier-ignore
-import educationalInstituition, {
-  EducationalInstituitionState
-} from 'app/entities/educational-instituition/educational-instituition.reducer';
+import campus, {
+  CampusState
+} from 'app/entities/campus/campus.reducer';
+// prettier-ignore
+import subject, {
+  SubjectState
+} from 'app/entities/subject/subject.reducer';
+// prettier-ignore
+import paper, {
+  PaperState
+} from 'app/entities/paper/paper.reducer';
+// prettier-ignore
+import requirement, {
+  RequirementState
+} from 'app/entities/requirement/requirement.reducer';
+// prettier-ignore
+import qualification, {
+  QualificationState
+} from 'app/entities/qualification/qualification.reducer';
+// prettier-ignore
+import teachingStaff, {
+  TeachingStaffState
+} from 'app/entities/teaching-staff/teaching-staff.reducer';
+// prettier-ignore
+import teachingClass, {
+  TeachingClassState
+} from 'app/entities/teaching-class/teaching-class.reducer';
+// prettier-ignore
+import contact, {
+  ContactState
+} from 'app/entities/contact/contact.reducer';
+// prettier-ignore
+import address, {
+  AddressState
+} from 'app/entities/address/address.reducer';
+// prettier-ignore
+import educationalInstitution, {
+  EducationalInstitutionState
+} from 'app/entities/educational-institution/educational-institution.reducer';
 // prettier-ignore
 import campus, {
   CampusState
@@ -83,8 +119,8 @@ export interface IRootState {
   readonly paper: PaperState;
   readonly contact: ContactState;
   readonly address: AddressState;
-  readonly educationalInstituition: EducationalInstituitionState;
   readonly campus: CampusState;
+  readonly educationalInstitution: EducationalInstitutionState;
   /* jhipster-needle-add-reducer-type - JHipster will add reducer type here */
   readonly loadingBar: any;
 }
@@ -110,8 +146,8 @@ const rootReducer = combineReducers<IRootState>({
   paper,
   contact,
   address,
-  educationalInstituition,
   campus,
+  educationalInstitution,
   /* jhipster-needle-add-reducer-combine - JHipster will add reducer here */
   loadingBar
 });

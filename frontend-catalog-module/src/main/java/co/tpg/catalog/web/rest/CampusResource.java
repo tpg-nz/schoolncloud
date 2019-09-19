@@ -1,14 +1,21 @@
 package co.tpg.catalog.web.rest;
 
 import co.tpg.catalog.domain.Campus;
-import co.tpg.catalog.repository.CampusRepository;
+import co.tpg.catalog.service.CampusService;
 import co.tpg.catalog.web.rest.errors.BadRequestAlertException;
 
 import io.github.jhipster.web.util.HeaderUtil;
+import io.github.jhipster.web.util.PaginationUtil;
 import io.github.jhipster.web.util.ResponseUtil;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Value;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
+import org.springframework.http.HttpHeaders;
+import org.springframework.http.HttpStatus;
+import org.springframework.util.MultiValueMap;
+import org.springframework.web.util.UriComponentsBuilder;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
@@ -33,10 +40,10 @@ public class CampusResource {
     @Value("${jhipster.clientApp.name}")
     private String applicationName;
 
-    private final CampusRepository campusRepository;
+    private final CampusService campusService;
 
-    public CampusResource(CampusRepository campusRepository) {
-        this.campusRepository = campusRepository;
+    public CampusResource(CampusService campusService) {
+        this.campusService = campusService;
     }
 
     /**
@@ -52,7 +59,7 @@ public class CampusResource {
         if (campus.getId() != null) {
             throw new BadRequestAlertException("A new campus cannot already have an ID", ENTITY_NAME, "idexists");
         }
-        Campus result = campusRepository.save(campus);
+        Campus result = campusService.save(campus);
         return ResponseEntity.created(new URI("/api/campuses/" + result.getId()))
             .headers(HeaderUtil.createEntityCreationAlert(applicationName, true, ENTITY_NAME, result.getId().toString()))
             .body(result);
@@ -73,7 +80,7 @@ public class CampusResource {
         if (campus.getId() == null) {
             throw new BadRequestAlertException("Invalid id", ENTITY_NAME, "idnull");
         }
-        Campus result = campusRepository.save(campus);
+        Campus result = campusService.save(campus);
         return ResponseEntity.ok()
             .headers(HeaderUtil.createEntityUpdateAlert(applicationName, true, ENTITY_NAME, campus.getId().toString()))
             .body(result);
@@ -82,12 +89,17 @@ public class CampusResource {
     /**
      * {@code GET  /campuses} : get all the campuses.
      *
+     * @param pageable the pagination information.
+     * @param queryParams a {@link MultiValueMap} query parameters.
+     * @param uriBuilder a {@link UriComponentsBuilder} URI builder.
      * @return the {@link ResponseEntity} with status {@code 200 (OK)} and the list of campuses in body.
      */
     @GetMapping("/campuses")
-    public List<Campus> getAllCampuses() {
-        log.debug("REST request to get all Campuses");
-        return campusRepository.findAll();
+    public ResponseEntity<List<Campus>> getAllCampuses(Pageable pageable, @RequestParam MultiValueMap<String, String> queryParams, UriComponentsBuilder uriBuilder) {
+        log.debug("REST request to get a page of Campuses");
+        Page<Campus> page = campusService.findAll(pageable);
+        HttpHeaders headers = PaginationUtil.generatePaginationHttpHeaders(uriBuilder.queryParams(queryParams), page);
+        return ResponseEntity.ok().headers(headers).body(page.getContent());
     }
 
     /**
@@ -99,7 +111,7 @@ public class CampusResource {
     @GetMapping("/campuses/{id}")
     public ResponseEntity<Campus> getCampus(@PathVariable Long id) {
         log.debug("REST request to get Campus : {}", id);
-        Optional<Campus> campus = campusRepository.findById(id);
+        Optional<Campus> campus = campusService.findOne(id);
         return ResponseUtil.wrapOrNotFound(campus);
     }
 
@@ -112,7 +124,7 @@ public class CampusResource {
     @DeleteMapping("/campuses/{id}")
     public ResponseEntity<Void> deleteCampus(@PathVariable Long id) {
         log.debug("REST request to delete Campus : {}", id);
-        campusRepository.deleteById(id);
+        campusService.delete(id);
         return ResponseEntity.noContent().headers(HeaderUtil.createEntityDeletionAlert(applicationName, true, ENTITY_NAME, id.toString())).build();
     }
 }

@@ -14,8 +14,7 @@ export const enum ContactType {
 
 export interface IAddress {
   id?: number;
-  guid?: string;
-  entityGuid?: string;
+  entityId?: number;
   address?: string;
   zipCode?: string;
   city?: string;

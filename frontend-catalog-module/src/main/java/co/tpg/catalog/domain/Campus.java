@@ -23,16 +23,13 @@ public class Campus implements Serializable {
     private Long id;
 
     @NotNull
-    @Column(name = "guid", nullable = false)
-    private String guid;
-
-    @Column(name = "name")
+    @Column(name = "name", nullable = false)
     private String name;
 
     @ManyToOne(optional = false)
     @NotNull
     @JsonIgnoreProperties("campuses")
-    private EducationalInstituition educationalInstitution;
+    private EducationalInstitution educationalInstitution;
 
     // jhipster-needle-entity-add-field - JHipster will add fields here, do not remove
     public Long getId() {
@@ -41,19 +38,6 @@ public class Campus implements Serializable {
 
     public void setId(Long id) {
         this.id = id;
-    }
-
-    public String getGuid() {
-        return guid;
-    }
-
-    public Campus guid(String guid) {
-        this.guid = guid;
-        return this;
-    }
-
-    public void setGuid(String guid) {
-        this.guid = guid;
     }
 
     public String getName() {
@@ -69,17 +53,17 @@ public class Campus implements Serializable {
         this.name = name;
     }
 
-    public EducationalInstituition getEducationalInstitution() {
+    public EducationalInstitution getEducationalInstitution() {
         return educationalInstitution;
     }
 
-    public Campus educationalInstitution(EducationalInstituition educationalInstituition) {
-        this.educationalInstitution = educationalInstituition;
+    public Campus educationalInstitution(EducationalInstitution educationalInstitution) {
+        this.educationalInstitution = educationalInstitution;
         return this;
     }
 
-    public void setEducationalInstitution(EducationalInstituition educationalInstituition) {
-        this.educationalInstitution = educationalInstituition;
+    public void setEducationalInstitution(EducationalInstitution educationalInstitution) {
+        this.educationalInstitution = educationalInstitution;
     }
     // jhipster-needle-entity-add-getters-setters - JHipster will add getters and setters here, do not remove
 
@@ -103,7 +87,6 @@ public class Campus implements Serializable {
     public String toString() {
         return "Campus{" +
             "id=" + getId() +
-            ", guid='" + getGuid() + "'" +
             ", name='" + getName() + "'" +
             "}";
     }

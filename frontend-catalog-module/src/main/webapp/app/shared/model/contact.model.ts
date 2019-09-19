@@ -6,7 +6,7 @@ export const enum ContactType {
   PAPER = 'PAPER'
 }
 
-export const enum MediaTypee {
+export const enum MediaType {
   EMAIL = 'EMAIL',
   WEB_SITE = 'WEB_SITE',
   MOBILE_PHONE = 'MOBILE_PHONE',
@@ -15,11 +15,10 @@ export const enum MediaTypee {
 
 export interface IContact {
   id?: number;
-  guid?: string;
-  entityGuid?: string;
+  entityId?: number;
   contact?: string;
   contactType?: ContactType;
-  mediaType?: MediaTypee;
+  mediaType?: MediaType;
 }
 
 export const defaultValue: Readonly<IContact> = {};

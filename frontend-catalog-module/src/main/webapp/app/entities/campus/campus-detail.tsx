@@ -29,12 +29,6 @@ export class CampusDetail extends React.Component<ICampusDetailProps> {
           </h2>
           <dl className="jh-entity-details">
             <dt>
-              <span id="guid">
-                <Translate contentKey="catalogApp.campus.guid">Guid</Translate>
-              </span>
-            </dt>
-            <dd>{campusEntity.guid}</dd>
-            <dt>
               <span id="name">
                 <Translate contentKey="catalogApp.campus.name">Name</Translate>
               </span>

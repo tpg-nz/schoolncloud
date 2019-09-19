@@ -55,7 +55,7 @@ export class PaperDetail extends React.Component<IPaperDetailProps> {
             <dt>
               <Translate contentKey="catalogApp.paper.subject">Subject</Translate>
             </dt>
-            <dd>{paperEntity.subject ? paperEntity.subject.guid : ''}</dd>
+            <dd>{paperEntity.subject ? paperEntity.subject.name : ''}</dd>
           </dl>
           <Button tag={Link} to="/entity/paper" replace color="info">
             <FontAwesomeIcon icon="arrow-left" />{' '}

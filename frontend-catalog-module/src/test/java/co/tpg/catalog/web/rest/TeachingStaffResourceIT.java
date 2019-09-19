@@ -2,17 +2,16 @@ package co.tpg.catalog.web.rest;
 
 import co.tpg.catalog.CatalogApp;
 import co.tpg.catalog.domain.TeachingStaff;
+import co.tpg.catalog.domain.Paper;
 import co.tpg.catalog.repository.TeachingStaffRepository;
+import co.tpg.catalog.service.TeachingStaffService;
 import co.tpg.catalog.web.rest.errors.ExceptionTranslator;
 
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
-import org.mockito.Mock;
 import org.mockito.MockitoAnnotations;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
-import org.springframework.data.domain.PageImpl;
-import org.springframework.data.domain.PageRequest;
 import org.springframework.data.web.PageableHandlerMethodArgumentResolver;
 import org.springframework.http.MediaType;
 import org.springframework.http.converter.json.MappingJackson2HttpMessageConverter;
@@ -22,13 +21,11 @@ import org.springframework.transaction.annotation.Transactional;
 import org.springframework.validation.Validator;
 
 import javax.persistence.EntityManager;
-import java.util.ArrayList;
 import java.util.List;
 
 import static co.tpg.catalog.web.rest.TestUtil.createFormattingConversionService;
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.hamcrest.Matchers.hasItem;
-import static org.mockito.Mockito.*;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.*;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.*;
 
@@ -39,9 +36,6 @@ import co.tpg.catalog.domain.enumeration.GraduationType;
 @SpringBootTest(classes = CatalogApp.class)
 public class TeachingStaffResourceIT {
 
-    private static final String DEFAULT_GUID = "AAAAAAAAAA";
-    private static final String UPDATED_GUID = "BBBBBBBBBB";
-
     private static final String DEFAULT_NAME = "AAAAAAAAAA";
     private static final String UPDATED_NAME = "BBBBBBBBBB";
 
@@ -51,8 +45,8 @@ public class TeachingStaffResourceIT {
     @Autowired
     private TeachingStaffRepository teachingStaffRepository;
 
-    @Mock
-    private TeachingStaffRepository teachingStaffRepositoryMock;
+    @Autowired
+    private TeachingStaffService teachingStaffService;
 
     @Autowired
     private MappingJackson2HttpMessageConverter jacksonMessageConverter;
@@ -76,7 +70,7 @@ public class TeachingStaffResourceIT {
     @BeforeEach
     public void setup() {
         MockitoAnnotations.initMocks(this);
-        final TeachingStaffResource teachingStaffResource = new TeachingStaffResource(teachingStaffRepository);
+        final TeachingStaffResource teachingStaffResource = new TeachingStaffResource(teachingStaffService);
         this.restTeachingStaffMockMvc = MockMvcBuilders.standaloneSetup(teachingStaffResource)
             .setCustomArgumentResolvers(pageableArgumentResolver)
             .setControllerAdvice(exceptionTranslator)
@@ -93,9 +87,18 @@ public class TeachingStaffResourceIT {
      */
     public static TeachingStaff createEntity(EntityManager em) {
         TeachingStaff teachingStaff = new TeachingStaff()
-            .guid(DEFAULT_GUID)
             .name(DEFAULT_NAME)
             .graduationType(DEFAULT_GRADUATION_TYPE);
+        // Add required entity
+        Paper paper;
+        if (TestUtil.findAll(em, Paper.class).isEmpty()) {
+            paper = PaperResourceIT.createEntity(em);
+            em.persist(paper);
+            em.flush();
+        } else {
+            paper = TestUtil.findAll(em, Paper.class).get(0);
+        }
+        teachingStaff.setPaper(paper);
         return teachingStaff;
     }
     /**
@@ -106,9 +109,18 @@ public class TeachingStaffResourceIT {
      */
     public static TeachingStaff createUpdatedEntity(EntityManager em) {
         TeachingStaff teachingStaff = new TeachingStaff()
-            .guid(UPDATED_GUID)
             .name(UPDATED_NAME)
             .graduationType(UPDATED_GRADUATION_TYPE);
+        // Add required entity
+        Paper paper;
+        if (TestUtil.findAll(em, Paper.class).isEmpty()) {
+            paper = PaperResourceIT.createUpdatedEntity(em);
+            em.persist(paper);
+            em.flush();
+        } else {
+            paper = TestUtil.findAll(em, Paper.class).get(0);
+        }
+        teachingStaff.setPaper(paper);
         return teachingStaff;
     }
 
@@ -132,7 +144,6 @@ public class TeachingStaffResourceIT {
         List<TeachingStaff> teachingStaffList = teachingStaffRepository.findAll();
         assertThat(teachingStaffList).hasSize(databaseSizeBeforeCreate + 1);
         TeachingStaff testTeachingStaff = teachingStaffList.get(teachingStaffList.size() - 1);
-        assertThat(testTeachingStaff.getGuid()).isEqualTo(DEFAULT_GUID);
         assertThat(testTeachingStaff.getName()).isEqualTo(DEFAULT_NAME);
         assertThat(testTeachingStaff.getGraduationType()).isEqualTo(DEFAULT_GRADUATION_TYPE);
     }
@@ -159,10 +170,10 @@ public class TeachingStaffResourceIT {
 
     @Test
     @Transactional
-    public void checkGuidIsRequired() throws Exception {
+    public void checkNameIsRequired() throws Exception {
         int databaseSizeBeforeTest = teachingStaffRepository.findAll().size();
         // set the field null
-        teachingStaff.setGuid(null);
+        teachingStaff.setName(null);
 
         // Create the TeachingStaff, which fails.
 
@@ -186,44 +197,10 @@ public class TeachingStaffResourceIT {
             .andExpect(status().isOk())
             .andExpect(content().contentType(MediaType.APPLICATION_JSON_UTF8_VALUE))
             .andExpect(jsonPath("$.[*].id").value(hasItem(teachingStaff.getId().intValue())))
-            .andExpect(jsonPath("$.[*].guid").value(hasItem(DEFAULT_GUID.toString())))
             .andExpect(jsonPath("$.[*].name").value(hasItem(DEFAULT_NAME.toString())))
             .andExpect(jsonPath("$.[*].graduationType").value(hasItem(DEFAULT_GRADUATION_TYPE.toString())));
     }
     
-    @SuppressWarnings({"unchecked"})
-    public void getAllTeachingStaffsWithEagerRelationshipsIsEnabled() throws Exception {
-        TeachingStaffResource teachingStaffResource = new TeachingStaffResource(teachingStaffRepositoryMock);
-        when(teachingStaffRepositoryMock.findAllWithEagerRelationships(any())).thenReturn(new PageImpl(new ArrayList<>()));
-
-        MockMvc restTeachingStaffMockMvc = MockMvcBuilders.standaloneSetup(teachingStaffResource)
-            .setCustomArgumentResolvers(pageableArgumentResolver)
-            .setControllerAdvice(exceptionTranslator)
-            .setConversionService(createFormattingConversionService())
-            .setMessageConverters(jacksonMessageConverter).build();
-
-        restTeachingStaffMockMvc.perform(get("/api/teaching-staffs?eagerload=true"))
-        .andExpect(status().isOk());
-
-        verify(teachingStaffRepositoryMock, times(1)).findAllWithEagerRelationships(any());
-    }
-
-    @SuppressWarnings({"unchecked"})
-    public void getAllTeachingStaffsWithEagerRelationshipsIsNotEnabled() throws Exception {
-        TeachingStaffResource teachingStaffResource = new TeachingStaffResource(teachingStaffRepositoryMock);
-            when(teachingStaffRepositoryMock.findAllWithEagerRelationships(any())).thenReturn(new PageImpl(new ArrayList<>()));
-            MockMvc restTeachingStaffMockMvc = MockMvcBuilders.standaloneSetup(teachingStaffResource)
-            .setCustomArgumentResolvers(pageableArgumentResolver)
-            .setControllerAdvice(exceptionTranslator)
-            .setConversionService(createFormattingConversionService())
-            .setMessageConverters(jacksonMessageConverter).build();
-
-        restTeachingStaffMockMvc.perform(get("/api/teaching-staffs?eagerload=true"))
-        .andExpect(status().isOk());
-
-            verify(teachingStaffRepositoryMock, times(1)).findAllWithEagerRelationships(any());
-    }
-
     @Test
     @Transactional
     public void getTeachingStaff() throws Exception {
@@ -235,7 +212,6 @@ public class TeachingStaffResourceIT {
             .andExpect(status().isOk())
             .andExpect(content().contentType(MediaType.APPLICATION_JSON_UTF8_VALUE))
             .andExpect(jsonPath("$.id").value(teachingStaff.getId().intValue()))
-            .andExpect(jsonPath("$.guid").value(DEFAULT_GUID.toString()))
             .andExpect(jsonPath("$.name").value(DEFAULT_NAME.toString()))
             .andExpect(jsonPath("$.graduationType").value(DEFAULT_GRADUATION_TYPE.toString()));
     }
@@ -252,7 +228,7 @@ public class TeachingStaffResourceIT {
     @Transactional
     public void updateTeachingStaff() throws Exception {
         // Initialize the database
-        teachingStaffRepository.saveAndFlush(teachingStaff);
+        teachingStaffService.save(teachingStaff);
 
         int databaseSizeBeforeUpdate = teachingStaffRepository.findAll().size();
 
@@ -261,7 +237,6 @@ public class TeachingStaffResourceIT {
         // Disconnect from session so that the updates on updatedTeachingStaff are not directly saved in db
         em.detach(updatedTeachingStaff);
         updatedTeachingStaff
-            .guid(UPDATED_GUID)
             .name(UPDATED_NAME)
             .graduationType(UPDATED_GRADUATION_TYPE);
 
@@ -274,7 +249,6 @@ public class TeachingStaffResourceIT {
         List<TeachingStaff> teachingStaffList = teachingStaffRepository.findAll();
         assertThat(teachingStaffList).hasSize(databaseSizeBeforeUpdate);
         TeachingStaff testTeachingStaff = teachingStaffList.get(teachingStaffList.size() - 1);
-        assertThat(testTeachingStaff.getGuid()).isEqualTo(UPDATED_GUID);
         assertThat(testTeachingStaff.getName()).isEqualTo(UPDATED_NAME);
         assertThat(testTeachingStaff.getGraduationType()).isEqualTo(UPDATED_GRADUATION_TYPE);
     }
@@ -301,7 +275,7 @@ public class TeachingStaffResourceIT {
     @Transactional
     public void deleteTeachingStaff() throws Exception {
         // Initialize the database
-        teachingStaffRepository.saveAndFlush(teachingStaff);
+        teachingStaffService.save(teachingStaff);
 
         int databaseSizeBeforeDelete = teachingStaffRepository.findAll().size();
 

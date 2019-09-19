@@ -1,8 +1,8 @@
 Resources:
   Function:
-    Type: AWS::Serverless::Function
     Properties:
+      CodeUri: Function
       Handler: co.tpg.function.EducationalInstitutionFunction
-      CodeUri: C:/Users/pamela/Documents/schoolncloud/middleware-catalog-module/educational-institution/EducationalInstitution
       Runtime: java8
       Timeout: 900
+    Type: AWS::Serverless::Function

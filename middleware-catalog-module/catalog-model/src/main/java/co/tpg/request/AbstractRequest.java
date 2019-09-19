@@ -26,8 +26,16 @@ public abstract class AbstractRequest<T> {
         this.queryStringParameters = queryStringParameters;
     }
 
+    public String getQueryStringParameter(String key) {
+        return this.queryStringParameters.get(key);
+    }
+
     public Map<String, String> getPathParameters() {
         return pathParameters;
+    }
+
+    public String getPathParameter(String key) {
+        return this.pathParameters.get(key);
     }
 
     public void setPathParameters(Map<String, String> pathParameters) {

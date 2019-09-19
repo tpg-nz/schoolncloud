@@ -1,11 +1,13 @@
 {
-  "body": {"id":"1896","name":"Auckland University"},
+  "body": {},
   "resource": "/{proxy+}",
   "path": "/path/to/resource",
-  "httpMethod": "POST",
+  "httpMethod": "DELETE",
   "isBase64Encoded": false,
   "queryStringParameters": {},
-  "pathParameters": {},
+  "pathParameters": {
+    "id": "10"
+  },
   "stageVariables": {
     "baz": "qux"
   },

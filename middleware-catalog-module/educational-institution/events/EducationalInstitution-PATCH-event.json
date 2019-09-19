@@ -1,11 +1,13 @@
 {
-  "body": {"id":"1896","name":"Auckland University"},
+  "body": {"id":"1896","name":"Auckland University of Technology"},
   "resource": "/{proxy+}",
   "path": "/path/to/resource",
-  "httpMethod": "POST",
+  "httpMethod": "PATCH",
   "isBase64Encoded": false,
   "queryStringParameters": {},
-  "pathParameters": {},
+  "pathParameters": {
+    "id": "/path/to/resource"
+  },
   "stageVariables": {
     "baz": "qux"
   },

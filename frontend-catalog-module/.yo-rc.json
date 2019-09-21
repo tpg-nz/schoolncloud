@@ -4,7 +4,7 @@
       "packageName": "co.tpg.catalog",
       "nativeLanguage": "en"
     },
-    "jhipsterVersion": "6.2.0",
+    "jhipsterVersion": "6.1.2",
     "applicationType": "monolith",
     "baseName": "catalog",
     "packageName": "co.tpg.catalog",

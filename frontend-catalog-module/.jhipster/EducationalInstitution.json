@@ -10,7 +10,7 @@
         }
     ],
     "relationships": [],
-    "changelogDate": "20190919102713",
+    "changelogDate": "20190921214844",
     "entityTableName": "educational_institution",
     "dto": "no",
     "pagination": "pagination",

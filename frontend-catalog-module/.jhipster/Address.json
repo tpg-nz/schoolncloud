@@ -48,7 +48,7 @@
         }
     ],
     "relationships": [],
-    "changelogDate": "20190919102712",
+    "changelogDate": "20190921214847",
     "entityTableName": "address",
     "dto": "no",
     "pagination": "pagination",

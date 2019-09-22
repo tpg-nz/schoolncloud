@@ -22,7 +22,7 @@
         }
     ],
     "relationships": [],
-    "changelogDate": "20190919102705",
+    "changelogDate": "20190921214838",
     "entityTableName": "subject",
     "dto": "no",
     "pagination": "pagination",

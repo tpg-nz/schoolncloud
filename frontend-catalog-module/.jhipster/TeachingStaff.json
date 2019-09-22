@@ -24,7 +24,7 @@
             "otherEntityField": "code"
         }
     ],
-    "changelogDate": "20190919102709",
+    "changelogDate": "20190921214842",
     "entityTableName": "teaching_staff",
     "dto": "no",
     "pagination": "pagination",

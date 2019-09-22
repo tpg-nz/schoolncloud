@@ -23,7 +23,7 @@
             "otherEntityField": "name"
         }
     ],
-    "changelogDate": "20190919102708",
+    "changelogDate": "20190921214841",
     "entityTableName": "qualification",
     "dto": "no",
     "pagination": "pagination",

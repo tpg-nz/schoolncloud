@@ -19,7 +19,7 @@
             "otherEntityField": "name"
         }
     ],
-    "changelogDate": "20190919102714",
+    "changelogDate": "20190921214845",
     "entityTableName": "campus",
     "dto": "no",
     "pagination": "pagination",

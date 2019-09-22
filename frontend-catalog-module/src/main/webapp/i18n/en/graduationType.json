@@ -1,0 +1,11 @@
+{
+  "catalogApp": {
+    "GraduationType": {
+      "null": "",
+      "POST_GRADUATE": "POST_GRADUATE",
+      "MASTER_DEGREE": "MASTER_DEGREE",
+      "DOCTOR_DEGREE": "DOCTOR_DEGREE",
+      "PHD": "PHD"
+    }
+  }
+}

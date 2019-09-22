@@ -1,0 +1,35 @@
+{
+    "name": "Qualification",
+    "fields": [
+        {
+            "fieldName": "name",
+            "fieldType": "String",
+            "fieldValidateRules": [
+                "required"
+            ]
+        },
+        {
+            "fieldName": "hyperLink",
+            "fieldType": "String"
+        }
+    ],
+    "relationships": [
+        {
+            "relationshipType": "many-to-one",
+            "otherEntityName": "subject",
+            "otherEntityRelationshipName": "qualification",
+            "relationshipValidateRules": "required",
+            "relationshipName": "subject",
+            "otherEntityField": "name"
+        }
+    ],
+    "changelogDate": "20190921214841",
+    "entityTableName": "qualification",
+    "dto": "no",
+    "pagination": "pagination",
+    "service": "serviceImpl",
+    "jpaMetamodelFiltering": false,
+    "fluentMethods": true,
+    "clientRootFolder": "",
+    "applications": "*"
+}

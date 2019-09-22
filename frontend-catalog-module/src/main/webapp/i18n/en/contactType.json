@@ -1,0 +1,12 @@
+{
+  "catalogApp": {
+    "ContactType": {
+      "null": "",
+      "SUBJECT": "SUBJECT",
+      "INSTITUTIONAL": "INSTITUTIONAL",
+      "CAMPUS": "CAMPUS",
+      "TEACHING_STAFF": "TEACHING_STAFF",
+      "PAPER": "PAPER"
+    }
+  }
+}

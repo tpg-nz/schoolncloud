@@ -7,6 +7,16 @@
       "jhipster-needle-menu-add-element": "JHipster will add additional menu entries here (do not translate!)",
       "entities": {
         "main": "Entities",
+        "subject": "Subject",
+        "paper": "Paper",
+        "requirement": "Requirement",
+        "qualification": "Qualification",
+        "teachingStaff": "Teaching Staff",
+        "teachingClass": "Teaching Class",
+        "educationalInstitution": "Educational Institution",
+        "campus": "Campus",
+        "contact": "Contact",
+        "address": "Address",
         "jhipster-needle-menu-add-entry": "JHipster will add additional entities here (do not translate!)"
       },
       "account": {

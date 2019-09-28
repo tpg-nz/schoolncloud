@@ -17,20 +17,14 @@ import lombok.ToString;
 public class TeachingStaff extends AbstractModel<String> {
     private String id;
     private String name;
+    private Paper paper;
 
     public TeachingStaff() {
     }
 
-    public TeachingStaff(String id, String name) {
+    public TeachingStaff(String id, String name, Paper paper) {
         this.id = id;
         this.name = name;
-    }
-
-    @Override
-    public String toString() {
-        return "TeachingStaff{" +
-                "id='" + id + '\'' +
-                ", name='" + name + '\'' +
-                '}';
+        this.paper = paper;
     }
 }

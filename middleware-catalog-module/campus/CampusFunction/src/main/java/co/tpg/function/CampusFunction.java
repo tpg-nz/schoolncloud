@@ -1,9 +1,9 @@
 package co.tpg.function;
 
-import co.tpg.model.TeachingStaff;
+import co.tpg.model.Campus;
+import co.tpg.request.CampusRequest;
 import co.tpg.request.HttpMethod;
-import co.tpg.request.TeachingStaffRequest;
-import co.tpg.response.TeachingStaffResponse;
+import co.tpg.response.CampusResponse;
 import com.amazonaws.services.lambda.runtime.Context;
 import com.amazonaws.services.lambda.runtime.RequestHandler;
 
@@ -16,29 +16,29 @@ import java.util.Map;
  * @author Rod
  * @since 2019-09-04
  */
-public class TeachingStaffFunction implements RequestHandler<TeachingStaffRequest, TeachingStaffResponse> {
+public class CampusFunction implements RequestHandler<CampusRequest, CampusResponse> {
 
-    public TeachingStaffResponse handleRequest(final TeachingStaffRequest input, final Context context) {
-        final TeachingStaffResponse response = new TeachingStaffResponse();
+    public CampusResponse handleRequest(final CampusRequest input, final Context context) {
+        final CampusResponse response = new CampusResponse();
         final Map<String, String> headers = new HashMap<>();
         String id;
 
         headers.put("Content-Type", "application/json");
         response.setHeaders(headers);
 
-        context.getLogger().log(String.format("HTTP method: %s\n ", input.getHttpMethod()));
+        context.getLogger().log(String.format("HTTP method: %s\n",input.getHttpMethod()));
 
         switch (input.getHttpMethod()) {
             case HttpMethod.POST:
                 context.getLogger().log(String.format("POST body=%s\n",input.getBody()));
                 // todo: SEND TEACHING STAFF TO THE DATABASE
-                response.setBody(TeachingStaff.builder().id("12345").name("Post Test").build());
+                response.setBody(Campus.builder().id("12345").name("Campus POST Test").build());
                 response.setStatusCode(HttpServletResponse.SC_CREATED);
                 break;
             case HttpMethod.GET:
                 id = input.getQueryStringParameters().get("id");
                 context.getLogger().log(String.format("GET ID=%s\n",id));
-                response.setBody(TeachingStaff.builder().id(id).name("Post Test").build());
+                response.setBody(Campus.builder().id(id).name("Campus GET Test").build());
                 response.setStatusCode(HttpServletResponse.SC_OK);
                 break;
             case HttpMethod.PUT:

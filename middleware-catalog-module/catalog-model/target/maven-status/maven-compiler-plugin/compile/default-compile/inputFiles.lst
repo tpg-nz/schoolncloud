@@ -1,10 +1,14 @@
 C:\projects\SchoolnCloud\schoolncloud\middleware-catalog-module\catalog-model\src\main\java\co\tpg\response\TeachingStaffResponse.java
-C:\projects\SchoolnCloud\schoolncloud\middleware-catalog-module\catalog-model\src\main\java\co\tpg\request\AbstractRequest.java
 C:\projects\SchoolnCloud\schoolncloud\middleware-catalog-module\catalog-model\src\main\java\co\tpg\request\RequestContext.java
-C:\projects\SchoolnCloud\schoolncloud\middleware-catalog-module\catalog-model\src\main\java\co\tpg\response\AbstractResponse.java
 C:\projects\SchoolnCloud\schoolncloud\middleware-catalog-module\catalog-model\src\main\java\co.tpg.model\Domain.java
-C:\projects\SchoolnCloud\schoolncloud\middleware-catalog-module\catalog-model\src\main\java\co.tpg.model\TeachingStaff.java
 C:\projects\SchoolnCloud\schoolncloud\middleware-catalog-module\catalog-model\src\main\java\co\tpg\request\TeachingStaffRequest.java
+C:\projects\SchoolnCloud\schoolncloud\middleware-catalog-module\catalog-model\src\main\java\co\tpg\request\CampusRequest.java
+C:\projects\SchoolnCloud\schoolncloud\middleware-catalog-module\catalog-model\src\main\java\co.tpg.model\Campus.java
+C:\projects\SchoolnCloud\schoolncloud\middleware-catalog-module\catalog-model\src\main\java\co\tpg\request\AbstractRequest.java
+C:\projects\SchoolnCloud\schoolncloud\middleware-catalog-module\catalog-model\src\main\java\co\tpg\response\CampusResponse.java
+C:\projects\SchoolnCloud\schoolncloud\middleware-catalog-module\catalog-model\src\main\java\co\tpg\response\AbstractResponse.java
+C:\projects\SchoolnCloud\schoolncloud\middleware-catalog-module\catalog-model\src\main\java\co.tpg.model\TeachingStaff.java
+C:\projects\SchoolnCloud\schoolncloud\middleware-catalog-module\catalog-model\src\main\java\co.tpg.model\Paper.java
 C:\projects\SchoolnCloud\schoolncloud\middleware-catalog-module\catalog-model\src\main\java\co.tpg.model\AbstractModel.java
 C:\projects\SchoolnCloud\schoolncloud\middleware-catalog-module\catalog-model\src\main\java\co\tpg\request\HttpMethod.java
 C:\projects\SchoolnCloud\schoolncloud\middleware-catalog-module\catalog-model\src\main\java\co\tpg\request\Identity.java

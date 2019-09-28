@@ -16,7 +16,7 @@ import java.util.Map;
  * @author Rod
  * @since 2019-09-04
  */
-public class TeachingStaffFunction implements RequestHandler<TeachingStaffRequest, TeachingStaffResponse> {
+public class EducationalInstitutionFunction implements RequestHandler<TeachingStaffRequest, TeachingStaffResponse> {
 
     public TeachingStaffResponse handleRequest(final TeachingStaffRequest input, final Context context) {
         final TeachingStaffResponse response = new TeachingStaffResponse();

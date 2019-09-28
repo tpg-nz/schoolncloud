@@ -1,0 +1,35 @@
+/*
+    Data model for catalog
+    Created by Rod + Raj
+    2019/09/25
+*/
+enum FieldType {
+    TEXT_FIELD, TEXT_AREA, COMBOBOX, CHECKBOX, RADIOBOX
+}
+
+entity Workflow {
+    name String required,
+    description String,
+    enabled Boolean,
+    version String required
+}
+
+entity Step {
+    sequence Integer min(1) required,
+    name String required
+}
+
+entity StepField {
+    sequence Integer min(1) required,
+    label String required,
+    fieldType FieldType
+}
+
+relationship ManyToOne {
+    Step{workflow(name) required} to Workflow,
+    StepField{step(name) required} to Step,
+    Workflow{workflow(name)} to Workflow
+}
+
+service all with serviceImpl
+paginate all with pagination

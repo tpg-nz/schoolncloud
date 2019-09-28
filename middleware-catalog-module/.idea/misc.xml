@@ -6,14 +6,17 @@
         <option value="$PROJECT_DIR$/HelloWorldFunction/pom.xml" />
         <option value="$PROJECT_DIR$/TeachingClassCatalog/pom.xml" />
         <option value="$PROJECT_DIR$/TeachingClassRetrieve/HelloWorldFunction/pom.xml" />
-        <option value="$PROJECT_DIR$/pom.xml" />
         <option value="$PROJECT_DIR$/teaching-staff/HelloWorldFunction/pom.xml" />
         <option value="$PROJECT_DIR$/teaching-staff/CreateTeachingStaff/pom.xml" />
         <option value="$PROJECT_DIR$/t-s/HelloWorldFunction/pom.xml" />
         <option value="$PROJECT_DIR$/retrieve-teaching-staff/HelloWorldFunction/pom.xml" />
         <option value="$PROJECT_DIR$/create-teaching-staff/CreateTeachingStaff/pom.xml" />
-        <option value="$PROJECT_DIR$/teaching-staff/TeachingStaff/pom.xml" />
         <option value="$PROJECT_DIR$/educational-institution/HelloWorldFunction/pom.xml" />
+        <option value="$PROJECT_DIR$/campus/HelloWorldFunction/pom.xml" />
+        <option value="$PROJECT_DIR$/pom.xml" />
+        <option value="$PROJECT_DIR$/teaching-staff/TeachingStaff/pom.xml" />
+        <option value="$PROJECT_DIR$/campus/campus/pom.xml" />
+        <option value="$PROJECT_DIR$/camp/HelloWorldFunction/pom.xml" />
       </list>
     </option>
   </component>

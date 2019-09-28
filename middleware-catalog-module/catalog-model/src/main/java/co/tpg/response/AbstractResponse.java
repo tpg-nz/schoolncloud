@@ -1,7 +1,5 @@
 package co.tpg.response;
 
-import org.apache.commons.lang.builder.ToStringBuilder;
-
 import java.util.Map;
 
 /**
@@ -36,10 +34,5 @@ public abstract class AbstractResponse<T> {
 
     public void setStatusCode(int statusCode) {
         this.statusCode = statusCode;
-    }
-
-    @Override
-    public String toString() {
-        return ToStringBuilder.reflectionToString(this);
     }
 }

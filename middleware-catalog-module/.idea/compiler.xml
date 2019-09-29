@@ -7,22 +7,28 @@
         <sourceOutputDir name="target/generated-sources/annotations" />
         <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
         <outputRelativeToContentRoot value="true" />
+        <module name="EducationalInstitution" />
+        <module name="CampusFunction" />
+        <module name="catalog-helper" />
+        <module name="catalog-model" />
         <module name="CampusCode" />
         <module name="teaching-staff" />
-        <module name="CampusFunction" />
-        <module name="EducationalInstitution" />
-        <module name="catalog-model" />
+        <module name="teaching-class" />
+        <module name="TeachingClass" />
       </profile>
     </annotationProcessing>
     <bytecodeTargetLevel>
       <module name="CampusCode" target="1.8" />
       <module name="CampusFunction" target="1.8" />
+      <module name="catalog-helper" target="1.8" />
       <module name="catalog-model" target="1.8" />
       <module name="CreateTeachingStaff" target="1.8" />
       <module name="EducationalInstitution" target="1.8" />
       <module name="middleware-catalog-module" target="1.8" />
       <module name="RetrieveTeachingStaff" target="1.8" />
+      <module name="teaching-class" target="1.8" />
       <module name="teaching-staff" target="1.8" />
+      <module name="TeachingClass" target="1.8" />
       <module name="TeachingClassCreate" target="1.8" />
     </bytecodeTargetLevel>
   </component>

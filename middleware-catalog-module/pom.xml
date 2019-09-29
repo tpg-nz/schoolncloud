@@ -12,6 +12,7 @@
 
     <modules>
         <module>catalog-model</module>
+        <module>catalog-helper</module>
     </modules>
 
     <dependencies>

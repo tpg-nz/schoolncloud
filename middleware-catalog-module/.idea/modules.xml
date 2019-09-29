@@ -5,10 +5,13 @@
       <module fileurl="file://$PROJECT_DIR$/campus/CampusCode/CampusCode.iml" filepath="$PROJECT_DIR$/campus/CampusCode/CampusCode.iml" />
       <module fileurl="file://$PROJECT_DIR$/campus/CampusFunction/CampusFunction.iml" filepath="$PROJECT_DIR$/campus/CampusFunction/CampusFunction.iml" />
       <module fileurl="file://$PROJECT_DIR$/educational-institution/EducationalInstitution/EducationalInstitution.iml" filepath="$PROJECT_DIR$/educational-institution/EducationalInstitution/EducationalInstitution.iml" />
+      <module fileurl="file://$PROJECT_DIR$/teaching-class/TeachingClass/TeachingClass.iml" filepath="$PROJECT_DIR$/teaching-class/TeachingClass/TeachingClass.iml" />
       <module fileurl="file://$PROJECT_DIR$/campus/campus.iml" filepath="$PROJECT_DIR$/campus/campus.iml" />
+      <module fileurl="file://$PROJECT_DIR$/catalog-helper/catalog-helper.iml" filepath="$PROJECT_DIR$/catalog-helper/catalog-helper.iml" />
       <module fileurl="file://$PROJECT_DIR$/catalog-model/catalog-model.iml" filepath="$PROJECT_DIR$/catalog-model/catalog-model.iml" />
       <module fileurl="file://$PROJECT_DIR$/educational-institution/educational-institution.iml" filepath="$PROJECT_DIR$/educational-institution/educational-institution.iml" />
       <module fileurl="file://$PROJECT_DIR$/middleware-catalog-module.iml" filepath="$PROJECT_DIR$/middleware-catalog-module.iml" />
+      <module fileurl="file://$PROJECT_DIR$/teaching-class/TeachingClass/teaching-class.iml" filepath="$PROJECT_DIR$/teaching-class/TeachingClass/teaching-class.iml" />
       <module fileurl="file://$PROJECT_DIR$/teaching-staff/TeachingStaff/teaching-staff.iml" filepath="$PROJECT_DIR$/teaching-staff/TeachingStaff/teaching-staff.iml" />
     </modules>
   </component>

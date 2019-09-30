@@ -1,0 +1,24 @@
+{
+  "workflowApp": {
+    "step": {
+      "home": {
+        "title": "Steps",
+        "createLabel": "Create a new Step",
+        "createOrEditLabel": "Create or edit a Step",
+        "notFound": "No Step found"
+      },
+      "created": "A new Step is created with identifier {{ param }}",
+      "updated": "A Step is updated with identifier {{ param }}",
+      "deleted": "A Step is deleted with identifier {{ param }}",
+      "delete": {
+        "question": "Are you sure you want to delete Step {{ id }}?"
+      },
+      "detail": {
+        "title": "Step"
+      },
+      "sequence": "Sequence",
+      "name": "Name",
+      "workflow": "Workflow"
+    }
+  }
+}

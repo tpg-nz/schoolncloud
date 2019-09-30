@@ -7,18 +7,18 @@ import { Translate, ICrudGetAllAction, getSortState, IPaginationBaseState, JhiPa
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 
 import { IRootState } from 'app/shared/reducers';
-import { getEntities } from './workflow.reducer';
-import { IWorkflow } from 'app/shared/model/workflow.model';
+import { getEntities } from './step.reducer';
+import { IStep } from 'app/shared/model/step.model';
 // tslint:disable-next-line:no-unused-variable
 import { APP_DATE_FORMAT, APP_LOCAL_DATE_FORMAT } from 'app/config/constants';
 import { ITEMS_PER_PAGE } from 'app/shared/util/pagination.constants';
 
-export interface IWorkflowProps extends StateProps, DispatchProps, RouteComponentProps<{ url: string }> {}
+export interface IStepProps extends StateProps, DispatchProps, RouteComponentProps<{ url: string }> {}
 
-export type IWorkflowState = IPaginationBaseState;
+export type IStepState = IPaginationBaseState;
 
-export class Workflow extends React.Component<IWorkflowProps, IWorkflowState> {
-  state: IWorkflowState = {
+export class Step extends React.Component<IStepProps, IStepState> {
+  state: IStepState = {
     ...getSortState(this.props.location, ITEMS_PER_PAGE)
   };
 
@@ -49,71 +49,63 @@ export class Workflow extends React.Component<IWorkflowProps, IWorkflowState> {
   };
 
   render() {
-    const { workflowList, match, totalItems } = this.props;
+    const { stepList, match, totalItems } = this.props;
     return (
       <div>
-        <h2 id="workflow-heading">
-          <Translate contentKey="workflowApp.workflow.home.title">Workflows</Translate>
+        <h2 id="step-heading">
+          <Translate contentKey="workflowApp.step.home.title">Steps</Translate>
           <Link to={`${match.url}/new`} className="btn btn-primary float-right jh-create-entity" id="jh-create-entity">
             <FontAwesomeIcon icon="plus" />
             &nbsp;
-            <Translate contentKey="workflowApp.workflow.home.createLabel">Create new Workflow</Translate>
+            <Translate contentKey="workflowApp.step.home.createLabel">Create new Step</Translate>
           </Link>
         </h2>
         <div className="table-responsive">
-          {workflowList && workflowList.length > 0 ? (
+          {stepList && stepList.length > 0 ? (
             <Table responsive>
               <thead>
                 <tr>
                   <th className="hand" onClick={this.sort('id')}>
                     <Translate contentKey="global.field.id">ID</Translate> <FontAwesomeIcon icon="sort" />
                   </th>
+                  <th className="hand" onClick={this.sort('sequence')}>
+                    <Translate contentKey="workflowApp.step.sequence">Sequence</Translate> <FontAwesomeIcon icon="sort" />
+                  </th>
                   <th className="hand" onClick={this.sort('name')}>
-                    <Translate contentKey="workflowApp.workflow.name">Name</Translate> <FontAwesomeIcon icon="sort" />
-                  </th>
-                  <th className="hand" onClick={this.sort('description')}>
-                    <Translate contentKey="workflowApp.workflow.description">Description</Translate> <FontAwesomeIcon icon="sort" />
-                  </th>
-                  <th className="hand" onClick={this.sort('enabled')}>
-                    <Translate contentKey="workflowApp.workflow.enabled">Enabled</Translate> <FontAwesomeIcon icon="sort" />
-                  </th>
-                  <th className="hand" onClick={this.sort('version')}>
-                    <Translate contentKey="workflowApp.workflow.version">Version</Translate> <FontAwesomeIcon icon="sort" />
+                    <Translate contentKey="workflowApp.step.name">Name</Translate> <FontAwesomeIcon icon="sort" />
                   </th>
                   <th>
-                    <Translate contentKey="workflowApp.workflow.workflow">Workflow</Translate> <FontAwesomeIcon icon="sort" />
+                    <Translate contentKey="workflowApp.step.workflow">Workflow</Translate> <FontAwesomeIcon icon="sort" />
                   </th>
                   <th />
                 </tr>
               </thead>
               <tbody>
-                {workflowList.map((workflow, i) => (
+                {stepList.map((step, i) => (
                   <tr key={`entity-${i}`}>
                     <td>
-                      <Button tag={Link} to={`${match.url}/${workflow.id}`} color="link" size="sm">
-                        {workflow.id}
+                      <Button tag={Link} to={`${match.url}/${step.id}`} color="link" size="sm">
+                        {step.id}
                       </Button>
                     </td>
-                    <td>{workflow.name}</td>
-                    <td>{workflow.description}</td>
-                    <td>{workflow.enabled ? 'true' : 'false'}</td>
-                    <td>{workflow.version}</td>
-                    <td>{workflow.workflow ? <Link to={`workflow/${workflow.workflow.id}`}>{workflow.workflow.name}</Link> : ''}</td>
+                    <td>{step.sequence}</td>
+                    <td>{step.name}</td>
+                    <td>{step.workflow ? <Link to={`workflow/${step.workflow.id}`}>{step.workflow.name}</Link> : ''}</td>
                     <td className="text-right">
                       <div className="btn-group flex-btn-group-container">
-                        <Button tag={Link} to={`${match.url}/${workflow.id}`} color="info" size="sm">
+                        <Button tag={Link} to={`${match.url}/${step.id}`} color="info" size="sm">
                           <FontAwesomeIcon icon="eye" />{' '}
                           <span className="d-none d-md-inline">
                             <Translate contentKey="entity.action.view">View</Translate>
                           </span>
                         </Button>
-                        <Button tag={Link} to={`${match.url}/${workflow.id}/edit`} color="primary" size="sm">
+                        <Button tag={Link} to={`${match.url}/${step.id}/edit`} color="primary" size="sm">
                           <FontAwesomeIcon icon="pencil-alt" />{' '}
                           <span className="d-none d-md-inline">
                             <Translate contentKey="entity.action.edit">Edit</Translate>
                           </span>
                         </Button>
-                        <Button tag={Link} to={`${match.url}/${workflow.id}/delete`} color="danger" size="sm">
+                        <Button tag={Link} to={`${match.url}/${step.id}/delete`} color="danger" size="sm">
                           <FontAwesomeIcon icon="trash" />{' '}
                           <span className="d-none d-md-inline">
                             <Translate contentKey="entity.action.delete">Delete</Translate>
@@ -127,11 +119,11 @@ export class Workflow extends React.Component<IWorkflowProps, IWorkflowState> {
             </Table>
           ) : (
             <div className="alert alert-warning">
-              <Translate contentKey="workflowApp.workflow.home.notFound">No Workflows found</Translate>
+              <Translate contentKey="workflowApp.step.home.notFound">No Steps found</Translate>
             </div>
           )}
         </div>
-        <div className={workflowList && workflowList.length > 0 ? '' : 'd-none'}>
+        <div className={stepList && stepList.length > 0 ? '' : 'd-none'}>
           <Row className="justify-content-center">
             <JhiItemCount page={this.state.activePage} total={totalItems} itemsPerPage={this.state.itemsPerPage} i18nEnabled />
           </Row>
@@ -150,9 +142,9 @@ export class Workflow extends React.Component<IWorkflowProps, IWorkflowState> {
   }
 }
 
-const mapStateToProps = ({ workflow }: IRootState) => ({
-  workflowList: workflow.entities,
-  totalItems: workflow.totalItems
+const mapStateToProps = ({ step }: IRootState) => ({
+  stepList: step.entities,
+  totalItems: step.totalItems
 });
 
 const mapDispatchToProps = {
@@ -165,4 +157,4 @@ type DispatchProps = typeof mapDispatchToProps;
 export default connect(
   mapStateToProps,
   mapDispatchToProps
-)(Workflow);
+)(Step);

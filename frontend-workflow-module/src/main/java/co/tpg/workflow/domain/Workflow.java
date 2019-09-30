@@ -1,4 +1,5 @@
 package co.tpg.workflow.domain;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import org.hibernate.annotations.Cache;
 import org.hibernate.annotations.CacheConcurrencyStrategy;
 
@@ -22,19 +23,22 @@ public class Workflow implements Serializable {
     private Long id;
 
     @NotNull
-    @Size(max = 40)
-    @Column(name = "name", length = 40, nullable = false, unique = true)
+    @Column(name = "name", nullable = false)
     private String name;
 
     @Column(name = "description")
     private String description;
 
+    @Column(name = "enabled")
+    private Boolean enabled;
+
     @NotNull
     @Column(name = "version", nullable = false)
     private String version;
 
-    @Column(name = "enabled")
-    private Boolean enabled;
+    @ManyToOne
+    @JsonIgnoreProperties("workflows")
+    private Workflow workflow;
 
     // jhipster-needle-entity-add-field - JHipster will add fields here, do not remove
     public Long getId() {
@@ -71,6 +75,19 @@ public class Workflow implements Serializable {
         this.description = description;
     }
 
+    public Boolean isEnabled() {
+        return enabled;
+    }
+
+    public Workflow enabled(Boolean enabled) {
+        this.enabled = enabled;
+        return this;
+    }
+
+    public void setEnabled(Boolean enabled) {
+        this.enabled = enabled;
+    }
+
     public String getVersion() {
         return version;
     }
@@ -84,17 +101,17 @@ public class Workflow implements Serializable {
         this.version = version;
     }
 
-    public Boolean isEnabled() {
-        return enabled;
+    public Workflow getWorkflow() {
+        return workflow;
     }
 
-    public Workflow enabled(Boolean enabled) {
-        this.enabled = enabled;
+    public Workflow workflow(Workflow workflow) {
+        this.workflow = workflow;
         return this;
     }
 
-    public void setEnabled(Boolean enabled) {
-        this.enabled = enabled;
+    public void setWorkflow(Workflow workflow) {
+        this.workflow = workflow;
     }
     // jhipster-needle-entity-add-getters-setters - JHipster will add getters and setters here, do not remove
 
@@ -120,8 +137,8 @@ public class Workflow implements Serializable {
             "id=" + getId() +
             ", name='" + getName() + "'" +
             ", description='" + getDescription() + "'" +
-            ", version='" + getVersion() + "'" +
             ", enabled='" + isEnabled() + "'" +
+            ", version='" + getVersion() + "'" +
             "}";
     }
 }

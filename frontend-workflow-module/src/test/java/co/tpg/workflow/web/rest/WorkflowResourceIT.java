@@ -40,11 +40,11 @@ public class WorkflowResourceIT {
     private static final String DEFAULT_DESCRIPTION = "AAAAAAAAAA";
     private static final String UPDATED_DESCRIPTION = "BBBBBBBBBB";
 
-    private static final String DEFAULT_VERSION = "AAAAAAAAAA";
-    private static final String UPDATED_VERSION = "BBBBBBBBBB";
-
     private static final Boolean DEFAULT_ENABLED = false;
     private static final Boolean UPDATED_ENABLED = true;
+
+    private static final String DEFAULT_VERSION = "AAAAAAAAAA";
+    private static final String UPDATED_VERSION = "BBBBBBBBBB";
 
     @Autowired
     private WorkflowRepository workflowRepository;
@@ -93,8 +93,8 @@ public class WorkflowResourceIT {
         Workflow workflow = new Workflow()
             .name(DEFAULT_NAME)
             .description(DEFAULT_DESCRIPTION)
-            .version(DEFAULT_VERSION)
-            .enabled(DEFAULT_ENABLED);
+            .enabled(DEFAULT_ENABLED)
+            .version(DEFAULT_VERSION);
         return workflow;
     }
     /**
@@ -107,8 +107,8 @@ public class WorkflowResourceIT {
         Workflow workflow = new Workflow()
             .name(UPDATED_NAME)
             .description(UPDATED_DESCRIPTION)
-            .version(UPDATED_VERSION)
-            .enabled(UPDATED_ENABLED);
+            .enabled(UPDATED_ENABLED)
+            .version(UPDATED_VERSION);
         return workflow;
     }
 
@@ -134,8 +134,8 @@ public class WorkflowResourceIT {
         Workflow testWorkflow = workflowList.get(workflowList.size() - 1);
         assertThat(testWorkflow.getName()).isEqualTo(DEFAULT_NAME);
         assertThat(testWorkflow.getDescription()).isEqualTo(DEFAULT_DESCRIPTION);
-        assertThat(testWorkflow.getVersion()).isEqualTo(DEFAULT_VERSION);
         assertThat(testWorkflow.isEnabled()).isEqualTo(DEFAULT_ENABLED);
+        assertThat(testWorkflow.getVersion()).isEqualTo(DEFAULT_VERSION);
     }
 
     @Test
@@ -207,8 +207,8 @@ public class WorkflowResourceIT {
             .andExpect(jsonPath("$.[*].id").value(hasItem(workflow.getId().intValue())))
             .andExpect(jsonPath("$.[*].name").value(hasItem(DEFAULT_NAME.toString())))
             .andExpect(jsonPath("$.[*].description").value(hasItem(DEFAULT_DESCRIPTION.toString())))
-            .andExpect(jsonPath("$.[*].version").value(hasItem(DEFAULT_VERSION.toString())))
-            .andExpect(jsonPath("$.[*].enabled").value(hasItem(DEFAULT_ENABLED.booleanValue())));
+            .andExpect(jsonPath("$.[*].enabled").value(hasItem(DEFAULT_ENABLED.booleanValue())))
+            .andExpect(jsonPath("$.[*].version").value(hasItem(DEFAULT_VERSION.toString())));
     }
     
     @Test
@@ -224,8 +224,8 @@ public class WorkflowResourceIT {
             .andExpect(jsonPath("$.id").value(workflow.getId().intValue()))
             .andExpect(jsonPath("$.name").value(DEFAULT_NAME.toString()))
             .andExpect(jsonPath("$.description").value(DEFAULT_DESCRIPTION.toString()))
-            .andExpect(jsonPath("$.version").value(DEFAULT_VERSION.toString()))
-            .andExpect(jsonPath("$.enabled").value(DEFAULT_ENABLED.booleanValue()));
+            .andExpect(jsonPath("$.enabled").value(DEFAULT_ENABLED.booleanValue()))
+            .andExpect(jsonPath("$.version").value(DEFAULT_VERSION.toString()));
     }
 
     @Test
@@ -251,8 +251,8 @@ public class WorkflowResourceIT {
         updatedWorkflow
             .name(UPDATED_NAME)
             .description(UPDATED_DESCRIPTION)
-            .version(UPDATED_VERSION)
-            .enabled(UPDATED_ENABLED);
+            .enabled(UPDATED_ENABLED)
+            .version(UPDATED_VERSION);
 
         restWorkflowMockMvc.perform(put("/api/workflows")
             .contentType(TestUtil.APPLICATION_JSON_UTF8)
@@ -265,8 +265,8 @@ public class WorkflowResourceIT {
         Workflow testWorkflow = workflowList.get(workflowList.size() - 1);
         assertThat(testWorkflow.getName()).isEqualTo(UPDATED_NAME);
         assertThat(testWorkflow.getDescription()).isEqualTo(UPDATED_DESCRIPTION);
-        assertThat(testWorkflow.getVersion()).isEqualTo(UPDATED_VERSION);
         assertThat(testWorkflow.isEnabled()).isEqualTo(UPDATED_ENABLED);
+        assertThat(testWorkflow.getVersion()).isEqualTo(UPDATED_VERSION);
     }
 
     @Test

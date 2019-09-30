@@ -8,21 +8,22 @@ import { Translate, translate, ICrudGetAction, ICrudGetAllAction, ICrudPutAction
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { IRootState } from 'app/shared/reducers';
 
-import { getEntities as getWorkflows } from 'app/entities/workflow/workflow.reducer';
-import { getEntity, updateEntity, createEntity, reset } from './workflow.reducer';
 import { IWorkflow } from 'app/shared/model/workflow.model';
+import { getEntities as getWorkflows } from 'app/entities/workflow/workflow.reducer';
+import { getEntity, updateEntity, createEntity, reset } from './step.reducer';
+import { IStep } from 'app/shared/model/step.model';
 // tslint:disable-next-line:no-unused-variable
 import { convertDateTimeFromServer, convertDateTimeToServer } from 'app/shared/util/date-utils';
 import { mapIdList } from 'app/shared/util/entity-utils';
 
-export interface IWorkflowUpdateProps extends StateProps, DispatchProps, RouteComponentProps<{ id: string }> {}
+export interface IStepUpdateProps extends StateProps, DispatchProps, RouteComponentProps<{ id: string }> {}
 
-export interface IWorkflowUpdateState {
+export interface IStepUpdateState {
   isNew: boolean;
   workflowId: string;
 }
 
-export class WorkflowUpdate extends React.Component<IWorkflowUpdateProps, IWorkflowUpdateState> {
+export class StepUpdate extends React.Component<IStepUpdateProps, IStepUpdateState> {
   constructor(props) {
     super(props);
     this.state = {
@@ -49,9 +50,9 @@ export class WorkflowUpdate extends React.Component<IWorkflowUpdateProps, IWorkf
 
   saveEntity = (event, errors, values) => {
     if (errors.length === 0) {
-      const { workflowEntity } = this.props;
+      const { stepEntity } = this.props;
       const entity = {
-        ...workflowEntity,
+        ...stepEntity,
         ...values
       };
 
@@ -64,42 +65,58 @@ export class WorkflowUpdate extends React.Component<IWorkflowUpdateProps, IWorkf
   };
 
   handleClose = () => {
-    this.props.history.push('/entity/workflow');
+    this.props.history.push('/entity/step');
   };
 
   render() {
-    const { workflowEntity, workflows, loading, updating } = this.props;
+    const { stepEntity, workflows, loading, updating } = this.props;
     const { isNew } = this.state;
 
     return (
       <div>
         <Row className="justify-content-center">
           <Col md="8">
-            <h2 id="workflowApp.workflow.home.createOrEditLabel">
-              <Translate contentKey="workflowApp.workflow.home.createOrEditLabel">Create or edit a Workflow</Translate>
+            <h2 id="workflowApp.step.home.createOrEditLabel">
+              <Translate contentKey="workflowApp.step.home.createOrEditLabel">Create or edit a Step</Translate>
             </h2>
           </Col>
         </Row>
         <Row className="justify-content-center">
           <Col md="8">
-            {loading ? (
+            {(isNew && loading) || (!isNew && (loading || stepEntity.workflow === undefined)) ? (
               <p>Loading...</p>
             ) : (
-              <AvForm model={isNew ? {} : workflowEntity} onSubmit={this.saveEntity}>
+              <AvForm model={isNew ? {} : stepEntity} onSubmit={this.saveEntity}>
                 {!isNew ? (
                   <AvGroup>
-                    <Label for="workflow-id">
+                    <Label for="step-id">
                       <Translate contentKey="global.field.id">ID</Translate>
                     </Label>
-                    <AvInput id="workflow-id" type="text" className="form-control" name="id" required readOnly />
+                    <AvInput id="step-id" type="text" className="form-control" name="id" required readOnly />
                   </AvGroup>
                 ) : null}
                 <AvGroup>
-                  <Label id="nameLabel" for="workflow-name">
-                    <Translate contentKey="workflowApp.workflow.name">Name</Translate>
+                  <Label id="sequenceLabel" for="step-sequence">
+                    <Translate contentKey="workflowApp.step.sequence">Sequence</Translate>
                   </Label>
                   <AvField
-                    id="workflow-name"
+                    id="step-sequence"
+                    type="string"
+                    className="form-control"
+                    name="sequence"
+                    validate={{
+                      required: { value: true, errorMessage: translate('entity.validation.required') },
+                      min: { value: 1, errorMessage: translate('entity.validation.min', { min: 1 }) },
+                      number: { value: true, errorMessage: translate('entity.validation.number') }
+                    }}
+                  />
+                </AvGroup>
+                <AvGroup>
+                  <Label id="nameLabel" for="step-name">
+                    <Translate contentKey="workflowApp.step.name">Name</Translate>
+                  </Label>
+                  <AvField
+                    id="step-name"
                     type="text"
                     name="name"
                     validate={{
@@ -108,36 +125,17 @@ export class WorkflowUpdate extends React.Component<IWorkflowUpdateProps, IWorkf
                   />
                 </AvGroup>
                 <AvGroup>
-                  <Label id="descriptionLabel" for="workflow-description">
-                    <Translate contentKey="workflowApp.workflow.description">Description</Translate>
+                  <Label for="step-workflow">
+                    <Translate contentKey="workflowApp.step.workflow">Workflow</Translate>
                   </Label>
-                  <AvField id="workflow-description" type="text" name="description" />
-                </AvGroup>
-                <AvGroup>
-                  <Label id="enabledLabel" check>
-                    <AvInput id="workflow-enabled" type="checkbox" className="form-control" name="enabled" />
-                    <Translate contentKey="workflowApp.workflow.enabled">Enabled</Translate>
-                  </Label>
-                </AvGroup>
-                <AvGroup>
-                  <Label id="versionLabel" for="workflow-version">
-                    <Translate contentKey="workflowApp.workflow.version">Version</Translate>
-                  </Label>
-                  <AvField
-                    id="workflow-version"
-                    type="text"
-                    name="version"
-                    validate={{
-                      required: { value: true, errorMessage: translate('entity.validation.required') }
-                    }}
-                  />
-                </AvGroup>
-                <AvGroup>
-                  <Label for="workflow-workflow">
-                    <Translate contentKey="workflowApp.workflow.workflow">Workflow</Translate>
-                  </Label>
-                  <AvInput id="workflow-workflow" type="select" className="form-control" name="workflow.id">
-                    <option value="" key="0" />
+                  <AvInput
+                    id="step-workflow"
+                    type="select"
+                    className="form-control"
+                    name="workflow.id"
+                    value={isNew ? workflows[0] && workflows[0].id : stepEntity.workflow.id}
+                    required
+                  >
                     {workflows
                       ? workflows.map(otherEntity => (
                           <option value={otherEntity.id} key={otherEntity.id}>
@@ -146,8 +144,11 @@ export class WorkflowUpdate extends React.Component<IWorkflowUpdateProps, IWorkf
                         ))
                       : null}
                   </AvInput>
+                  <AvFeedback>
+                    <Translate contentKey="entity.validation.required">This field is required.</Translate>
+                  </AvFeedback>
                 </AvGroup>
-                <Button tag={Link} id="cancel-save" to="/entity/workflow" replace color="info">
+                <Button tag={Link} id="cancel-save" to="/entity/step" replace color="info">
                   <FontAwesomeIcon icon="arrow-left" />
                   &nbsp;
                   <span className="d-none d-md-inline">
@@ -171,10 +172,10 @@ export class WorkflowUpdate extends React.Component<IWorkflowUpdateProps, IWorkf
 
 const mapStateToProps = (storeState: IRootState) => ({
   workflows: storeState.workflow.entities,
-  workflowEntity: storeState.workflow.entity,
-  loading: storeState.workflow.loading,
-  updating: storeState.workflow.updating,
-  updateSuccess: storeState.workflow.updateSuccess
+  stepEntity: storeState.step.entity,
+  loading: storeState.step.loading,
+  updating: storeState.step.updating,
+  updateSuccess: storeState.step.updateSuccess
 });
 
 const mapDispatchToProps = {
@@ -191,4 +192,4 @@ type DispatchProps = typeof mapDispatchToProps;
 export default connect(
   mapStateToProps,
   mapDispatchToProps
-)(WorkflowUpdate);
+)(StepUpdate);

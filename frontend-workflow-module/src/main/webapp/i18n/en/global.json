@@ -8,6 +8,8 @@
       "entities": {
         "main": "Entities",
         "workflow": "Workflow",
+        "step": "Step",
+        "stepField": "Step Field",
         "jhipster-needle-menu-add-entry": "JHipster will add additional entities here (do not translate!)"
       },
       "account": {

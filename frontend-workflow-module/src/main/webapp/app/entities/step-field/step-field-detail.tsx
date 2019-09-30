@@ -7,64 +7,58 @@ import { Translate, ICrudGetAction } from 'react-jhipster';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 
 import { IRootState } from 'app/shared/reducers';
-import { getEntity } from './workflow.reducer';
-import { IWorkflow } from 'app/shared/model/workflow.model';
+import { getEntity } from './step-field.reducer';
+import { IStepField } from 'app/shared/model/step-field.model';
 // tslint:disable-next-line:no-unused-variable
 import { APP_DATE_FORMAT, APP_LOCAL_DATE_FORMAT } from 'app/config/constants';
 
-export interface IWorkflowDetailProps extends StateProps, DispatchProps, RouteComponentProps<{ id: string }> {}
+export interface IStepFieldDetailProps extends StateProps, DispatchProps, RouteComponentProps<{ id: string }> {}
 
-export class WorkflowDetail extends React.Component<IWorkflowDetailProps> {
+export class StepFieldDetail extends React.Component<IStepFieldDetailProps> {
   componentDidMount() {
     this.props.getEntity(this.props.match.params.id);
   }
 
   render() {
-    const { workflowEntity } = this.props;
+    const { stepFieldEntity } = this.props;
     return (
       <Row>
         <Col md="8">
           <h2>
-            <Translate contentKey="workflowApp.workflow.detail.title">Workflow</Translate> [<b>{workflowEntity.id}</b>]
+            <Translate contentKey="workflowApp.stepField.detail.title">StepField</Translate> [<b>{stepFieldEntity.id}</b>]
           </h2>
           <dl className="jh-entity-details">
             <dt>
-              <span id="name">
-                <Translate contentKey="workflowApp.workflow.name">Name</Translate>
+              <span id="sequence">
+                <Translate contentKey="workflowApp.stepField.sequence">Sequence</Translate>
               </span>
             </dt>
-            <dd>{workflowEntity.name}</dd>
+            <dd>{stepFieldEntity.sequence}</dd>
             <dt>
-              <span id="description">
-                <Translate contentKey="workflowApp.workflow.description">Description</Translate>
+              <span id="label">
+                <Translate contentKey="workflowApp.stepField.label">Label</Translate>
               </span>
             </dt>
-            <dd>{workflowEntity.description}</dd>
+            <dd>{stepFieldEntity.label}</dd>
             <dt>
-              <span id="enabled">
-                <Translate contentKey="workflowApp.workflow.enabled">Enabled</Translate>
+              <span id="fieldType">
+                <Translate contentKey="workflowApp.stepField.fieldType">Field Type</Translate>
               </span>
             </dt>
-            <dd>{workflowEntity.enabled ? 'true' : 'false'}</dd>
+            <dd>{stepFieldEntity.fieldType}</dd>
             <dt>
-              <span id="version">
-                <Translate contentKey="workflowApp.workflow.version">Version</Translate>
-              </span>
+              <Translate contentKey="workflowApp.stepField.step">Step</Translate>
             </dt>
-            <dd>{workflowEntity.version}</dd>
-            <dt>
-              <Translate contentKey="workflowApp.workflow.workflow">Workflow</Translate>
-            </dt>
-            <dd>{workflowEntity.workflow ? workflowEntity.workflow.name : ''}</dd>
+            <dd>{stepFieldEntity.step ? stepFieldEntity.step.name : ''}</dd>
           </dl>
-          <Button tag={Link} to="/entity/workflow" replace color="info">
+          <Button tag={Link} to="/entity/step-field" replace color="info">
             <FontAwesomeIcon icon="arrow-left" />{' '}
             <span className="d-none d-md-inline">
               <Translate contentKey="entity.action.back">Back</Translate>
             </span>
           </Button>
           &nbsp;
-          <Button tag={Link} to={`/entity/workflow/${workflowEntity.id}/edit`} replace color="primary">
+          <Button tag={Link} to={`/entity/step-field/${stepFieldEntity.id}/edit`} replace color="primary">
             <FontAwesomeIcon icon="pencil-alt" />{' '}
             <span className="d-none d-md-inline">
               <Translate contentKey="entity.action.edit">Edit</Translate>
@@ -76,8 +70,8 @@ export class WorkflowDetail extends React.Component<IWorkflowDetailProps> {
   }
 }
 
-const mapStateToProps = ({ workflow }: IRootState) => ({
-  workflowEntity: workflow.entity
+const mapStateToProps = ({ stepField }: IRootState) => ({
+  stepFieldEntity: stepField.entity
 });
 
 const mapDispatchToProps = { getEntity };
@@ -88,4 +82,4 @@ type DispatchProps = typeof mapDispatchToProps;
 export default connect(
   mapStateToProps,
   mapDispatchToProps
-)(WorkflowDetail);
+)(StepFieldDetail);

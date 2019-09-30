@@ -1,0 +1,12 @@
+{
+  "workflowApp": {
+    "FieldType": {
+      "null": "",
+      "TEXT_FIELD": "TEXT_FIELD",
+      "TEXT_AREA": "TEXT_AREA",
+      "COMBOBOX": "COMBOBOX",
+      "CHECKBOX": "CHECKBOX",
+      "RADIOBOX": "RADIOBOX"
+    }
+  }
+}

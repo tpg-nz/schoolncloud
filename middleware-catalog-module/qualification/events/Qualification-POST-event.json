@@ -4,12 +4,8 @@
     "path": "/path/to/resource",
     "httpMethod": "POST",
     "isBase64Encoded": false,
-    "queryStringParameters": {
-      "foo": "bar"
-    },
-    "pathParameters": {
-      "proxy": "/path/to/resource"
-    },
+    "queryStringParameters": {},
+    "pathParameters": {},
     "stageVariables": {
       "baz": "qux"
     },

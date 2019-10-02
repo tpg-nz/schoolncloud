@@ -1,14 +1,12 @@
 {
-  "body": "",
+  "body": {"guid": "46ac7382-c9dc-4cc2-88ae-684b4d81c894","name": "qualification test","hyperlink": "http://test.co.nz","subject": {"guid": "8e41a395-af72-46fe-a41d-d7f37b818a02", "name": "test subject", "overview": "test", "level": 1}},
   "resource": "/{proxy+}",
-  "path": "/12345",
-  "httpMethod": "GET",
+  "path": "/path/to/resource",
+  "httpMethod": "PATCH",
   "isBase64Encoded": false,
-  "queryStringParameters": {
-    "foo": "bar"
-  },
+  "queryStringParameters": {},
   "pathParameters": {
-    "proxy": "/path/to/resource"
+    "guid": "/path/to/resource"
   },
   "stageVariables": {
     "baz": "qux"

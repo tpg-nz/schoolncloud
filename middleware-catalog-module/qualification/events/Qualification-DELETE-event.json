@@ -1,14 +1,12 @@
 {
-  "body": "",
+  "body": {},
   "resource": "/{proxy+}",
-  "path": "/12345",
-  "httpMethod": "PUT",
+  "path": "/path/to/resource",
+  "httpMethod": "DELETE",
   "isBase64Encoded": false,
-  "queryStringParameters": {
-    "foo": "bar"
-  },
+  "queryStringParameters": {},
   "pathParameters": {
-    "proxy": "/path/to/resource"
+    "guid": "46ac7382-c9dc-4cc2-88ae-684b4d81c894"
   },
   "stageVariables": {
     "baz": "qux"

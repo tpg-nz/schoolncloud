@@ -11,6 +11,7 @@
       <module fileurl="file://$PROJECT_DIR$/catalog-model/catalog-model.iml" filepath="$PROJECT_DIR$/catalog-model/catalog-model.iml" />
       <module fileurl="file://$PROJECT_DIR$/educational-institution/educational-institution.iml" filepath="$PROJECT_DIR$/educational-institution/educational-institution.iml" />
       <module fileurl="file://$PROJECT_DIR$/middleware-catalog-module.iml" filepath="$PROJECT_DIR$/middleware-catalog-module.iml" />
+      <module fileurl="file://$PROJECT_DIR$/subject/SubjectFunction/subject.iml" filepath="$PROJECT_DIR$/subject/SubjectFunction/subject.iml" />
       <module fileurl="file://$PROJECT_DIR$/teaching-class/TeachingClass/teaching-class.iml" filepath="$PROJECT_DIR$/teaching-class/TeachingClass/teaching-class.iml" />
       <module fileurl="file://$PROJECT_DIR$/teaching-staff/TeachingStaff/teaching-staff.iml" filepath="$PROJECT_DIR$/teaching-staff/TeachingStaff/teaching-staff.iml" />
     </modules>

@@ -9,6 +9,7 @@
         <outputRelativeToContentRoot value="true" />
         <module name="EducationalInstitution" />
         <module name="CampusFunction" />
+        <module name="subject" />
         <module name="catalog-helper" />
         <module name="catalog-model" />
         <module name="CampusCode" />
@@ -26,6 +27,7 @@
       <module name="EducationalInstitution" target="1.8" />
       <module name="middleware-catalog-module" target="1.8" />
       <module name="RetrieveTeachingStaff" target="1.8" />
+      <module name="subject" target="1.8" />
       <module name="teaching-class" target="1.8" />
       <module name="teaching-staff" target="1.8" />
       <module name="TeachingClass" target="1.8" />

@@ -13,6 +13,7 @@
     <modules>
         <module>catalog-model</module>
         <module>catalog-helper</module>
+        <module>subject/SubjectFunction</module>
     </modules>
 
     <dependencies>

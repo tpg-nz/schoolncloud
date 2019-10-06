@@ -1,11 +1,10 @@
 {
   "body": {"id":"","code":"ASL-102","year":2020, "semester":1, "paper":{"id": "123456"}, "campus":{"id": "1234", "name": "City Centre Campus"}},
-  "resource": "/{proxy+}",
+  "resource": "/TeachingClass",
   "path": "/path/to/resource",
   "httpMethod": "POST",
   "isBase64Encoded": false,
   "queryStringParameters": {
-    "foo": "bar"
   },
   "pathParameters": {
     "proxy": "/path/to/resource"

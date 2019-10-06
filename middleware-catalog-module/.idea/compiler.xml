@@ -9,17 +9,18 @@
         <outputRelativeToContentRoot value="true" />
         <module name="EducationalInstitution" />
         <module name="CampusFunction" />
-        <module name="catalog-helper" />
         <module name="catalog-model" />
         <module name="CampusCode" />
-        <module name="teaching-staff" />
         <module name="teaching-class" />
+        <module name="teaching-staff" />
+        <module name="catalog-dao" />
         <module name="TeachingClass" />
       </profile>
     </annotationProcessing>
     <bytecodeTargetLevel>
       <module name="CampusCode" target="1.8" />
       <module name="CampusFunction" target="1.8" />
+      <module name="catalog-dao" target="1.8" />
       <module name="catalog-helper" target="1.8" />
       <module name="catalog-model" target="1.8" />
       <module name="CreateTeachingStaff" target="1.8" />

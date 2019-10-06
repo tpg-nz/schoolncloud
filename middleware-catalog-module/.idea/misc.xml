@@ -18,7 +18,13 @@
         <option value="$PROJECT_DIR$/campus/campus/pom.xml" />
         <option value="$PROJECT_DIR$/camp/HelloWorldFunction/pom.xml" />
         <option value="$PROJECT_DIR$/teaching-class/HelloWorldFunction/pom.xml" />
+        <option value="$PROJECT_DIR$/teaching-class/TeachingClass/pom.xml" />
       </list>
+    </option>
+    <option name="ignoredFiles">
+      <set>
+        <option value="$PROJECT_DIR$/catalog-helper/pom.xml" />
+      </set>
     </option>
   </component>
   <component name="ProjectRootManager" version="2" project-jdk-name="1.8" project-jdk-type="JavaSDK">

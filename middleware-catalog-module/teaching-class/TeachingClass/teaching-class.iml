@@ -25,7 +25,8 @@
     <orderEntry type="library" name="Maven: com.amazonaws:jmespath-java:1.11.640" level="project" />
     <orderEntry type="library" scope="PROVIDED" name="Maven: javax.servlet:servlet-api:2.5" level="project" />
     <orderEntry type="module" module-name="catalog-model" />
-    <orderEntry type="module" module-name="catalog-helper" />
+    <orderEntry type="library" name="Maven: co.tpg.catalog:catalog-helper:1.0.0" level="project" />
+    <orderEntry type="module" module-name="catalog-dao" />
     <orderEntry type="library" name="Maven: com.fasterxml.jackson.core:jackson-databind:2.9.8" level="project" />
     <orderEntry type="library" name="Maven: com.fasterxml.jackson.core:jackson-annotations:2.9.0" level="project" />
     <orderEntry type="library" name="Maven: com.fasterxml.jackson.core:jackson-core:2.9.8" level="project" />

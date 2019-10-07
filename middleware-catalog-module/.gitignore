@@ -87,6 +87,7 @@ out/
 *.war
 *.ear
 *.db
+*.class
 
 ######################
 # Windows

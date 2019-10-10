@@ -1,11 +1,15 @@
 package co.tpg.workflow.function;
 
+import co.tpg.workflow.dao.DAO;
+import co.tpg.workflow.dao.StepDAO;
+import co.tpg.workflow.dao.exception.BackendException;
 import co.tpg.workflow.exception.ProcessingException;
 import co.tpg.workflow.model.Step;
 import co.tpg.workflow.request.HttpMethod;
 import co.tpg.workflow.request.StepRequest;
 import co.tpg.workflow.response.AbstractResponse;
 import co.tpg.workflow.response.ErrorResponse;
+import co.tpg.workflow.response.StepListResponse;
 import co.tpg.workflow.response.StepResponse;
 import com.amazonaws.AmazonServiceException;
 import com.amazonaws.services.dynamodbv2.AmazonDynamoDB;
@@ -17,9 +21,9 @@ import com.amazonaws.services.lambda.runtime.LambdaLogger;
 import com.amazonaws.services.lambda.runtime.RequestHandler;
 
 import javax.servlet.http.HttpServletResponse;
-import java.util.UUID;
 import java.util.HashMap;
 import java.util.Map;
+import java.util.UUID;
 
 /**
  * Handler for requests to Workflow step Lambda function.
@@ -35,8 +39,10 @@ public class StepFunction implements RequestHandler<StepRequest, AbstractRespons
         final AmazonDynamoDB dynamoDB = AmazonDynamoDBClientBuilder.defaultClient();
         final StepResponse response = new StepResponse();
         final ErrorResponse errorResponse = new ErrorResponse();
+        final StepListResponse stepListResponse = new StepListResponse();
         final Map<String, String> headers = new HashMap<>();
         final DynamoDBMapper mapper = new DynamoDBMapper(dynamoDB);
+        final StepDAO stepDAO = new StepDAO();
 
         Step step = null;
         String id;
@@ -52,9 +58,9 @@ public class StepFunction implements RequestHandler<StepRequest, AbstractRespons
         logger.log(String.format("HTTP method: %s\n",stepRequest.getHttpMethod()));
 
         // get step ID and check its existence
-        id = stepRequest.getPathParameters().get("id");
+        id = stepRequest.getBody().getId();
         if ( id == null ) {
-            if (httpMethod != HttpMethod.POST ) { // in case of post id does not exists yet
+            if ( !((httpMethod.equals(HttpMethod.POST) ) || (httpMethod.equals(HttpMethod.GET)) ) ) { // in case of post id does not exists yet
                 errorResponse.setStatusCode(HttpServletResponse.SC_BAD_REQUEST);
                 errorResponse.setBody(ProcessingException.builder().message("Invalid path parameter <id>.").build());
                 return errorResponse;
@@ -69,23 +75,38 @@ public class StepFunction implements RequestHandler<StepRequest, AbstractRespons
             }
         }
 
-
-
         // Execute rest operation (CRUD)
         switch (stepRequest.getHttpMethod()) {
 
             case HttpMethod.GET: {
-
                 // log operation
                 logger.log(String.format("GET id=%s body=%s\n", id, stepRequest.getBody()));
-                try {
-                    response.setBody(step);
-                } catch (ResourceNotFoundException ex) {
-                    errorResponse.setBody(ProcessingException.builder().message(String.format("The table named %s could not be found in the backend system.",DYNAMO_TABLE_NAME)).build());
-                    return errorResponse;
-                } catch (AmazonServiceException ex) {
-                    errorResponse.setBody(ProcessingException.builder().message(ex.getMessage()).build());
-                    return errorResponse;
+
+                if (id == null) { // get paginated result
+                    try {
+                        final String lastId = stepRequest.getQueryStringParameters().get("lastId");
+                        stepListResponse.setBody(stepDAO.retrieveAll(lastId, DAO.PAGE_SIZE));
+                        stepListResponse.setStatusCode(HttpServletResponse.SC_OK);
+                    } catch (BackendException e) {
+                        errorResponse.setBody(ProcessingException.builder().message(String.format(e.getMessage())).build());
+                        return errorResponse;
+                    }
+
+                    return stepListResponse;
+                } else { // retrieve by id
+                    try {
+                        step = stepDAO.retrieveById(id);
+                        response.setBody(step);
+                    } catch (ResourceNotFoundException ex) {
+                        errorResponse.setBody(ProcessingException.builder().message(String.format("The table named %s could not be found in the backend system.",DYNAMO_TABLE_NAME)).build());
+                        return errorResponse;
+                    } catch (AmazonServiceException ex) {
+                        errorResponse.setBody(ProcessingException.builder().message(ex.getMessage()).build());
+                        return errorResponse;
+                    } catch (BackendException ex) {
+                        errorResponse.setBody(ProcessingException.builder().message(String.format(ex.getMessage())).build());
+                        return errorResponse;
+                    }
                 }
                 break;
             }
@@ -100,11 +121,16 @@ public class StepFunction implements RequestHandler<StepRequest, AbstractRespons
                     step = stepRequest.getBody();
                     step.setId(UUID.randomUUID().toString());
 
-                    // save to DB + set response
-                    mapper.save(step);
-                    response.setBody(step);
-                    response.setStatusCode(HttpServletResponse.SC_CREATED);
-
+                    try {
+                        // save to DB + set response
+                        stepDAO.create(step);
+                        mapper.save(step);
+                        response.setBody(step);
+                        response.setStatusCode(HttpServletResponse.SC_CREATED);
+                    } catch (BackendException exc) {
+                        errorResponse.setBody(ProcessingException.builder().message(String.format(exc.getMessage())).build());
+                        return errorResponse;
+                    }
                 } catch (ResourceNotFoundException ex) {
                     errorResponse.setBody(ProcessingException.builder().message(String.format("The table named %s could not be found in the backend system.", DYNAMO_TABLE_NAME)).build());
                     return errorResponse;
@@ -118,15 +144,21 @@ public class StepFunction implements RequestHandler<StepRequest, AbstractRespons
 
             case HttpMethod.PUT:
             case HttpMethod.PATCH: {
+
                 // log operation
                 logger.log(String.format("PUT/PATCH id=%s body=%s\n", id, stepRequest.getBody()));
 
             try {
+                step = stepDAO.retrieveById(id); // if it does not exists, exception is thrown
+                stepDAO.update(stepRequest.getBody());
                 mapper.save(stepRequest.getBody());
                 response.setBody(stepRequest.getBody());
                 response.setStatusCode(HttpServletResponse.SC_OK);
             } catch (AmazonServiceException ex) {
                 errorResponse.setBody(ProcessingException.builder().message(ex.getMessage()).build());
+                return errorResponse;
+            } catch (BackendException e) {
+                errorResponse.setBody(ProcessingException.builder().message(String.format(e.getMessage())).build());
                 return errorResponse;
             }
                 break;
@@ -139,6 +171,8 @@ public class StepFunction implements RequestHandler<StepRequest, AbstractRespons
 
                 try {
                     // delete workflow step
+                    step = stepDAO.retrieveById(id);
+                    stepDAO.delete(step);
                     mapper.delete(step);
                     response.setStatusCode(HttpServletResponse.SC_OK);
 
@@ -147,6 +181,9 @@ public class StepFunction implements RequestHandler<StepRequest, AbstractRespons
                     return errorResponse;
                 } catch (AmazonServiceException ex) {
                     errorResponse.setBody(ProcessingException.builder().message(ex.getMessage()).build());
+                    return errorResponse;
+                } catch (BackendException e) {
+                    errorResponse.setBody(ProcessingException.builder().message(String.format(e.getMessage())).build());
                     return errorResponse;
                 }
                 break;

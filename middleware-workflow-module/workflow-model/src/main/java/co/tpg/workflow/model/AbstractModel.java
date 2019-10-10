@@ -1,4 +1,4 @@
-package co.tpg.model;
+package co.tpg.workflow.model;
 
 import java.io.Serializable;
 import java.util.Objects;

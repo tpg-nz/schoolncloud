@@ -1,4 +1,4 @@
-package co.tpg.model;
+package co.tpg.workflow.model;
 
 /**
  * Generic interface to domain model classes.

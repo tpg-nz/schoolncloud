@@ -1,4 +1,4 @@
-package co.tpg.request;
+package co.tpg.workflow.request;
 
 import java.util.Map;
 

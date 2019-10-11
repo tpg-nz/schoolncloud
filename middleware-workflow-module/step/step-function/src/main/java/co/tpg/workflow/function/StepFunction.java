@@ -2,9 +2,11 @@ package co.tpg.workflow.function;
 
 import co.tpg.workflow.dao.DAO;
 import co.tpg.workflow.dao.StepDAO;
+import co.tpg.workflow.dao.StepFieldDAO;
 import co.tpg.workflow.dao.exception.BackendException;
 import co.tpg.workflow.exception.ProcessingException;
 import co.tpg.workflow.model.Step;
+import co.tpg.workflow.model.StepField;
 import co.tpg.workflow.request.HttpMethod;
 import co.tpg.workflow.request.StepRequest;
 import co.tpg.workflow.response.AbstractResponse;
@@ -21,9 +23,7 @@ import com.amazonaws.services.lambda.runtime.LambdaLogger;
 import com.amazonaws.services.lambda.runtime.RequestHandler;
 
 import javax.servlet.http.HttpServletResponse;
-import java.util.HashMap;
-import java.util.Map;
-import java.util.UUID;
+import java.util.*;
 
 /**
  * Handler for requests to Workflow step Lambda function.
@@ -43,6 +43,7 @@ public class StepFunction implements RequestHandler<StepRequest, AbstractRespons
         final Map<String, String> headers = new HashMap<>();
         final DynamoDBMapper mapper = new DynamoDBMapper(dynamoDB);
         final StepDAO stepDAO = new StepDAO();
+        final StepFieldDAO stepFieldDAO = new StepFieldDAO();
 
         Step step = null;
         String id;
@@ -85,7 +86,20 @@ public class StepFunction implements RequestHandler<StepRequest, AbstractRespons
                 if (id == null) { // get paginated result
                     try {
                         final String lastId = stepRequest.getQueryStringParameters().get("lastId");
-                        stepListResponse.setBody(stepDAO.retrieveAll(lastId, DAO.PAGE_SIZE));
+
+                        // TODO -> validate this approach
+                        List<Step> steps = stepDAO.retrieveAll(lastId, DAO.PAGE_SIZE);
+                        if (steps != null) {
+                            for (Step localStep : steps ) {
+                                try {
+                                    localStep.setSteps(stepFieldDAO.retrieveByParentId(localStep.getId()));
+                                } catch (BackendException exc ) {
+                                    logger.log(exc.getMessage());
+                                }
+                            }
+                        }
+
+                        stepListResponse.setBody(steps);
                         stepListResponse.setStatusCode(HttpServletResponse.SC_OK);
                     } catch (BackendException e) {
                         errorResponse.setBody(ProcessingException.builder().message(String.format(e.getMessage())).build());
@@ -95,8 +109,21 @@ public class StepFunction implements RequestHandler<StepRequest, AbstractRespons
                     return stepListResponse;
                 } else { // retrieve by id
                     try {
+
                         step = stepDAO.retrieveById(id);
+
+                        // TODO -> validate this approach
+                        try {
+                            List<StepField> stepFields = stepFieldDAO.retrieveByParentId(id);
+                            if ( stepFields != null ) {
+                                step.setSteps(stepFields);
+                            }
+                        } catch (BackendException exc ) {
+                            logger.log(exc.getMessage());
+                        }
+
                         response.setBody(step);
+
                     } catch (ResourceNotFoundException ex) {
                         errorResponse.setBody(ProcessingException.builder().message(String.format("The table named %s could not be found in the backend system.",DYNAMO_TABLE_NAME)).build());
                         return errorResponse;
@@ -124,6 +151,19 @@ public class StepFunction implements RequestHandler<StepRequest, AbstractRespons
                     try {
                         // save to DB + set response
                         stepDAO.create(step);
+
+                        // TODO -> validate this approach
+                        ArrayList<StepField> stepFields = step.getSteps();
+                        if (stepFields != null ) {
+                            for (StepField stepField: stepFields ) {
+                                try {
+                                    stepFieldDAO.create(stepField);
+                                } catch (BackendException exc ) {
+                                    logger.log(exc.getMessage());
+                                }
+                            }
+                        }
+
                         mapper.save(step);
                         response.setBody(step);
                         response.setStatusCode(HttpServletResponse.SC_CREATED);
@@ -141,7 +181,6 @@ public class StepFunction implements RequestHandler<StepRequest, AbstractRespons
                 break;
             }
 
-
             case HttpMethod.PUT:
             case HttpMethod.PATCH: {
 
@@ -151,8 +190,21 @@ public class StepFunction implements RequestHandler<StepRequest, AbstractRespons
             try {
                 step = stepDAO.retrieveById(id); // if it does not exists, exception is thrown
                 stepDAO.update(stepRequest.getBody());
+
+                // TODO -> validate this approach
+                List<StepField> stepFields = step.getSteps();
+                if (stepFields != null ) {
+                    for (StepField stepField: stepFields) {
+                        try {
+                            stepFieldDAO.update(stepField);
+                        } catch (BackendException exc ) {
+                            logger.log(exc.getMessage());
+                        }
+                    }
+                }
+
                 mapper.save(stepRequest.getBody());
-                response.setBody(stepRequest.getBody());
+                response.setBody(stepRequest.getBody() );
                 response.setStatusCode(HttpServletResponse.SC_OK);
             } catch (AmazonServiceException ex) {
                 errorResponse.setBody(ProcessingException.builder().message(ex.getMessage()).build());
@@ -172,6 +224,19 @@ public class StepFunction implements RequestHandler<StepRequest, AbstractRespons
                 try {
                     // delete workflow step
                     step = stepDAO.retrieveById(id);
+
+                    // TODO -> validate this approach
+                    List<StepField> stepFields = step.getSteps();
+                    if (stepFields != null ) {
+                        for (StepField stepField: stepFields ) {
+                            try {
+                                stepFieldDAO.delete(stepField);
+                            } catch (BackendException exc ) {
+                                logger.log(exc.getMessage());
+                            }
+                        }
+                    }
+
                     stepDAO.delete(step);
                     mapper.delete(step);
                     response.setStatusCode(HttpServletResponse.SC_OK);

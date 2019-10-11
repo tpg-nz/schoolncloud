@@ -65,7 +65,7 @@ public class StepDAO implements DAO<Step, String> {
 
         try {
             if( lastEvaluatedKey != null ) {
-                map.put(":id", new AttributeValue().withS(lastEvaluatedKey));
+                map.put(":id", new AttributeValue().withS(String.valueOf(lastEvaluatedKey)));
                 paginatedExpression.setExclusiveStartKey(map);
             }
             queryResultPage = mapper.scan(Step.class,paginatedExpression);

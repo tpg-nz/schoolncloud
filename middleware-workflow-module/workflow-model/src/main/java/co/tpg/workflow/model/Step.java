@@ -4,7 +4,9 @@ import com.amazonaws.services.dynamodbv2.datamodeling.DynamoDBAttribute;
 import com.amazonaws.services.dynamodbv2.datamodeling.DynamoDBHashKey;
 import com.amazonaws.services.dynamodbv2.datamodeling.DynamoDBTable;
 import lombok.*;
+
 import java.util.ArrayList;
+import java.util.List;
 
 /**
  * Model class to represents a workflow step.
@@ -58,13 +60,21 @@ public class Step extends AbstractModel<String> {
         this.id = id;
         this.name = name;
         this.sequence = sequence;
+        this.steps = cloneSteps(stepFields);
+    }
 
+    public void setSteps(List<StepField> steps) {
+        this.steps = cloneSteps(steps);
+    }
+
+    public ArrayList<StepField> getSteps() {
+        return this.steps;
+    }
+
+    private ArrayList<StepField> cloneSteps(List<StepField> stepFields)  {
         // Clone step fields
-        this.steps = new ArrayList<StepField>(stepFields.size());
-        try {
-            for (StepField stepField : stepFields) this.steps.add((StepField) stepField.clone());
-        } catch (CloneNotSupportedException exc) {
-            exc.printStackTrace();
-        }
+        ArrayList<StepField> steps = new ArrayList<StepField>(stepFields.size());
+        steps.addAll(stepFields);
+        return steps;
     }
 }

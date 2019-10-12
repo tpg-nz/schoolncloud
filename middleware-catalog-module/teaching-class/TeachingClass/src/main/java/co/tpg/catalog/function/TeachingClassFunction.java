@@ -63,9 +63,6 @@ public class TeachingClassFunction implements RequestHandler<TeachingClassReques
                             errorResponse.setBody(ProcessingException.builder().message(String.format("Teaching class with ID=%s not found.", id)).build());
                             return errorResponse;
                         }
-                        //TODO: call helpers to fetch Campus and Paper objects from dynamoDB
-                        //CatalogHelper.fetchCampus(teachingClass.getCampusId());
-                        //CatalogHelper.fetchPaper(teachingClass.getPaperId());
                         response.setBody(teachingClass);
                     }
                     response.setStatusCode(HttpServletResponse.SC_OK);

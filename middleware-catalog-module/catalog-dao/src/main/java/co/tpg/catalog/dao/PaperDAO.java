@@ -1,7 +1,7 @@
 package co.tpg.catalog.dao;
 
 import co.tpg.catalog.dao.exception.BackendException;
-import co.tpg.catalog.model.TeachingClass;
+import co.tpg.catalog.model.Paper;
 import com.amazonaws.AmazonServiceException;
 import com.amazonaws.services.dynamodbv2.AmazonDynamoDB;
 import com.amazonaws.services.dynamodbv2.AmazonDynamoDBClientBuilder;
@@ -15,73 +15,58 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.UUID;
-import java.util.stream.Collectors;
 
 /**
- * DAO class to persist TeachingClass into the backend.
+ * DAO class to persist Paper into the backend.
  * @author Rod
- * @since 2019-10-06
+ * @since 2019-10-09
  */
-public class TeachingClassDAO implements DAO<TeachingClass,String>{
+public class PaperDAO implements DAO<Paper,String>{
     private static final AmazonDynamoDB dynamoDB = AmazonDynamoDBClientBuilder.defaultClient();
-    private static final String DYNAMO_TABLE_NAME = "TeachingClass";
+    private static final String DYNAMO_TABLE_NAME = "Paper";
     private static final DynamoDBMapper mapper = new DynamoDBMapper(dynamoDB);
 
     @Override
-    public TeachingClass create(TeachingClass teachingClass) throws BackendException {
+    public Paper create(Paper paper) throws BackendException {
         try {
-            teachingClass.setId(UUID.randomUUID().toString());
-            mapper.save(teachingClass);
+            paper.setId(UUID.randomUUID().toString());
+            mapper.save(paper);
         } catch (ResourceNotFoundException ex) {
             throw new BackendException(String.format("The table named %s could not be found in the backend system.", DYNAMO_TABLE_NAME));
         } catch (AmazonServiceException ex) {
             throw new BackendException(ex.getMessage());
         }
-        return teachingClass;
+        return paper;
     }
 
     @Override
-    public TeachingClass retrieveById(String key) throws BackendException {
-        final TeachingClass teachingClass;
-        final CampusDAO campusDAO = new CampusDAO();
-        final PaperDAO paperDAO = new PaperDAO();
+    public Paper retrieveById(String key) throws BackendException {
+        final Paper paper;
 
         try {
-            teachingClass = mapper.load(TeachingClass.class,key);
-            teachingClass.setCampus(campusDAO.retrieveById(teachingClass.getCampusId()));
-            teachingClass.setPaper(paperDAO.retrieveById(teachingClass.getPaperId()));
+            paper = mapper.load(Paper.class,key);
         } catch (ResourceNotFoundException ex) {
             throw new BackendException(String.format("The table named %s could not be found in the backend system.", DYNAMO_TABLE_NAME));
         } catch (AmazonServiceException ex) {
             throw new BackendException(ex.getMessage());
         }
 
-        return teachingClass;
+        return paper;
     }
 
     @Override
-    public List<TeachingClass> retrieveAll(String lastEvaluatedKey, int pageSize) throws BackendException {
+    public List<Paper> retrieveAll(String lastEvaluatedKey, int pageSize) throws BackendException {
         final Map<String, AttributeValue> map = new HashMap<>();
         final DynamoDBScanExpression paginatedExpression = new DynamoDBScanExpression()
                 .withLimit(pageSize);
-        final PaginatedScanList<TeachingClass> queryResultPage;
-        final CampusDAO campusDAO = new CampusDAO();
-        final PaperDAO paperDAO = new PaperDAO();
+        final PaginatedScanList<Paper> queryResultPage;
 
         try {
             if( lastEvaluatedKey != null ) {
                 map.put(":id", new AttributeValue().withS(lastEvaluatedKey));
                 paginatedExpression.setExclusiveStartKey(map);
             }
-            queryResultPage = mapper.scan(TeachingClass.class,paginatedExpression);
-            queryResultPage
-                    .parallelStream()
-                    .map(ThrowingFunction.unchecked(o -> {
-                            o.setPaper(paperDAO.retrieveById(o.getPaperId()));
-                            o.setCampus(campusDAO.retrieveById(o.getCampusId()));
-                        return o;
-                    }))
-                    .collect(Collectors.toList());
+            queryResultPage = mapper.scan(Paper.class,paginatedExpression);
         } catch (ResourceNotFoundException ex) {
             throw new BackendException(String.format("The table named %s could not be found in the backend system.", DYNAMO_TABLE_NAME));
         } catch (AmazonServiceException ex) {
@@ -92,9 +77,9 @@ public class TeachingClassDAO implements DAO<TeachingClass,String>{
     }
 
     @Override
-    public void update(TeachingClass teachingClass) throws BackendException {
+    public void update(Paper paper) throws BackendException {
         try {
-            mapper.save(teachingClass);
+            mapper.save(paper);
         } catch (ResourceNotFoundException ex) {
             throw new BackendException(String.format("The table named %s could not be found in the backend system.", DYNAMO_TABLE_NAME));
         } catch (AmazonServiceException ex) {
@@ -103,9 +88,9 @@ public class TeachingClassDAO implements DAO<TeachingClass,String>{
     }
 
     @Override
-    public void delete(TeachingClass teachingClass) throws BackendException {
+    public void delete(Paper paper) throws BackendException {
         try {
-            mapper.delete(teachingClass);
+            mapper.delete(paper);
         } catch (ResourceNotFoundException ex) {
             throw new BackendException(String.format("The table named %s could not be found in the backend system.", DYNAMO_TABLE_NAME));
         } catch (AmazonServiceException ex) {

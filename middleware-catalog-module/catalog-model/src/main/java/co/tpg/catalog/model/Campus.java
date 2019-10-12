@@ -1,5 +1,8 @@
 package co.tpg.catalog.model;
 
+import com.amazonaws.services.dynamodbv2.datamodeling.DynamoDBAttribute;
+import com.amazonaws.services.dynamodbv2.datamodeling.DynamoDBHashKey;
+import com.amazonaws.services.dynamodbv2.datamodeling.DynamoDBTable;
 import lombok.*;
 
 /**
@@ -11,9 +14,13 @@ import lombok.*;
 @Getter
 @Setter
 @ToString
-@EqualsAndHashCode
+@EqualsAndHashCode(onlyExplicitlyIncluded = true)
+@DynamoDBTable(tableName = "Campus")
 public class Campus extends AbstractModel<String> {
+    @EqualsAndHashCode.Include
+    @DynamoDBHashKey(attributeName = "id")
     private String id;
+    @DynamoDBAttribute(attributeName = "name")
     private String name;
 
     public Campus() {

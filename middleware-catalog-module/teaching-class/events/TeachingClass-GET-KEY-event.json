@@ -1,13 +1,13 @@
 {
   "body": {},
-  "resource": "/TeachingClass",
-  "path": "TeachingClass/d19cfe7f-6b52-433b-8f3e-61bcb23385c7",
+  "resource": "/teaching-class",
+  "path": "teaching-class/d19cfe7f-6b52-433b-8f3e-61bcb23385c7",
   "httpMethod": "GET",
   "isBase64Encoded": false,
   "queryStringParameters": {
   },
   "pathParameters": {
-    "id": "d19cfe7f-6b52-433b-8f3e-61bcb23385c7"
+    "id": "5e0a8ece-2b53-4cfd-8369-269eca2c8ce6"
   },
   "stageVariables": {
     "baz": "qux"

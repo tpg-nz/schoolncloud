@@ -39,8 +39,8 @@
     <option name="RECENT_TEMPLATES">
       <list>
         <option value="Enum" />
-        <option value="Interface" />
         <option value="Class" />
+        <option value="Interface" />
       </list>
     </option>
   </component>
@@ -63,7 +63,7 @@
     <property name="project.structure.last.edited" value="Modules" />
     <property name="project.structure.proportion" value="0.0" />
     <property name="project.structure.side.proportion" value="0.0" />
-    <property name="settings.editor.selected.configurable" value="vcs.Git" />
+    <property name="settings.editor.selected.configurable" value="reference.projectsettings.compiler.annotationProcessors" />
   </component>
   <component name="RecentsManager">
     <key name="MoveClassesOrPackagesDialog.RECENTS_KEY">
@@ -71,18 +71,18 @@
       <recent name="" />
     </key>
     <key name="CopyClassDialog.RECENTS_KEY">
+      <recent name="co.tpg.catalog.dao" />
+      <recent name="co.tpg.catalog.response" />
+      <recent name="co.tpg.catalog.request" />
       <recent name="co.tpg.response" />
       <recent name="co.tpg.function" />
-      <recent name="co.tpg.request" />
-      <recent name="co.tpg.model" />
-      <recent name="function" />
     </key>
     <key name="CopyFile.RECENT_KEYS">
+      <recent name="C:\projects\SchoolnCloud\schoolncloud\middleware-catalog-module" />
       <recent name="C:\projects\SchoolnCloud\schoolncloud\middleware-catalog-module\teaching-class\events" />
       <recent name="C:\projects\SchoolnCloud\schoolncloud\middleware-catalog-module\camp\HelloWorldFunction" />
       <recent name="C:\projects\SchoolnCloud\schoolncloud\middleware-catalog-module\camp\events" />
       <recent name="C:\projects\SchoolnCloud\middleware-catalog-module\teaching-staff\events" />
-      <recent name="C:\projects\SchoolnCloud\middleware-catalog-module\teaching-staff\CreateTeachingStaff\src\main\java" />
     </key>
   </component>
   <component name="RunDashboard">
@@ -233,6 +233,11 @@
           <url>jar://$MAVEN_REPOSITORY$/com/amazonaws/aws-java-sdk-dynamodb/1.11.640/aws-java-sdk-dynamodb-1.11.640-sources.jar!/com/amazonaws/services/dynamodbv2/datamodeling/DynamoDBMapper.java</url>
           <line>739</line>
           <option name="timeStamp" value="3" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/catalog-model/src/main/java/co/tpg/catalog/model/TeachingClass.java</url>
+          <line>51</line>
+          <option name="timeStamp" value="4" />
         </line-breakpoint>
       </breakpoints>
     </breakpoint-manager>

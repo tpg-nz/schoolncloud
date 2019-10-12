@@ -22,7 +22,6 @@ import com.amazonaws.services.lambda.runtime.RequestHandler;
 
 import javax.servlet.http.HttpServletResponse;
 import java.util.HashMap;
-import java.util.List;
 import java.util.Map;
 import java.util.UUID;
 
@@ -90,8 +89,8 @@ public class StepFunction implements RequestHandler<StepRequest, AbstractRespons
                 if (id == null) { // get paginated result
                     try {
                         final String lastId = stepRequest.getQueryStringParameters().get("lastId");
-                        List<Step> steps = stepDAO.retrieveAll(lastId, DAO.PAGE_SIZE);
-                        stepListResponse.setBody(steps);
+                        //List<Step> steps = stepDAO.retrieveAll(lastId, DAO.PAGE_SIZE);
+                        stepListResponse.setBody(stepDAO.retrieveAll(lastId, DAO.PAGE_SIZE));
                         stepListResponse.setStatusCode(HttpServletResponse.SC_OK);
                     } catch (BackendException e) {
                         errorResponse.setBody(ProcessingException.builder().message(String.format(e.getMessage())).build());
@@ -100,8 +99,8 @@ public class StepFunction implements RequestHandler<StepRequest, AbstractRespons
                     return stepListResponse;
                 } else {
                     try { // retrieve by id
-                        step = stepDAO.retrieveById(id);
-                        response.setBody(step);
+                        //step = stepDAO.retrieveById(id);
+                        response.setBody(stepDAO.retrieveById(id));
                     } catch (ResourceNotFoundException ex) {
                         errorResponse.setBody(ProcessingException.builder().message(String.format("The table named %s could not be found in the backend system.",DYNAMO_TABLE_NAME)).build());
                         return errorResponse;

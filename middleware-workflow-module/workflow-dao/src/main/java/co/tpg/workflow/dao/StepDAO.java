@@ -130,7 +130,7 @@ public class StepDAO implements DAO<Step, String> {
             // Update the result content for dependant nodes
             queryResultPage.forEach(step -> {
                 try {
-                    step.setSteps(stepFieldDAO.retrieveDependant(step.getId()));
+                    step.setStepFields(stepFieldDAO.retrieveDependant(step.getId()));
                 } catch (BackendException e) {
                     e.printStackTrace();
                 }

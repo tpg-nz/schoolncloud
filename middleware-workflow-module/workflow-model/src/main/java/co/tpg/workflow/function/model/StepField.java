@@ -5,6 +5,7 @@ import com.amazonaws.services.dynamodbv2.datamodeling.DynamoDBHashKey;
 import com.amazonaws.services.dynamodbv2.datamodeling.DynamoDBIgnore;
 import com.amazonaws.services.dynamodbv2.datamodeling.DynamoDBTable;
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import lombok.*;
 
 /**
@@ -17,10 +18,11 @@ import lombok.*;
 @Getter
 @Setter
 @ToString
-@EqualsAndHashCode
+@EqualsAndHashCode(onlyExplicitlyIncluded = true)
 @DynamoDBTable(tableName = "StepField")
+@JsonIgnoreProperties({"step"})
 public class StepField extends AbstractModel<String> implements Cloneable {
-
+    @EqualsAndHashCode.Include
     @DynamoDBHashKey(attributeName = "id")
     private String id;
     @DynamoDBAttribute(attributeName = "label")

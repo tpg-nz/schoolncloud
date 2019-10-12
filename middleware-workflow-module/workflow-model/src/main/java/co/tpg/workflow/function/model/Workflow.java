@@ -18,10 +18,10 @@ import java.util.List;
 @Getter
 @Setter
 @ToString
-@EqualsAndHashCode
+@EqualsAndHashCode(onlyExplicitlyIncluded = true)
 @DynamoDBTable(tableName = "Workflow")
 public class Workflow extends AbstractModel<String> {
-
+    @EqualsAndHashCode.Include
     @DynamoDBHashKey(attributeName = "id")
     private String id;
     @DynamoDBAttribute(attributeName = "name")

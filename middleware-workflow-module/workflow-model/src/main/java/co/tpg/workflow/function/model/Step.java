@@ -4,7 +4,7 @@ import com.amazonaws.services.dynamodbv2.datamodeling.DynamoDBAttribute;
 import com.amazonaws.services.dynamodbv2.datamodeling.DynamoDBHashKey;
 import com.amazonaws.services.dynamodbv2.datamodeling.DynamoDBIgnore;
 import com.amazonaws.services.dynamodbv2.datamodeling.DynamoDBTable;
-import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import lombok.*;
 
 import java.util.ArrayList;
@@ -19,10 +19,11 @@ import java.util.List;
 @Getter
 @Setter
 @ToString
-@EqualsAndHashCode
+@EqualsAndHashCode(onlyExplicitlyIncluded = true)
 @DynamoDBTable(tableName = "Step")
+@JsonIgnoreProperties({"workflow"})
 public class Step extends AbstractModel<String> {
-
+    @EqualsAndHashCode.Include
     @DynamoDBHashKey(attributeName = "id")
     private String id;
     @DynamoDBAttribute(attributeName = "name")
@@ -30,7 +31,6 @@ public class Step extends AbstractModel<String> {
     @DynamoDBAttribute(attributeName = "sequence")
     private int sequence;
 
-    @JsonIgnore
     @EqualsAndHashCode.Exclude
     @DynamoDBIgnore
     private Workflow workflow;

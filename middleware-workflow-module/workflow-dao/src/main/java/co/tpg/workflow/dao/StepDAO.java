@@ -7,13 +7,15 @@ import com.amazonaws.AmazonServiceException;
 import com.amazonaws.services.dynamodbv2.AmazonDynamoDB;
 import com.amazonaws.services.dynamodbv2.AmazonDynamoDBClientBuilder;
 import com.amazonaws.services.dynamodbv2.datamodeling.DynamoDBMapper;
-import com.amazonaws.services.dynamodbv2.datamodeling.DynamoDBQueryExpression;
 import com.amazonaws.services.dynamodbv2.datamodeling.DynamoDBScanExpression;
 import com.amazonaws.services.dynamodbv2.datamodeling.PaginatedScanList;
 import com.amazonaws.services.dynamodbv2.model.AttributeValue;
 import com.amazonaws.services.dynamodbv2.model.ResourceNotFoundException;
 
-import java.util.*;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
+import java.util.UUID;
 
 /**
  * DAO class to persist workflow step into the dynamoDB.
@@ -38,6 +40,7 @@ public class StepDAO implements DAO<Step, String> {
             List<StepField> stepFields = step.getSteps();
             if ( stepFields != null ) {
                 for (StepField stepField: stepFields) {
+                    stepField.setStep(step);
                     stepFieldDAO.create(stepField);
                 }
             }
@@ -94,7 +97,7 @@ public class StepDAO implements DAO<Step, String> {
         try {
             // Delete all step fields first
             List<StepField> stepFields = step.getSteps();
-            if ( stepFields != null ) {
+            if ( ( stepFields != null ) && (stepFields.size() > 0)) {
                 for (StepField stepField: stepFields) {
                     stepFieldDAO.delete(stepField);
                 }
@@ -124,7 +127,7 @@ public class StepDAO implements DAO<Step, String> {
             // Set the result page with dependant nodes
             queryResultPage = mapper.scan(Step.class,paginatedExpression);
 
-            // Update teh result content for dependant nodes
+            // Update the result content for dependant nodes
             queryResultPage.forEach(step -> {
                 try {
                     step.setSteps(stepFieldDAO.retrieveDependant(step.getId()));
@@ -150,21 +153,21 @@ public class StepDAO implements DAO<Step, String> {
      */
     public List<Step> retrieveDependant(String key) throws BackendException {
 
-        // Define query expression
         List<Step> steps;
 
         try {
             // Define query parameters
             Map<String, AttributeValue> eav = new HashMap<String, AttributeValue>();
-            eav.put(":v1", new AttributeValue().withS(key.toString()));
+            eav.put(":val1", new AttributeValue().withS(key.toString()));
 
-            DynamoDBQueryExpression<Step> queryExpression = new DynamoDBQueryExpression<Step>()
-                    .withKeyConditionExpression("workflowId = :v1")
+            DynamoDBScanExpression scanExpression = new DynamoDBScanExpression()
+                    .withFilterExpression("workflowId = :val1")
                     .withExpressionAttributeValues(eav);
+            // scan DB
+            steps = mapper.scan(Step.class, scanExpression);
 
-            steps = mapper.query(Step.class, queryExpression);
-            if (steps != null) {
-                // retrieve dependant nodes
+            if ((steps != null) && (steps.size() > 0) ){
+                // retrieve dependant step field nodes
                 for (Step step: steps ) {
                     step.setStepFields(stepFieldDAO.retrieveDependant(step.getId()));
                 }

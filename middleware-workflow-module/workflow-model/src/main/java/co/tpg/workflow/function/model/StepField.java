@@ -1,6 +1,10 @@
 package co.tpg.workflow.function.model;
 
-import com.amazonaws.services.dynamodbv2.datamodeling.*;
+import com.amazonaws.services.dynamodbv2.datamodeling.DynamoDBAttribute;
+import com.amazonaws.services.dynamodbv2.datamodeling.DynamoDBHashKey;
+import com.amazonaws.services.dynamodbv2.datamodeling.DynamoDBIgnore;
+import com.amazonaws.services.dynamodbv2.datamodeling.DynamoDBTable;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.*;
 
 /**
@@ -13,7 +17,7 @@ import lombok.*;
 @Getter
 @Setter
 @ToString
-@EqualsAndHashCode(callSuper = false)
+@EqualsAndHashCode
 @DynamoDBTable(tableName = "StepField")
 public class StepField extends AbstractModel<String> implements Cloneable {
 
@@ -24,10 +28,14 @@ public class StepField extends AbstractModel<String> implements Cloneable {
     @DynamoDBAttribute(attributeName = "sequence")
     private int sequence;
 
-//    @DynamoDBIndexRangeKey( attributeName="parentId",
-//                            localSecondaryIndexName="parentIdIndex")
-//    private String parentId;
+    @JsonIgnore
+    @EqualsAndHashCode.Exclude
+    @DynamoDBIgnore
     private Step step;
+
+    // TODO -> confirmation needed
+    @EqualsAndHashCode.Exclude
+    @DynamoDBIgnore
     private FieldType fieldType;
 
     /**
@@ -52,5 +60,18 @@ public class StepField extends AbstractModel<String> implements Cloneable {
     @Override
     protected Object clone() throws CloneNotSupportedException {
         return super.clone();
+    }
+
+
+    @DynamoDBAttribute(attributeName = "stepId")
+    public String getStepId() {
+        return (this.step != null) ? this.step.getId() : null;
+    }
+
+    public void setStepId(String stepId) {
+        if (this.step == null) {
+            this.step = new Step();
+        }
+        this.step.setId(stepId);
     }
 }

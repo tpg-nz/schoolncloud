@@ -18,7 +18,7 @@ import java.util.List;
 @Getter
 @Setter
 @ToString
-@EqualsAndHashCode(callSuper = false)
+@EqualsAndHashCode
 @DynamoDBTable(tableName = "Workflow")
 public class Workflow extends AbstractModel<String> {
 
@@ -32,6 +32,8 @@ public class Workflow extends AbstractModel<String> {
     private Boolean enabled;
     @DynamoDBAttribute(attributeName = "version")
     private String version;
+
+    @EqualsAndHashCode.Exclude
     @DynamoDBIgnore
     private ArrayList<Step> steps;
 

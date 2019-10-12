@@ -6,13 +6,15 @@ import com.amazonaws.AmazonServiceException;
 import com.amazonaws.services.dynamodbv2.AmazonDynamoDB;
 import com.amazonaws.services.dynamodbv2.AmazonDynamoDBClientBuilder;
 import com.amazonaws.services.dynamodbv2.datamodeling.DynamoDBMapper;
-import com.amazonaws.services.dynamodbv2.datamodeling.DynamoDBQueryExpression;
 import com.amazonaws.services.dynamodbv2.datamodeling.DynamoDBScanExpression;
 import com.amazonaws.services.dynamodbv2.datamodeling.PaginatedScanList;
 import com.amazonaws.services.dynamodbv2.model.AttributeValue;
 import com.amazonaws.services.dynamodbv2.model.ResourceNotFoundException;
 
-import java.util.*;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
+import java.util.UUID;
 
 /**
  * DAO class persists workflow step field in the dynamoDB
@@ -33,20 +35,20 @@ public class StepFieldDAO implements DAO<StepField, String> {
      */
     public List<StepField> retrieveDependant(String key) throws BackendException {
 
-        // Define query expression
-        final String partitionKey = "parentId";
-        List<StepField> stepFields = new ArrayList<>();
+        List<StepField> stepFields;
 
         try {
+
             // Define query parameters
             Map<String, AttributeValue> eav = new HashMap<String, AttributeValue>();
-            eav.put(":v1", new AttributeValue().withS(key.toString()));
+            eav.put(":val1", new AttributeValue().withS(key.toString()));
 
-            DynamoDBQueryExpression<StepField> queryExpression = new DynamoDBQueryExpression<StepField>()
-                    .withKeyConditionExpression("parentId = :v1")
+            DynamoDBScanExpression scanExpression = new DynamoDBScanExpression()
+                    .withFilterExpression("stepId = :val1")
                     .withExpressionAttributeValues(eav);
 
-            stepFields = mapper.query(StepField.class, queryExpression);
+            stepFields = mapper.scan(StepField.class, scanExpression);
+
         } catch (ResourceNotFoundException ex) {
             throw new BackendException(String.format("The table named %s could not be found in the backend system.", DYNAMO_TABLE_NAME));
         } catch (AmazonServiceException ex) {

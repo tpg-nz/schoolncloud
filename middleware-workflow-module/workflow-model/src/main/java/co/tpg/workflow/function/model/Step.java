@@ -2,7 +2,9 @@ package co.tpg.workflow.function.model;
 
 import com.amazonaws.services.dynamodbv2.datamodeling.DynamoDBAttribute;
 import com.amazonaws.services.dynamodbv2.datamodeling.DynamoDBHashKey;
+import com.amazonaws.services.dynamodbv2.datamodeling.DynamoDBIgnore;
 import com.amazonaws.services.dynamodbv2.datamodeling.DynamoDBTable;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.*;
 
 import java.util.ArrayList;
@@ -17,7 +19,7 @@ import java.util.List;
 @Getter
 @Setter
 @ToString
-@EqualsAndHashCode(callSuper = false)
+@EqualsAndHashCode
 @DynamoDBTable(tableName = "Step")
 public class Step extends AbstractModel<String> {
 
@@ -28,7 +30,13 @@ public class Step extends AbstractModel<String> {
     @DynamoDBAttribute(attributeName = "sequence")
     private int sequence;
 
+    @JsonIgnore
+    @EqualsAndHashCode.Exclude
+    @DynamoDBIgnore
     private Workflow workflow;
+
+    @EqualsAndHashCode.Exclude
+    @DynamoDBIgnore
     private List<StepField> stepFields;
 
 
@@ -79,5 +87,17 @@ public class Step extends AbstractModel<String> {
         ArrayList<StepField> steps = new ArrayList<StepField>(stepFields.size());
         steps.addAll(stepFields);
         return steps;
+    }
+
+    @DynamoDBAttribute(attributeName = "worklowId")
+    public String getWorkflowId() {
+        return (this.workflow != null) ? this.workflow.getId() : null;
+    }
+
+    public void setWorkflowId(String workflowId) {
+        if (this.workflow == null) {
+            this.workflow = new Workflow();
+        }
+        this.workflow.setId(workflowId);
     }
 }

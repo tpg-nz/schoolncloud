@@ -36,8 +36,9 @@ public class WorkflowDAO implements DAO<Workflow, String> {
 
             // Create dependant objects
             ArrayList<Step> steps = workflow.getSteps();
-            if ( steps != null ) {
+            if (( steps != null ) && (steps.size() > 0)){
                 for (Step step: steps) {
+                    step.setWorkflow(workflow);
                     stepDAO.create(step);
                 }
             }
@@ -58,7 +59,7 @@ public class WorkflowDAO implements DAO<Workflow, String> {
             workflow = mapper.load(Workflow.class,key);
             // Load workflow dependant objects
             List<Step> steps = stepDAO.retrieveDependant(workflow.getId());
-            if (steps != null) {
+            if ( (steps != null) && (steps.size() > 0)  ){
                 workflow.setSteps( steps );
             }
 
@@ -100,7 +101,7 @@ public class WorkflowDAO implements DAO<Workflow, String> {
         try {
             // Delete all steps first
             ArrayList<Step> steps = workflow.getSteps();
-            if (steps != null ) {
+            if ( (steps != null ) && (steps.size() > 0) ) {
                 steps.forEach(step -> {
                     try {
                         stepDAO.delete(step);

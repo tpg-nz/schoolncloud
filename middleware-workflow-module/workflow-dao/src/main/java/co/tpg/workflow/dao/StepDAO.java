@@ -56,7 +56,10 @@ public class StepDAO implements DAO<Step, String> {
         try {
             step = mapper.load(Step.class,key);
             // Load workflow step fields dependant nodes
-            step.setStepFields( (ArrayList<StepField>) stepFieldDAO.retrieveDependant(step.getId()));
+            List<StepField> stepFields = stepFieldDAO.retrieveDependant(step.getId());
+            if (stepFields != null) {
+                step.setStepFields( stepFields);
+            }
         } catch (ResourceNotFoundException ex) {
             throw new BackendException(String.format("The table named %s could not be found in the backend system.", DYNAMO_TABLE_NAME));
         } catch (AmazonServiceException ex) {

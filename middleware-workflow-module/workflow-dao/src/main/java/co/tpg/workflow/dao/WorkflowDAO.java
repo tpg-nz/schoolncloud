@@ -57,7 +57,11 @@ public class WorkflowDAO implements DAO<Workflow, String> {
             // Load workflow
             workflow = mapper.load(Workflow.class,key);
             // Load workflow dependant objects
-            workflow.setSteps( (ArrayList<Step>) stepDAO.retrieveDependant(workflow.getId()));
+            List<Step> steps = stepDAO.retrieveDependant(workflow.getId());
+            if (steps != null) {
+                workflow.setSteps( steps );
+            }
+
         } catch (ResourceNotFoundException ex) {
             throw new BackendException(String.format("The table named %s could not be found in the backend system.", DYNAMO_TABLE_NAME));
         } catch (AmazonServiceException ex) {

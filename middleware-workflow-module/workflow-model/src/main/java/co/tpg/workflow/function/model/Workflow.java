@@ -3,10 +3,8 @@ package co.tpg.workflow.function.model;
 import com.amazonaws.services.dynamodbv2.datamodeling.DynamoDBAttribute;
 import com.amazonaws.services.dynamodbv2.datamodeling.DynamoDBHashKey;
 import com.amazonaws.services.dynamodbv2.datamodeling.DynamoDBIgnore;
-import lombok.Builder;
-import lombok.Getter;
-import lombok.Setter;
-import lombok.ToString;
+import com.amazonaws.services.dynamodbv2.datamodeling.DynamoDBTable;
+import lombok.*;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -20,6 +18,8 @@ import java.util.List;
 @Getter
 @Setter
 @ToString
+@EqualsAndHashCode(callSuper = false)
+@DynamoDBTable(tableName = "Workflow")
 public class Workflow extends AbstractModel<String> {
 
     @DynamoDBHashKey(attributeName = "id")

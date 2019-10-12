@@ -58,7 +58,7 @@ public class Step extends AbstractModel<String> {
      * @param workflow      Workflow
      * @param stepFields    Workflow step fields
      */
-    public Step(String id, String name, int sequence, Workflow workflow, ArrayList<StepField> stepFields) {
+    public Step(String id, String name, int sequence, Workflow workflow, List<StepField> stepFields) {
         this.id = id;
         this.name = name;
         this.sequence = sequence;

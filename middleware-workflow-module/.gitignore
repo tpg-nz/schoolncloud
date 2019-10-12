@@ -1,0 +1,9 @@
+/step/step-function/target/*
+/workflow-model/target/*
+/workflow-model/.settings/
+/workflow-dao/target/*
+/.settings/*
+/.idea/*
+/workflow/workflow-function/target/*
+/step-field/step-field-function/target/*
+/step/.aws-sam/*

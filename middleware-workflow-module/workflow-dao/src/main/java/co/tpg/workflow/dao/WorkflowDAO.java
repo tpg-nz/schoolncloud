@@ -1,6 +1,6 @@
-package co.tpg.workflow.function.dao;
+package co.tpg.workflow.dao;
 
-import co.tpg.workflow.function.dao.exception.BackendException;
+import co.tpg.workflow.dao.exception.BackendException;
 import co.tpg.workflow.function.model.Step;
 import co.tpg.workflow.function.model.Workflow;
 import com.amazonaws.AmazonServiceException;
@@ -24,7 +24,6 @@ public class WorkflowDAO implements DAO<Workflow, String> {
     private static final String DYNAMO_TABLE_NAME = "Workflow";
     private static final AmazonDynamoDB dynamoDB = AmazonDynamoDBClientBuilder.defaultClient();
     private static final DynamoDBMapper mapper = new DynamoDBMapper(dynamoDB);
-
     private StepDAO stepDAO = new StepDAO();
 
     @Override
@@ -132,6 +131,13 @@ public class WorkflowDAO implements DAO<Workflow, String> {
             queryResultPage = mapper.scan(Workflow.class,paginatedExpression);
 
             // Update teh result content for dependant nodes
+            queryResultPage.forEach(workflow -> {
+                try {
+                    workflow.setSteps(stepDAO.retrieveDependant(workflow.getId()));
+                } catch (BackendException e) {
+                    e.printStackTrace();
+                }
+            });
 
         } catch (ResourceNotFoundException ex) {
             throw new BackendException(String.format("The table named %s could not be found in the backend system.", DYNAMO_TABLE_NAME));

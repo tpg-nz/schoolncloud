@@ -2,6 +2,7 @@ package co.tpg.workflow.function.model;
 
 import com.amazonaws.services.dynamodbv2.datamodeling.DynamoDBAttribute;
 import com.amazonaws.services.dynamodbv2.datamodeling.DynamoDBHashKey;
+import com.amazonaws.services.dynamodbv2.datamodeling.DynamoDBIgnore;
 import lombok.Builder;
 import lombok.Getter;
 import lombok.Setter;
@@ -31,8 +32,7 @@ public class Workflow extends AbstractModel<String> {
     private Boolean enabled;
     @DynamoDBAttribute(attributeName = "version")
     private String version;
-
-
+    @DynamoDBIgnore
     private ArrayList<Step> steps;
 
     /**
@@ -72,7 +72,7 @@ public class Workflow extends AbstractModel<String> {
         return steps;
     }
 
-    public void setSteps(final ArrayList<Step> steps) {
+    public void setSteps(final List<Step> steps) {
         this.steps = cloneSteps(steps);
     }
 }

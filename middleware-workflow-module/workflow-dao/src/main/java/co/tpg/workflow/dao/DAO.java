@@ -1,6 +1,6 @@
-package co.tpg.workflow.function.dao;
+package co.tpg.workflow.dao;
 
-import co.tpg.workflow.function.dao.exception.BackendException;
+import co.tpg.workflow.dao.exception.BackendException;
 import java.util.List;
 
 /**

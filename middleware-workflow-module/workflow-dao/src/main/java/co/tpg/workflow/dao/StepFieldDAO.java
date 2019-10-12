@@ -1,6 +1,6 @@
-package co.tpg.workflow.function.dao;
+package co.tpg.workflow.dao;
 
-import co.tpg.workflow.function.dao.exception.BackendException;
+import co.tpg.workflow.dao.exception.BackendException;
 import co.tpg.workflow.function.model.StepField;
 import com.amazonaws.AmazonServiceException;
 import com.amazonaws.services.dynamodbv2.AmazonDynamoDB;
@@ -31,7 +31,7 @@ public class StepFieldDAO implements DAO<StepField, String> {
      * @return      List of workflow step fields
      * @throws BackendException
      */
-    public List<StepField> retrieveByParentId(String key) throws BackendException {
+    public List<StepField> retrieveDependant(String key) throws BackendException {
 
         // Define query expression
         final String partitionKey = "parentId";
@@ -55,7 +55,6 @@ public class StepFieldDAO implements DAO<StepField, String> {
         return stepFields;
     }
 
-
     @Override
     public StepField create(StepField stepField) throws BackendException {
         try {
@@ -68,7 +67,6 @@ public class StepFieldDAO implements DAO<StepField, String> {
         }
         return stepField;
     }
-
 
     @Override
     public StepField retrieveById(String key) throws BackendException {

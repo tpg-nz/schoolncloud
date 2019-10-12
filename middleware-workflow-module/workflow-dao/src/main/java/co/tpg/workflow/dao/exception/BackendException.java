@@ -1,4 +1,4 @@
-package co.tpg.workflow.function.dao.exception;
+package co.tpg.workflow.dao.exception;
 
 /**
  * Exception class to decouple resources and backend.

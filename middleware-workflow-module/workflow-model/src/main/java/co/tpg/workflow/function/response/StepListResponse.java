@@ -1,7 +1,6 @@
 package co.tpg.workflow.function.response;
 
 import co.tpg.workflow.function.model.Step;
-
 import java.util.List;
 
 /**

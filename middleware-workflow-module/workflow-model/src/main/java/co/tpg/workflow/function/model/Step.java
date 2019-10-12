@@ -29,7 +29,7 @@ public class Step extends AbstractModel<String> {
     private int sequence;
 
     private Workflow workflow;
-    private ArrayList<StepField> stepFields = new ArrayList<StepField>();
+    private List<StepField> stepFields;
 
 
     /**
@@ -70,7 +70,7 @@ public class Step extends AbstractModel<String> {
         this.stepFields = cloneSteps(steps);
     }
 
-    public ArrayList<StepField> getSteps() {
+    public List<StepField> getSteps() {
         return this.stepFields;
     }
 

@@ -67,8 +67,8 @@ public class Step extends AbstractModel<String> {
      * Workflow id getter is used in DB for proper reference
      * @return  Workflow Id
      */
-    @JsonProperty
     @DynamoDBAttribute(attributeName = "workflowId")
+    @JsonIgnore
     public String getWorkflowId() {
         return (this.workflow != null) ? this.workflow.getId() : null;
     }

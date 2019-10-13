@@ -2,7 +2,6 @@ package co.tpg.workflow.function.model;
 
 import com.amazonaws.services.dynamodbv2.datamodeling.*;
 import com.fasterxml.jackson.annotation.JsonIgnore;
-import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import lombok.*;
 
 /**
@@ -16,7 +15,6 @@ import lombok.*;
 @ToString
 @EqualsAndHashCode(callSuper = false, onlyExplicitlyIncluded = true)
 @DynamoDBTable(tableName = "StepField")
-@JsonIgnoreProperties(ignoreUnknown = true)
 public class StepField extends AbstractModel<String> {
 
     @EqualsAndHashCode.Include
@@ -27,12 +25,10 @@ public class StepField extends AbstractModel<String> {
     @DynamoDBAttribute(attributeName = "sequence")
     private int sequence;
 
-    //@JsonBackReference
     @DynamoDBIgnore
     @JsonIgnore
     private Step step;
 
-    //TODO -> fix the conversion
     @DynamoDBTypeConverted(converter = FieldTypeConverter.class)
     @DynamoDBAttribute(attributeName = "fieldType")
     private FieldType fieldType;
@@ -47,13 +43,15 @@ public class StepField extends AbstractModel<String> {
      * @param id        Workflow step field UUID
      * @param label     Workflow step field label
      * @param sequence  Workflow step field sequence
+     * @param step      Workflow step object
+     * @param fieldType Workflow step field type
      */
     public StepField(String id, String label, int sequence, Step step, FieldType fieldType) {
         this.id = id;
         this.label = label;
         this.sequence = sequence;
         this.step = step;
-        //this.fieldType = fieldType;
+        this.fieldType = fieldType;
     }
 
     /**
@@ -61,6 +59,7 @@ public class StepField extends AbstractModel<String> {
      * @return  Step Id
      */
     @DynamoDBAttribute(attributeName = "stepId")
+    @JsonIgnore
     public String getStepId() {
         return (this.step != null) ? this.step.getId() : null;
     }

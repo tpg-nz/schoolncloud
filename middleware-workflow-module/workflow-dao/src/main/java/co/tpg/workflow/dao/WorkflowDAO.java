@@ -26,6 +26,12 @@ public class WorkflowDAO implements DAO<Workflow, String> {
     private static final DynamoDBMapper mapper = new DynamoDBMapper(dynamoDB);
     private StepDAO stepDAO = new StepDAO();
 
+    /**
+     * Creates new workflow
+     * @param workflow  Workflow
+     * @return  Newly created workflow object
+     * @throws BackendException
+     */
     @Override
     public Workflow create(Workflow workflow) throws BackendException {
 
@@ -35,7 +41,7 @@ public class WorkflowDAO implements DAO<Workflow, String> {
             mapper.save(workflow);
 
             // Create dependant objects
-            ArrayList<Step> steps = workflow.getSteps();
+            List<Step> steps = workflow.getSteps();
             if (( steps != null ) && (steps.size() > 0)){
                 for (Step step: steps) {
                     step.setWorkflow(workflow);
@@ -50,6 +56,12 @@ public class WorkflowDAO implements DAO<Workflow, String> {
         return workflow;
     }
 
+    /**
+     * Retrieves workflow object using its id
+     * @param key   Workflow id
+     * @return      Workflow object reference
+     * @throws BackendException
+     */
     @Override
     public Workflow retrieveById(String key) throws BackendException {
         final Workflow workflow;
@@ -62,7 +74,6 @@ public class WorkflowDAO implements DAO<Workflow, String> {
             if ( (steps != null) && (steps.size() > 0)  ){
                 workflow.setSteps( steps );
             }
-
         } catch (ResourceNotFoundException ex) {
             throw new BackendException(String.format("The table named %s could not be found in the backend system.", DYNAMO_TABLE_NAME));
         } catch (AmazonServiceException ex) {
@@ -71,6 +82,11 @@ public class WorkflowDAO implements DAO<Workflow, String> {
         return workflow;
     }
 
+    /**
+     * Updates the workflow object
+     * @param workflow  Workflow object
+     * @throws BackendException
+     */
     @Override
     public void update(Workflow workflow) throws BackendException {
 
@@ -78,7 +94,7 @@ public class WorkflowDAO implements DAO<Workflow, String> {
             // Update workflow
             mapper.save(workflow);
             // Update steps
-            ArrayList<Step> steps = workflow.getSteps();
+            List<Step> steps = workflow.getSteps();
             if ( steps != null ) {
                 steps.forEach(step-> {
                     try {
@@ -95,12 +111,17 @@ public class WorkflowDAO implements DAO<Workflow, String> {
         }
     }
 
+    /**
+     * Deletes the workflow object
+     * @param workflow  Workflow object
+     * @throws BackendException
+     */
     @Override
     public void delete(Workflow workflow) throws BackendException {
 
         try {
             // Delete all steps first
-            ArrayList<Step> steps = workflow.getSteps();
+            List<Step> steps = workflow.getSteps();
             if ( (steps != null ) && (steps.size() > 0) ) {
                 steps.forEach(step -> {
                     try {
@@ -119,6 +140,13 @@ public class WorkflowDAO implements DAO<Workflow, String> {
         }
     }
 
+    /**
+     * Retrieve all workflow using paginated approach
+     * @param lastEvaluatedKey  Last used workflow id
+     * @param pageSize          Page size
+     * @return                  List of workflow objects
+     * @throws BackendException
+     */
     @Override
     public List<Workflow> retrieveAll(String lastEvaluatedKey, int pageSize) throws BackendException {
 
@@ -135,15 +163,12 @@ public class WorkflowDAO implements DAO<Workflow, String> {
             // Set the result page
             queryResultPage = mapper.scan(Workflow.class,paginatedExpression);
 
-            // Update teh result content for dependant nodes
-            queryResultPage.forEach(workflow -> {
-                try {
+            if ((queryResultPage != null) && (queryResultPage.size() > 0) ){
+                // retrieve dependant step field nodes
+                for (Workflow workflow: queryResultPage ) {
                     workflow.setSteps(stepDAO.retrieveDependant(workflow.getId()));
-                } catch (BackendException e) {
-                    e.printStackTrace();
                 }
-            });
-
+            }
         } catch (ResourceNotFoundException ex) {
             throw new BackendException(String.format("The table named %s could not be found in the backend system.", DYNAMO_TABLE_NAME));
         } catch (AmazonServiceException ex) {

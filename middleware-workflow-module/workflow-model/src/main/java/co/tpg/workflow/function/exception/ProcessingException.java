@@ -2,6 +2,11 @@ package co.tpg.workflow.function.exception;
 
 import lombok.*;
 
+/**
+ * Processing exception class
+ * @author Andrej
+ * @since 2019-10-10
+ */
 @Builder
 @Getter
 @Setter

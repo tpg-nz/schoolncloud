@@ -28,7 +28,7 @@ public class StepFieldDAO implements DAO<StepField, String> {
     private static final DynamoDBMapper mapper = new DynamoDBMapper(dynamoDB);
 
     /**
-     * Method returns the list of workflow step fields
+     * Returns the list of workflow step fields for workflow step
      * @param key   Workflow step parent ID
      * @return      List of workflow step fields
      * @throws BackendException
@@ -38,7 +38,6 @@ public class StepFieldDAO implements DAO<StepField, String> {
         List<StepField> stepFields;
 
         try {
-
             // Define query parameters
             Map<String, AttributeValue> eav = new HashMap<String, AttributeValue>();
             eav.put(":val1", new AttributeValue().withS(key.toString()));
@@ -57,6 +56,12 @@ public class StepFieldDAO implements DAO<StepField, String> {
         return stepFields;
     }
 
+    /**
+     * Creates new workflow step field
+     * @param stepField Workflow step field
+     * @return          Newly created workflow step field
+     * @throws BackendException
+     */
     @Override
     public StepField create(StepField stepField) throws BackendException {
         try {
@@ -70,15 +75,18 @@ public class StepFieldDAO implements DAO<StepField, String> {
         return stepField;
     }
 
+    /**
+     * Retrieves workflow step field object using its id
+     * @param key   Workflow step field id
+     * @return      Workflow step field object reference
+     * @throws BackendException
+     */
     @Override
     public StepField retrieveById(String key) throws BackendException {
         final StepField stepField;
 
         try {
             stepField = mapper.load(StepField.class,key);
-            if ( stepField != null ) {
-
-            }
         } catch (ResourceNotFoundException ex) {
             throw new BackendException(String.format("The table named %s could not be found in the backend system.", DYNAMO_TABLE_NAME));
         } catch (AmazonServiceException ex) {
@@ -87,6 +95,11 @@ public class StepFieldDAO implements DAO<StepField, String> {
         return stepField;
     }
 
+    /**
+     * Updates the workflow step field object
+     * @param stepField Workflow step field
+     * @throws BackendException
+     */
     @Override
     public void update(StepField stepField) throws BackendException {
         try {
@@ -98,6 +111,11 @@ public class StepFieldDAO implements DAO<StepField, String> {
         }
     }
 
+    /**
+     * Deletes the workflow step field object
+     * @param stepField Workflow step field object
+     * @throws BackendException
+     */
     @Override
     public void delete(StepField stepField) throws BackendException {
         try {
@@ -109,6 +127,13 @@ public class StepFieldDAO implements DAO<StepField, String> {
         }
     }
 
+    /**
+     * Rerieves all workflow step fields using paginated result
+     * @param lastEvaluatedKey  Last used workflow step field id
+     * @param pageSize          Page size
+     * @return                  List of workflow step field objects
+     * @throws BackendException
+     */
     @Override
     public List<StepField> retrieveAll(String lastEvaluatedKey, int pageSize) throws BackendException {
 

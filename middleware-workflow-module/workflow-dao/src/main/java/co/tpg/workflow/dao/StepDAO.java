@@ -29,6 +29,12 @@ public class StepDAO implements DAO<Step, String> {
     private static final DynamoDBMapper mapper = new DynamoDBMapper(dynamoDB);
     private StepFieldDAO stepFieldDAO = new StepFieldDAO();
 
+    /**
+     * Creates new workflow step
+     * @param step  Workflow step
+     * @return      Newly created workflow step
+     * @throws BackendException
+     */
     @Override
     public Step create(Step step) throws BackendException {
         try {
@@ -37,7 +43,7 @@ public class StepDAO implements DAO<Step, String> {
             mapper.save(step);
 
             // Create step dependant nodes
-            List<StepField> stepFields = step.getSteps();
+            List<StepField> stepFields = step.getStepFields();
             if ( stepFields != null ) {
                 for (StepField stepField: stepFields) {
                     stepField.setStep(step);
@@ -52,6 +58,12 @@ public class StepDAO implements DAO<Step, String> {
         return step;
     }
 
+    /**
+     * Retrieves workflow step object using its id
+     * @param key   Workflow step id
+     * @return      Workflow step object reference
+     * @throws BackendException
+     */
     @Override
     public Step retrieveById(String key) throws BackendException {
         final Step step;
@@ -71,6 +83,11 @@ public class StepDAO implements DAO<Step, String> {
         return step;
     }
 
+    /**
+     * Updates the workflow step object
+     * @param step  Workflow step
+     * @throws BackendException
+     */
     @Override
     public void update(Step step) throws BackendException {
         try {
@@ -78,7 +95,7 @@ public class StepDAO implements DAO<Step, String> {
             mapper.save(step);
 
             // Update step fields
-            List<StepField> stepFields = step.getSteps();
+            List<StepField> stepFields = step.getStepFields();
             if ( stepFields != null ) {
                 for (StepField stepField: stepFields) {
                     stepFieldDAO.update(stepField);
@@ -91,12 +108,17 @@ public class StepDAO implements DAO<Step, String> {
         }
     }
 
+    /**
+     * Deletes the workflow step object
+     * @param step  Workflow step object
+     * @throws BackendException
+     */
     @Override
     public void delete(Step step) throws BackendException {
 
         try {
             // Delete all step fields first
-            List<StepField> stepFields = step.getSteps();
+            List<StepField> stepFields = step.getStepFields();
             if ( ( stepFields != null ) && (stepFields.size() > 0)) {
                 for (StepField stepField: stepFields) {
                     stepFieldDAO.delete(stepField);
@@ -111,6 +133,13 @@ public class StepDAO implements DAO<Step, String> {
         }
     }
 
+    /**
+     * Rerieves all workflow steps using paginated result
+     * @param lastEvaluatedKey  Last used workflow step id
+     * @param pageSize          Page size
+     * @return                  List of workflow step objects
+     * @throws BackendException
+     */
     @Override
     public List<Step> retrieveAll(String lastEvaluatedKey, int pageSize) throws BackendException {
 
@@ -127,28 +156,24 @@ public class StepDAO implements DAO<Step, String> {
             // Set the result page with dependant nodes
             queryResultPage = mapper.scan(Step.class,paginatedExpression);
 
-            // Update the result content for dependant nodes
-            queryResultPage.forEach(step -> {
-                try {
+            if ((queryResultPage != null) && (queryResultPage.size() > 0) ){
+                // retrieve dependant step field nodes
+                for (Step step: queryResultPage ) {
                     step.setStepFields(stepFieldDAO.retrieveDependant(step.getId()));
-                } catch (BackendException e) {
-                    e.printStackTrace();
                 }
-            });
-
+            }
         } catch (ResourceNotFoundException ex) {
             throw new BackendException(String.format("The table named %s could not be found in the backend system.", DYNAMO_TABLE_NAME));
         } catch (AmazonServiceException ex) {
             throw new BackendException(ex.getMessage());
         }
-
         return queryResultPage.subList(0,queryResultPage.size() > pageSize ? pageSize : queryResultPage.size());
     }
 
     /**
-     * Method returns the list of workflow step fields
-     * @param key   Workflow step parent ID
-     * @return      List of workflow step fields
+     * Returns the list of dependant workflow steps for workflow
+     * @param key   Workflow parent ID
+     * @return      List of workflow step
      * @throws BackendException
      */
     public List<Step> retrieveDependant(String key) throws BackendException {

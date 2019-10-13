@@ -4,7 +4,7 @@ import co.tpg.workflow.function.model.Workflow;
 import java.util.List;
 
 /**
- * Response class for List of workflows
+ * Response class for List of workflow
  * @author Andrej
  * @since 2019-10-12
  */

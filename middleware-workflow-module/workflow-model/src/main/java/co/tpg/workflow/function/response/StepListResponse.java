@@ -4,7 +4,7 @@ import co.tpg.workflow.function.model.Step;
 import java.util.List;
 
 /**
- * Response class for List of workflow step model.
+ * Response class for List of workflow step
  * @author Andrej
  * @since 2019-10-10
  */

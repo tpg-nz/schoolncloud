@@ -1,10 +1,11 @@
 package co.tpg.workflow.function.model;
 
 /**
- * Enum class represents the field type
+ * Enum class represents the workflow field type
  * @author Andrej
  * @since 2019-10-08
  */
+
 public enum FieldType {
 
     TEXTFIELD("Textfield"),

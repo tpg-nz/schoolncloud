@@ -4,14 +4,13 @@ import com.amazonaws.services.dynamodbv2.datamodeling.DynamoDBAttribute;
 import com.amazonaws.services.dynamodbv2.datamodeling.DynamoDBHashKey;
 import com.amazonaws.services.dynamodbv2.datamodeling.DynamoDBIgnore;
 import com.amazonaws.services.dynamodbv2.datamodeling.DynamoDBTable;
-import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+import com.fasterxml.jackson.annotation.*;
 import lombok.*;
 
-import java.util.ArrayList;
 import java.util.List;
 
 /**
- * Model class represents a workflow step.
+ * Model class represents a workflow step
  * @author Andrej
  * @since 2019-10-08
  */
@@ -19,10 +18,11 @@ import java.util.List;
 @Getter
 @Setter
 @ToString
-@EqualsAndHashCode(onlyExplicitlyIncluded = true)
+@EqualsAndHashCode(callSuper = true, onlyExplicitlyIncluded = true)
 @DynamoDBTable(tableName = "Step")
-@JsonIgnoreProperties({"workflow"})
+@JsonIgnoreProperties(ignoreUnknown = true)
 public class Step extends AbstractModel<String> {
+
     @EqualsAndHashCode.Include
     @DynamoDBHashKey(attributeName = "id")
     private String id;
@@ -31,12 +31,14 @@ public class Step extends AbstractModel<String> {
     @DynamoDBAttribute(attributeName = "sequence")
     private int sequence;
 
-    @EqualsAndHashCode.Exclude
+    // TODO -> fix the object storing
+    //@JsonBackReference
     @DynamoDBIgnore
+    @JsonIgnore
     private Workflow workflow;
 
-    @EqualsAndHashCode.Exclude
     @DynamoDBIgnore
+    @JsonManagedReference
     private List<StepField> stepFields;
 
 
@@ -46,20 +48,7 @@ public class Step extends AbstractModel<String> {
     public Step() { }
 
     /**
-     * Main constructor
-     * @param id        Workflow step UUID
-     * @param name      Workflow step name
-     * @param sequence  Workflow step sequence
-     */
-    public Step(String id, String name, int sequence, Workflow workflow) {
-        this.id = id;
-        this.name = name;
-        this.sequence = sequence;
-        this.workflow = workflow;
-    }
-
-    /**
-     * Constructor with step fields
+     * Full constructor
      * @param id            Workflow step UUID
      * @param name          Workflow step name
      * @param sequence      Workflow step sequence
@@ -71,29 +60,23 @@ public class Step extends AbstractModel<String> {
         this.name = name;
         this.sequence = sequence;
         this.workflow = workflow;
-        this.stepFields = cloneSteps(stepFields);
+        this.stepFields = stepFields;
     }
 
-    public void setSteps(List<StepField> steps) {
-        this.stepFields = cloneSteps(steps);
-    }
-
-    public List<StepField> getSteps() {
-        return this.stepFields;
-    }
-
-    private ArrayList<StepField> cloneSteps(List<StepField> stepFields)  {
-        // Clone step fields
-        ArrayList<StepField> steps = new ArrayList<StepField>(stepFields.size());
-        steps.addAll(stepFields);
-        return steps;
-    }
-
-    @DynamoDBAttribute(attributeName = "worklowId")
+    /**
+     * Workflow id getter is used in DB for proper reference
+     * @return  Workflow Id
+     */
+    @JsonProperty
+    @DynamoDBAttribute(attributeName = "workflowId")
     public String getWorkflowId() {
         return (this.workflow != null) ? this.workflow.getId() : null;
     }
 
+    /**
+     * Workflow id setter
+     * @param workflowId    Workflow Id
+     */
     public void setWorkflowId(String workflowId) {
         if (this.workflow == null) {
             this.workflow = new Workflow();

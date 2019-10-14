@@ -2,7 +2,8 @@ Resources:
   Function:
     Properties:
       CodeUri: Function
-      Handler: co.tpg.function.QualificationFunction
+      Handler: co.tpg.catalog.function.QualificationFunction
+      MemorySize: 128
       Runtime: java8
-      Timeout: 900
+      Timeout: 300
     Type: AWS::Serverless::Function

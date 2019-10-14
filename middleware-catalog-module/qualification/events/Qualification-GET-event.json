@@ -1,12 +1,12 @@
 {
   "body": {},
-  "resource": "/{proxy+}",
+  "resource": "/Qualification",
   "path": "/path/to/resource",
   "httpMethod": "GET",
   "isBase64Encoded": false,
   "queryStringParameters": {},
   "pathParameters": {
-    "guid": "46ac7382-c9dc-4cc2-88ae-684b4d81c894"
+    "id": "46ac7382-c9dc-4cc2-88ae-684b4d81c894"
   },
   "stageVariables": {
     "baz": "qux"

@@ -1,0 +1,4 @@
+co/tpg/catalog/dao/exception/BackendException.class
+co/tpg/catalog/dao/DAO.class
+co/tpg/catalog/dao/TeachingClassDAO.class
+co/tpg/catalog/dao/QualificationDAO.class

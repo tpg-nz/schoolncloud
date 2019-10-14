@@ -2,12 +2,10 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
-      <module fileurl="file://$PROJECT_DIR$/educational-institution/EducationalInstitution/EducationalInstitution.iml" filepath="$PROJECT_DIR$/educational-institution/EducationalInstitution/EducationalInstitution.iml" />
       <module fileurl="file://$PROJECT_DIR$/catalog-model/catalog-model.iml" filepath="$PROJECT_DIR$/catalog-model/catalog-model.iml" />
-      <module fileurl="file://$PROJECT_DIR$/educational-institution/educational-institution.iml" filepath="$PROJECT_DIR$/educational-institution/educational-institution.iml" />
-      <module fileurl="file://$PROJECT_DIR$/middleware-catalog-module.iml" filepath="$PROJECT_DIR$/middleware-catalog-module.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/middleware-catalog-module.iml" filepath="$PROJECT_DIR$/.idea/middleware-catalog-module.iml" />
       <module fileurl="file://$PROJECT_DIR$/qualification/qualification/qualification.iml" filepath="$PROJECT_DIR$/qualification/qualification/qualification.iml" />
-      <module fileurl="file://$PROJECT_DIR$/teaching-staff/TeachingStaff/teaching-staff.iml" filepath="$PROJECT_DIR$/teaching-staff/TeachingStaff/teaching-staff.iml" />
+      <module fileurl="file://$PROJECT_DIR$/teaching-class/TeachingClass/teaching-class.iml" filepath="$PROJECT_DIR$/teaching-class/TeachingClass/teaching-class.iml" />
     </modules>
   </component>
 </project>

@@ -16,6 +16,14 @@ import passwordReset, { PasswordResetState } from 'app/modules/account/password-
 import workflow, {
   WorkflowState
 } from 'app/entities/workflow/workflow.reducer';
+// prettier-ignore
+import step, {
+  StepState
+} from 'app/entities/step/step.reducer';
+// prettier-ignore
+import stepField, {
+  StepFieldState
+} from 'app/entities/step-field/step-field.reducer';
 /* jhipster-needle-add-reducer-import - JHipster will add reducer here */
 
 export interface IRootState {
@@ -30,6 +38,8 @@ export interface IRootState {
   readonly password: PasswordState;
   readonly settings: SettingsState;
   readonly workflow: WorkflowState;
+  readonly step: StepState;
+  readonly stepField: StepFieldState;
   /* jhipster-needle-add-reducer-type - JHipster will add reducer type here */
   readonly loadingBar: any;
 }
@@ -46,6 +56,8 @@ const rootReducer = combineReducers<IRootState>({
   password,
   settings,
   workflow,
+  step,
+  stepField,
   /* jhipster-needle-add-reducer-combine - JHipster will add reducer here */
   loadingBar
 });

@@ -3,13 +3,31 @@
   <component name="MavenProjectsManager">
     <option name="originalFiles">
       <list>
+        <option value="$PROJECT_DIR$/HelloWorldFunction/pom.xml" />
+        <option value="$PROJECT_DIR$/TeachingClassCatalog/pom.xml" />
+        <option value="$PROJECT_DIR$/TeachingClassRetrieve/HelloWorldFunction/pom.xml" />
+        <option value="$PROJECT_DIR$/teaching-staff/HelloWorldFunction/pom.xml" />
+        <option value="$PROJECT_DIR$/teaching-staff/CreateTeachingStaff/pom.xml" />
+        <option value="$PROJECT_DIR$/t-s/HelloWorldFunction/pom.xml" />
+        <option value="$PROJECT_DIR$/retrieve-teaching-staff/HelloWorldFunction/pom.xml" />
+        <option value="$PROJECT_DIR$/create-teaching-staff/CreateTeachingStaff/pom.xml" />
+        <option value="$PROJECT_DIR$/educational-institution/HelloWorldFunction/pom.xml" />
+        <option value="$PROJECT_DIR$/campus/HelloWorldFunction/pom.xml" />
         <option value="$PROJECT_DIR$/pom.xml" />
-        <option value="$PROJECT_DIR$/qualification/qualification/pom.xml" />
-        <option value="$PROJECT_DIR$/catalog-dao/pom.xml" />
+        <option value="$PROJECT_DIR$/teaching-staff/TeachingStaff/pom.xml" />
+        <option value="$PROJECT_DIR$/campus/campus/pom.xml" />
+        <option value="$PROJECT_DIR$/camp/HelloWorldFunction/pom.xml" />
+        <option value="$PROJECT_DIR$/teaching-class/HelloWorldFunction/pom.xml" />
+        <option value="$PROJECT_DIR$/teaching-class/TeachingClass/pom.xml" />
       </list>
     </option>
+    <option name="ignoredFiles">
+      <set>
+        <option value="$PROJECT_DIR$/catalog-helper/pom.xml" />
+      </set>
+    </option>
   </component>
-  <component name="ProjectRootManager" version="2" languageLevel="JDK_1_8" project-jdk-name="1.8" project-jdk-type="JavaSDK">
-    <output url="file://$PROJECT_DIR$/classes" />
+  <component name="ProjectRootManager" version="2" project-jdk-name="1.8" project-jdk-type="JavaSDK">
+    <output url="file://$PROJECT_DIR$/out" />
   </component>
 </project>

@@ -2,20 +2,37 @@
 <project version="4">
   <component name="CompilerConfiguration">
     <annotationProcessing>
+      <profile default="true" name="Default" enabled="true" />
       <profile name="Maven default annotation processors profile" enabled="true">
         <sourceOutputDir name="target/generated-sources/annotations" />
         <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
         <outputRelativeToContentRoot value="true" />
+        <module name="EducationalInstitution" />
+        <module name="function-shared" />
         <module name="catalog-dao" />
-        <module name="qualification" />
+        <module name="CampusFunction" />
         <module name="catalog-model" />
+        <module name="CampusCode" />
+        <module name="teaching-staff" />
+        <module name="teaching-class" />
+        <module name="TeachingClass" />
       </profile>
     </annotationProcessing>
     <bytecodeTargetLevel>
+      <module name="CampusCode" target="1.8" />
+      <module name="CampusFunction" target="1.8" />
       <module name="catalog-dao" target="1.8" />
+      <module name="catalog-helper" target="1.8" />
       <module name="catalog-model" target="1.8" />
-      <module name="catalog-module" target="1.8" />
-      <module name="qualification" target="1.8" />
+      <module name="CreateTeachingStaff" target="1.8" />
+      <module name="EducationalInstitution" target="1.8" />
+      <module name="function-shared" target="1.8" />
+      <module name="middleware-catalog-module" target="1.8" />
+      <module name="RetrieveTeachingStaff" target="1.8" />
+      <module name="teaching-class" target="1.8" />
+      <module name="teaching-staff" target="1.8" />
+      <module name="TeachingClass" target="1.8" />
+      <module name="TeachingClassCreate" target="1.8" />
     </bytecodeTargetLevel>
   </component>
 </project>

@@ -1,0 +1,39 @@
+{
+    "name": "Contact",
+    "fields": [
+        {
+            "fieldName": "entityId",
+            "fieldType": "Long",
+            "fieldValidateRules": [
+                "required"
+            ]
+        },
+        {
+            "fieldName": "contact",
+            "fieldType": "String",
+            "fieldValidateRules": [
+                "required"
+            ]
+        },
+        {
+            "fieldName": "contactType",
+            "fieldType": "ContactType",
+            "fieldValues": "SUBJECT,INSTITUTIONAL,CAMPUS,TEACHING_STAFF,PAPER"
+        },
+        {
+            "fieldName": "mediaType",
+            "fieldType": "MediaType",
+            "fieldValues": "EMAIL,WEB_SITE,MOBILE_PHONE,PHONE"
+        }
+    ],
+    "relationships": [],
+    "changelogDate": "20190921214846",
+    "entityTableName": "contact",
+    "dto": "no",
+    "pagination": "pagination",
+    "service": "serviceImpl",
+    "jpaMetamodelFiltering": false,
+    "fluentMethods": true,
+    "clientRootFolder": "",
+    "applications": "*"
+}

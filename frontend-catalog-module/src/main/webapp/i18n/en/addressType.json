@@ -1,0 +1,10 @@
+{
+  "catalogApp": {
+    "AddressType": {
+      "null": "",
+      "HOME": "HOME",
+      "WORK": "WORK",
+      "CORRESPONDENCE": "CORRESPONDENCE"
+    }
+  }
+}

@@ -74,11 +74,14 @@ export class Workflow extends React.Component<IWorkflowProps, IWorkflowState> {
                   <th className="hand" onClick={this.sort('description')}>
                     <Translate contentKey="workflowApp.workflow.description">Description</Translate> <FontAwesomeIcon icon="sort" />
                   </th>
+                  <th className="hand" onClick={this.sort('enabled')}>
+                    <Translate contentKey="workflowApp.workflow.enabled">Enabled</Translate> <FontAwesomeIcon icon="sort" />
+                  </th>
                   <th className="hand" onClick={this.sort('version')}>
                     <Translate contentKey="workflowApp.workflow.version">Version</Translate> <FontAwesomeIcon icon="sort" />
                   </th>
-                  <th className="hand" onClick={this.sort('enabled')}>
-                    <Translate contentKey="workflowApp.workflow.enabled">Enabled</Translate> <FontAwesomeIcon icon="sort" />
+                  <th>
+                    <Translate contentKey="workflowApp.workflow.workflow">Workflow</Translate> <FontAwesomeIcon icon="sort" />
                   </th>
                   <th />
                 </tr>
@@ -93,8 +96,9 @@ export class Workflow extends React.Component<IWorkflowProps, IWorkflowState> {
                     </td>
                     <td>{workflow.name}</td>
                     <td>{workflow.description}</td>
-                    <td>{workflow.version}</td>
                     <td>{workflow.enabled ? 'true' : 'false'}</td>
+                    <td>{workflow.version}</td>
+                    <td>{workflow.workflow ? <Link to={`workflow/${workflow.workflow.id}`}>{workflow.workflow.name}</Link> : ''}</td>
                     <td className="text-right">
                       <div className="btn-group flex-btn-group-container">
                         <Button tag={Link} to={`${match.url}/${workflow.id}`} color="info" size="sm">

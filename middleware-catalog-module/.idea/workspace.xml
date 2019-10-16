@@ -1,0 +1,599 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ChangeListManager">
+    <list default="true" id="cb09fd51-e6ec-439f-9857-9f312e590c00" name="Default Changelist" comment="">
+      <change afterPath="$PROJECT_DIR$/../.gitignore" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../.vscode/settings.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../frontend-catalog-module/.jhipster/Address.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../frontend-catalog-module/.jhipster/Campus.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../frontend-catalog-module/.jhipster/Contact.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../frontend-catalog-module/.jhipster/EducationalInstitution.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../frontend-catalog-module/.jhipster/Paper.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../frontend-catalog-module/.jhipster/Qualification.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../frontend-catalog-module/.jhipster/Requirement.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../frontend-catalog-module/.jhipster/Role.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../frontend-catalog-module/.jhipster/Subject.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../frontend-catalog-module/.jhipster/TeachingClass.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../frontend-catalog-module/.jhipster/TeachingStaff.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../frontend-catalog-module/.jhipster/UserRole.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../frontend-catalog-module/domain-model/datastruct.jh" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../frontend-catalog-module/src/main/java/co/tpg/catalog/domain/Address.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../frontend-catalog-module/src/main/java/co/tpg/catalog/domain/Campus.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../frontend-catalog-module/src/main/java/co/tpg/catalog/domain/Contact.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../frontend-catalog-module/src/main/java/co/tpg/catalog/domain/EducationalInstitution.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../frontend-catalog-module/src/main/java/co/tpg/catalog/domain/Paper.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../frontend-catalog-module/src/main/java/co/tpg/catalog/domain/Qualification.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../frontend-catalog-module/src/main/java/co/tpg/catalog/domain/Requirement.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../frontend-catalog-module/src/main/java/co/tpg/catalog/domain/Subject.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../frontend-catalog-module/src/main/java/co/tpg/catalog/domain/TeachingClass.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../frontend-catalog-module/src/main/java/co/tpg/catalog/domain/TeachingStaff.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../frontend-catalog-module/src/main/java/co/tpg/catalog/domain/enumeration/AddressType.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../frontend-catalog-module/src/main/java/co/tpg/catalog/domain/enumeration/ContactType.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../frontend-catalog-module/src/main/java/co/tpg/catalog/domain/enumeration/GraduationType.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../frontend-catalog-module/src/main/java/co/tpg/catalog/domain/enumeration/MediaType.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../frontend-catalog-module/src/main/java/co/tpg/catalog/repository/AddressRepository.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../frontend-catalog-module/src/main/java/co/tpg/catalog/repository/CampusRepository.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../frontend-catalog-module/src/main/java/co/tpg/catalog/repository/ContactRepository.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../frontend-catalog-module/src/main/java/co/tpg/catalog/repository/EducationalInstitutionRepository.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../frontend-catalog-module/src/main/java/co/tpg/catalog/repository/PaperRepository.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../frontend-catalog-module/src/main/java/co/tpg/catalog/repository/QualificationRepository.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../frontend-catalog-module/src/main/java/co/tpg/catalog/repository/RequirementRepository.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../frontend-catalog-module/src/main/java/co/tpg/catalog/repository/SubjectRepository.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../frontend-catalog-module/src/main/java/co/tpg/catalog/repository/TeachingClassRepository.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../frontend-catalog-module/src/main/java/co/tpg/catalog/repository/TeachingStaffRepository.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../frontend-catalog-module/src/main/java/co/tpg/catalog/service/AddressService.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../frontend-catalog-module/src/main/java/co/tpg/catalog/service/CampusService.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../frontend-catalog-module/src/main/java/co/tpg/catalog/service/ContactService.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../frontend-catalog-module/src/main/java/co/tpg/catalog/service/EducationalInstitutionService.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../frontend-catalog-module/src/main/java/co/tpg/catalog/service/PaperService.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../frontend-catalog-module/src/main/java/co/tpg/catalog/service/QualificationService.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../frontend-catalog-module/src/main/java/co/tpg/catalog/service/RequirementService.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../frontend-catalog-module/src/main/java/co/tpg/catalog/service/SubjectService.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../frontend-catalog-module/src/main/java/co/tpg/catalog/service/TeachingClassService.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../frontend-catalog-module/src/main/java/co/tpg/catalog/service/TeachingStaffService.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../frontend-catalog-module/src/main/java/co/tpg/catalog/service/impl/AddressServiceImpl.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../frontend-catalog-module/src/main/java/co/tpg/catalog/service/impl/CampusServiceImpl.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../frontend-catalog-module/src/main/java/co/tpg/catalog/service/impl/ContactServiceImpl.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../frontend-catalog-module/src/main/java/co/tpg/catalog/service/impl/EducationalInstitutionServiceImpl.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../frontend-catalog-module/src/main/java/co/tpg/catalog/service/impl/PaperServiceImpl.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../frontend-catalog-module/src/main/java/co/tpg/catalog/service/impl/QualificationServiceImpl.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../frontend-catalog-module/src/main/java/co/tpg/catalog/service/impl/RequirementServiceImpl.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../frontend-catalog-module/src/main/java/co/tpg/catalog/service/impl/SubjectServiceImpl.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../frontend-catalog-module/src/main/java/co/tpg/catalog/service/impl/TeachingClassServiceImpl.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../frontend-catalog-module/src/main/java/co/tpg/catalog/service/impl/TeachingStaffServiceImpl.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../frontend-catalog-module/src/main/java/co/tpg/catalog/web/rest/AddressResource.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../frontend-catalog-module/src/main/java/co/tpg/catalog/web/rest/CampusResource.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../frontend-catalog-module/src/main/java/co/tpg/catalog/web/rest/ContactResource.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../frontend-catalog-module/src/main/java/co/tpg/catalog/web/rest/EducationalInstitutionResource.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../frontend-catalog-module/src/main/java/co/tpg/catalog/web/rest/PaperResource.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../frontend-catalog-module/src/main/java/co/tpg/catalog/web/rest/QualificationResource.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../frontend-catalog-module/src/main/java/co/tpg/catalog/web/rest/RequirementResource.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../frontend-catalog-module/src/main/java/co/tpg/catalog/web/rest/SubjectResource.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../frontend-catalog-module/src/main/java/co/tpg/catalog/web/rest/TeachingClassResource.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../frontend-catalog-module/src/main/java/co/tpg/catalog/web/rest/TeachingStaffResource.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../frontend-catalog-module/src/main/resources/config/liquibase/changelog/20190921214838_added_entity_Subject.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../frontend-catalog-module/src/main/resources/config/liquibase/changelog/20190921214839_added_entity_Paper.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../frontend-catalog-module/src/main/resources/config/liquibase/changelog/20190921214839_added_entity_constraints_Paper.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../frontend-catalog-module/src/main/resources/config/liquibase/changelog/20190921214840_added_entity_Requirement.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../frontend-catalog-module/src/main/resources/config/liquibase/changelog/20190921214840_added_entity_constraints_Requirement.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../frontend-catalog-module/src/main/resources/config/liquibase/changelog/20190921214841_added_entity_Qualification.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../frontend-catalog-module/src/main/resources/config/liquibase/changelog/20190921214841_added_entity_constraints_Qualification.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../frontend-catalog-module/src/main/resources/config/liquibase/changelog/20190921214842_added_entity_TeachingStaff.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../frontend-catalog-module/src/main/resources/config/liquibase/changelog/20190921214842_added_entity_constraints_TeachingStaff.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../frontend-catalog-module/src/main/resources/config/liquibase/changelog/20190921214843_added_entity_TeachingClass.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../frontend-catalog-module/src/main/resources/config/liquibase/changelog/20190921214843_added_entity_constraints_TeachingClass.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../frontend-catalog-module/src/main/resources/config/liquibase/changelog/20190921214844_added_entity_EducationalInstitution.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../frontend-catalog-module/src/main/resources/config/liquibase/changelog/20190921214845_added_entity_Campus.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../frontend-catalog-module/src/main/resources/config/liquibase/changelog/20190921214845_added_entity_constraints_Campus.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../frontend-catalog-module/src/main/resources/config/liquibase/changelog/20190921214846_added_entity_Contact.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../frontend-catalog-module/src/main/resources/config/liquibase/changelog/20190921214847_added_entity_Address.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../frontend-catalog-module/src/main/resources/config/liquibase/data/address.csv" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../frontend-catalog-module/src/main/resources/config/liquibase/data/campus.csv" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../frontend-catalog-module/src/main/resources/config/liquibase/data/contact.csv" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../frontend-catalog-module/src/main/resources/config/liquibase/data/educational_institution.csv" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../frontend-catalog-module/src/main/resources/config/liquibase/data/paper.csv" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../frontend-catalog-module/src/main/resources/config/liquibase/data/qualification.csv" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../frontend-catalog-module/src/main/resources/config/liquibase/data/requirement.csv" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../frontend-catalog-module/src/main/resources/config/liquibase/data/subject.csv" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../frontend-catalog-module/src/main/resources/config/liquibase/data/teaching_class.csv" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../frontend-catalog-module/src/main/resources/config/liquibase/data/teaching_staff.csv" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../frontend-catalog-module/src/main/webapp/app/entities/address/address-delete-dialog.tsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../frontend-catalog-module/src/main/webapp/app/entities/address/address-detail.tsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../frontend-catalog-module/src/main/webapp/app/entities/address/address-update.tsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../frontend-catalog-module/src/main/webapp/app/entities/address/address.reducer.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../frontend-catalog-module/src/main/webapp/app/entities/address/address.tsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../frontend-catalog-module/src/main/webapp/app/entities/address/index.tsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../frontend-catalog-module/src/main/webapp/app/entities/campus/campus-delete-dialog.tsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../frontend-catalog-module/src/main/webapp/app/entities/campus/campus-detail.tsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../frontend-catalog-module/src/main/webapp/app/entities/campus/campus-update.tsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../frontend-catalog-module/src/main/webapp/app/entities/campus/campus.reducer.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../frontend-catalog-module/src/main/webapp/app/entities/campus/campus.tsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../frontend-catalog-module/src/main/webapp/app/entities/campus/index.tsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../frontend-catalog-module/src/main/webapp/app/entities/contact/contact-delete-dialog.tsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../frontend-catalog-module/src/main/webapp/app/entities/contact/contact-detail.tsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../frontend-catalog-module/src/main/webapp/app/entities/contact/contact-update.tsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../frontend-catalog-module/src/main/webapp/app/entities/contact/contact.reducer.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../frontend-catalog-module/src/main/webapp/app/entities/contact/contact.tsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../frontend-catalog-module/src/main/webapp/app/entities/contact/index.tsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../frontend-catalog-module/src/main/webapp/app/entities/educational-institution/educational-institution-delete-dialog.tsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../frontend-catalog-module/src/main/webapp/app/entities/educational-institution/educational-institution-detail.tsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../frontend-catalog-module/src/main/webapp/app/entities/educational-institution/educational-institution-update.tsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../frontend-catalog-module/src/main/webapp/app/entities/educational-institution/educational-institution.reducer.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../frontend-catalog-module/src/main/webapp/app/entities/educational-institution/educational-institution.tsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../frontend-catalog-module/src/main/webapp/app/entities/educational-institution/index.tsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../frontend-catalog-module/src/main/webapp/app/entities/paper/index.tsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../frontend-catalog-module/src/main/webapp/app/entities/paper/paper-delete-dialog.tsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../frontend-catalog-module/src/main/webapp/app/entities/paper/paper-detail.tsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../frontend-catalog-module/src/main/webapp/app/entities/paper/paper-update.tsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../frontend-catalog-module/src/main/webapp/app/entities/paper/paper.reducer.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../frontend-catalog-module/src/main/webapp/app/entities/paper/paper.tsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../frontend-catalog-module/src/main/webapp/app/entities/qualification/index.tsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../frontend-catalog-module/src/main/webapp/app/entities/qualification/qualification-delete-dialog.tsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../frontend-catalog-module/src/main/webapp/app/entities/qualification/qualification-detail.tsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../frontend-catalog-module/src/main/webapp/app/entities/qualification/qualification-update.tsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../frontend-catalog-module/src/main/webapp/app/entities/qualification/qualification.reducer.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../frontend-catalog-module/src/main/webapp/app/entities/qualification/qualification.tsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../frontend-catalog-module/src/main/webapp/app/entities/requirement/index.tsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../frontend-catalog-module/src/main/webapp/app/entities/requirement/requirement-delete-dialog.tsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../frontend-catalog-module/src/main/webapp/app/entities/requirement/requirement-detail.tsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../frontend-catalog-module/src/main/webapp/app/entities/requirement/requirement-update.tsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../frontend-catalog-module/src/main/webapp/app/entities/requirement/requirement.reducer.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../frontend-catalog-module/src/main/webapp/app/entities/requirement/requirement.tsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../frontend-catalog-module/src/main/webapp/app/entities/subject/index.tsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../frontend-catalog-module/src/main/webapp/app/entities/subject/subject-delete-dialog.tsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../frontend-catalog-module/src/main/webapp/app/entities/subject/subject-detail.tsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../frontend-catalog-module/src/main/webapp/app/entities/subject/subject-update.tsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../frontend-catalog-module/src/main/webapp/app/entities/subject/subject.reducer.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../frontend-catalog-module/src/main/webapp/app/entities/subject/subject.tsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../frontend-catalog-module/src/main/webapp/app/entities/teaching-class/index.tsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../frontend-catalog-module/src/main/webapp/app/entities/teaching-class/teaching-class-delete-dialog.tsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../frontend-catalog-module/src/main/webapp/app/entities/teaching-class/teaching-class-detail.tsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../frontend-catalog-module/src/main/webapp/app/entities/teaching-class/teaching-class-update.tsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../frontend-catalog-module/src/main/webapp/app/entities/teaching-class/teaching-class.reducer.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../frontend-catalog-module/src/main/webapp/app/entities/teaching-class/teaching-class.tsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../frontend-catalog-module/src/main/webapp/app/entities/teaching-staff/index.tsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../frontend-catalog-module/src/main/webapp/app/entities/teaching-staff/teaching-staff-delete-dialog.tsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../frontend-catalog-module/src/main/webapp/app/entities/teaching-staff/teaching-staff-detail.tsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../frontend-catalog-module/src/main/webapp/app/entities/teaching-staff/teaching-staff-update.tsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../frontend-catalog-module/src/main/webapp/app/entities/teaching-staff/teaching-staff.reducer.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../frontend-catalog-module/src/main/webapp/app/entities/teaching-staff/teaching-staff.tsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../frontend-catalog-module/src/main/webapp/app/shared/model/address.model.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../frontend-catalog-module/src/main/webapp/app/shared/model/campus.model.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../frontend-catalog-module/src/main/webapp/app/shared/model/contact.model.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../frontend-catalog-module/src/main/webapp/app/shared/model/educational-institution.model.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../frontend-catalog-module/src/main/webapp/app/shared/model/paper.model.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../frontend-catalog-module/src/main/webapp/app/shared/model/qualification.model.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../frontend-catalog-module/src/main/webapp/app/shared/model/requirement.model.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../frontend-catalog-module/src/main/webapp/app/shared/model/subject.model.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../frontend-catalog-module/src/main/webapp/app/shared/model/teaching-class.model.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../frontend-catalog-module/src/main/webapp/app/shared/model/teaching-staff.model.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../frontend-catalog-module/src/main/webapp/i18n/en/address.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../frontend-catalog-module/src/main/webapp/i18n/en/addressType.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../frontend-catalog-module/src/main/webapp/i18n/en/campus.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../frontend-catalog-module/src/main/webapp/i18n/en/contact.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../frontend-catalog-module/src/main/webapp/i18n/en/contactType.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../frontend-catalog-module/src/main/webapp/i18n/en/educationalInstitution.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../frontend-catalog-module/src/main/webapp/i18n/en/graduationType.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../frontend-catalog-module/src/main/webapp/i18n/en/mediaType.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../frontend-catalog-module/src/main/webapp/i18n/en/paper.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../frontend-catalog-module/src/main/webapp/i18n/en/qualification.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../frontend-catalog-module/src/main/webapp/i18n/en/requirement.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../frontend-catalog-module/src/main/webapp/i18n/en/subject.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../frontend-catalog-module/src/main/webapp/i18n/en/teachingClass.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../frontend-catalog-module/src/main/webapp/i18n/en/teachingStaff.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../frontend-catalog-module/src/test/java/co/tpg/catalog/web/rest/AddressResourceIT.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../frontend-catalog-module/src/test/java/co/tpg/catalog/web/rest/CampusResourceIT.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../frontend-catalog-module/src/test/java/co/tpg/catalog/web/rest/ContactResourceIT.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../frontend-catalog-module/src/test/java/co/tpg/catalog/web/rest/EducationalInstitutionResourceIT.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../frontend-catalog-module/src/test/java/co/tpg/catalog/web/rest/PaperResourceIT.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../frontend-catalog-module/src/test/java/co/tpg/catalog/web/rest/QualificationResourceIT.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../frontend-catalog-module/src/test/java/co/tpg/catalog/web/rest/RequirementResourceIT.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../frontend-catalog-module/src/test/java/co/tpg/catalog/web/rest/SubjectResourceIT.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../frontend-catalog-module/src/test/java/co/tpg/catalog/web/rest/TeachingClassResourceIT.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../frontend-catalog-module/src/test/java/co/tpg/catalog/web/rest/TeachingStaffResourceIT.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../frontend-catalog-module/src/test/javascript/spec/app/entities/address/address-reducer.spec.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../frontend-catalog-module/src/test/javascript/spec/app/entities/campus/campus-reducer.spec.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../frontend-catalog-module/src/test/javascript/spec/app/entities/contact/contact-reducer.spec.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../frontend-catalog-module/src/test/javascript/spec/app/entities/educational-institution/educational-institution-reducer.spec.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../frontend-catalog-module/src/test/javascript/spec/app/entities/paper/paper-reducer.spec.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../frontend-catalog-module/src/test/javascript/spec/app/entities/qualification/qualification-reducer.spec.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../frontend-catalog-module/src/test/javascript/spec/app/entities/requirement/requirement-reducer.spec.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../frontend-catalog-module/src/test/javascript/spec/app/entities/subject/subject-reducer.spec.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../frontend-catalog-module/src/test/javascript/spec/app/entities/teaching-class/teaching-class-reducer.spec.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../frontend-catalog-module/src/test/javascript/spec/app/entities/teaching-staff/teaching-staff-reducer.spec.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../frontend-workflow-module/.jhipster/Step.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../frontend-workflow-module/.jhipster/StepField.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../frontend-workflow-module/domain-model/datastruct.jh" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../frontend-workflow-module/src/main/java/co/tpg/workflow/domain/Step.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../frontend-workflow-module/src/main/java/co/tpg/workflow/domain/StepField.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../frontend-workflow-module/src/main/java/co/tpg/workflow/domain/enumeration/FieldType.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../frontend-workflow-module/src/main/java/co/tpg/workflow/repository/StepFieldRepository.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../frontend-workflow-module/src/main/java/co/tpg/workflow/repository/StepRepository.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../frontend-workflow-module/src/main/java/co/tpg/workflow/service/StepFieldService.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../frontend-workflow-module/src/main/java/co/tpg/workflow/service/StepService.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../frontend-workflow-module/src/main/java/co/tpg/workflow/service/impl/StepFieldServiceImpl.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../frontend-workflow-module/src/main/java/co/tpg/workflow/service/impl/StepServiceImpl.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../frontend-workflow-module/src/main/java/co/tpg/workflow/web/rest/StepFieldResource.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../frontend-workflow-module/src/main/java/co/tpg/workflow/web/rest/StepResource.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../frontend-workflow-module/src/main/resources/config/liquibase/changelog/20190930081840_added_entity_Step.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../frontend-workflow-module/src/main/resources/config/liquibase/changelog/20190930081840_added_entity_constraints_Step.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../frontend-workflow-module/src/main/resources/config/liquibase/changelog/20190930081841_added_entity_StepField.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../frontend-workflow-module/src/main/resources/config/liquibase/changelog/20190930081841_added_entity_constraints_StepField.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../frontend-workflow-module/src/main/resources/config/liquibase/data/step.csv" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../frontend-workflow-module/src/main/resources/config/liquibase/data/step_field.csv" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../frontend-workflow-module/src/main/webapp/app/entities/step-field/index.tsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../frontend-workflow-module/src/main/webapp/app/entities/step-field/step-field-delete-dialog.tsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../frontend-workflow-module/src/main/webapp/app/entities/step-field/step-field-detail.tsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../frontend-workflow-module/src/main/webapp/app/entities/step-field/step-field-update.tsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../frontend-workflow-module/src/main/webapp/app/entities/step-field/step-field.reducer.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../frontend-workflow-module/src/main/webapp/app/entities/step-field/step-field.tsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../frontend-workflow-module/src/main/webapp/app/entities/step/index.tsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../frontend-workflow-module/src/main/webapp/app/entities/step/step-delete-dialog.tsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../frontend-workflow-module/src/main/webapp/app/entities/step/step-detail.tsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../frontend-workflow-module/src/main/webapp/app/entities/step/step-update.tsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../frontend-workflow-module/src/main/webapp/app/entities/step/step.reducer.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../frontend-workflow-module/src/main/webapp/app/entities/step/step.tsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../frontend-workflow-module/src/main/webapp/app/shared/model/step-field.model.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../frontend-workflow-module/src/main/webapp/app/shared/model/step.model.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../frontend-workflow-module/src/main/webapp/i18n/en/fieldType.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../frontend-workflow-module/src/main/webapp/i18n/en/step.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../frontend-workflow-module/src/main/webapp/i18n/en/stepField.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../frontend-workflow-module/src/test/java/co/tpg/workflow/web/rest/StepFieldResourceIT.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../frontend-workflow-module/src/test/java/co/tpg/workflow/web/rest/StepResourceIT.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../frontend-workflow-module/src/test/javascript/spec/app/entities/step-field/step-field-reducer.spec.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../frontend-workflow-module/src/test/javascript/spec/app/entities/step/step-reducer.spec.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../frontend-workflow-module/stale_outputs_checked" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.gitignore" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.project" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.settings/org.eclipse.m2e.core.prefs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/catalog-dao/src/main/java/co/tpg/catalog/dao/CampusDAO.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/catalog-dao/src/main/java/co/tpg/catalog/dao/PaperDAO.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/catalog-dao/src/main/java/co/tpg/catalog/dao/ThrowingFunction.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/catalog-dao/target/maven-status/maven-compiler-plugin/testCompile/default-testCompile/inputFiles.lst" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/catalog-model/.project" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/catalog-model/.settings/org.eclipse.m2e.core.prefs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/catalog-model/src/main/java/co/tpg/catalog/request/PaperRequest.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/catalog-model/src/main/java/co/tpg/catalog/response/PaperResponse.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/function-shared/pom.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/function-shared/src/main/java/co/tpg/function/AbstractFunction.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/function-shared/target/maven-archiver/pom.properties" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/function-shared/target/maven-status/maven-compiler-plugin/compile/default-compile/createdFiles.lst" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/function-shared/target/maven-status/maven-compiler-plugin/compile/default-compile/inputFiles.lst" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/function-shared/target/maven-status/maven-compiler-plugin/testCompile/default-testCompile/inputFiles.lst" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/teaching-class/TeachingClass/.aws-sam/build/Function/co/tpg/catalog/function/TeachingClassFunction.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/teaching-class/TeachingClass/.aws-sam/build/Function/lib/aws-java-sdk-core-1.11.640.jar" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/teaching-class/TeachingClass/.aws-sam/build/Function/lib/aws-java-sdk-dynamodb-1.11.640.jar" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/teaching-class/TeachingClass/.aws-sam/build/Function/lib/aws-java-sdk-kms-1.11.640.jar" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/teaching-class/TeachingClass/.aws-sam/build/Function/lib/aws-java-sdk-s3-1.11.640.jar" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/teaching-class/TeachingClass/.aws-sam/build/Function/lib/aws-lambda-java-core-1.2.0.jar" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/teaching-class/TeachingClass/.aws-sam/build/Function/lib/catalog-dao-1.0.0.jar" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/teaching-class/TeachingClass/.aws-sam/build/Function/lib/catalog-helper-1.0.0.jar" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/teaching-class/TeachingClass/.aws-sam/build/Function/lib/catalog-model-1.0.0.jar" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/teaching-class/TeachingClass/.aws-sam/build/Function/lib/commons-codec-1.11.jar" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/teaching-class/TeachingClass/.aws-sam/build/Function/lib/commons-logging-1.1.3.jar" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/teaching-class/TeachingClass/.aws-sam/build/Function/lib/httpclient-4.5.9.jar" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/teaching-class/TeachingClass/.aws-sam/build/Function/lib/httpcore-4.4.11.jar" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/teaching-class/TeachingClass/.aws-sam/build/Function/lib/ion-java-1.0.2.jar" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/teaching-class/TeachingClass/.aws-sam/build/Function/lib/jackson-dataformat-cbor-2.6.7.jar" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/teaching-class/TeachingClass/.aws-sam/build/Function/lib/jmespath-java-1.11.640.jar" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/teaching-class/TeachingClass/.aws-sam/build/Function/lib/joda-time-2.8.1.jar" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/teaching-class/TeachingClass/.aws-sam/build/Function/lib/servlet-api-2.5.jar" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/teaching-class/TeachingClass/.aws-sam/build/template.yaml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/teaching-staff/TeachingStaff/target/classes/co/tpg/catalog/function/TeachingStaffFunction.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/teaching-staff/TeachingStaff/target/test-classes/co/tpg/catalog/function/CreateTeachingStaffFunctionTest.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../middleware-workflow-module/.gitignore" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../middleware-workflow-module/.project" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../middleware-workflow-module/.settings/org.eclipse.m2e.core.prefs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../middleware-workflow-module/workflow-model/.project" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../middleware-workflow-module/workflow-model/.settings/org.eclipse.m2e.core.prefs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../.idea/.gitignore" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../frontend-catalog-module/.yo-rc.json" beforeDir="false" afterPath="$PROJECT_DIR$/../frontend-catalog-module/.yo-rc.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../frontend-catalog-module/mvnw" beforeDir="false" afterPath="$PROJECT_DIR$/../frontend-catalog-module/mvnw" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../frontend-catalog-module/package-lock.json" beforeDir="false" afterPath="$PROJECT_DIR$/../frontend-catalog-module/package-lock.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../frontend-catalog-module/src/main/java/co/tpg/catalog/config/CacheConfiguration.java" beforeDir="false" afterPath="$PROJECT_DIR$/../frontend-catalog-module/src/main/java/co/tpg/catalog/config/CacheConfiguration.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../frontend-catalog-module/src/main/resources/config/liquibase/master.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../frontend-catalog-module/src/main/resources/config/liquibase/master.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../frontend-catalog-module/src/main/resources/config/tls/keystore.p12" beforeDir="false" afterPath="$PROJECT_DIR$/../frontend-catalog-module/src/main/resources/config/tls/keystore.p12" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../frontend-catalog-module/src/main/webapp/app/entities/index.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/../frontend-catalog-module/src/main/webapp/app/entities/index.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../frontend-catalog-module/src/main/webapp/app/shared/layout/menus/entities.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/../frontend-catalog-module/src/main/webapp/app/shared/layout/menus/entities.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../frontend-catalog-module/src/main/webapp/app/shared/reducers/index.ts" beforeDir="false" afterPath="$PROJECT_DIR$/../frontend-catalog-module/src/main/webapp/app/shared/reducers/index.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../frontend-catalog-module/src/main/webapp/i18n/en/global.json" beforeDir="false" afterPath="$PROJECT_DIR$/../frontend-catalog-module/src/main/webapp/i18n/en/global.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../frontend-workflow-module/.jhipster/Workflow.json" beforeDir="false" afterPath="$PROJECT_DIR$/../frontend-workflow-module/.jhipster/Workflow.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../frontend-workflow-module/src/main/java/co/tpg/workflow/config/CacheConfiguration.java" beforeDir="false" afterPath="$PROJECT_DIR$/../frontend-workflow-module/src/main/java/co/tpg/workflow/config/CacheConfiguration.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../frontend-workflow-module/src/main/java/co/tpg/workflow/domain/Workflow.java" beforeDir="false" afterPath="$PROJECT_DIR$/../frontend-workflow-module/src/main/java/co/tpg/workflow/domain/Workflow.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../frontend-workflow-module/src/main/resources/config/liquibase/changelog/20190905075139_added_entity_Workflow.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../frontend-workflow-module/src/main/resources/config/liquibase/changelog/20190930081839_added_entity_Workflow.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../frontend-workflow-module/src/main/resources/config/liquibase/data/workflow.csv" beforeDir="false" afterPath="$PROJECT_DIR$/../frontend-workflow-module/src/main/resources/config/liquibase/data/workflow.csv" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../frontend-workflow-module/src/main/resources/config/liquibase/master.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../frontend-workflow-module/src/main/resources/config/liquibase/master.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../frontend-workflow-module/src/main/webapp/app/entities/index.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/../frontend-workflow-module/src/main/webapp/app/entities/index.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../frontend-workflow-module/src/main/webapp/app/entities/workflow/workflow-detail.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/../frontend-workflow-module/src/main/webapp/app/entities/workflow/workflow-detail.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../frontend-workflow-module/src/main/webapp/app/entities/workflow/workflow-update.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/../frontend-workflow-module/src/main/webapp/app/entities/workflow/workflow-update.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../frontend-workflow-module/src/main/webapp/app/entities/workflow/workflow.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/../frontend-workflow-module/src/main/webapp/app/entities/workflow/workflow.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../frontend-workflow-module/src/main/webapp/app/shared/layout/menus/entities.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/../frontend-workflow-module/src/main/webapp/app/shared/layout/menus/entities.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../frontend-workflow-module/src/main/webapp/app/shared/model/workflow.model.ts" beforeDir="false" afterPath="$PROJECT_DIR$/../frontend-workflow-module/src/main/webapp/app/shared/model/workflow.model.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../frontend-workflow-module/src/main/webapp/app/shared/reducers/index.ts" beforeDir="false" afterPath="$PROJECT_DIR$/../frontend-workflow-module/src/main/webapp/app/shared/reducers/index.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../frontend-workflow-module/src/main/webapp/i18n/en/global.json" beforeDir="false" afterPath="$PROJECT_DIR$/../frontend-workflow-module/src/main/webapp/i18n/en/global.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../frontend-workflow-module/src/main/webapp/i18n/en/workflow.json" beforeDir="false" afterPath="$PROJECT_DIR$/../frontend-workflow-module/src/main/webapp/i18n/en/workflow.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../frontend-workflow-module/src/test/java/co/tpg/workflow/web/rest/WorkflowResourceIT.java" beforeDir="false" afterPath="$PROJECT_DIR$/../frontend-workflow-module/src/test/java/co/tpg/workflow/web/rest/WorkflowResourceIT.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/compiler.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/compiler.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/modules.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/modules.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/catalog-dao/catalog-dao.iml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/catalog-dao/src/main/java/co/tpg/catalog/dao/QualificationDAO.java" beforeDir="false" afterPath="$PROJECT_DIR$/catalog-dao/src/main/java/co/tpg/catalog/dao/QualificationDAO.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/catalog-dao/src/main/java/co/tpg/catalog/dao/TeachingClassDAO.java" beforeDir="false" afterPath="$PROJECT_DIR$/catalog-dao/src/main/java/co/tpg/catalog/dao/TeachingClassDAO.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/catalog-dao/target/catalog-dao-1.0.0.jar" beforeDir="false" afterPath="$PROJECT_DIR$/catalog-dao/target/catalog-dao-1.0.0.jar" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/catalog-dao/target/classes/co/tpg/catalog/dao/TeachingClassDAO.class" beforeDir="false" afterPath="$PROJECT_DIR$/catalog-dao/target/classes/co/tpg/catalog/dao/TeachingClassDAO.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/catalog-dao/target/maven-archiver/pom.properties" beforeDir="false" afterPath="$PROJECT_DIR$/catalog-dao/target/maven-archiver/pom.properties" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/catalog-dao/target/maven-status/maven-compiler-plugin/compile/default-compile/createdFiles.lst" beforeDir="false" afterPath="$PROJECT_DIR$/catalog-dao/target/maven-status/maven-compiler-plugin/compile/default-compile/createdFiles.lst" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/catalog-dao/target/maven-status/maven-compiler-plugin/compile/default-compile/inputFiles.lst" beforeDir="false" afterPath="$PROJECT_DIR$/catalog-dao/target/maven-status/maven-compiler-plugin/compile/default-compile/inputFiles.lst" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/catalog-model/src/main/java/co/tpg/catalog/model/Campus.java" beforeDir="false" afterPath="$PROJECT_DIR$/catalog-model/src/main/java/co/tpg/catalog/model/Campus.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/catalog-model/src/main/java/co/tpg/catalog/model/Paper.java" beforeDir="false" afterPath="$PROJECT_DIR$/catalog-model/src/main/java/co/tpg/catalog/model/Paper.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/catalog-model/src/main/java/co/tpg/catalog/model/Qualification.java" beforeDir="false" afterPath="$PROJECT_DIR$/catalog-model/src/main/java/co/tpg/catalog/model/Qualification.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/catalog-model/src/main/java/co/tpg/catalog/model/TeachingClass.java" beforeDir="false" afterPath="$PROJECT_DIR$/catalog-model/src/main/java/co/tpg/catalog/model/TeachingClass.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/catalog-model/src/main/java/co/tpg/catalog/model/TeachingStaff.java" beforeDir="false" afterPath="$PROJECT_DIR$/catalog-model/src/main/java/co/tpg/catalog/model/TeachingStaff.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/catalog-model/src/main/java/co/tpg/catalog/request/AbstractRequest.java" beforeDir="false" afterPath="$PROJECT_DIR$/catalog-model/src/main/java/co/tpg/catalog/request/AbstractRequest.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/catalog-model/src/main/java/co/tpg/catalog/request/TeachingClassRequest.java" beforeDir="false" afterPath="$PROJECT_DIR$/catalog-model/src/main/java/co/tpg/catalog/request/TeachingClassRequest.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/catalog-model/target/catalog-model-1.0.0.jar" beforeDir="false" afterPath="$PROJECT_DIR$/catalog-model/target/catalog-model-1.0.0.jar" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/catalog-model/target/classes/co/tpg/catalog/model/Campus$CampusBuilder.class" beforeDir="false" afterPath="$PROJECT_DIR$/catalog-model/target/classes/co/tpg/catalog/model/Campus$CampusBuilder.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/catalog-model/target/classes/co/tpg/catalog/model/Campus.class" beforeDir="false" afterPath="$PROJECT_DIR$/catalog-model/target/classes/co/tpg/catalog/model/Campus.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/catalog-model/target/classes/co/tpg/catalog/model/Paper$PaperBuilder.class" beforeDir="false" afterPath="$PROJECT_DIR$/catalog-model/target/classes/co/tpg/catalog/model/Paper$PaperBuilder.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/catalog-model/target/classes/co/tpg/catalog/model/Paper.class" beforeDir="false" afterPath="$PROJECT_DIR$/catalog-model/target/classes/co/tpg/catalog/model/Paper.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/catalog-model/target/classes/co/tpg/catalog/model/TeachingClass$TeachingClassBuilder.class" beforeDir="false" afterPath="$PROJECT_DIR$/catalog-model/target/classes/co/tpg/catalog/model/TeachingClass$TeachingClassBuilder.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/catalog-model/target/classes/co/tpg/catalog/model/TeachingClass.class" beforeDir="false" afterPath="$PROJECT_DIR$/catalog-model/target/classes/co/tpg/catalog/model/TeachingClass.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/catalog-model/target/classes/co/tpg/catalog/request/AbstractRequest.class" beforeDir="false" afterPath="$PROJECT_DIR$/catalog-model/target/classes/co/tpg/catalog/request/AbstractRequest.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/catalog-model/target/classes/co/tpg/catalog/request/TeachingClassRequest.class" beforeDir="false" afterPath="$PROJECT_DIR$/catalog-model/target/classes/co/tpg/catalog/request/TeachingClassRequest.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/catalog-model/target/maven-archiver/pom.properties" beforeDir="false" afterPath="$PROJECT_DIR$/catalog-model/target/maven-archiver/pom.properties" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/catalog-model/target/maven-status/maven-compiler-plugin/compile/default-compile/createdFiles.lst" beforeDir="false" afterPath="$PROJECT_DIR$/catalog-model/target/maven-status/maven-compiler-plugin/compile/default-compile/createdFiles.lst" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/catalog-model/target/maven-status/maven-compiler-plugin/compile/default-compile/inputFiles.lst" beforeDir="false" afterPath="$PROJECT_DIR$/catalog-model/target/maven-status/maven-compiler-plugin/compile/default-compile/inputFiles.lst" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/catalog-module.iml" beforeDir="false" afterPath="$PROJECT_DIR$/catalog-module.iml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/educational-institution/EducationalInstitution/src/main/java/co/tpg/function/TeachingStaffFunction.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/pom.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/qualification/qualification/qualification.iml" beforeDir="false" afterPath="$PROJECT_DIR$/qualification/qualification/qualification.iml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/qualification/qualification/target/classes/co/tpg/catalog/function/QualificationFunction.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/qualification/qualification/target/maven-archiver/pom.properties" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/qualification/qualification/target/maven-status/maven-compiler-plugin/compile/default-compile/createdFiles.lst" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/qualification/qualification/target/maven-status/maven-compiler-plugin/compile/default-compile/inputFiles.lst" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/qualification/qualification/target/maven-status/maven-compiler-plugin/testCompile/default-testCompile/createdFiles.lst" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/qualification/qualification/target/maven-status/maven-compiler-plugin/testCompile/default-testCompile/inputFiles.lst" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/qualification/qualification/target/original-qualification-1.0.0.jar" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/qualification/qualification/target/qualification-1.0.0.jar" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/qualification/qualification/target/surefire-reports/TEST-qualification.QualificationFunctionTest.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/qualification/qualification/target/surefire-reports/qualification.QualificationFunctionTest.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/qualification/qualification/target/test-classes/qualification/QualificationFunctionTest.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/teaching-class/TeachingClass/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/teaching-class/TeachingClass/pom.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/teaching-class/TeachingClass/src/main/java/co/tpg/catalog/function/TeachingClassFunction.java" beforeDir="false" afterPath="$PROJECT_DIR$/teaching-class/TeachingClass/src/main/java/co/tpg/catalog/function/TeachingClassFunction.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/teaching-class/TeachingClass/target/classes/co/tpg/function/TeachingClassFunction.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/teaching-class/TeachingClass/target/maven-archiver/pom.properties" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/teaching-class/TeachingClass/target/maven-status/maven-compiler-plugin/compile/default-compile/createdFiles.lst" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/teaching-class/TeachingClass/target/maven-status/maven-compiler-plugin/compile/default-compile/inputFiles.lst" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/teaching-class/TeachingClass/target/maven-status/maven-compiler-plugin/testCompile/default-testCompile/inputFiles.lst" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/teaching-class/TeachingClass/target/original-teaching-class-1.0.0.jar" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/teaching-class/TeachingClass/target/teaching-class-1.0.0.jar" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/teaching-class/TeachingClass/teaching-class.iml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/teaching-class/events/TeachingClass-GET-ALL-event.json" beforeDir="false" afterPath="$PROJECT_DIR$/teaching-class/events/TeachingClass-GET-ALL-event.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/teaching-class/events/TeachingClass-GET-KEY-event.json" beforeDir="false" afterPath="$PROJECT_DIR$/teaching-class/events/TeachingClass-GET-KEY-event.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/teaching-class/events/TeachingClass-POST-event.json" beforeDir="false" afterPath="$PROJECT_DIR$/teaching-class/events/TeachingClass-POST-event.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/teaching-staff/TeachingStaff/.aws-sam/build/Function/lib/commons-lang-2.6.jar" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/teaching-staff/TeachingStaff/.aws-sam/build/Function/lib/jackson-annotations-2.9.0.jar" beforeDir="false" afterPath="$PROJECT_DIR$/teaching-class/TeachingClass/.aws-sam/build/Function/lib/jackson-annotations-2.9.0.jar" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/teaching-staff/TeachingStaff/.aws-sam/build/Function/lib/jackson-core-2.9.8.jar" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/teaching-staff/TeachingStaff/.aws-sam/build/Function/lib/jackson-databind-2.9.8.jar" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/teaching-staff/TeachingStaff/src/main/java/co/tpg/catalog/function/TeachingStaffFunction.java" beforeDir="false" afterPath="$PROJECT_DIR$/teaching-staff/TeachingStaff/src/main/java/co/tpg/catalog/function/TeachingStaffFunction.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/teaching-staff/TeachingStaff/src/test/java/co/tpg/function/CreateTeachingStaffFunctionTest.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/teaching-staff/TeachingStaff/target/surefire-reports/TEST-co.tpg.function.CreateTeachingStaffFunctionTest.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/teaching-staff/TeachingStaff/target/surefire-reports/co.tpg.function.CreateTeachingStaffFunctionTest.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../middleware-workflow-module/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../middleware-workflow-module/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../middleware-workflow-module/workflow-model/src/main/java/co/tpg/request/AbstractRequest.java" beforeDir="false" afterPath="$PROJECT_DIR$/../middleware-workflow-module/workflow-model/src/main/java/co/tpg/request/AbstractRequest.java" afterDir="false" />
+    </list>
+    <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="FileTemplateManagerImpl">
+    <option name="RECENT_TEMPLATES">
+      <list>
+        <option value="Enum" />
+        <option value="Interface" />
+        <option value="Class" />
+      </list>
+    </option>
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$/.." />
+  </component>
+  <component name="MavenImportPreferences">
+    <option name="importingSettings">
+      <MavenImportingSettings>
+        <option name="importAutomatically" value="true" />
+      </MavenImportingSettings>
+    </option>
+  </component>
+  <component name="ProjectId" id="1QHE9vdIOeiOjiwWIsOEBDc9nsi" />
+  <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
+  <component name="PropertiesComponent">
+    <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
+    <property name="full.screen.before.presentation.mode" value="false" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/../middleware-workflow-module" />
+    <property name="project.structure.last.edited" value="Modules" />
+    <property name="project.structure.proportion" value="0.15" />
+    <property name="project.structure.side.proportion" value="0.2" />
+    <property name="settings.editor.selected.configurable" value="reference.projectsettings.compiler.annotationProcessors" />
+  </component>
+  <component name="RecentsManager">
+    <key name="MoveClassesOrPackagesDialog.RECENTS_KEY">
+      <recent name="co.tpg.service" />
+      <recent name="" />
+    </key>
+    <key name="CopyClassDialog.RECENTS_KEY">
+      <recent name="co.tpg.catalog.dao" />
+      <recent name="co.tpg.catalog.response" />
+      <recent name="co.tpg.catalog.request" />
+      <recent name="co.tpg.response" />
+      <recent name="co.tpg.function" />
+    </key>
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="C:\projects\SchoolnCloud\schoolncloud\middleware-catalog-module" />
+      <recent name="C:\projects\SchoolnCloud\schoolncloud\middleware-catalog-module\teaching-class\events" />
+      <recent name="C:\projects\SchoolnCloud\schoolncloud\middleware-catalog-module\camp\HelloWorldFunction" />
+      <recent name="C:\projects\SchoolnCloud\schoolncloud\middleware-catalog-module\camp\events" />
+      <recent name="C:\projects\SchoolnCloud\middleware-catalog-module\teaching-staff\events" />
+    </key>
+  </component>
+  <component name="RunDashboard">
+    <option name="ruleStates">
+      <list>
+        <RuleState>
+          <option name="name" value="ConfigurationTypeDashboardGroupingRule" />
+        </RuleState>
+        <RuleState>
+          <option name="name" value="StatusDashboardGroupingRule" />
+        </RuleState>
+      </list>
+    </option>
+  </component>
+  <component name="RunManager" selected="AWS Lambda.[Local] TeachingClassFunction">
+    <configuration default="true" type="JetRunConfigurationType" factoryName="Kotlin">
+      <module name="CreateTeachingStaff" />
+      <option name="VM_PARAMETERS" />
+      <option name="PROGRAM_PARAMETERS" />
+      <option name="ALTERNATIVE_JRE_PATH_ENABLED" value="false" />
+      <option name="ALTERNATIVE_JRE_PATH" />
+      <option name="PASS_PARENT_ENVS" value="true" />
+      <option name="MAIN_CLASS_NAME" />
+      <option name="WORKING_DIRECTORY" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration default="true" type="KotlinStandaloneScriptRunConfigurationType" factoryName="Kotlin script">
+      <module name="CreateTeachingStaff" />
+      <option name="filePath" />
+      <option name="vmParameters" />
+      <option name="alternativeJrePath" />
+      <option name="programParameters" />
+      <option name="passParentEnvs" value="true" />
+      <option name="workingDirectory" />
+      <option name="isAlternativeJrePathEnabled" value="false" />
+      <option name="VM_PARAMETERS" />
+      <option name="PROGRAM_PARAMETERS" />
+      <option name="ALTERNATIVE_JRE_PATH_ENABLED" value="false" />
+      <option name="ALTERNATIVE_JRE_PATH" />
+      <option name="PASS_PARENT_ENVS" value="true" />
+      <option name="MAIN_CLASS_NAME" />
+      <option name="WORKING_DIRECTORY" />
+      <option name="filePath" />
+      <option name="vmParameters" />
+      <option name="alternativeJrePath" />
+      <option name="programParameters" />
+      <option name="passParentEnvs" value="true" />
+      <option name="workingDirectory" />
+      <option name="isAlternativeJrePathEnabled" value="false" />
+      <option name="VM_PARAMETERS" />
+      <option name="PROGRAM_PARAMETERS" />
+      <option name="ALTERNATIVE_JRE_PATH_ENABLED" value="false" />
+      <option name="ALTERNATIVE_JRE_PATH" />
+      <option name="PASS_PARENT_ENVS" value="true" />
+      <option name="MAIN_CLASS_NAME" />
+      <option name="WORKING_DIRECTORY" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="[Local] CampusFunction" type="aws.lambda" factoryName="Local" nameIsGenerated="true">
+      <option name="credentialProviderId" value="profile:default" />
+      <option name="regionId" value="ap-southeast-2" />
+      <option name="environmentVariables">
+        <map />
+      </option>
+      <option name="handler" value="co.tpg.catalog.function.CampusFunction" />
+      <option name="logicalFunctionName" />
+      <option name="runtime" value="java8" />
+      <option name="templateFile" />
+      <option name="useTemplate" value="false" />
+      <option name="input" value="{&#10;  &quot;body&quot;: {&quot;id&quot;:&quot;1234&quot;,&quot;name&quot;:&quot;Campus TEST 1&quot;},&#10;  &quot;resource&quot;: &quot;/{proxy+}&quot;,&#10;  &quot;path&quot;: &quot;/path/to/resource&quot;,&#10;  &quot;httpMethod&quot;: &quot;POST&quot;,&#10;  &quot;isBase64Encoded&quot;: false,&#10;  &quot;queryStringParameters&quot;: {&#10;    &quot;foo&quot;: &quot;bar&quot;&#10;  },&#10;  &quot;pathParameters&quot;: {&#10;    &quot;proxy&quot;: &quot;/path/to/resource&quot;&#10;  },&#10;  &quot;stageVariables&quot;: {&#10;    &quot;baz&quot;: &quot;qux&quot;&#10;  },&#10;  &quot;headers&quot;: {&#10;    &quot;Accept&quot;: &quot;text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,*/*;q=0.8&quot;,&#10;    &quot;Accept-Encoding&quot;: &quot;gzip, deflate, sdch&quot;,&#10;    &quot;Accept-Language&quot;: &quot;en-US,en;q=0.8&quot;,&#10;    &quot;Cache-Control&quot;: &quot;max-age=0&quot;,&#10;    &quot;CloudFront-Forwarded-Proto&quot;: &quot;https&quot;,&#10;    &quot;CloudFront-Is-Desktop-Viewer&quot;: &quot;true&quot;,&#10;    &quot;CloudFront-Is-Mobile-Viewer&quot;: &quot;false&quot;,&#10;    &quot;CloudFront-Is-SmartTV-Viewer&quot;: &quot;false&quot;,&#10;    &quot;CloudFront-Is-Tablet-Viewer&quot;: &quot;false&quot;,&#10;    &quot;CloudFront-Viewer-Country&quot;: &quot;US&quot;,&#10;    &quot;Host&quot;: &quot;1234567890.execute-api.us-east-1.amazonaws.com&quot;,&#10;    &quot;Upgrade-Insecure-Requests&quot;: &quot;1&quot;,&#10;    &quot;User-Agent&quot;: &quot;Custom User Agent String&quot;,&#10;    &quot;Via&quot;: &quot;1.1 08f323deadbeefa7af34d5feb414ce27.cloudfront.net (CloudFront)&quot;,&#10;    &quot;X-Amz-Cf-Id&quot;: &quot;cDehVQoZnx43VYQb9j2-nvCh-9z396Uhbp027Y2JvkCPNLmGJHqlaA==&quot;,&#10;    &quot;X-Forwarded-For&quot;: &quot;127.0.0.1, 127.0.0.2&quot;,&#10;    &quot;X-Forwarded-Port&quot;: &quot;443&quot;,&#10;    &quot;X-Forwarded-Proto&quot;: &quot;https&quot;&#10;  },&#10;  &quot;requestContext&quot;: {&#10;    &quot;accountId&quot;: &quot;123456789012&quot;,&#10;    &quot;resourceId&quot;: &quot;123456&quot;,&#10;    &quot;stage&quot;: &quot;prod&quot;,&#10;    &quot;requestId&quot;: &quot;c6af9ac6-7b61-11e6-9a41-93e8deadbeef&quot;,&#10;    &quot;requestTime&quot;: &quot;09/Apr/2015:12:34:56 +0000&quot;,&#10;    &quot;requestTimeEpoch&quot;: 1428582896000,&#10;    &quot;identity&quot;: {&#10;      &quot;cognitoIdentityPoolId&quot;: null,&#10;      &quot;accountId&quot;: null,&#10;      &quot;cognitoIdentityId&quot;: null,&#10;      &quot;caller&quot;: null,&#10;      &quot;accessKey&quot;: null,&#10;      &quot;sourceIp&quot;: &quot;127.0.0.1&quot;,&#10;      &quot;cognitoAuthenticationType&quot;: null,&#10;      &quot;cognitoAuthenticationProvider&quot;: null,&#10;      &quot;userArn&quot;: null,&#10;      &quot;userAgent&quot;: &quot;Custom User Agent String&quot;,&#10;      &quot;user&quot;: null&#10;    },&#10;    &quot;path&quot;: &quot;/prod/path/to/resource&quot;,&#10;    &quot;resourcePath&quot;: &quot;/{proxy+}&quot;,&#10;    &quot;httpMethod&quot;: &quot;POST&quot;,&#10;    &quot;apiId&quot;: &quot;1234567890&quot;,&#10;    &quot;protocol&quot;: &quot;HTTP/1.1&quot;&#10;  }&#10;}" />
+      <option name="inputIsFile" value="false" />
+      <sam>
+        <option name="buildInContainer" value="false" />
+        <option name="dockerNetwork" value="" />
+        <option name="skipImagePull" value="false" />
+      </sam>
+      <method v="2" />
+    </configuration>
+    <configuration name="[Local] TeachingClassFunction" type="aws.lambda" factoryName="Local" temporary="true" nameIsGenerated="true">
+      <option name="credentialProviderId" value="profile:default" />
+      <option name="regionId" value="ap-southeast-2" />
+      <option name="environmentVariables">
+        <map />
+      </option>
+      <option name="handler" value="co.tpg.catalog.function.TeachingClassFunction" />
+      <option name="logicalFunctionName" />
+      <option name="runtime" value="java8" />
+      <option name="templateFile" />
+      <option name="useTemplate" value="false" />
+      <option name="input" value="{&#10;  &quot;body&quot;: {},&#10;  &quot;resource&quot;: &quot;/TeachingClass&quot;,&#10;  &quot;path&quot;: &quot;TeachingClass/d19cfe7f-6b52-433b-8f3e-61bcb23385c7&quot;,&#10;  &quot;httpMethod&quot;: &quot;GET&quot;,&#10;  &quot;isBase64Encoded&quot;: false,&#10;  &quot;queryStringParameters&quot;: {&#10;  },&#10;  &quot;pathParameters&quot;: {&#10;  },&#10;  &quot;stageVariables&quot;: {&#10;    &quot;baz&quot;: &quot;qux&quot;&#10;  },&#10;  &quot;headers&quot;: {&#10;    &quot;Accept&quot;: &quot;text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,*/*;q=0.8&quot;,&#10;    &quot;Accept-Encoding&quot;: &quot;gzip, deflate, sdch&quot;,&#10;    &quot;Accept-Language&quot;: &quot;en-US,en;q=0.8&quot;,&#10;    &quot;Cache-Control&quot;: &quot;max-age=0&quot;,&#10;    &quot;CloudFront-Forwarded-Proto&quot;: &quot;https&quot;,&#10;    &quot;CloudFront-Is-Desktop-Viewer&quot;: &quot;true&quot;,&#10;    &quot;CloudFront-Is-Mobile-Viewer&quot;: &quot;false&quot;,&#10;    &quot;CloudFront-Is-SmartTV-Viewer&quot;: &quot;false&quot;,&#10;    &quot;CloudFront-Is-Tablet-Viewer&quot;: &quot;false&quot;,&#10;    &quot;CloudFront-Viewer-Country&quot;: &quot;US&quot;,&#10;    &quot;Host&quot;: &quot;1234567890.execute-api.us-east-1.amazonaws.com&quot;,&#10;    &quot;Upgrade-Insecure-Requests&quot;: &quot;1&quot;,&#10;    &quot;User-Agent&quot;: &quot;Custom User Agent String&quot;,&#10;    &quot;Via&quot;: &quot;1.1 08f323deadbeefa7af34d5feb414ce27.cloudfront.net (CloudFront)&quot;,&#10;    &quot;X-Amz-Cf-Id&quot;: &quot;cDehVQoZnx43VYQb9j2-nvCh-9z396Uhbp027Y2JvkCPNLmGJHqlaA==&quot;,&#10;    &quot;X-Forwarded-For&quot;: &quot;127.0.0.1, 127.0.0.2&quot;,&#10;    &quot;X-Forwarded-Port&quot;: &quot;443&quot;,&#10;    &quot;X-Forwarded-Proto&quot;: &quot;https&quot;&#10;  },&#10;  &quot;requestContext&quot;: {&#10;    &quot;accountId&quot;: &quot;123456789012&quot;,&#10;    &quot;resourceId&quot;: &quot;123456&quot;,&#10;    &quot;stage&quot;: &quot;prod&quot;,&#10;    &quot;requestId&quot;: &quot;c6af9ac6-7b61-11e6-9a41-93e8deadbeef&quot;,&#10;    &quot;requestTime&quot;: &quot;09/Apr/2015:12:34:56 +0000&quot;,&#10;    &quot;requestTimeEpoch&quot;: 1428582896000,&#10;    &quot;identity&quot;: {&#10;      &quot;cognitoIdentityPoolId&quot;: null,&#10;      &quot;accountId&quot;: null,&#10;      &quot;cognitoIdentityId&quot;: null,&#10;      &quot;caller&quot;: null,&#10;      &quot;accessKey&quot;: null,&#10;      &quot;sourceIp&quot;: &quot;127.0.0.1&quot;,&#10;      &quot;cognitoAuthenticationType&quot;: null,&#10;      &quot;cognitoAuthenticationProvider&quot;: null,&#10;      &quot;userArn&quot;: null,&#10;      &quot;userAgent&quot;: &quot;Custom User Agent String&quot;,&#10;      &quot;user&quot;: null&#10;    },&#10;    &quot;apiId&quot;: &quot;1234567890&quot;,&#10;    &quot;protocol&quot;: &quot;HTTP/1.1&quot;&#10;  }&#10;}" />
+      <option name="inputIsFile" value="false" />
+      <sam>
+        <option name="buildInContainer" value="false" />
+        <option name="dockerNetwork" value="" />
+        <option name="skipImagePull" value="false" />
+      </sam>
+      <method v="2" />
+    </configuration>
+    <list>
+      <item itemvalue="AWS Lambda.[Local] CampusFunction" />
+      <item itemvalue="AWS Lambda.[Local] TeachingClassFunction" />
+    </list>
+    <recent_temporary>
+      <list>
+        <item itemvalue="AWS Lambda.[Local] TeachingClassFunction" />
+      </list>
+    </recent_temporary>
+  </component>
+  <component name="SvnConfiguration">
+    <configuration />
+  </component>
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="4c90ff85-15a4-4b55-a952-96a77d88c47d" name="Default Changelist" comment="" />
+      <created>1567418973430</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1567418973430</updated>
+    </task>
+    <servers />
+  </component>
+  <component name="Vcs.Log.Tabs.Properties">
+    <option name="TAB_STATES">
+      <map>
+        <entry key="MAIN">
+          <value>
+            <State>
+              <option name="COLUMN_ORDER" />
+            </State>
+          </value>
+        </entry>
+      </map>
+    </option>
+  </component>
+  <component name="XDebuggerManager">
+    <breakpoint-manager>
+      <breakpoints>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>jar://$MAVEN_REPOSITORY$/com/amazonaws/aws-java-sdk-dynamodb/1.11.640/aws-java-sdk-dynamodb-1.11.640-sources.jar!/com/amazonaws/services/dynamodbv2/datamodeling/DynamoDBMapper.java</url>
+          <line>738</line>
+          <option name="timeStamp" value="2" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>jar://$MAVEN_REPOSITORY$/com/amazonaws/aws-java-sdk-dynamodb/1.11.640/aws-java-sdk-dynamodb-1.11.640-sources.jar!/com/amazonaws/services/dynamodbv2/datamodeling/DynamoDBMapper.java</url>
+          <line>739</line>
+          <option name="timeStamp" value="3" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/catalog-model/src/main/java/co/tpg/catalog/model/TeachingClass.java</url>
+          <line>44</line>
+          <option name="timeStamp" value="4" />
+        </line-breakpoint>
+      </breakpoints>
+    </breakpoint-manager>
+  </component>
+</project>

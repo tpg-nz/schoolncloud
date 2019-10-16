@@ -12,12 +12,13 @@ import lombok.*;
  * @author James
  * @since 2019-10-12
  */
-
 @Builder
 @Getter
 @Setter
 @ToString
 @EqualsAndHashCode
+@NoArgsConstructor
+@AllArgsConstructor
 @DynamoDBTable(tableName = "Qualification")
 public class Qualification extends AbstractModel<String> {
     @DynamoDBHashKey(attributeName = "id")
@@ -31,16 +32,6 @@ public class Qualification extends AbstractModel<String> {
     @EqualsAndHashCode.Exclude
     @DynamoDBIgnore
     private Subject subject;
-
-    public Qualification() {
-    }
-
-    public Qualification(String id, String name, String hyperlink, Subject subject) {
-        this.id = id;
-        this.name = name;
-        this.hyperlink = hyperlink;
-        this.subject = subject;
-    }
 
     @JsonIgnore
     @DynamoDBAttribute(attributeName = "subjectId")

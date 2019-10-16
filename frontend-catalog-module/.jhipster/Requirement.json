@@ -1,0 +1,36 @@
+{
+    "name": "Requirement",
+    "fields": [
+        {
+            "fieldName": "level",
+            "fieldType": "Integer"
+        }
+    ],
+    "relationships": [
+        {
+            "relationshipType": "many-to-one",
+            "otherEntityName": "subject",
+            "otherEntityRelationshipName": "requirement",
+            "relationshipValidateRules": "required",
+            "relationshipName": "subject",
+            "otherEntityField": "name"
+        },
+        {
+            "relationshipType": "many-to-one",
+            "otherEntityName": "paper",
+            "otherEntityRelationshipName": "requirement",
+            "relationshipValidateRules": "required",
+            "relationshipName": "paper",
+            "otherEntityField": "code"
+        }
+    ],
+    "changelogDate": "20190921214840",
+    "entityTableName": "requirement",
+    "dto": "no",
+    "pagination": "pagination",
+    "service": "serviceImpl",
+    "jpaMetamodelFiltering": false,
+    "fluentMethods": true,
+    "clientRootFolder": "",
+    "applications": "*"
+}

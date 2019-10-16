@@ -1,7 +1,5 @@
 package co.tpg.request;
 
-import org.apache.commons.lang.builder.ToStringBuilder;
-
 import java.util.Map;
 
 /**
@@ -90,10 +88,5 @@ public abstract class AbstractRequest<T> {
 
     public void setBody(T body) {
         this.body = body;
-    }
-
-    @Override
-    public String toString() {
-        return ToStringBuilder.reflectionToString(this);
     }
 }

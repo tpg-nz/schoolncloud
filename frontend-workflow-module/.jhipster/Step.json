@@ -1,0 +1,40 @@
+{
+    "name": "Step",
+    "fields": [
+        {
+            "fieldName": "sequence",
+            "fieldType": "Integer",
+            "fieldValidateRules": [
+                "min",
+                "required"
+            ],
+            "fieldValidateRulesMin": 1
+        },
+        {
+            "fieldName": "name",
+            "fieldType": "String",
+            "fieldValidateRules": [
+                "required"
+            ]
+        }
+    ],
+    "relationships": [
+        {
+            "relationshipType": "many-to-one",
+            "otherEntityName": "workflow",
+            "otherEntityRelationshipName": "step",
+            "relationshipValidateRules": "required",
+            "relationshipName": "workflow",
+            "otherEntityField": "name"
+        }
+    ],
+    "changelogDate": "20190930081840",
+    "entityTableName": "step",
+    "dto": "no",
+    "pagination": "pagination",
+    "service": "serviceImpl",
+    "jpaMetamodelFiltering": false,
+    "fluentMethods": true,
+    "clientRootFolder": "",
+    "applications": "*"
+}

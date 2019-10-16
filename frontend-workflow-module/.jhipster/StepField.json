@@ -1,0 +1,45 @@
+{
+    "name": "StepField",
+    "fields": [
+        {
+            "fieldName": "sequence",
+            "fieldType": "Integer",
+            "fieldValidateRules": [
+                "min",
+                "required"
+            ],
+            "fieldValidateRulesMin": 1
+        },
+        {
+            "fieldName": "label",
+            "fieldType": "String",
+            "fieldValidateRules": [
+                "required"
+            ]
+        },
+        {
+            "fieldName": "fieldType",
+            "fieldType": "FieldType",
+            "fieldValues": "TEXT_FIELD,TEXT_AREA,COMBOBOX,CHECKBOX,RADIOBOX"
+        }
+    ],
+    "relationships": [
+        {
+            "relationshipType": "many-to-one",
+            "otherEntityName": "step",
+            "otherEntityRelationshipName": "stepField",
+            "relationshipValidateRules": "required",
+            "relationshipName": "step",
+            "otherEntityField": "name"
+        }
+    ],
+    "changelogDate": "20190930081841",
+    "entityTableName": "step_field",
+    "dto": "no",
+    "pagination": "pagination",
+    "service": "serviceImpl",
+    "jpaMetamodelFiltering": false,
+    "fluentMethods": true,
+    "clientRootFolder": "",
+    "applications": "*"
+}

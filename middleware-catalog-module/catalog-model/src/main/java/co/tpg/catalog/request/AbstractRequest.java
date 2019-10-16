@@ -16,6 +16,7 @@ public abstract class AbstractRequest<T> {
     protected String httpMethod;
     protected String apiId;
     protected String protocol;
+    protected String resource;
     protected T body;
 
     public Map<String, String> getQueryStringParameters() {
@@ -88,5 +89,13 @@ public abstract class AbstractRequest<T> {
 
     public void setBody(T body) {
         this.body = body;
+    }
+
+    public String getResource() {
+        return resource;
+    }
+
+    public void setResource(String resource) {
+        this.resource = resource;
     }
 }

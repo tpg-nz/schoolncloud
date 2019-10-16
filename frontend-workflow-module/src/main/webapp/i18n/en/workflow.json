@@ -18,8 +18,9 @@
       },
       "name": "Name",
       "description": "Description",
+      "enabled": "Enabled",
       "version": "Version",
-      "enabled": "Enabled"
+      "workflow": "Workflow"
     }
   }
 }

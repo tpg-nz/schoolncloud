@@ -15,6 +15,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.UUID;
+import java.util.stream.Collectors;
 
 /**
  * DAO class to persist TeachingClass into the backend.
@@ -42,9 +43,13 @@ public class TeachingClassDAO implements DAO<TeachingClass,String>{
     @Override
     public TeachingClass retrieveById(String key) throws BackendException {
         final TeachingClass teachingClass;
+        final CampusDAO campusDAO = new CampusDAO();
+        final PaperDAO paperDAO = new PaperDAO();
 
         try {
             teachingClass = mapper.load(TeachingClass.class,key);
+            teachingClass.setCampus(campusDAO.retrieveById(teachingClass.getCampusId()));
+            teachingClass.setPaper(paperDAO.retrieveById(teachingClass.getPaperId()));
         } catch (ResourceNotFoundException ex) {
             throw new BackendException(String.format("The table named %s could not be found in the backend system.", DYNAMO_TABLE_NAME));
         } catch (AmazonServiceException ex) {
@@ -60,6 +65,8 @@ public class TeachingClassDAO implements DAO<TeachingClass,String>{
         final DynamoDBScanExpression paginatedExpression = new DynamoDBScanExpression()
                 .withLimit(pageSize);
         final PaginatedScanList<TeachingClass> queryResultPage;
+        final CampusDAO campusDAO = new CampusDAO();
+        final PaperDAO paperDAO = new PaperDAO();
 
         try {
             if( lastEvaluatedKey != null ) {
@@ -67,6 +74,14 @@ public class TeachingClassDAO implements DAO<TeachingClass,String>{
                 paginatedExpression.setExclusiveStartKey(map);
             }
             queryResultPage = mapper.scan(TeachingClass.class,paginatedExpression);
+            queryResultPage
+                    .parallelStream()
+                    .map(ThrowingFunction.unchecked(o -> {
+                            o.setPaper(paperDAO.retrieveById(o.getPaperId()));
+                            o.setCampus(campusDAO.retrieveById(o.getCampusId()));
+                        return o;
+                    }))
+                    .collect(Collectors.toList());
         } catch (ResourceNotFoundException ex) {
             throw new BackendException(String.format("The table named %s could not be found in the backend system.", DYNAMO_TABLE_NAME));
         } catch (AmazonServiceException ex) {

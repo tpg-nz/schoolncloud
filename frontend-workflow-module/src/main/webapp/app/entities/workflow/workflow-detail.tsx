@@ -41,17 +41,21 @@ export class WorkflowDetail extends React.Component<IWorkflowDetailProps> {
             </dt>
             <dd>{workflowEntity.description}</dd>
             <dt>
+              <span id="enabled">
+                <Translate contentKey="workflowApp.workflow.enabled">Enabled</Translate>
+              </span>
+            </dt>
+            <dd>{workflowEntity.enabled ? 'true' : 'false'}</dd>
+            <dt>
               <span id="version">
                 <Translate contentKey="workflowApp.workflow.version">Version</Translate>
               </span>
             </dt>
             <dd>{workflowEntity.version}</dd>
             <dt>
-              <span id="enabled">
-                <Translate contentKey="workflowApp.workflow.enabled">Enabled</Translate>
-              </span>
+              <Translate contentKey="workflowApp.workflow.workflow">Workflow</Translate>
             </dt>
-            <dd>{workflowEntity.enabled ? 'true' : 'false'}</dd>
+            <dd>{workflowEntity.workflow ? workflowEntity.workflow.name : ''}</dd>
           </dl>
           <Button tag={Link} to="/entity/workflow" replace color="info">
             <FontAwesomeIcon icon="arrow-left" />{' '}

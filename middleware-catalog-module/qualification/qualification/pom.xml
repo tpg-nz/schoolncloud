@@ -2,10 +2,9 @@
     xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
     <modelVersion>4.0.0</modelVersion>
     <groupId>co.tpg.catalog-module</groupId>
-    <artifactId>teaching-class</artifactId>
+    <artifactId>qualification</artifactId>
     <version>1.0.0</version>
     <packaging>jar</packaging>
-    <name>Classroom lambda function.</name>
     <properties>
         <maven.compiler.source>1.8</maven.compiler.source>
         <maven.compiler.target>1.8</maven.compiler.target>
@@ -23,6 +22,11 @@
             <version>1.11.640</version>
         </dependency>
         <dependency>
+            <groupId>co.tpg.catalog</groupId>
+            <artifactId>catalog-model</artifactId>
+            <version>1.0.0</version>
+        </dependency>
+        <dependency>
             <groupId>javax.servlet</groupId>
             <artifactId>servlet-api</artifactId>
             <version>2.5</version>
@@ -30,25 +34,19 @@
         </dependency>
         <dependency>
             <groupId>co.tpg.catalog</groupId>
-            <artifactId>catalog-model</artifactId>
-            <version>1.0.0</version>
-        </dependency>
-        <dependency>
-            <groupId>co.tpg.catalog</groupId>
             <artifactId>catalog-dao</artifactId>
             <version>1.0.0</version>
         </dependency>
         <dependency>
-            <groupId>junit</groupId>
-            <artifactId>junit</artifactId>
-            <version>4.12</version>
-            <scope>test</scope>
+            <groupId>com.fasterxml.jackson.core</groupId>
+            <artifactId>jackson-databind</artifactId>
+            <version>2.9.8</version>
         </dependency>
         <dependency>
-            <groupId>co.tpg.catalog</groupId>
-            <artifactId>function-shared</artifactId>
-            <version>1.0.0</version>
-            <scope>compile</scope>
+          <groupId>junit</groupId>
+          <artifactId>junit</artifactId>
+          <version>4.12</version>
+          <scope>test</scope>
         </dependency>
     </dependencies>
 

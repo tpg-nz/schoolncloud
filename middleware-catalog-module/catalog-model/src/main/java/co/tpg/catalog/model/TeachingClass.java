@@ -5,6 +5,7 @@ import com.amazonaws.services.dynamodbv2.datamodeling.DynamoDBHashKey;
 import com.amazonaws.services.dynamodbv2.datamodeling.DynamoDBIgnore;
 import com.amazonaws.services.dynamodbv2.datamodeling.DynamoDBTable;
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import lombok.*;
 
 /**
@@ -17,7 +18,10 @@ import lombok.*;
 @Setter
 @ToString
 @EqualsAndHashCode
+@NoArgsConstructor
+@AllArgsConstructor
 @DynamoDBTable(tableName = "TeachingClass")
+@JsonIgnoreProperties({"paperId"})
 public class TeachingClass extends AbstractModel<String> {
     @DynamoDBHashKey(attributeName = "id")
     private String id;
@@ -35,19 +39,8 @@ public class TeachingClass extends AbstractModel<String> {
     private Paper paper;
     @EqualsAndHashCode.Exclude
     @DynamoDBIgnore
+    @JsonIgnore
     private Campus campus;
-
-    public TeachingClass() {
-    }
-
-    public TeachingClass(String id, String code, int year, int semester, Paper paper, Campus campus) {
-        this.id = id;
-        this.code = code;
-        this.year = year;
-        this.semester = semester;
-        this.paper = paper;
-        this.campus = campus;
-    }
 
     @JsonIgnore
     @DynamoDBAttribute(attributeName = "paperId")

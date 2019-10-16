@@ -2,32 +2,43 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="4c90ff85-15a4-4b55-a952-96a77d88c47d" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/catalog-dao/catalog-dao.iml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/catalog-dao/pom.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/catalog-dao/src/main/java/co/tpg/catalog/dao/DAO.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/catalog-dao/src/main/java/co/tpg/catalog/dao/TeachingClassDAO.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/catalog-dao/src/main/java/co/tpg/catalog/dao/exception/BackendException.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/function-shared/pom.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/function-shared/src/main/java/co/tpg/function/AbstractFunction.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/compiler.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/compiler.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/modules.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/modules.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/catalog-helper/src/main/java/co/tpg/catalog/helper/CatalogHelper.java" beforeDir="false" afterPath="$PROJECT_DIR$/catalog-helper/src/main/java/co/tpg/catalog/helper/CatalogHelper.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/catalog-dao/target/catalog-dao-1.0.0.jar" beforeDir="false" afterPath="$PROJECT_DIR$/catalog-dao/target/catalog-dao-1.0.0.jar" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/catalog-dao/target/classes/co/tpg/catalog/dao/TeachingClassDAO.class" beforeDir="false" afterPath="$PROJECT_DIR$/catalog-dao/target/classes/co/tpg/catalog/dao/TeachingClassDAO.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/catalog-dao/target/maven-archiver/pom.properties" beforeDir="false" afterPath="$PROJECT_DIR$/catalog-dao/target/maven-archiver/pom.properties" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/catalog-dao/target/maven-status/maven-compiler-plugin/compile/default-compile/createdFiles.lst" beforeDir="false" afterPath="$PROJECT_DIR$/catalog-dao/target/maven-status/maven-compiler-plugin/compile/default-compile/createdFiles.lst" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/catalog-dao/target/maven-status/maven-compiler-plugin/compile/default-compile/inputFiles.lst" beforeDir="false" afterPath="$PROJECT_DIR$/catalog-dao/target/maven-status/maven-compiler-plugin/compile/default-compile/inputFiles.lst" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/catalog-model/src/main/java/co/tpg/catalog/model/Campus.java" beforeDir="false" afterPath="$PROJECT_DIR$/catalog-model/src/main/java/co/tpg/catalog/model/Campus.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/catalog-model/src/main/java/co/tpg/catalog/model/Paper.java" beforeDir="false" afterPath="$PROJECT_DIR$/catalog-model/src/main/java/co/tpg/catalog/model/Paper.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/catalog-model/src/main/java/co/tpg/catalog/model/TeachingClass.java" beforeDir="false" afterPath="$PROJECT_DIR$/catalog-model/src/main/java/co/tpg/catalog/model/TeachingClass.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/catalog-model/src/main/java/co/tpg/catalog/request/AbstractRequest.java" beforeDir="false" afterPath="$PROJECT_DIR$/catalog-model/src/main/java/co/tpg/catalog/request/AbstractRequest.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/catalog-model/src/main/java/co/tpg/catalog/request/TeachingClassRequest.java" beforeDir="false" afterPath="$PROJECT_DIR$/catalog-model/src/main/java/co/tpg/catalog/request/TeachingClassRequest.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/catalog-model/target/catalog-model-1.0.0.jar" beforeDir="false" afterPath="$PROJECT_DIR$/catalog-model/target/catalog-model-1.0.0.jar" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/catalog-model/target/classes/co/tpg/catalog/model/Campus$CampusBuilder.class" beforeDir="false" afterPath="$PROJECT_DIR$/catalog-model/target/classes/co/tpg/catalog/model/Campus$CampusBuilder.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/catalog-model/target/classes/co/tpg/catalog/model/Campus.class" beforeDir="false" afterPath="$PROJECT_DIR$/catalog-model/target/classes/co/tpg/catalog/model/Campus.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/catalog-model/target/classes/co/tpg/catalog/model/Paper$PaperBuilder.class" beforeDir="false" afterPath="$PROJECT_DIR$/catalog-model/target/classes/co/tpg/catalog/model/Paper$PaperBuilder.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/catalog-model/target/classes/co/tpg/catalog/model/Paper.class" beforeDir="false" afterPath="$PROJECT_DIR$/catalog-model/target/classes/co/tpg/catalog/model/Paper.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/catalog-model/target/classes/co/tpg/catalog/model/TeachingClass$TeachingClassBuilder.class" beforeDir="false" afterPath="$PROJECT_DIR$/catalog-model/target/classes/co/tpg/catalog/model/TeachingClass$TeachingClassBuilder.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/catalog-model/target/classes/co/tpg/catalog/model/TeachingClass.class" beforeDir="false" afterPath="$PROJECT_DIR$/catalog-model/target/classes/co/tpg/catalog/model/TeachingClass.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/catalog-model/target/classes/co/tpg/catalog/request/AbstractRequest.class" beforeDir="false" afterPath="$PROJECT_DIR$/catalog-model/target/classes/co/tpg/catalog/request/AbstractRequest.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/catalog-model/target/classes/co/tpg/catalog/request/TeachingClassRequest.class" beforeDir="false" afterPath="$PROJECT_DIR$/catalog-model/target/classes/co/tpg/catalog/request/TeachingClassRequest.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/catalog-model/target/maven-archiver/pom.properties" beforeDir="false" afterPath="$PROJECT_DIR$/catalog-model/target/maven-archiver/pom.properties" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/catalog-model/target/maven-status/maven-compiler-plugin/compile/default-compile/createdFiles.lst" beforeDir="false" afterPath="$PROJECT_DIR$/catalog-model/target/maven-status/maven-compiler-plugin/compile/default-compile/createdFiles.lst" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/catalog-model/target/maven-status/maven-compiler-plugin/compile/default-compile/inputFiles.lst" beforeDir="false" afterPath="$PROJECT_DIR$/catalog-model/target/maven-status/maven-compiler-plugin/compile/default-compile/inputFiles.lst" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/pom.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/teaching-class/TeachingClass/TeachingClass.iml" beforeDir="false" afterPath="$PROJECT_DIR$/teaching-class/TeachingClass/TeachingClass.iml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/teaching-class/TeachingClass/.aws-sam/build/Function/co/tpg/catalog/function/TeachingClassFunction.class" beforeDir="false" afterPath="$PROJECT_DIR$/teaching-class/TeachingClass/.aws-sam/build/Function/co/tpg/catalog/function/TeachingClassFunction.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/teaching-class/TeachingClass/.aws-sam/build/Function/lib/catalog-dao-1.0.0.jar" beforeDir="false" afterPath="$PROJECT_DIR$/teaching-class/TeachingClass/.aws-sam/build/Function/lib/catalog-dao-1.0.0.jar" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/teaching-class/TeachingClass/.aws-sam/build/Function/lib/catalog-model-1.0.0.jar" beforeDir="false" afterPath="$PROJECT_DIR$/teaching-class/TeachingClass/.aws-sam/build/Function/lib/catalog-model-1.0.0.jar" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/teaching-class/TeachingClass/.aws-sam/build/Function/lib/jackson-core-2.9.8.jar" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/teaching-class/TeachingClass/.aws-sam/build/Function/lib/jackson-databind-2.9.8.jar" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/teaching-class/TeachingClass/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/teaching-class/TeachingClass/pom.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/teaching-class/TeachingClass/src/main/java/co/tpg/catalog/function/TeachingClassFunction.java" beforeDir="false" afterPath="$PROJECT_DIR$/teaching-class/TeachingClass/src/main/java/co/tpg/catalog/function/TeachingClassFunction.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/teaching-class/TeachingClass/teaching-class.iml" beforeDir="false" afterPath="$PROJECT_DIR$/teaching-class/TeachingClass/teaching-class.iml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/teaching-staff/TeachingStaff/target/classes/co/tpg/function/TeachingStaffFunction.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/teaching-staff/TeachingStaff/target/maven-archiver/pom.properties" beforeDir="false" afterPath="$PROJECT_DIR$/teaching-staff/TeachingStaff/target/maven-archiver/pom.properties" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/teaching-staff/TeachingStaff/target/maven-status/maven-compiler-plugin/compile/default-compile/createdFiles.lst" beforeDir="false" afterPath="$PROJECT_DIR$/teaching-staff/TeachingStaff/target/maven-status/maven-compiler-plugin/compile/default-compile/createdFiles.lst" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/teaching-staff/TeachingStaff/target/maven-status/maven-compiler-plugin/compile/default-compile/inputFiles.lst" beforeDir="false" afterPath="$PROJECT_DIR$/teaching-staff/TeachingStaff/target/maven-status/maven-compiler-plugin/compile/default-compile/inputFiles.lst" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/teaching-staff/TeachingStaff/target/maven-status/maven-compiler-plugin/testCompile/default-testCompile/createdFiles.lst" beforeDir="false" afterPath="$PROJECT_DIR$/teaching-staff/TeachingStaff/target/maven-status/maven-compiler-plugin/testCompile/default-testCompile/createdFiles.lst" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/teaching-staff/TeachingStaff/target/maven-status/maven-compiler-plugin/testCompile/default-testCompile/inputFiles.lst" beforeDir="false" afterPath="$PROJECT_DIR$/teaching-staff/TeachingStaff/target/maven-status/maven-compiler-plugin/testCompile/default-testCompile/inputFiles.lst" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/teaching-staff/TeachingStaff/target/original-teaching-staff-1.0.0.jar" beforeDir="false" afterPath="$PROJECT_DIR$/teaching-staff/TeachingStaff/target/original-teaching-staff-1.0.0.jar" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/teaching-staff/TeachingStaff/target/surefire-reports/TEST-co.tpg.function.CreateTeachingStaffFunctionTest.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/teaching-staff/TeachingStaff/target/surefire-reports/co.tpg.function.CreateTeachingStaffFunctionTest.txt" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/teaching-staff/TeachingStaff/target/teaching-staff-1.0.0.jar" beforeDir="false" afterPath="$PROJECT_DIR$/teaching-staff/TeachingStaff/target/teaching-staff-1.0.0.jar" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/teaching-staff/TeachingStaff/target/test-classes/co/tpg/function/CreateTeachingStaffFunctionTest.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../middleware-workflow-module/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../middleware-workflow-module/.idea/workspace.xml" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -39,8 +50,8 @@
     <option name="RECENT_TEMPLATES">
       <list>
         <option value="Enum" />
-        <option value="Class" />
         <option value="Interface" />
+        <option value="Class" />
       </list>
     </option>
   </component>
@@ -61,8 +72,8 @@
     <property name="full.screen.before.presentation.mode" value="false" />
     <property name="last_opened_file_path" value="$PROJECT_DIR$/../middleware-workflow-module" />
     <property name="project.structure.last.edited" value="Modules" />
-    <property name="project.structure.proportion" value="0.0" />
-    <property name="project.structure.side.proportion" value="0.0" />
+    <property name="project.structure.proportion" value="0.15" />
+    <property name="project.structure.side.proportion" value="0.2" />
     <property name="settings.editor.selected.configurable" value="reference.projectsettings.compiler.annotationProcessors" />
   </component>
   <component name="RecentsManager">
@@ -236,7 +247,7 @@
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/catalog-model/src/main/java/co/tpg/catalog/model/TeachingClass.java</url>
-          <line>51</line>
+          <line>44</line>
           <option name="timeStamp" value="4" />
         </line-breakpoint>
       </breakpoints>

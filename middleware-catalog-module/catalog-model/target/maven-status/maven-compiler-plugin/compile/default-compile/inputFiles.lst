@@ -10,7 +10,9 @@ C:\projects\SchoolnCloud\schoolncloud\middleware-catalog-module\catalog-model\sr
 C:\projects\SchoolnCloud\schoolncloud\middleware-catalog-module\catalog-model\src\main\java\co\tpg\catalog\model\Campus.java
 C:\projects\SchoolnCloud\schoolncloud\middleware-catalog-module\catalog-model\src\main\java\co\tpg\catalog\model\Domain.java
 C:\projects\SchoolnCloud\schoolncloud\middleware-catalog-module\catalog-model\src\main\java\co\tpg\catalog\response\AbstractResponse.java
+C:\projects\SchoolnCloud\schoolncloud\middleware-catalog-module\catalog-model\src\main\java\co\tpg\catalog\response\PaperResponse.java
 C:\projects\SchoolnCloud\schoolncloud\middleware-catalog-module\catalog-model\src\main\java\co\tpg\catalog\request\TeachingClassRequest.java
+C:\projects\SchoolnCloud\schoolncloud\middleware-catalog-module\catalog-model\src\main\java\co\tpg\catalog\request\PaperRequest.java
 C:\projects\SchoolnCloud\schoolncloud\middleware-catalog-module\catalog-model\src\main\java\co\tpg\catalog\request\TeachingStaffRequest.java
 C:\projects\SchoolnCloud\schoolncloud\middleware-catalog-module\catalog-model\src\main\java\co\tpg\catalog\response\CampusResponse.java
 C:\projects\SchoolnCloud\schoolncloud\middleware-catalog-module\catalog-model\src\main\java\co\tpg\catalog\model\TeachingClass.java

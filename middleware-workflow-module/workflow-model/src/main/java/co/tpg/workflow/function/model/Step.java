@@ -21,6 +21,8 @@ import java.util.List;
 @EqualsAndHashCode(callSuper = true, onlyExplicitlyIncluded = true)
 @DynamoDBTable(tableName = "Step")
 @JsonIgnoreProperties(ignoreUnknown = true)
+@AllArgsConstructor
+@NoArgsConstructor
 public class Step extends AbstractModel<String> {
 
     @EqualsAndHashCode.Include
@@ -31,37 +33,14 @@ public class Step extends AbstractModel<String> {
     @DynamoDBAttribute(attributeName = "sequence")
     private int sequence;
 
-    // TODO -> fix the object storing
-    //@JsonBackReference
     @DynamoDBIgnore
     @JsonIgnore
     private Workflow workflow;
 
+    @JsonIgnore
     @DynamoDBIgnore
-    @JsonManagedReference
+    //@JsonManagedReference
     private List<StepField> stepFields;
-
-
-    /**
-     * Default constructor
-     */
-    public Step() { }
-
-    /**
-     * Full constructor
-     * @param id            Workflow step UUID
-     * @param name          Workflow step name
-     * @param sequence      Workflow step sequence
-     * @param workflow      Workflow
-     * @param stepFields    Workflow step fields
-     */
-    public Step(String id, String name, int sequence, Workflow workflow, List<StepField> stepFields) {
-        this.id = id;
-        this.name = name;
-        this.sequence = sequence;
-        this.workflow = workflow;
-        this.stepFields = stepFields;
-    }
 
     /**
      * Workflow id getter is used in DB for proper reference
@@ -74,8 +53,8 @@ public class Step extends AbstractModel<String> {
     }
 
     /**
-     * Workflow id setter
-     * @param workflowId    Workflow Id
+     * Sets the workflow Id in the workflow object
+     * @param workflowId    Workflow Id used in DB
      */
     public void setWorkflowId(String workflowId) {
         if (this.workflow == null) {

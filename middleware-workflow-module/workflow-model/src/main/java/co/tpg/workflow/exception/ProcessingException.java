@@ -1,4 +1,4 @@
-package co.tpg.workflow.function.exception;
+package co.tpg.workflow.exception;
 
 import lombok.*;
 

@@ -1,9 +1,10 @@
 package co.tpg.workflow.function;
 
+import co.tpg.function.AbstractFunction;
 import co.tpg.workflow.dao.DAO;
 import co.tpg.workflow.dao.StepDAO;
 import co.tpg.workflow.dao.exception.BackendException;
-import co.tpg.workflow.function.exception.ProcessingException;
+import co.tpg.workflow.exception.ProcessingException;
 import co.tpg.workflow.function.model.Step;
 import co.tpg.workflow.function.request.HttpMethod;
 import co.tpg.workflow.function.request.StepRequest;
@@ -18,7 +19,6 @@ import com.amazonaws.services.dynamodbv2.datamodeling.DynamoDBMapper;
 import com.amazonaws.services.dynamodbv2.model.ResourceNotFoundException;
 import com.amazonaws.services.lambda.runtime.Context;
 import com.amazonaws.services.lambda.runtime.LambdaLogger;
-import com.amazonaws.services.lambda.runtime.RequestHandler;
 
 import javax.servlet.http.HttpServletResponse;
 import java.util.HashMap;
@@ -31,7 +31,7 @@ import java.util.UUID;
  * @author Andrej
  * @since 2019-10-09
  */
-public class StepFunction implements RequestHandler<StepRequest, AbstractResponse> {
+public class StepFunction extends AbstractFunction<StepRequest, AbstractResponse> {
     /**
      * Lambda function handler
      * @param stepRequest   The lambda request object
@@ -81,7 +81,6 @@ public class StepFunction implements RequestHandler<StepRequest, AbstractRespons
 
         // Execute rest operation
         switch (httpMethod) {
-
             case HttpMethod.GET: {
 
                 // log operation
@@ -199,5 +198,10 @@ public class StepFunction implements RequestHandler<StepRequest, AbstractRespons
                 response.setStatusCode(HttpServletResponse.SC_BAD_REQUEST);
             }
         return response;
+    }
+
+    @Override
+    public Class<StepRequest> getClazz() {
+        return StepRequest.class;
     }
 }

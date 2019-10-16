@@ -1,6 +1,6 @@
 package co.tpg.workflow.function.response;
 
-import co.tpg.workflow.function.exception.ProcessingException;
+import co.tpg.workflow.exception.ProcessingException;
 
 /**
  * Response class for General Errors.

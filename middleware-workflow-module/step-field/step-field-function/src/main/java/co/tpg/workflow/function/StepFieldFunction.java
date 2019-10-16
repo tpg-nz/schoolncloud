@@ -1,9 +1,10 @@
 package co.tpg.workflow.function;
 
+import co.tpg.function.AbstractFunction;
 import co.tpg.workflow.dao.DAO;
 import co.tpg.workflow.dao.StepFieldDAO;
 import co.tpg.workflow.dao.exception.BackendException;
-import co.tpg.workflow.function.exception.ProcessingException;
+import co.tpg.workflow.exception.ProcessingException;
 import co.tpg.workflow.function.model.StepField;
 import co.tpg.workflow.function.request.HttpMethod;
 import co.tpg.workflow.function.request.StepFieldRequest;
@@ -18,7 +19,6 @@ import com.amazonaws.services.dynamodbv2.datamodeling.DynamoDBMapper;
 import com.amazonaws.services.dynamodbv2.model.ResourceNotFoundException;
 import com.amazonaws.services.lambda.runtime.Context;
 import com.amazonaws.services.lambda.runtime.LambdaLogger;
-import com.amazonaws.services.lambda.runtime.RequestHandler;
 
 import javax.servlet.http.HttpServletResponse;
 import java.util.HashMap;
@@ -31,7 +31,7 @@ import java.util.UUID;
  * @author Andrej
  * @since 2019-10-12
  */
-public class StepFieldFunction implements RequestHandler<StepFieldRequest, AbstractResponse> {
+public class StepFieldFunction extends AbstractFunction<StepFieldRequest, AbstractResponse> {
 
     /**
      * Lambda function handler
@@ -40,7 +40,7 @@ public class StepFieldFunction implements RequestHandler<StepFieldRequest, Abstr
      * @return                  The response of the rest operation
      */
     @Override
-    public AbstractResponse handleRequest(StepFieldRequest stepFieldRequest, Context context) {
+    public AbstractResponse handleRequest(final StepFieldRequest stepFieldRequest, final Context context) {
 
         final String DYNAMO_TABLE_NAME = "StepField";
         final AmazonDynamoDB dynamoDB = AmazonDynamoDBClientBuilder.defaultClient();
@@ -205,5 +205,10 @@ public class StepFieldFunction implements RequestHandler<StepFieldRequest, Abstr
         response.setStatusCode(HttpServletResponse.SC_BAD_REQUEST);
     }
         return response;
+    }
+
+    @Override
+    public Class<StepFieldRequest> getClazz() {
+        return StepFieldRequest.class;
     }
 }

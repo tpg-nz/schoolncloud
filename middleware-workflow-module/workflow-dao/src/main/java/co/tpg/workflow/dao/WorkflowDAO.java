@@ -44,9 +44,7 @@ public class WorkflowDAO implements DAO<Workflow, String> {
             List<Step> steps = workflow.getSteps();
             if (( steps != null ) && (steps.size() > 0)){
                 for (Step step: steps) {
-                    //TODO -> infinite recursion JSON issue
-                    //step.setWorkflow(workflow);
-                    step.setWorkflowId(workflow.getId());
+                    step.setWorkflow(workflow);
                     stepDAO.create(step);
                 }
             }

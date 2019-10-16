@@ -11,6 +11,7 @@
     <modules>
         <module>workflow-model</module>
         <module>workflow-dao</module>
+        <module>function-shared</module>
     </modules>
 
     <dependencies>

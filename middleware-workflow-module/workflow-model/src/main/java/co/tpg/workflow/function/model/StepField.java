@@ -15,6 +15,8 @@ import lombok.*;
 @ToString
 @EqualsAndHashCode(callSuper = false, onlyExplicitlyIncluded = true)
 @DynamoDBTable(tableName = "StepField")
+@NoArgsConstructor
+@AllArgsConstructor
 public class StepField extends AbstractModel<String> {
 
     @EqualsAndHashCode.Include
@@ -25,48 +27,28 @@ public class StepField extends AbstractModel<String> {
     @DynamoDBAttribute(attributeName = "sequence")
     private int sequence;
 
-    @DynamoDBIgnore
     @JsonIgnore
+    @DynamoDBIgnore
     private Step step;
 
+    @JsonIgnore
     @DynamoDBTypeConverted(converter = FieldTypeConverter.class)
     @DynamoDBAttribute(attributeName = "fieldType")
     private FieldType fieldType;
 
     /**
-     * Default constructor
-     */
-    public StepField() { }
-
-    /**
-     * Main constructor
-     * @param id        Workflow step field UUID
-     * @param label     Workflow step field label
-     * @param sequence  Workflow step field sequence
-     * @param step      Workflow step object
-     * @param fieldType Workflow step field type
-     */
-    public StepField(String id, String label, int sequence, Step step, FieldType fieldType) {
-        this.id = id;
-        this.label = label;
-        this.sequence = sequence;
-        this.step = step;
-        this.fieldType = fieldType;
-    }
-
-    /**
      * The stepId used in DB for proper reference
      * @return  Step Id
      */
-    @DynamoDBAttribute(attributeName = "stepId")
     @JsonIgnore
+    @DynamoDBAttribute(attributeName = "stepId")
     public String getStepId() {
         return (this.step != null) ? this.step.getId() : null;
     }
 
     /**
-     * Sets the stepID
-     * @param stepId    Step Id
+     * Sets the step Id in the step object
+     * @param stepId    Step Id used in the DB
      */
     public void setStepId(String stepId) {
         if (this.step == null) {

@@ -1,9 +1,10 @@
 package co.tpg.workflow.function;
 
+import co.tpg.function.AbstractFunction;
 import co.tpg.workflow.dao.DAO;
 import co.tpg.workflow.dao.WorkflowDAO;
 import co.tpg.workflow.dao.exception.BackendException;
-import co.tpg.workflow.function.exception.ProcessingException;
+import co.tpg.workflow.exception.ProcessingException;
 import co.tpg.workflow.function.model.Workflow;
 import co.tpg.workflow.function.request.HttpMethod;
 import co.tpg.workflow.function.request.WorkflowRequest;
@@ -18,7 +19,6 @@ import com.amazonaws.services.dynamodbv2.datamodeling.DynamoDBMapper;
 import com.amazonaws.services.dynamodbv2.model.ResourceNotFoundException;
 import com.amazonaws.services.lambda.runtime.Context;
 import com.amazonaws.services.lambda.runtime.LambdaLogger;
-import com.amazonaws.services.lambda.runtime.RequestHandler;
 
 import javax.servlet.http.HttpServletResponse;
 import java.util.HashMap;
@@ -31,7 +31,7 @@ import java.util.UUID;
  * @author Andrej
  * @since 2019-10-12
  */
-public class WorkflowFunction implements RequestHandler<WorkflowRequest, AbstractResponse> {
+public class WorkflowFunction extends AbstractFunction<WorkflowRequest, AbstractResponse> {
 
     /**
      *Lambda function handler
@@ -63,7 +63,7 @@ public class WorkflowFunction implements RequestHandler<WorkflowRequest, Abstrac
         errorResponse.setStatusCode(HttpServletResponse.SC_INTERNAL_SERVER_ERROR);
         logger.log(String.format("HTTP method: %s\n",workflowRequest.getHttpMethod()));
 
-        // get worklow ID and check its existence
+        // get workflow ID and check its existence
         String id = workflowRequest.getBody().getId();
         if ( id == null ) {
             if ( !((httpMethod.equals(HttpMethod.POST) ) || (httpMethod.equals(HttpMethod.GET)) ) ) { // in case of post id does not exists yet
@@ -205,5 +205,10 @@ public class WorkflowFunction implements RequestHandler<WorkflowRequest, Abstrac
                 response.setStatusCode(HttpServletResponse.SC_BAD_REQUEST);
         }
         return response;
+    }
+
+    @Override
+    public Class<WorkflowRequest> getClazz() {
+        return WorkflowRequest.class;
     }
 }

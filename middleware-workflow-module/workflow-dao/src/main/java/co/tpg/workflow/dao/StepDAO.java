@@ -46,8 +46,7 @@ public class StepDAO implements DAO<Step, String> {
             List<StepField> stepFields = step.getStepFields();
             if ( stepFields != null ) {
                 for (StepField stepField: stepFields) {
-                    //stepField.setStep(step);
-                    stepField.setStepId(step.getId());
+                    stepField.setStep(step);
                     stepFieldDAO.create(stepField);
                 }
             }

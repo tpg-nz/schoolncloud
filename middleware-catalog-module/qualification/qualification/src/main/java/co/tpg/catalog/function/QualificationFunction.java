@@ -65,7 +65,6 @@ public class QualificationFunction implements RequestHandler<QualificationReques
                             errorResponse.setBody(ProcessingException.builder().message(String.format("Qualification with ID=%s not found.", id)).build());
                             return errorResponse;
                         }
-                        //TODO: call helpers to fetch Subject object from DynamoDB
                         response.setBody(qualification);
                     }
                     response.setStatusCode(HttpServletResponse.SC_OK);

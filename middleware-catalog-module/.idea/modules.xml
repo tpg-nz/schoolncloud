@@ -2,10 +2,10 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
+      <module fileurl="file://$PROJECT_DIR$/catalog-dao/catalog-dao.iml" filepath="$PROJECT_DIR$/catalog-dao/catalog-dao.iml" />
       <module fileurl="file://$PROJECT_DIR$/catalog-model/catalog-model.iml" filepath="$PROJECT_DIR$/catalog-model/catalog-model.iml" />
-      <module fileurl="file://$PROJECT_DIR$/.idea/middleware-catalog-module.iml" filepath="$PROJECT_DIR$/.idea/middleware-catalog-module.iml" />
+      <module fileurl="file://$PROJECT_DIR$/catalog-module.iml" filepath="$PROJECT_DIR$/catalog-module.iml" />
       <module fileurl="file://$PROJECT_DIR$/qualification/qualification/qualification.iml" filepath="$PROJECT_DIR$/qualification/qualification/qualification.iml" />
-      <module fileurl="file://$PROJECT_DIR$/teaching-class/TeachingClass/teaching-class.iml" filepath="$PROJECT_DIR$/teaching-class/TeachingClass/teaching-class.iml" />
     </modules>
   </component>
 </project>

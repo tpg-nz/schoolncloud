@@ -31,7 +31,6 @@ public class StepField extends AbstractModel<String> {
     @DynamoDBIgnore
     private Step step;
 
-    @JsonIgnore
     @DynamoDBTypeConverted(converter = FieldTypeConverter.class)
     @DynamoDBAttribute(attributeName = "fieldType")
     private FieldType fieldType;

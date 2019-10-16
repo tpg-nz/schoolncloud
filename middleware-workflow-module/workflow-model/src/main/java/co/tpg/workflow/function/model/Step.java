@@ -22,7 +22,6 @@ import java.util.List;
 @DynamoDBTable(tableName = "Step")
 @JsonIgnoreProperties(ignoreUnknown = true)
 @AllArgsConstructor
-@NoArgsConstructor
 public class Step extends AbstractModel<String> {
 
     @EqualsAndHashCode.Include
@@ -39,7 +38,6 @@ public class Step extends AbstractModel<String> {
 
     @JsonIgnore
     @DynamoDBIgnore
-    //@JsonManagedReference
     private List<StepField> stepFields;
 
     /**
@@ -62,4 +60,6 @@ public class Step extends AbstractModel<String> {
         }
         this.workflow.setId(workflowId);
     }
+
+    public Step() {}
 }

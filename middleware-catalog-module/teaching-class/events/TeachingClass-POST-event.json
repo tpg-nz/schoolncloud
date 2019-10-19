@@ -1,11 +1,10 @@
 {
-  "body": {"id":"","code":"ASL-102","year":2020, "semester":1, "paper":{"id": "123456"}, "campus":{"id": "1234", "name": "City Centre Campus"}},
-  "resource": "/{proxy+}",
+  "body": {"id":"","code":"XXX-112","year":2021, "semester":1, "paper":{"id": "123456"}, "campus":{"id": "1234", "name": "City Centre Campus"}},
+  "resource": "/teaching-class",
   "path": "/path/to/resource",
   "httpMethod": "POST",
   "isBase64Encoded": false,
   "queryStringParameters": {
-    "foo": "bar"
   },
   "pathParameters": {
     "proxy": "/path/to/resource"

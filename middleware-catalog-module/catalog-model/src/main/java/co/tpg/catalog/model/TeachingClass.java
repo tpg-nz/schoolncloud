@@ -55,6 +55,9 @@ public class TeachingClass extends AbstractModel<String> {
         return this.paper.getId();
     }
     public void setPaperId(String paperId) {
+        if( this.paper == null ) {
+            this.paper = new Paper();
+        }
         this.paper.setId(paperId);
     }
 
@@ -64,6 +67,9 @@ public class TeachingClass extends AbstractModel<String> {
         return this.campus.getId();
     }
     public void setCampusId(String campusId) {
+        if( this.campus == null ) {
+            this.campus = new Campus();
+        }
         this.campus.setId(campusId);
     }
 }

@@ -1,7 +1,34 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="4c90ff85-15a4-4b55-a952-96a77d88c47d" name="Default Changelist" comment="" />
+    <list default="true" id="4c90ff85-15a4-4b55-a952-96a77d88c47d" name="Default Changelist" comment="">
+      <change afterPath="$PROJECT_DIR$/catalog-dao/catalog-dao.iml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/catalog-dao/pom.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/catalog-dao/src/main/java/co/tpg/catalog/dao/DAO.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/catalog-dao/src/main/java/co/tpg/catalog/dao/TeachingClassDAO.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/catalog-dao/src/main/java/co/tpg/catalog/dao/exception/BackendException.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/compiler.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/compiler.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/modules.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/modules.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/catalog-helper/src/main/java/co/tpg/catalog/helper/CatalogHelper.java" beforeDir="false" afterPath="$PROJECT_DIR$/catalog-helper/src/main/java/co/tpg/catalog/helper/CatalogHelper.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/pom.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/teaching-class/TeachingClass/TeachingClass.iml" beforeDir="false" afterPath="$PROJECT_DIR$/teaching-class/TeachingClass/TeachingClass.iml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/teaching-class/TeachingClass/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/teaching-class/TeachingClass/pom.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/teaching-class/TeachingClass/src/main/java/co/tpg/catalog/function/TeachingClassFunction.java" beforeDir="false" afterPath="$PROJECT_DIR$/teaching-class/TeachingClass/src/main/java/co/tpg/catalog/function/TeachingClassFunction.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/teaching-class/TeachingClass/teaching-class.iml" beforeDir="false" afterPath="$PROJECT_DIR$/teaching-class/TeachingClass/teaching-class.iml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/teaching-staff/TeachingStaff/target/classes/co/tpg/function/TeachingStaffFunction.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/teaching-staff/TeachingStaff/target/maven-archiver/pom.properties" beforeDir="false" afterPath="$PROJECT_DIR$/teaching-staff/TeachingStaff/target/maven-archiver/pom.properties" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/teaching-staff/TeachingStaff/target/maven-status/maven-compiler-plugin/compile/default-compile/createdFiles.lst" beforeDir="false" afterPath="$PROJECT_DIR$/teaching-staff/TeachingStaff/target/maven-status/maven-compiler-plugin/compile/default-compile/createdFiles.lst" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/teaching-staff/TeachingStaff/target/maven-status/maven-compiler-plugin/compile/default-compile/inputFiles.lst" beforeDir="false" afterPath="$PROJECT_DIR$/teaching-staff/TeachingStaff/target/maven-status/maven-compiler-plugin/compile/default-compile/inputFiles.lst" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/teaching-staff/TeachingStaff/target/maven-status/maven-compiler-plugin/testCompile/default-testCompile/createdFiles.lst" beforeDir="false" afterPath="$PROJECT_DIR$/teaching-staff/TeachingStaff/target/maven-status/maven-compiler-plugin/testCompile/default-testCompile/createdFiles.lst" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/teaching-staff/TeachingStaff/target/maven-status/maven-compiler-plugin/testCompile/default-testCompile/inputFiles.lst" beforeDir="false" afterPath="$PROJECT_DIR$/teaching-staff/TeachingStaff/target/maven-status/maven-compiler-plugin/testCompile/default-testCompile/inputFiles.lst" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/teaching-staff/TeachingStaff/target/original-teaching-staff-1.0.0.jar" beforeDir="false" afterPath="$PROJECT_DIR$/teaching-staff/TeachingStaff/target/original-teaching-staff-1.0.0.jar" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/teaching-staff/TeachingStaff/target/surefire-reports/TEST-co.tpg.function.CreateTeachingStaffFunctionTest.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/teaching-staff/TeachingStaff/target/surefire-reports/co.tpg.function.CreateTeachingStaffFunctionTest.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/teaching-staff/TeachingStaff/target/teaching-staff-1.0.0.jar" beforeDir="false" afterPath="$PROJECT_DIR$/teaching-staff/TeachingStaff/target/teaching-staff-1.0.0.jar" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/teaching-staff/TeachingStaff/target/test-classes/co/tpg/function/CreateTeachingStaffFunctionTest.class" beforeDir="false" />
+    </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -11,9 +38,9 @@
   <component name="FileTemplateManagerImpl">
     <option name="RECENT_TEMPLATES">
       <list>
-        <option value="Interface" />
         <option value="Enum" />
         <option value="Class" />
+        <option value="Interface" />
       </list>
     </option>
   </component>
@@ -32,11 +59,11 @@
   <component name="PropertiesComponent">
     <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
     <property name="full.screen.before.presentation.mode" value="false" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/teaching-class/events" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/../middleware-workflow-module" />
     <property name="project.structure.last.edited" value="Modules" />
     <property name="project.structure.proportion" value="0.0" />
     <property name="project.structure.side.proportion" value="0.0" />
-    <property name="settings.editor.selected.configurable" value="vcs.Git" />
+    <property name="settings.editor.selected.configurable" value="reference.projectsettings.compiler.annotationProcessors" />
   </component>
   <component name="RecentsManager">
     <key name="MoveClassesOrPackagesDialog.RECENTS_KEY">
@@ -44,18 +71,18 @@
       <recent name="" />
     </key>
     <key name="CopyClassDialog.RECENTS_KEY">
+      <recent name="co.tpg.catalog.dao" />
+      <recent name="co.tpg.catalog.response" />
+      <recent name="co.tpg.catalog.request" />
       <recent name="co.tpg.response" />
       <recent name="co.tpg.function" />
-      <recent name="co.tpg.request" />
-      <recent name="co.tpg.model" />
-      <recent name="function" />
     </key>
     <key name="CopyFile.RECENT_KEYS">
+      <recent name="C:\projects\SchoolnCloud\schoolncloud\middleware-catalog-module" />
       <recent name="C:\projects\SchoolnCloud\schoolncloud\middleware-catalog-module\teaching-class\events" />
       <recent name="C:\projects\SchoolnCloud\schoolncloud\middleware-catalog-module\camp\HelloWorldFunction" />
       <recent name="C:\projects\SchoolnCloud\schoolncloud\middleware-catalog-module\camp\events" />
       <recent name="C:\projects\SchoolnCloud\middleware-catalog-module\teaching-staff\events" />
-      <recent name="C:\projects\SchoolnCloud\middleware-catalog-module\teaching-staff\CreateTeachingStaff\src\main\java" />
     </key>
   </component>
   <component name="RunDashboard">
@@ -138,26 +165,6 @@
       </sam>
       <method v="2" />
     </configuration>
-    <configuration name="[Local] HelloWorldFunction" type="aws.lambda" factoryName="Local" nameIsGenerated="true">
-      <option name="credentialProviderId" />
-      <option name="regionId" />
-      <option name="environmentVariables">
-        <map />
-      </option>
-      <option name="handler" />
-      <option name="logicalFunctionName" value="HelloWorldFunction" />
-      <option name="runtime" />
-      <option name="templateFile" value="$PROJECT_DIR$/teaching-class/template.yaml" />
-      <option name="useTemplate" value="true" />
-      <option name="input" />
-      <option name="inputIsFile" value="false" />
-      <sam>
-        <option name="buildInContainer" value="false" />
-        <option name="dockerNetwork" />
-        <option name="skipImagePull" value="false" />
-      </sam>
-      <method v="2" />
-    </configuration>
     <configuration name="[Local] TeachingClassFunction" type="aws.lambda" factoryName="Local" temporary="true" nameIsGenerated="true">
       <option name="credentialProviderId" value="profile:default" />
       <option name="regionId" value="ap-southeast-2" />
@@ -169,27 +176,7 @@
       <option name="runtime" value="java8" />
       <option name="templateFile" />
       <option name="useTemplate" value="false" />
-      <option name="input" value="{&#10;  &quot;body&quot;: {&quot;id&quot;:&quot;&quot;,&quot;code&quot;:&quot;ASL-102&quot;,&quot;year&quot;:2020, &quot;semester&quot;:1, &quot;paper&quot;:{&quot;id&quot;: &quot;123456&quot;}, &quot;campus&quot;:{&quot;id&quot;: &quot;1234&quot;, &quot;name&quot;: &quot;City Centre Campus&quot;}},&#10;  &quot;resource&quot;: &quot;/{proxy+}&quot;,&#10;  &quot;path&quot;: &quot;/path/to/resource&quot;,&#10;  &quot;httpMethod&quot;: &quot;POST&quot;,&#10;  &quot;isBase64Encoded&quot;: false,&#10;  &quot;queryStringParameters&quot;: {&#10;    &quot;foo&quot;: &quot;bar&quot;&#10;  },&#10;  &quot;pathParameters&quot;: {&#10;    &quot;proxy&quot;: &quot;/path/to/resource&quot;&#10;  },&#10;  &quot;stageVariables&quot;: {&#10;    &quot;baz&quot;: &quot;qux&quot;&#10;  },&#10;  &quot;headers&quot;: {&#10;    &quot;Accept&quot;: &quot;text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,*/*;q=0.8&quot;,&#10;    &quot;Accept-Encoding&quot;: &quot;gzip, deflate, sdch&quot;,&#10;    &quot;Accept-Language&quot;: &quot;en-US,en;q=0.8&quot;,&#10;    &quot;Cache-Control&quot;: &quot;max-age=0&quot;,&#10;    &quot;CloudFront-Forwarded-Proto&quot;: &quot;https&quot;,&#10;    &quot;CloudFront-Is-Desktop-Viewer&quot;: &quot;true&quot;,&#10;    &quot;CloudFront-Is-Mobile-Viewer&quot;: &quot;false&quot;,&#10;    &quot;CloudFront-Is-SmartTV-Viewer&quot;: &quot;false&quot;,&#10;    &quot;CloudFront-Is-Tablet-Viewer&quot;: &quot;false&quot;,&#10;    &quot;CloudFront-Viewer-Country&quot;: &quot;US&quot;,&#10;    &quot;Host&quot;: &quot;1234567890.execute-api.us-east-1.amazonaws.com&quot;,&#10;    &quot;Upgrade-Insecure-Requests&quot;: &quot;1&quot;,&#10;    &quot;User-Agent&quot;: &quot;Custom User Agent String&quot;,&#10;    &quot;Via&quot;: &quot;1.1 08f323deadbeefa7af34d5feb414ce27.cloudfront.net (CloudFront)&quot;,&#10;    &quot;X-Amz-Cf-Id&quot;: &quot;cDehVQoZnx43VYQb9j2-nvCh-9z396Uhbp027Y2JvkCPNLmGJHqlaA==&quot;,&#10;    &quot;X-Forwarded-For&quot;: &quot;127.0.0.1, 127.0.0.2&quot;,&#10;    &quot;X-Forwarded-Port&quot;: &quot;443&quot;,&#10;    &quot;X-Forwarded-Proto&quot;: &quot;https&quot;&#10;  },&#10;  &quot;requestContext&quot;: {&#10;    &quot;accountId&quot;: &quot;123456789012&quot;,&#10;    &quot;resourceId&quot;: &quot;123456&quot;,&#10;    &quot;stage&quot;: &quot;prod&quot;,&#10;    &quot;requestId&quot;: &quot;c6af9ac6-7b61-11e6-9a41-93e8deadbeef&quot;,&#10;    &quot;requestTime&quot;: &quot;09/Apr/2015:12:34:56 +0000&quot;,&#10;    &quot;requestTimeEpoch&quot;: 1428582896000,&#10;    &quot;identity&quot;: {&#10;      &quot;cognitoIdentityPoolId&quot;: null,&#10;      &quot;accountId&quot;: null,&#10;      &quot;cognitoIdentityId&quot;: null,&#10;      &quot;caller&quot;: null,&#10;      &quot;accessKey&quot;: null,&#10;      &quot;sourceIp&quot;: &quot;127.0.0.1&quot;,&#10;      &quot;cognitoAuthenticationType&quot;: null,&#10;      &quot;cognitoAuthenticationProvider&quot;: null,&#10;      &quot;userArn&quot;: null,&#10;      &quot;userAgent&quot;: &quot;Custom User Agent String&quot;,&#10;      &quot;user&quot;: null&#10;    },&#10;    &quot;apiId&quot;: &quot;1234567890&quot;,&#10;    &quot;protocol&quot;: &quot;HTTP/1.1&quot;&#10;  }&#10;}" />
-      <option name="inputIsFile" value="false" />
-      <sam>
-        <option name="buildInContainer" value="false" />
-        <option name="dockerNetwork" value="" />
-        <option name="skipImagePull" value="false" />
-      </sam>
-      <method v="2" />
-    </configuration>
-    <configuration name="[Local] TeachingStaffFunction" type="aws.lambda" factoryName="Local" temporary="true" nameIsGenerated="true">
-      <option name="credentialProviderId" value="profile:default" />
-      <option name="regionId" value="ap-southeast-2" />
-      <option name="environmentVariables">
-        <map />
-      </option>
-      <option name="handler" value="co.tpg.catalog.function.TeachingStaffFunction" />
-      <option name="logicalFunctionName" />
-      <option name="runtime" value="java8" />
-      <option name="templateFile" />
-      <option name="useTemplate" value="false" />
-      <option name="input" value="{&#10;  &quot;body&quot;: {&quot;id&quot;:&quot;1234&quot;,&quot;name&quot;:&quot;Rod&quot;},&#10;  &quot;resource&quot;: &quot;/{proxy+}&quot;,&#10;  &quot;path&quot;: &quot;/path/to/resource&quot;,&#10;  &quot;httpMethod&quot;: &quot;POST&quot;,&#10;  &quot;isBase64Encoded&quot;: false,&#10;  &quot;queryStringParameters&quot;: {&#10;    &quot;foo&quot;: &quot;bar&quot;&#10;  },&#10;  &quot;pathParameters&quot;: {&#10;    &quot;proxy&quot;: &quot;/path/to/resource&quot;&#10;  },&#10;  &quot;stageVariables&quot;: {&#10;    &quot;baz&quot;: &quot;qux&quot;&#10;  },&#10;  &quot;headers&quot;: {&#10;    &quot;Accept&quot;: &quot;text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,*/*;q=0.8&quot;,&#10;    &quot;Accept-Encoding&quot;: &quot;gzip, deflate, sdch&quot;,&#10;    &quot;Accept-Language&quot;: &quot;en-US,en;q=0.8&quot;,&#10;    &quot;Cache-Control&quot;: &quot;max-age=0&quot;,&#10;    &quot;CloudFront-Forwarded-Proto&quot;: &quot;https&quot;,&#10;    &quot;CloudFront-Is-Desktop-Viewer&quot;: &quot;true&quot;,&#10;    &quot;CloudFront-Is-Mobile-Viewer&quot;: &quot;false&quot;,&#10;    &quot;CloudFront-Is-SmartTV-Viewer&quot;: &quot;false&quot;,&#10;    &quot;CloudFront-Is-Tablet-Viewer&quot;: &quot;false&quot;,&#10;    &quot;CloudFront-Viewer-Country&quot;: &quot;US&quot;,&#10;    &quot;Host&quot;: &quot;1234567890.execute-api.us-east-1.amazonaws.com&quot;,&#10;    &quot;Upgrade-Insecure-Requests&quot;: &quot;1&quot;,&#10;    &quot;User-Agent&quot;: &quot;Custom User Agent String&quot;,&#10;    &quot;Via&quot;: &quot;1.1 08f323deadbeefa7af34d5feb414ce27.cloudfront.net (CloudFront)&quot;,&#10;    &quot;X-Amz-Cf-Id&quot;: &quot;cDehVQoZnx43VYQb9j2-nvCh-9z396Uhbp027Y2JvkCPNLmGJHqlaA==&quot;,&#10;    &quot;X-Forwarded-For&quot;: &quot;127.0.0.1, 127.0.0.2&quot;,&#10;    &quot;X-Forwarded-Port&quot;: &quot;443&quot;,&#10;    &quot;X-Forwarded-Proto&quot;: &quot;https&quot;&#10;  },&#10;  &quot;requestContext&quot;: {&#10;    &quot;accountId&quot;: &quot;123456789012&quot;,&#10;    &quot;resourceId&quot;: &quot;123456&quot;,&#10;    &quot;stage&quot;: &quot;prod&quot;,&#10;    &quot;requestId&quot;: &quot;c6af9ac6-7b61-11e6-9a41-93e8deadbeef&quot;,&#10;    &quot;requestTime&quot;: &quot;09/Apr/2015:12:34:56 +0000&quot;,&#10;    &quot;requestTimeEpoch&quot;: 1428582896000,&#10;    &quot;identity&quot;: {&#10;      &quot;cognitoIdentityPoolId&quot;: null,&#10;      &quot;accountId&quot;: null,&#10;      &quot;cognitoIdentityId&quot;: null,&#10;      &quot;caller&quot;: null,&#10;      &quot;accessKey&quot;: null,&#10;      &quot;sourceIp&quot;: &quot;127.0.0.1&quot;,&#10;      &quot;cognitoAuthenticationType&quot;: null,&#10;      &quot;cognitoAuthenticationProvider&quot;: null,&#10;      &quot;userArn&quot;: null,&#10;      &quot;userAgent&quot;: &quot;Custom User Agent String&quot;,&#10;      &quot;user&quot;: null&#10;    },&#10;    &quot;apiId&quot;: &quot;1234567890&quot;,&#10;    &quot;protocol&quot;: &quot;HTTP/1.1&quot;&#10;  }&#10;}" />
+      <option name="input" value="{&#10;  &quot;body&quot;: {},&#10;  &quot;resource&quot;: &quot;/TeachingClass&quot;,&#10;  &quot;path&quot;: &quot;TeachingClass/d19cfe7f-6b52-433b-8f3e-61bcb23385c7&quot;,&#10;  &quot;httpMethod&quot;: &quot;GET&quot;,&#10;  &quot;isBase64Encoded&quot;: false,&#10;  &quot;queryStringParameters&quot;: {&#10;  },&#10;  &quot;pathParameters&quot;: {&#10;  },&#10;  &quot;stageVariables&quot;: {&#10;    &quot;baz&quot;: &quot;qux&quot;&#10;  },&#10;  &quot;headers&quot;: {&#10;    &quot;Accept&quot;: &quot;text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,*/*;q=0.8&quot;,&#10;    &quot;Accept-Encoding&quot;: &quot;gzip, deflate, sdch&quot;,&#10;    &quot;Accept-Language&quot;: &quot;en-US,en;q=0.8&quot;,&#10;    &quot;Cache-Control&quot;: &quot;max-age=0&quot;,&#10;    &quot;CloudFront-Forwarded-Proto&quot;: &quot;https&quot;,&#10;    &quot;CloudFront-Is-Desktop-Viewer&quot;: &quot;true&quot;,&#10;    &quot;CloudFront-Is-Mobile-Viewer&quot;: &quot;false&quot;,&#10;    &quot;CloudFront-Is-SmartTV-Viewer&quot;: &quot;false&quot;,&#10;    &quot;CloudFront-Is-Tablet-Viewer&quot;: &quot;false&quot;,&#10;    &quot;CloudFront-Viewer-Country&quot;: &quot;US&quot;,&#10;    &quot;Host&quot;: &quot;1234567890.execute-api.us-east-1.amazonaws.com&quot;,&#10;    &quot;Upgrade-Insecure-Requests&quot;: &quot;1&quot;,&#10;    &quot;User-Agent&quot;: &quot;Custom User Agent String&quot;,&#10;    &quot;Via&quot;: &quot;1.1 08f323deadbeefa7af34d5feb414ce27.cloudfront.net (CloudFront)&quot;,&#10;    &quot;X-Amz-Cf-Id&quot;: &quot;cDehVQoZnx43VYQb9j2-nvCh-9z396Uhbp027Y2JvkCPNLmGJHqlaA==&quot;,&#10;    &quot;X-Forwarded-For&quot;: &quot;127.0.0.1, 127.0.0.2&quot;,&#10;    &quot;X-Forwarded-Port&quot;: &quot;443&quot;,&#10;    &quot;X-Forwarded-Proto&quot;: &quot;https&quot;&#10;  },&#10;  &quot;requestContext&quot;: {&#10;    &quot;accountId&quot;: &quot;123456789012&quot;,&#10;    &quot;resourceId&quot;: &quot;123456&quot;,&#10;    &quot;stage&quot;: &quot;prod&quot;,&#10;    &quot;requestId&quot;: &quot;c6af9ac6-7b61-11e6-9a41-93e8deadbeef&quot;,&#10;    &quot;requestTime&quot;: &quot;09/Apr/2015:12:34:56 +0000&quot;,&#10;    &quot;requestTimeEpoch&quot;: 1428582896000,&#10;    &quot;identity&quot;: {&#10;      &quot;cognitoIdentityPoolId&quot;: null,&#10;      &quot;accountId&quot;: null,&#10;      &quot;cognitoIdentityId&quot;: null,&#10;      &quot;caller&quot;: null,&#10;      &quot;accessKey&quot;: null,&#10;      &quot;sourceIp&quot;: &quot;127.0.0.1&quot;,&#10;      &quot;cognitoAuthenticationType&quot;: null,&#10;      &quot;cognitoAuthenticationProvider&quot;: null,&#10;      &quot;userArn&quot;: null,&#10;      &quot;userAgent&quot;: &quot;Custom User Agent String&quot;,&#10;      &quot;user&quot;: null&#10;    },&#10;    &quot;apiId&quot;: &quot;1234567890&quot;,&#10;    &quot;protocol&quot;: &quot;HTTP/1.1&quot;&#10;  }&#10;}" />
       <option name="inputIsFile" value="false" />
       <sam>
         <option name="buildInContainer" value="false" />
@@ -200,14 +187,11 @@
     </configuration>
     <list>
       <item itemvalue="AWS Lambda.[Local] CampusFunction" />
-      <item itemvalue="AWS Lambda.[Local] TeachingStaffFunction" />
-      <item itemvalue="AWS Lambda.[Local] HelloWorldFunction" />
       <item itemvalue="AWS Lambda.[Local] TeachingClassFunction" />
     </list>
     <recent_temporary>
       <list>
         <item itemvalue="AWS Lambda.[Local] TeachingClassFunction" />
-        <item itemvalue="AWS Lambda.[Local] TeachingStaffFunction" />
       </list>
     </recent_temporary>
   </component>
@@ -249,6 +233,11 @@
           <url>jar://$MAVEN_REPOSITORY$/com/amazonaws/aws-java-sdk-dynamodb/1.11.640/aws-java-sdk-dynamodb-1.11.640-sources.jar!/com/amazonaws/services/dynamodbv2/datamodeling/DynamoDBMapper.java</url>
           <line>739</line>
           <option name="timeStamp" value="3" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/catalog-model/src/main/java/co/tpg/catalog/model/TeachingClass.java</url>
+          <line>51</line>
+          <option name="timeStamp" value="4" />
         </line-breakpoint>
       </breakpoints>
     </breakpoint-manager>

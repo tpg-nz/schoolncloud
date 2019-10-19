@@ -4,6 +4,7 @@ C:\projects\SchoolnCloud\schoolncloud\middleware-catalog-module\catalog-model\sr
 C:\projects\SchoolnCloud\schoolncloud\middleware-catalog-module\catalog-model\src\main\java\co\tpg\catalog\response\TeachingClassResponse.java
 C:\projects\SchoolnCloud\schoolncloud\middleware-catalog-module\catalog-model\src\main\java\co\tpg\catalog\exception\ProcessingException.java
 C:\projects\SchoolnCloud\schoolncloud\middleware-catalog-module\catalog-model\src\main\java\co\tpg\catalog\response\ErrorResponse.java
+C:\projects\SchoolnCloud\schoolncloud\middleware-catalog-module\catalog-model\src\main\java\co\tpg\catalog\response\TeachingClassListResponse.java
 C:\projects\SchoolnCloud\schoolncloud\middleware-catalog-module\catalog-model\src\main\java\co\tpg\catalog\request\HttpMethod.java
 C:\projects\SchoolnCloud\schoolncloud\middleware-catalog-module\catalog-model\src\main\java\co\tpg\catalog\response\TeachingStaffResponse.java
 C:\projects\SchoolnCloud\schoolncloud\middleware-catalog-module\catalog-model\src\main\java\co\tpg\catalog\model\Campus.java

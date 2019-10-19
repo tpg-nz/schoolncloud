@@ -14,6 +14,8 @@ import lombok.*;
 @Getter
 @Setter
 @ToString
+@NoArgsConstructor
+@AllArgsConstructor
 @EqualsAndHashCode(onlyExplicitlyIncluded = true)
 @DynamoDBTable(tableName = "Paper")
 public class Paper extends AbstractModel<String> {
@@ -26,11 +28,4 @@ public class Paper extends AbstractModel<String> {
     private int points;
     @DynamoDBAttribute(attributeName = "teachingPeriod")
     private String teachingPeriod;
-
-    public Paper() {
-    }
-
-    public Paper(String id) {
-        this.id = id;
-    }
 }

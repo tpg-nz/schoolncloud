@@ -2,8 +2,10 @@ co\tpg\catalog\request\HttpMethod.class
 co\tpg\catalog\request\TeachingStaffRequest.class
 co\tpg\catalog\request\RequestContext.class
 co\tpg\catalog\response\ErrorResponse.class
+co\tpg\catalog\response\PaperResponse.class
 co\tpg\catalog\response\TeachingClassResponse.class
 co\tpg\catalog\request\CampusRequest.class
+co\tpg\catalog\request\PaperRequest.class
 co\tpg\catalog\model\AbstractModel.class
 co\tpg\catalog\model\Paper.class
 co\tpg\catalog\response\AbstractResponse.class

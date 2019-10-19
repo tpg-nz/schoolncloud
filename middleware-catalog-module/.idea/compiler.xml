@@ -8,12 +8,13 @@
         <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
         <outputRelativeToContentRoot value="true" />
         <module name="EducationalInstitution" />
+        <module name="function-shared" />
+        <module name="catalog-dao" />
         <module name="CampusFunction" />
         <module name="catalog-model" />
         <module name="CampusCode" />
-        <module name="teaching-class" />
         <module name="teaching-staff" />
-        <module name="catalog-dao" />
+        <module name="teaching-class" />
         <module name="TeachingClass" />
       </profile>
     </annotationProcessing>
@@ -25,6 +26,7 @@
       <module name="catalog-model" target="1.8" />
       <module name="CreateTeachingStaff" target="1.8" />
       <module name="EducationalInstitution" target="1.8" />
+      <module name="function-shared" target="1.8" />
       <module name="middleware-catalog-module" target="1.8" />
       <module name="RetrieveTeachingStaff" target="1.8" />
       <module name="teaching-class" target="1.8" />

@@ -35,24 +35,20 @@
         </dependency>
         <dependency>
             <groupId>co.tpg.catalog</groupId>
-            <artifactId>catalog-helper</artifactId>
-            <version>1.0.0</version>
-        </dependency>
-        <dependency>
-            <groupId>co.tpg.catalog</groupId>
             <artifactId>catalog-dao</artifactId>
             <version>1.0.0</version>
-        </dependency>
-        <dependency>
-            <groupId>com.fasterxml.jackson.core</groupId>
-            <artifactId>jackson-databind</artifactId>
-            <version>2.9.8</version>
         </dependency>
         <dependency>
             <groupId>junit</groupId>
             <artifactId>junit</artifactId>
             <version>4.12</version>
             <scope>test</scope>
+        </dependency>
+        <dependency>
+            <groupId>co.tpg.catalog</groupId>
+            <artifactId>function-shared</artifactId>
+            <version>1.0.0</version>
+            <scope>compile</scope>
         </dependency>
     </dependencies>
 

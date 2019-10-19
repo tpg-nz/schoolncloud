@@ -15,6 +15,8 @@ import lombok.*;
 @Setter
 @ToString
 @EqualsAndHashCode(onlyExplicitlyIncluded = true)
+@AllArgsConstructor
+@NoArgsConstructor
 @DynamoDBTable(tableName = "Campus")
 public class Campus extends AbstractModel<String> {
     @EqualsAndHashCode.Include
@@ -22,12 +24,4 @@ public class Campus extends AbstractModel<String> {
     private String id;
     @DynamoDBAttribute(attributeName = "name")
     private String name;
-
-    public Campus() {
-    }
-
-    public Campus(String id, String name) {
-        this.id = id;
-        this.name = name;
-    }
 }

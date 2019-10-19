@@ -11,8 +11,8 @@ import co.tpg.catalog.response.AbstractResponse;
 import co.tpg.catalog.response.ErrorResponse;
 import co.tpg.catalog.response.TeachingClassListResponse;
 import co.tpg.catalog.response.TeachingClassResponse;
+import co.tpg.function.AbstractFunction;
 import com.amazonaws.services.lambda.runtime.Context;
-import com.amazonaws.services.lambda.runtime.RequestHandler;
 
 import javax.servlet.http.HttpServletResponse;
 import java.util.HashMap;
@@ -23,7 +23,7 @@ import java.util.Map;
  * @author Rod
  * @since 2019-09-28
  */
-public class TeachingClassFunction implements RequestHandler<TeachingClassRequest, AbstractResponse> {
+public class TeachingClassFunction extends AbstractFunction<TeachingClassRequest, AbstractResponse> {
 
     public AbstractResponse handleRequest(final TeachingClassRequest input, final Context context) {
         final TeachingClassResponse response = new TeachingClassResponse();
@@ -110,5 +110,10 @@ public class TeachingClassFunction implements RequestHandler<TeachingClassReques
         }
 
         return response;
+    }
+
+    @Override
+    public Class<TeachingClassRequest> getClazz() {
+        return TeachingClassRequest.class;
     }
 }

@@ -12,19 +12,12 @@ import lombok.*;
 @Setter
 @ToString
 @EqualsAndHashCode
+@AllArgsConstructor
+@NoArgsConstructor
 public class TeachingStaff extends AbstractModel<String> {
     private String id;
     @EqualsAndHashCode.Exclude
     private String name;
     @EqualsAndHashCode.Exclude
     private Paper paper;
-
-    public TeachingStaff() {
-    }
-
-    public TeachingStaff(String id, String name, Paper paper) {
-        this.id = id;
-        this.name = name;
-        this.paper = paper;
-    }
 }

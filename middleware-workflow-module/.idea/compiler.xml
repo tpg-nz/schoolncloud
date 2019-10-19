@@ -6,9 +6,14 @@
         <sourceOutputDir name="target/generated-sources/annotations" />
         <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
         <outputRelativeToContentRoot value="true" />
-        <module name="HelloWorld" />
+        <module name="workflow-dao" />
         <module name="workflow-model" />
       </profile>
     </annotationProcessing>
+    <bytecodeTargetLevel>
+      <module name="workflow-dao" target="1.8" />
+      <module name="workflow-model" target="1.8" />
+      <module name="workflow-module" target="1.8" />
+    </bytecodeTargetLevel>
   </component>
 </project>

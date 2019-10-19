@@ -2,7 +2,9 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
-      <module fileurl="file://$PROJECT_DIR$/workflow/workflow.iml" filepath="$PROJECT_DIR$/workflow/workflow.iml" />
+      <module fileurl="file://$PROJECT_DIR$/workflow-dao/workflow-dao.iml" filepath="$PROJECT_DIR$/workflow-dao/workflow-dao.iml" />
+      <module fileurl="file://$PROJECT_DIR$/workflow-model/workflow-model.iml" filepath="$PROJECT_DIR$/workflow-model/workflow-model.iml" />
+      <module fileurl="file://$PROJECT_DIR$/workflow-module.iml" filepath="$PROJECT_DIR$/workflow-module.iml" />
     </modules>
   </component>
 </project>

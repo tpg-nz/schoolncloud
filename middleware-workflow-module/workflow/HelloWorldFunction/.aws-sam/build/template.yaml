@@ -1,8 +1,0 @@
-Resources:
-  Function:
-    Properties:
-      CodeUri: Function
-      Handler: helloworld.App
-      Runtime: java8
-      Timeout: 900
-    Type: AWS::Serverless::Function

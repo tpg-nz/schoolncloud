@@ -10,6 +10,8 @@
     <version>1.0.0</version>
     <modules>
         <module>workflow-model</module>
+        <module>workflow-dao</module>
+        <module>function-shared</module>
     </modules>
 
     <dependencies>

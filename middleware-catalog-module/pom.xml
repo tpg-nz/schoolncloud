@@ -13,10 +13,10 @@
     <modules>
         <module>catalog-model</module>
         <module>catalog-dao</module>
+        <module>function-shared</module>
     </modules>
 
     <dependencies>
-        <!-- https://mvnrepository.com/artifact/org.projectlombok/lombok -->
         <dependency>
             <groupId>org.projectlombok</groupId>
             <artifactId>lombok</artifactId>

@@ -1,33 +1,43 @@
 package co.tpg.catalog.model;
 
+import com.amazonaws.services.dynamodbv2.datamodeling.DynamoDBHashKey;
+import com.amazonaws.services.dynamodbv2.datamodeling.DynamoDBTable;
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
+import lombok.AllArgsConstructor;
 import lombok.Builder;
+import lombok.EqualsAndHashCode;
 import lombok.Getter;
+import lombok.NoArgsConstructor;
 import lombok.Setter;
 import lombok.ToString;
 
 /**
- * Model class to represent a Subject
- * @author James
- * @since 2019-09-16
+ * Response class for Subject entity
+ * 
+ * @author maxx
+ * @since 2019-10-03
  */
 
 @Builder
 @Getter
 @Setter
 @ToString
-public class Subject {
+@EqualsAndHashCode
+@NoArgsConstructor
+@AllArgsConstructor
+@DynamoDBTable(tableName = "Subject")
+public class Subject extends AbstractModel<String> {
+
+    @DynamoDBHashKey(attributeName = "id")
     private String id;
+
+    @EqualsAndHashCode.Exclude
     private String name;
+
+    @EqualsAndHashCode.Exclude
     private String overview;
+
+    @EqualsAndHashCode.Exclude
     private int level;
-
-    public Subject() {
-    }
-
-    public Subject(String id, String name, String overview, int level) {
-        this.id = id;
-        this.name = name;
-        this.overview = overview;
-        this.level = level;
-    }
 }
